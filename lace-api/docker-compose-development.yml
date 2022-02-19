@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  lacems-api:
+    build:
+      dockerfile: Dockerfile.development
+      context: .
+    image: lacems-api:development
+    container_name: lacems-api
+    restart: always
+    volumes:
+    - .:/app
+    working_dir: /app
+    command: >
+       bash -c "unset MAVEN_CONFIG && env && ./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+       -Dspring-boot.run.jvmArguments='-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=0.0.0.0:5005'
+       -DAWS_S3_BUCKET=lace-dev
+       -DAWS_S3_BUCKET_BACKUP=lace-dev-backup
+       -Dcloud.aws.region.static=eu-central-1
+       -DAWS_SMS_ACCESS_KEY=AKIARN4HBKUWDJDW6L5R
+       -DAWS_SMS_SECRET_KEY=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
+       -DKEY_RDS_USERNAME=Admindbnph
+       -DKEY_RDS_PASSWORD=4dm183$M6f%
+       -DKEY_RDS_HOSTNAME=aasskcbxx8cqrh.c1hntzwsdb8f.eu-central-1.rds.amazonaws.com
+       -DKEY_RDS_PORT=3306
+       -DAPP_DOMAIN=dev.mynephis.com
+       -DAPP_WORKING_DIR=/tmp/LACEtmp
+       -DHTTPS_ENABLED=0
+       -Dsentry.environment=
+       -DSTRIPE_SECRET_KEY=0
+       -DFROM_EMAIL=marko.bojovic@sella.it
+       -DCOMPARATORE_TOKEN=0
+       -DCOMPARATORE_CONTESTATION_API_URL=0
+       -DSTRIPE_PUBLISHABLE_KEY=0
+       -DCUSTOMERLY_ENABLED=0
+       -Dline.separator=-"
+    ports:
+    - "5005:5005"
+    - "8080:8080"
+    hostname: lace-api
+    networks:
+    - lace_network
+networks:
+  lace_network:
+    name: lace_network

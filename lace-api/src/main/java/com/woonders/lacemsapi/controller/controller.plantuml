@@ -1,0 +1,461 @@
+@startuml
+
+title __CONTROLLER's Class Diagram__\n
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.AmministrazioneController {
+        + completeAmministrazione()
+        + findByCodiceFiscale()
+        + findByPiva()
+        + findByRagioneSociale()
+        + findDistinctByCliente_Id()
+        + findDistinctByRagioneSocialeContaining()
+        + findOne()
+        + save()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.AntiriciclaggioController {
+        + findPraticheAntiriciclaggio()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.AppController {
+        + findClienteByIdCliente()
+        + findClienteByIdPratica()
+        + findContoByIdCliente()
+        + findCoobbligatoByIdPratica()
+        + findDocumentoByIdCliente()
+        + findEstinzioniByIdPratica()
+        + findPraticaByCodicePratica()
+        + findPraticheByIdCliente()
+        + findPreventiviByIdCliente()
+        + findResidenzaByIdCliente()
+        + findTrattenuteByIdCliente()
+        + getDataNotificaByStatoPraticaAndAziendaId()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.AziendaController {
+        + count()
+        + findAll()
+        + getOne()
+        + save()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    abstract class com.woonders.lacemsapi.controller.BaseLacePushLeadController {
+        {static} # LACE_PUSH_LEAD_URL : String
+        {static} - log : Logger
+        + pushLead()
+        {abstract} # returnErrorMessage()
+        {abstract} # returnSuccessMessage()
+        - logAndReturnErrorMessage()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.CalendarioController {
+        + changeTimeOne()
+        + findPraticheByIdCliente()
+        + getAppuntamenti()
+        + getAppuntamenti()
+        + getOne()
+        + saveAppuntamento()
+        + sendSmsAppuntamento()
+        + sendSmsAppuntamento()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.CheckNominativoController {
+        + findNominativoByCognomeAndNomeAndDataNascita()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.ClienteManagerController {
+        + deleteEstinzione()
+        + deleteSecondaOccupazione()
+        + deleteTrattenuta()
+        + findClienteByCodiceFiscale()
+        + findClienteByIdCliente()
+        + findClienteByIdPratica()
+        + findContoByIdCliente()
+        + findCoobbligatoByIdPratica()
+        + findDocumentoByIdCliente()
+        + findEstinzioniByIdPratica()
+        + findPraticaByCodicePratica()
+        + findPraticheByIdCliente()
+        + findPreventiviByIdCliente()
+        + findResidenzaByIdCliente()
+        + findTrattenuteByIdCliente()
+        + getDataNotificaByStatoPraticaAndAziendaId()
+        + init()
+        + saveNewClienteWithPratica()
+        + setAntiriciclaggioFileCaricato()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.ControllerConstants {
+        {static} + V1 : String
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.CoobbligatoController {
+        + delete()
+        + findDistinctByPratica_CodicePratica()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.DashboardController {
+        + calcTotaleMontante()
+        + countByDataRecallToday()
+        + countByDataRinnovoBeforeThanDays()
+        + countByDataRinnovoTrattenutaBeforeThanDays()
+        + countByPreventiviInCorso()
+        + countByTipoPraticaInMeseCorrente()
+        + countByTipoPraticaPerfezionataInAnnoCorrente()
+        + getLastPraticheClientiCaricati()
+        + getPratica()
+        + getPraticaOnPreventivoCliente()
+        + removeNotificaPreventivo()
+        + removeNotificaRecall()
+        + removeNotificaRinnovoPratica()
+        + removeNotificaTrattenuta()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.DashboardNominativoController {
+        + countImpegniRinnovabili()
+        + countNewLead()
+        + countNominativiInDataRecall()
+        + findImpegniRinnovabili()
+        + getNominativiInDataRecall()
+        + getNominativo()
+        + getTrattenuta()
+        + init()
+        + setRinnovoTrattenute()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.DeleteClienteController {
+        + deleteByCf()
+        + deletePratica()
+        + findByCf()
+        + findPraticheToDeleteByCf()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.DevisProxPushLeadController {
+        {static} + DEVISPROX_TENANT_ID : String
+        {static} + PUSH_LEAD_URL : String
+        - ADDRESS : String
+        - ANNUAL_BONUS : String
+        - CHECKSUM : String
+        - CITY : String
+        - CLIENT_JOB_TYPE : String
+        - COUNTRY : String
+        - DATE_OF_BIRTH : String
+        - DEVISPROX_LEAD_ID : String
+        - DEVISPROX_PRODUCT_ID : String
+        - EMAIL : String
+        - LANDLINE_NUMBER : String
+        - LOAN_AMOUNT : String
+        - LOAN_LENGTH : String
+        - MARRIED_SURNAME : String
+        - MOBILE_NUMBER : String
+        - MONTHLY_NET_INCOME : String
+        - NAME : String
+        - PASSWORD : String
+        - PASSWORD_VALUE : String
+        - POST_CODE : String
+        - RECRUITMENT_DATE : String
+        - SOURCE_DEVIS_PROX : String
+        - SURNAME : String
+        - TITLE : String
+        - USERNAME : String
+        - USERNAME_VALUE : String
+        {static} - logger : Logger
+        - tenantName : String
+        + pushLead()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.DevisProxPushLeadDisputeController {
+        {static} + DEVISPROX_TENANT_ID : String
+        {static} + PUSH_LEAD_DISPUTE_URL : String
+        - CHECKSUM : String
+        - DEVISPROX_LEAD_ID : String
+        - DEVISPROX_PRODUCT_ID : String
+        - LACE_LEAD_ID : String
+        - LACE_TENANT_NAME : String
+        - PASSWORD : String
+        - PASSWORD_VALUE : String
+        - REASON : String
+        - RESULT : String
+        - SOURCE_DEVIS_PROX : String
+        - USERNAME : String
+        - USERNAME_VALUE : String
+        {static} - logger : Logger
+        - tenantName : String
+        + pushLeadDespute()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.DevisProxPushLeadDisputeControllerV2 {
+        {static} + DEVISPROX_TENANT_ID : String
+        {static} + PUSH_LEAD_DISPUTE_URL : String
+        - DEVISPROX_LEAD_ID : String
+        {static} - log : Logger
+        + esitoContestazioneLead()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.ExceptionHandlerController {
+        {static} - log : Logger
+        + defaultErrorHandler()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.FinanziariaController {
+        + findAll()
+        + getOne()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.FormLacePushLeadController {
+        {static} + LACE_PUSH_LEAD_FORM_URL : String
+        + pushLead()
+        # returnErrorMessage()
+        # returnSuccessMessage()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.JsonLacePushLeadController {
+        {static} + LACE_PUSH_LEAD_JSON_URL : String
+        + pushLead()
+        # returnErrorMessage()
+        # returnSuccessMessage()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.LogController {
+        + getNominativoLog()
+        + getPraticaLog()
+        + logCustomAction()
+        + logNominativo()
+        + logPratica()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.NominativoController {
+        + creaPraticaDaPreventivoNominativo()
+        + delete()
+        + deletePreventivo()
+        + deleteTrattenuta()
+        + getNotificaLeadSms()
+        + init()
+        + saveNominativo()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.OperatorController {
+        + changeData()
+        + changePassword()
+        + delete()
+        + findAll()
+        + findAllAppOperator()
+        + findAppOperatorListByAziendaId()
+        + findByRoleName()
+        + findByRoleNameInAndAzienda_Id()
+        + findByUsernameViewModel()
+        + findOperatorViewModelByUsername()
+        + getAllReceiveLeadEnabledOperatorByAziendaId()
+        + getOne()
+        + loadUserByUsername()
+        + mail()
+        + mailList()
+        + save()
+        + updateReceiveLeadEnabledOperatorsByAziendaId()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.PraticheInCorsoController {
+        + getAltrePraticheInCorsoByClienteSenzaPraticaAttualmenteVisibile()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.PreferenzaStatoPraticaController {
+        + getAllPreferenzaStatoPraticaByAziendaId()
+        + save()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.PreventivoController {
+        + creaPratica()
+        + deletePreventivo()
+        + getAllPraticheAttiveEstinguibili()
+        + getAllTrattenuteEstinguibili()
+        + init()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.PushSmsDeliveryReceiptsController {
+        {static} + CUSTOM_STRING : String
+        {static} + PUSH_SMS_DELIVERY_RECEIPTS_URL : String
+        - ERROR_CODE : String
+        - ERROR_TEXT : String
+        - MESSAGE_ID : String
+        - MESSAGE_TYPE : String
+        - STATUS : String
+        - STATUS_CODE : String
+        - STATUS_TEXT : String
+        - SUBACCOUNT_ID : String
+        - TIMESTAMP : String
+        - TIMESTAMP_SEND : String
+        - USER_ID : String
+        {static} - log : Logger
+        + pushSmsDeliveryReceipt()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.RicaricaController {
+        + findFatturaPdfLinkByRicaricaId()
+        + getTopUpList()
+        + makePayment()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.SearchController {
+        + completeClientiNominativi()
+        + filterListByCliente()
+        + findByTelefono()
+        + findOne()
+        + getSelectedClientePratica()
+        + searchByCodiceFiscale()
+        + searchByCognome()
+        + searchByDataRinnovoAndTipoRinnovo()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.SettingController {
+        + findAll()
+        + getByAziendaId()
+        + save()
+        + setLeadIlComparatoreEnabled()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.SmsController {
+        + calcSmsPricingInfo()
+        + checkEnoughBalance()
+        + sendSms()
+        + updateStatusNotificaSmsLead()
+        + updateStatusNotificaSmsMarketing()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.StatoNominativoController {
+        + countNominativiByStatoNominativo()
+        + getNominativiByStatoNominativo()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.StatoPraticheController {
+        + countByStatoPraticaAndTipoClienteAndUsername()
+        + findByStatoPraticaAndTipoClienteAndUsername()
+        + getClientePratica()
+        + init()
+        + updateDataNotificaByCodicePratica()
+        + updateStatoPraticaByCodicePratica()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.TenantController {
+        + isTenantAvailable()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.ValutazioneAmministrazioneController {
+        + delete()
+        + findDistinctByAmministrazione_CodiceAmm()
+    }
+  }
+  
+
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
