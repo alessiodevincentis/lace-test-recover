@@ -1,0 +1,422 @@
+@startuml
+
+title __LACEMS-API's Class Diagram__\n
+
+  namespace com.woonders.lacemsapi.config {
+    class com.woonders.lacemsapi.config.AppSecurityConfig {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.config {
+    class com.woonders.lacemsapi.config.Constants {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.config {
+    class com.woonders.lacemsapi.config.LaceMSApiApplication {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.config {
+    class com.woonders.lacemsapi.config.OAuth2ServerConfigJwt {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.config {
+    class com.woonders.lacemsapi.config.SwaggerConfig {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.config {
+    class com.woonders.lacemsapi.config.WebMvcConfiguration {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.config {
+    namespace app {
+      class com.woonders.lacemsapi.config.app.RequestTenantIdentifierResolver {
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.AmministrazioneController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.AntiriciclaggioController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.AppController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.AziendaController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    abstract class com.woonders.lacemsapi.controller.BaseLacePushLeadController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.CalendarioController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.CheckNominativoController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.ClienteManagerController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.ControllerConstants {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.CoobbligatoController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.DashboardController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.DashboardNominativoController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.DeleteClienteController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.DevisProxPushLeadController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.DevisProxPushLeadDisputeController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.DevisProxPushLeadDisputeControllerV2 {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.ExceptionHandlerController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.FinanziariaController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.FormLacePushLeadController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.JsonLacePushLeadController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.LogController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.NominativoController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.OperatorController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.PraticheInCorsoController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.PreferenzaStatoPraticaController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.PreventivoController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.PushSmsDeliveryReceiptsController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.RicaricaController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.SearchController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.SettingController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.SmsController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.StatoNominativoController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.StatoPraticheController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.TenantController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.controller {
+    class com.woonders.lacemsapi.controller.ValutazioneAmministrazioneController {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.converter {
+    class com.woonders.lacemsapi.converter.ClienteImpiegoConverter {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.converter {
+    class com.woonders.lacemsapi.converter.LocalDateConverter {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.converter {
+    class com.woonders.lacemsapi.converter.MessageTypeConverter {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.converter {
+    class com.woonders.lacemsapi.converter.ProvenienzaConverter {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.converter {
+    class com.woonders.lacemsapi.converter.StringToBigDecimalConverter {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.converter {
+    class com.woonders.lacemsapi.converter.StringToIntConverter {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.converter {
+    namespace serializer {
+      class com.woonders.lacemsapi.converter.serializer.ResponseCodeSerializer {
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.interceptor {
+    class com.woonders.lacemsapi.interceptor.RequestLogInterceptor {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.model.app {
+    class com.woonders.lacemsapi.model.app.BaseMessage {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.model.app {
+    class com.woonders.lacemsapi.model.app.Lead {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.service {
+    interface com.woonders.lacemsapi.service.LeadService {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.service {
+    class com.woonders.lacemsapi.service.LeadServiceImpl {
+    }
+  }
+  
+
+  com.woonders.lacemsapi.config.AppSecurityConfig -up-|> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+  com.woonders.lacemsapi.config.AppSecurityConfig o-- com.woonders.lacemscommon.service.OperatorService : operatorService
+  com.woonders.lacemsapi.config.LaceMSApiApplication -up-|> org.springframework.boot.web.support.SpringBootServletInitializer
+  com.woonders.lacemsapi.config.WebMvcConfiguration -up-|> org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
+  com.woonders.lacemsapi.config.WebMvcConfiguration o-- com.woonders.lacemsapi.interceptor.RequestLogInterceptor : requestLogInterceptor
+  com.woonders.lacemsapi.config.app.RequestTenantIdentifierResolver .up.|> org.hibernate.context.spi.CurrentTenantIdentifierResolver
+  com.woonders.lacemsapi.config.app.RequestTenantIdentifierResolver .up.|> org.springframework.context.ApplicationListener
+  com.woonders.lacemsapi.config.app.RequestTenantIdentifierResolver o-- com.woonders.lacemscommon.config.TenantManager : tenantManager
+  com.woonders.lacemsapi.controller.AmministrazioneController o-- com.woonders.lacemscommon.service.AmministrazioneService : amministrazioneService
+  com.woonders.lacemsapi.controller.AntiriciclaggioController o-- com.woonders.lacemscommon.service.AntiriciclaggioService : antiriciclaggioService
+  com.woonders.lacemsapi.controller.AppController o-- com.woonders.lacemscommon.service.AppService : appService
+  com.woonders.lacemsapi.controller.AziendaController o-- com.woonders.lacemscommon.service.AziendaService : aziendaService
+  com.woonders.lacemsapi.controller.BaseLacePushLeadController o-- com.woonders.lacemsapi.service.LeadService : leadService
+  com.woonders.lacemsapi.controller.BaseLacePushLeadController o-- com.woonders.lacemscommon.service.SmsLeadService : smsLeadService
+  com.woonders.lacemsapi.controller.CalendarioController o-- com.woonders.lacemscommon.service.CalendarioAppuntamentoFacade : calendarioAppuntamentoFacade
+  com.woonders.lacemsapi.controller.CalendarioController o-- com.woonders.lacemscommon.service.CalendarioAppuntamentoService : calendarioAppuntamentoService
+  com.woonders.lacemsapi.controller.CheckNominativoController o-- com.woonders.lacemscommon.service.CheckNominativoService : checkNominativoService
+  com.woonders.lacemsapi.controller.ClienteManagerController -up-|> com.woonders.lacemsapi.controller.AppController
+  com.woonders.lacemsapi.controller.ClienteManagerController o-- com.woonders.lacemscommon.service.ClienteManagerService : clienteManagerService
+  com.woonders.lacemsapi.controller.CoobbligatoController o-- com.woonders.lacemscommon.service.CoobbligatoService : coobbligatoService
+  com.woonders.lacemsapi.controller.DashboardController o-- com.woonders.lacemscommon.service.DashboardService : dashboardService
+  com.woonders.lacemsapi.controller.DashboardNominativoController -up-|> com.woonders.lacemsapi.controller.AppController
+  com.woonders.lacemsapi.controller.DashboardNominativoController o-- com.woonders.lacemscommon.service.DashboardNominativoService : dashboardNominativoService
+  com.woonders.lacemsapi.controller.DeleteClienteController o-- com.woonders.lacemscommon.service.DeleteClienteService : deleteClienteService
+  com.woonders.lacemsapi.controller.DevisProxPushLeadController o-- com.woonders.lacemsapi.service.LeadService : leadService
+  com.woonders.lacemsapi.controller.DevisProxPushLeadController o-- com.woonders.lacemscommon.service.SmsLeadService : smsLeadService
+  com.woonders.lacemsapi.controller.DevisProxPushLeadController o-- com.woonders.lacemscommon.config.TenantManager : tenantManager
+  com.woonders.lacemsapi.controller.DevisProxPushLeadDisputeController o-- com.woonders.lacemsapi.service.LeadService : leadService
+  com.woonders.lacemsapi.controller.DevisProxPushLeadDisputeController o-- com.woonders.lacemscommon.service.SmsLeadService : smsLeadService
+  com.woonders.lacemsapi.controller.DevisProxPushLeadDisputeController o-- com.woonders.lacemscommon.config.TenantManager : tenantManager
+  com.woonders.lacemsapi.controller.DevisProxPushLeadDisputeControllerV2 o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemsapi.controller.DevisProxPushLeadDisputeControllerV2 o-- com.woonders.lacemscommon.service.LogService : logService
+  com.woonders.lacemsapi.controller.DevisProxPushLeadDisputeControllerV2 o-- com.woonders.lacemscommon.config.TenantManager : tenantManager
+  com.woonders.lacemsapi.controller.FinanziariaController o-- com.woonders.lacemscommon.service.FinanziariaService : finanziariaService
+  com.woonders.lacemsapi.controller.FormLacePushLeadController -up-|> com.woonders.lacemsapi.controller.BaseLacePushLeadController
+  com.woonders.lacemsapi.controller.JsonLacePushLeadController -up-|> com.woonders.lacemsapi.controller.BaseLacePushLeadController
+  com.woonders.lacemsapi.controller.LogController o-- com.woonders.lacemscommon.service.LogService : logService
+  com.woonders.lacemsapi.controller.NominativoController -up-|> com.woonders.lacemsapi.controller.AppController
+  com.woonders.lacemsapi.controller.NominativoController o-- com.woonders.lacemscommon.service.NominativoService : nominativoService
+  com.woonders.lacemsapi.controller.OperatorController o-- com.woonders.lacemscommon.service.OperatorService : operatorService
+  com.woonders.lacemsapi.controller.PraticheInCorsoController o-- com.woonders.lacemscommon.service.PraticheInCorsoService : praticheInCorsoService
+  com.woonders.lacemsapi.controller.PreferenzaStatoPraticaController o-- com.woonders.lacemscommon.service.PreferenzaStatoPraticaService : preferenzaStatoPraticaService
+  com.woonders.lacemsapi.controller.PreventivoController -up-|> com.woonders.lacemsapi.controller.AppController
+  com.woonders.lacemsapi.controller.PreventivoController o-- com.woonders.lacemscommon.service.PreventivoService : preventivoService
+  com.woonders.lacemsapi.controller.PushSmsDeliveryReceiptsController o-- com.woonders.lacemscommon.config.InternationalizationConfig.ItalyReloadableResourceBundleMessageSource : italyReloadableResourceBundleMessageSource
+  com.woonders.lacemsapi.controller.PushSmsDeliveryReceiptsController o-- com.woonders.lacemscommon.service.LogService : logService
+  com.woonders.lacemsapi.controller.PushSmsDeliveryReceiptsController o-- com.woonders.lacemscommon.service.SmsService : smsService
+  com.woonders.lacemsapi.controller.RicaricaController o-- com.woonders.lacemscommon.service.RicaricaService : ricaricaService
+  com.woonders.lacemsapi.controller.SearchController o-- com.woonders.lacemscommon.service.SearchService : searchService
+  com.woonders.lacemsapi.controller.SettingController o-- com.woonders.lacemscommon.service.SettingService : settingService
+  com.woonders.lacemsapi.controller.SmsController o-- com.woonders.lacemscommon.service.SmsService : smsService
+  com.woonders.lacemsapi.controller.SmsController o-- com.woonders.lacemscommon.service.SmsServiceFacade : smsServiceFacade
+  com.woonders.lacemsapi.controller.StatoNominativoController o-- com.woonders.lacemscommon.service.StatoNominativoService : statoNominativoService
+  com.woonders.lacemsapi.controller.StatoPraticheController -up-|> com.woonders.lacemsapi.controller.AppController
+  com.woonders.lacemsapi.controller.StatoPraticheController o-- com.woonders.lacemscommon.service.StatoPraticheService : statoPraticheService
+  com.woonders.lacemsapi.controller.TenantController o-- com.woonders.lacemscommon.db.tenantrepository.SmsTenantRepository : smsTenantRepo
+  com.woonders.lacemsapi.controller.TenantController o-- com.woonders.lacemscommon.service.TenantService : tenantService
+  com.woonders.lacemsapi.controller.ValutazioneAmministrazioneController o-- com.woonders.lacemscommon.service.ValutazioneAmministrazioneService : valutazioneAmministrazioneService
+  com.woonders.lacemsapi.converter.ClienteImpiegoConverter .up.|> org.springframework.core.convert.converter.Converter
+  com.woonders.lacemsapi.converter.LocalDateConverter .up.|> org.springframework.core.convert.converter.Converter
+  com.woonders.lacemsapi.converter.LocalDateConverter -up-|> com.fasterxml.jackson.databind.JsonDeserializer
+  com.woonders.lacemsapi.converter.MessageTypeConverter .up.|> org.springframework.core.convert.converter.Converter
+  com.woonders.lacemsapi.converter.ProvenienzaConverter .up.|> org.springframework.core.convert.converter.Converter
+  com.woonders.lacemsapi.converter.ProvenienzaConverter -up-|> com.fasterxml.jackson.databind.JsonDeserializer
+  com.woonders.lacemsapi.converter.StringToBigDecimalConverter .up.|> org.springframework.core.convert.converter.Converter
+  com.woonders.lacemsapi.converter.StringToIntConverter .up.|> org.springframework.core.convert.converter.Converter
+  com.woonders.lacemsapi.converter.serializer.ResponseCodeSerializer -up-|> com.fasterxml.jackson.databind.JsonSerializer
+  com.woonders.lacemsapi.interceptor.RequestLogInterceptor -up-|> org.springframework.web.servlet.handler.HandlerInterceptorAdapter
+  com.woonders.lacemsapi.interceptor.RequestLogInterceptor o-- com.woonders.lacemsapi.config.app.RequestTenantIdentifierResolver : requestTenantIdentifierResolver
+  com.woonders.lacemsapi.interceptor.RequestLogInterceptor o-- com.woonders.lacemscommon.config.TenantManager : tenantManager
+  com.woonders.lacemsapi.model.app.BaseMessage o-- com.woonders.lacemsapi.model.app.BaseMessage.ResponseCode : responseCode
+  com.woonders.lacemsapi.model.app.Lead o-- com.woonders.lacemscommon.db.entityenum.Impiego : impiego
+  com.woonders.lacemsapi.model.app.Lead o-- com.woonders.lacemscommon.db.entityenum.Provenienza : provenienza
+  com.woonders.lacemsapi.model.app.Lead o-- com.woonders.lacemscommon.db.entity.Cliente.Sesso : sesso
+  com.woonders.lacemsapi.service.LeadServiceImpl .up.|> com.woonders.lacemsapi.service.LeadService
+  com.woonders.lacemsapi.service.LeadServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemsapi.service.LeadServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemsapi.service.LeadServiceImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemsapi.service.LeadServiceImpl o-- com.woonders.lacemscommon.db.repository.ResidenzaRepository : residenzaRepository
+  com.woonders.lacemsapi.service.LeadServiceImpl o-- com.woonders.lacemscommon.db.repository.RoleRepository : roleRepository
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

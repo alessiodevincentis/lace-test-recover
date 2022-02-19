@@ -1,0 +1,170 @@
+@startuml
+
+title __SMS's Class Diagram__\n
+
+  namespace com.woonders.lacemscommon {
+    namespace sms {
+      class com.woonders.lacemscommon.sms.AwsSnsClient {
+          {static} - log : Logger
+          + calculateSmsPrice()
+          + getSmsHistory()
+          + sendSms()
+          # addAuthorization()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace sms {
+      class com.woonders.lacemscommon.sms.ClickSendClient {
+          {static} - AUTHORIZATION_HEADER : String
+          {static} - CALCULATE_SMS_PRICE_URL : String
+          {static} - CLICK_SEND_BASE_URL : String
+          {static} - ENCODED_AUTH_STRING : String
+          {static} - GET_SMS_HISTORY_URL : String
+          {static} - KEY : String
+          {static} - SEND_SMS_URL : String
+          {static} - USERNAME : String
+          {static} - log : Logger
+          - threadPoolTaskExecutor : ThreadPoolTaskExecutor
+          + calculateSmsPrice()
+          + getSmsHistory()
+          + sendSms()
+          # addAuthorization()
+          - calculateSmsPrice()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace sms {
+      class com.woonders.lacemscommon.sms.ClickSendClient.CalcSmsPriceCallable {
+          - messageText : String
+          - numeroMittente : String
+          - recipientNumberList : List<String>
+          + CalcSmsPriceCallable()
+          + call()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace sms {
+      enum MessageType {
+        SMS_CALENDARIO
+        SMS_CAMPAGNA
+        SMS_NOTIFICA_LEAD
+        SMS_SINGLE
+        value
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace sms {
+      class com.woonders.lacemscommon.sms.MockClickSendClient {
+          {static} - log : Logger
+          + calculateSmsPrice()
+          + getSmsHistory()
+          + sendSms()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace sms {
+      class com.woonders.lacemscommon.sms.SMSLenghtCalculator {
+          {static} + GSM_CHARSET_7BIT : int
+          {static} + GSM_CHARSET_UNICODE : int
+          {static} - GSM7BIT : Set<String>
+          {static} - GSM7BITEXT : Set<String>
+          {static} - GSM_7BIT_ESC : char
+          {static} + getCharset()
+          {static} + getPartCount()
+          {static} - getPartCount7bit()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace sms {
+      interface com.woonders.lacemscommon.sms.SmsClient {
+          {static} + CUSTOM_STRING_SEPARATOR : String
+          {abstract} + calculateSmsPrice()
+          {abstract} + getSmsHistory()
+          {abstract} + sendSms()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace sms {
+      class com.woonders.lacemscommon.sms.SmsSenderExecutor {
+          {static} - log : Logger
+          + startSmsSending()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace sms {
+      class com.woonders.lacemscommon.sms.SmsStorer {
+          {static} - log : Logger
+          + sendStoreAndRetry()
+          + setStatusOnSms()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace sms {
+      class com.woonders.lacemscommon.sms.SmsUtil {
+          {static} - log : Logger
+          {static} - smsIntervalLocalTimeEnd : LocalTime
+          {static} - smsIntervalLocalTimeStart : LocalTime
+          + buildSmsRequest()
+          + buildSmsRequest()
+          + calcScheduleTimeIfNeeded()
+          - getNowTime()
+      }
+    }
+  }
+  
+
+  com.woonders.lacemscommon.sms.AwsSnsClient .up.|> com.woonders.lacemscommon.sms.SmsClient
+  com.woonders.lacemscommon.sms.AwsSnsClient -up-|> com.woonders.lacemscommon.network.BaseClient
+  com.woonders.lacemscommon.sms.ClickSendClient .up.|> com.woonders.lacemscommon.sms.SmsClient
+  com.woonders.lacemscommon.sms.ClickSendClient -up-|> com.woonders.lacemscommon.network.BaseClient
+  com.woonders.lacemscommon.sms.ClickSendClient o-- com.woonders.lacemscommon.sms.SmsUtil : smsUtil
+  com.woonders.lacemscommon.sms.ClickSendClient +-down- com.woonders.lacemscommon.sms.ClickSendClient.CalcSmsPriceCallable
+  com.woonders.lacemscommon.sms.ClickSendClient.CalcSmsPriceCallable .up.|> java.util.concurrent.Callable
+  com.woonders.lacemscommon.sms.MockClickSendClient .up.|> com.woonders.lacemscommon.sms.SmsClient
+  com.woonders.lacemscommon.sms.SmsSenderExecutor o-- com.woonders.lacemscommon.db.repository.CampagnaRepository : campagnaRepository
+  com.woonders.lacemscommon.sms.SmsSenderExecutor o-- com.woonders.lacemscommon.db.repository.CampagnaSmsRepository : campagnaSmsRepository
+  com.woonders.lacemscommon.sms.SmsSenderExecutor o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.sms.SmsSenderExecutor o-- com.woonders.lacemscommon.slack.SlackUtil : slackUtil
+  com.woonders.lacemscommon.sms.SmsSenderExecutor o-- com.woonders.lacemscommon.service.SmsService : smsService
+  com.woonders.lacemscommon.sms.SmsSenderExecutor o-- com.woonders.lacemscommon.sms.SmsStorer : smsStorer
+  com.woonders.lacemscommon.sms.SmsSenderExecutor o-- com.woonders.lacemscommon.sms.SmsUtil : smsUtil
+  com.woonders.lacemscommon.sms.SmsStorer o-- com.woonders.lacemscommon.db.repository.CampagnaSmsRepository : campagnaSmsRepository
+  com.woonders.lacemscommon.sms.SmsStorer o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.sms.SmsStorer o-- com.woonders.lacemscommon.db.tenantrepository.SmsTenantRepository : smsTenantRepository
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

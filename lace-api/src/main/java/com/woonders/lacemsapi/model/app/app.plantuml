@@ -1,0 +1,289 @@
+@startuml
+
+title __APP's Class Diagram__\n
+
+  namespace com.woonders.lacemsapi.model.app {
+    class com.woonders.lacemsapi.model.app.BaseMessage {
+        - message : String
+        {static} + builder()
+        + equals()
+        + getMessage()
+        + getResponseCode()
+        + hashCode()
+        + setMessage()
+        + setResponseCode()
+        + toString()
+        # canEqual()
+        ~ BaseMessage()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.model.app {
+    class com.woonders.lacemsapi.model.app.BaseMessage.BaseMessageBuilder {
+        - message : String
+        + build()
+        + message()
+        + responseCode()
+        + toString()
+        ~ BaseMessageBuilder()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.model.app {
+    enum ResponseCode {
+      INVALID_CHECKSUM
+      MISSING_NAME_SURNAME
+      MISSING_PARAMETER
+      MISSING_PHONE_NUMBER
+      OK
+      UNEXPECTED
+      value
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.model.app {
+    class com.woonders.lacemsapi.model.app.Lead {
+        - aziendaId : long
+        - bonusAnnuale : BigDecimal
+        - capResidenza : String
+        - cellulare : String
+        - checksum : String
+        - cittaResidenza : String
+        - cittadinanza : String
+        - civicoResidenza : String
+        - codiceFiscale : String
+        - cognome : String
+        - dataAssunzione : LocalDate
+        - dataNascita : LocalDate
+        - descrizioneProvenienza : String
+        - durata : Integer
+        - email : String
+        - importoRichiesto : BigDecimal
+        - indirizzoResidenza : String
+        - leadId : String
+        - luogoNascita : String
+        - nazioneNascita : String
+        - nazioneResidenza : String
+        - nettoStipendio : BigDecimal
+        - nome : String
+        - note : String
+        - provinciaNascita : String
+        - provinciaResidenza : String
+        - sendSms : Boolean
+        - statoLead : String
+        - telefonoFisso : String
+        - tenantId : String
+        - titolo : String
+        + Lead()
+        + Lead()
+        {static} + builder()
+        + equals()
+        + getAziendaId()
+        + getBonusAnnuale()
+        + getCapResidenza()
+        + getCellulare()
+        + getChecksum()
+        + getCittaResidenza()
+        + getCittadinanza()
+        + getCivicoResidenza()
+        + getCodiceFiscale()
+        + getCognome()
+        + getDataAssunzione()
+        + getDataNascita()
+        + getDescrizioneProvenienza()
+        + getDurata()
+        + getEmail()
+        + getImpiego()
+        + getImportoRichiesto()
+        + getIndirizzoResidenza()
+        + getLeadId()
+        + getLuogoNascita()
+        + getNazioneNascita()
+        + getNazioneResidenza()
+        + getNettoStipendio()
+        + getNome()
+        + getNote()
+        + getProvenienza()
+        + getProvinciaNascita()
+        + getProvinciaResidenza()
+        + getSendSms()
+        + getSesso()
+        + getStatoLead()
+        + getTelefonoFisso()
+        + getTenantId()
+        + getTitolo()
+        + hashCode()
+        + setAziendaId()
+        + setBonusAnnuale()
+        + setCapResidenza()
+        + setCellulare()
+        + setChecksum()
+        + setCittaResidenza()
+        + setCittadinanza()
+        + setCivicoResidenza()
+        + setCodiceFiscale()
+        + setCognome()
+        + setDataAssunzione()
+        + setDataNascita()
+        + setDescrizioneProvenienza()
+        + setDurata()
+        + setEmail()
+        + setImpiego()
+        + setImportoRichiesto()
+        + setIndirizzoResidenza()
+        + setLeadId()
+        + setLuogoNascita()
+        + setNazioneNascita()
+        + setNazioneResidenza()
+        + setNettoStipendio()
+        + setNome()
+        + setNote()
+        + setProvenienza()
+        + setProvinciaNascita()
+        + setProvinciaResidenza()
+        + setSendSms()
+        + setSesso()
+        + setStatoLead()
+        + setTelefonoFisso()
+        + setTenantId()
+        + setTitolo()
+        + toString()
+        # canEqual()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.model.app {
+    enum ClientJobType {
+      ALTRO
+      DIPENDENTE_COOPERATIVA
+      DIPENDENTE_PARAPUBBLICO
+      DIPENDENTE_PRIVATO_SPA
+      DIPENDENTE_PRIVATO_SRL
+      DIPENDENTE_PUBBLICO
+      DIPENDENTE_STATALE
+      LIBERO_PROFESSIONISTA
+      MILITARE
+      PENSIONATO
+      value
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.model.app {
+    enum Country {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.model.app {
+    class com.woonders.lacemsapi.model.app.Lead.LeadBuilder {
+        - aziendaId : long
+        - bonusAnnuale : BigDecimal
+        - capResidenza : String
+        - cellulare : String
+        - checksum : String
+        - cittaResidenza : String
+        - cittadinanza : String
+        - civicoResidenza : String
+        - codiceFiscale : String
+        - cognome : String
+        - dataAssunzione : LocalDate
+        - dataNascita : LocalDate
+        - descrizioneProvenienza : String
+        - durata : Integer
+        - email : String
+        - importoRichiesto : BigDecimal
+        - indirizzoResidenza : String
+        - leadId : String
+        - luogoNascita : String
+        - nazioneNascita : String
+        - nazioneResidenza : String
+        - nettoStipendio : BigDecimal
+        - nome : String
+        - note : String
+        - provinciaNascita : String
+        - provinciaResidenza : String
+        - sendSms : Boolean
+        - statoLead : String
+        - telefonoFisso : String
+        - tenantId : String
+        - titolo : String
+        + aziendaId()
+        + bonusAnnuale()
+        + build()
+        + capResidenza()
+        + cellulare()
+        + checksum()
+        + cittaResidenza()
+        + cittadinanza()
+        + civicoResidenza()
+        + codiceFiscale()
+        + cognome()
+        + dataAssunzione()
+        + dataNascita()
+        + descrizioneProvenienza()
+        + durata()
+        + email()
+        + impiego()
+        + importoRichiesto()
+        + indirizzoResidenza()
+        + leadId()
+        + luogoNascita()
+        + nazioneNascita()
+        + nazioneResidenza()
+        + nettoStipendio()
+        + nome()
+        + note()
+        + provenienza()
+        + provinciaNascita()
+        + provinciaResidenza()
+        + sendSms()
+        + sesso()
+        + statoLead()
+        + telefonoFisso()
+        + tenantId()
+        + titolo()
+        + toString()
+        ~ LeadBuilder()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsapi.model.app {
+    enum Title {
+      SIG
+      SIG_INA
+      SIG_RA
+      value
+    }
+  }
+  
+
+  com.woonders.lacemsapi.model.app.BaseMessage o-- com.woonders.lacemsapi.model.app.BaseMessage.ResponseCode : responseCode
+  com.woonders.lacemsapi.model.app.BaseMessage +-down- com.woonders.lacemsapi.model.app.BaseMessage.BaseMessageBuilder
+  com.woonders.lacemsapi.model.app.BaseMessage +-down- com.woonders.lacemsapi.model.app.BaseMessage.ResponseCode
+  com.woonders.lacemsapi.model.app.BaseMessage.BaseMessageBuilder o-- com.woonders.lacemsapi.model.app.BaseMessage.ResponseCode : responseCode
+  com.woonders.lacemsapi.model.app.Lead o-- com.woonders.lacemscommon.db.entityenum.Impiego : impiego
+  com.woonders.lacemsapi.model.app.Lead o-- com.woonders.lacemscommon.db.entityenum.Provenienza : provenienza
+  com.woonders.lacemsapi.model.app.Lead o-- com.woonders.lacemscommon.db.entity.Cliente.Sesso : sesso
+  com.woonders.lacemsapi.model.app.Lead +-down- com.woonders.lacemsapi.model.app.Lead.ClientJobType
+  com.woonders.lacemsapi.model.app.Lead +-down- com.woonders.lacemsapi.model.app.Lead.Country
+  com.woonders.lacemsapi.model.app.Lead +-down- com.woonders.lacemsapi.model.app.Lead.LeadBuilder
+  com.woonders.lacemsapi.model.app.Lead +-down- com.woonders.lacemsapi.model.app.Lead.Title
+  com.woonders.lacemsapi.model.app.Lead.LeadBuilder o-- com.woonders.lacemscommon.db.entityenum.Impiego : impiego
+  com.woonders.lacemsapi.model.app.Lead.LeadBuilder o-- com.woonders.lacemscommon.db.entityenum.Provenienza : provenienza
+  com.woonders.lacemsapi.model.app.Lead.LeadBuilder o-- com.woonders.lacemscommon.db.entity.Cliente.Sesso : sesso
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
