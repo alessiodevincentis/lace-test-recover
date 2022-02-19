@@ -1,0 +1,517 @@
+@startuml
+
+title __EXCEPTION's Class Diagram__\n
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.BlockedIpException {
+          + BlockedIpException()
+          + BlockedIpException()
+          + BlockedIpException()
+          + BlockedIpException()
+          + BlockedIpException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.CannotChangePasswordException {
+          {static} - serialVersionUID : long
+          + CannotChangePasswordException()
+          + CannotChangePasswordException()
+          + CannotChangePasswordException()
+          + CannotChangePasswordException()
+          + CannotChangePasswordException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.CannotDeletePraticaException {
+          + CannotDeletePraticaException()
+          + CannotDeletePraticaException()
+          + CannotDeletePraticaException()
+          + CannotDeletePraticaException()
+          + CannotDeletePraticaException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.CannotImportExcelException {
+          + CannotImportExcelException()
+          + CannotImportExcelException()
+          + CannotImportExcelException()
+          + CannotImportExcelException()
+          + CannotImportExcelException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.CannotSendSmsException {
+          + CannotSendSmsException()
+          + CannotSendSmsException()
+          + CannotSendSmsException()
+          + CannotSendSmsException()
+          + CannotSendSmsException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.CannotUpdateDecorrenzaException {
+          + CannotUpdateDecorrenzaException()
+          + CannotUpdateDecorrenzaException()
+          + CannotUpdateDecorrenzaException()
+          + CannotUpdateDecorrenzaException()
+          + CannotUpdateDecorrenzaException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.ComuneMancanteException {
+          + ComuneMancanteException()
+          + ComuneMancanteException()
+          + ComuneMancanteException()
+          + ComuneMancanteException()
+          + ComuneMancanteException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.ConfirmPasswordMismatchException {
+          + ConfirmPasswordMismatchException()
+          + ConfirmPasswordMismatchException()
+          + ConfirmPasswordMismatchException()
+          + ConfirmPasswordMismatchException()
+          + ConfirmPasswordMismatchException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.DatiFatturazioneToBeCompletedException {
+          + DatiFatturazioneToBeCompletedException()
+          + DatiFatturazioneToBeCompletedException()
+          + DatiFatturazioneToBeCompletedException()
+          + DatiFatturazioneToBeCompletedException()
+          + DatiFatturazioneToBeCompletedException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.EmailFatturaNonInviataException {
+          + EmailFatturaNonInviataException()
+          + EmailFatturaNonInviataException()
+          + EmailFatturaNonInviataException()
+          + EmailFatturaNonInviataException()
+          + EmailFatturaNonInviataException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.EmptyJobTypeListException {
+          + EmptyJobTypeListException()
+          + EmptyJobTypeListException()
+          + EmptyJobTypeListException()
+          + EmptyJobTypeListException()
+          + EmptyJobTypeListException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.EmptyTanException {
+          + EmptyTanException()
+          + EmptyTanException()
+          + EmptyTanException()
+          + EmptyTanException()
+          + EmptyTanException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.ExcelImportRowsExceeded {
+          + ExcelImportRowsExceeded()
+          + ExcelImportRowsExceeded()
+          + ExcelImportRowsExceeded()
+          + ExcelImportRowsExceeded()
+          + ExcelImportRowsExceeded()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.FatturaNonCreataException {
+          + FatturaNonCreataException()
+          + FatturaNonCreataException()
+          + FatturaNonCreataException()
+          + FatturaNonCreataException()
+          + FatturaNonCreataException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.FatturaNonDisponibileException {
+          + FatturaNonDisponibileException()
+          + FatturaNonDisponibileException()
+          + FatturaNonDisponibileException()
+          + FatturaNonDisponibileException()
+          + FatturaNonDisponibileException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.FatturaNonEliminataException {
+          + FatturaNonEliminataException()
+          + FatturaNonEliminataException()
+          + FatturaNonEliminataException()
+          + FatturaNonEliminataException()
+          + FatturaNonEliminataException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.FileExcelToImportNotValidException {
+          + FileExcelToImportNotValidException()
+          + FileExcelToImportNotValidException()
+          + FileExcelToImportNotValidException()
+          + FileExcelToImportNotValidException()
+          + FileExcelToImportNotValidException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.IllegalPermissionStateException {
+          + IllegalPermissionStateException()
+          + IllegalPermissionStateException()
+          + IllegalPermissionStateException()
+          + IllegalPermissionStateException()
+          + IllegalPermissionStateException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.InvalidCurrentPasswordException {
+          {static} - serialVersionUID : long
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.ItemNotFoundException {
+          + ItemNotFoundException()
+          + ItemNotFoundException()
+          + ItemNotFoundException()
+          + ItemNotFoundException()
+          + ItemNotFoundException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.NoFileFoundException {
+          + NoFileFoundException()
+          + NoFileFoundException()
+          + NoFileFoundException()
+          + NoFileFoundException()
+          + NoFileFoundException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.NotEnoughCreditException {
+          + NotEnoughCreditException()
+          + NotEnoughCreditException()
+          + NotEnoughCreditException()
+          + NotEnoughCreditException()
+          + NotEnoughCreditException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.PaymentException {
+          + PaymentException()
+          + PaymentException()
+          + PaymentException()
+          + PaymentException()
+          + PaymentException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.PermissionDeniedException {
+          + PermissionDeniedException()
+          + PermissionDeniedException()
+          + PermissionDeniedException()
+          + PermissionDeniedException()
+          + PermissionDeniedException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.RinnovoNotSavedException {
+          {static} - serialVersionUID : long
+          + RinnovoNotSavedException()
+          + RinnovoNotSavedException()
+          + RinnovoNotSavedException()
+          + RinnovoNotSavedException()
+          + RinnovoNotSavedException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.SecondaOccupazioneNotDeleteException {
+          + SecondaOccupazioneNotDeleteException()
+          + SecondaOccupazioneNotDeleteException()
+          + SecondaOccupazioneNotDeleteException()
+          + SecondaOccupazioneNotDeleteException()
+          + SecondaOccupazioneNotDeleteException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.SimulatorTableInUseException {
+          + SimulatorTableInUseException()
+          + SimulatorTableInUseException()
+          + SimulatorTableInUseException()
+          + SimulatorTableInUseException()
+          + SimulatorTableInUseException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.SmsNotSentException {
+          + SmsNotSentException()
+          + SmsNotSentException()
+          + SmsNotSentException()
+          + SmsNotSentException()
+          + SmsNotSentException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.UnableToCalculateSmsPrice {
+          + UnableToCalculateSmsPrice()
+          + UnableToCalculateSmsPrice()
+          + UnableToCalculateSmsPrice()
+          + UnableToCalculateSmsPrice()
+          + UnableToCalculateSmsPrice()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.UnableToCloneSimulatorTableException {
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.UnableToDeleteException {
+          + UnableToDeleteException()
+          + UnableToDeleteException()
+          + UnableToDeleteException()
+          + UnableToDeleteException()
+          + UnableToDeleteException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.UnableToFindException {
+          + UnableToFindException()
+          + UnableToFindException()
+          + UnableToFindException()
+          + UnableToFindException()
+          + UnableToFindException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.UnableToGetFileException {
+          + UnableToGetFileException()
+          + UnableToGetFileException()
+          + UnableToGetFileException()
+          + UnableToGetFileException()
+          + UnableToGetFileException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.UnableToSaveException {
+          + UnableToSaveException()
+          + UnableToSaveException()
+          + UnableToSaveException()
+          + UnableToSaveException()
+          + UnableToSaveException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.UnableToSaveFileException {
+          + UnableToSaveFileException()
+          + UnableToSaveFileException()
+          + UnableToSaveFileException()
+          + UnableToSaveFileException()
+          + UnableToSaveFileException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.UnableToSendEmailException {
+          + UnableToSendEmailException()
+          + UnableToSendEmailException()
+          + UnableToSendEmailException()
+          + UnableToSendEmailException()
+          + UnableToSendEmailException()
+          + getUnableToSendEmailError()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      enum UnableToSendEmailError {
+        MISSING_AGENCY_NAME
+        MISSING_BODY
+        MISSING_RECIPIENT
+        MISSING_REPLY_TO
+        MISSING_SUBJECT
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.UnableToSendSmsException {
+          + UnableToSendSmsException()
+          + UnableToSendSmsException()
+          + UnableToSendSmsException()
+          + UnableToSendSmsException()
+          + UnableToSendSmsException()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace exception {
+      class com.woonders.lacemscommon.exception.UnableToUpdateException {
+          + UnableToUpdateException()
+          + UnableToUpdateException()
+          + UnableToUpdateException()
+          + UnableToUpdateException()
+          + UnableToUpdateException()
+      }
+    }
+  }
+  
+
+  com.woonders.lacemscommon.exception.UnableToSendEmailException o-- com.woonders.lacemscommon.exception.UnableToSendEmailException.UnableToSendEmailError : unableToSendEmailError
+  com.woonders.lacemscommon.exception.UnableToSendEmailException +-down- com.woonders.lacemscommon.exception.UnableToSendEmailException.UnableToSendEmailError
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

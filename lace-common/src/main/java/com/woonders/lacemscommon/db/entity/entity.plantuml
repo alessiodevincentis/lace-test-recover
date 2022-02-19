@@ -1,0 +1,3282 @@
+@startuml
+
+title __ENTITY's Class Diagram__\n
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.AccessLog {
+            - id : Long
+            - loginDateTime : LocalDateTime
+            + AccessLog()
+            + AccessLog()
+            {static} + builder()
+            + getId()
+            + getLoginDateTime()
+            + getOperator()
+            + setId()
+            + setLoginDateTime()
+            + setOperator()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.AccessLog.AccessLogBuilder {
+            - id : Long
+            - loginDateTime : LocalDateTime
+            + build()
+            + id()
+            + loginDateTime()
+            + operator()
+            + toString()
+            ~ AccessLogBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Amministrazione {
+            - capSedeLegale : String
+            - capSedeNotifica : String
+            - civicoSedeLegale : String
+            - civicoSedeNotifica : String
+            - cliente : Set<Cliente>
+            - codiceAmm : long
+            - codiceFiscale : String
+            - cqs : boolean
+            - dlg : boolean
+            - email : String
+            - fax : String
+            - indirizzoPec : String
+            - indirizzoSedeLegale : String
+            - indirizzoSedeNotifica : String
+            - luogoSedeLegale : String
+            - luogoSedeNotifica : String
+            - nazioneSedeLegale : String
+            - nazioneSedeNotifica : String
+            - note : String
+            - notificaPec : boolean
+            - piva : String
+            - provSedeLegale : String
+            - provSedeNotifica : String
+            - ragioneSociale : String
+            - referente : String
+            - ruolo : String
+            - telefono : String
+            - valutazioneAmministrazione : Set<ValutazioneAmministrazione>
+            + Amministrazione()
+            + Amministrazione()
+            {static} + builder()
+            + getCapSedeLegale()
+            + getCapSedeNotifica()
+            + getCivicoSedeLegale()
+            + getCivicoSedeNotifica()
+            + getCliente()
+            + getCodiceAmm()
+            + getCodiceFiscale()
+            + getEmail()
+            + getFax()
+            + getIndirizzoPec()
+            + getIndirizzoSedeLegale()
+            + getIndirizzoSedeNotifica()
+            + getLuogoSedeLegale()
+            + getLuogoSedeNotifica()
+            + getNazioneSedeLegale()
+            + getNazioneSedeNotifica()
+            + getNote()
+            + getPiva()
+            + getProvSedeLegale()
+            + getProvSedeNotifica()
+            + getRagioneSociale()
+            + getReferente()
+            + getRuolo()
+            + getTelefono()
+            + getValutazioneAmministrazione()
+            + isCqs()
+            + isDlg()
+            + isNotificaPec()
+            + setCapSedeLegale()
+            + setCapSedeNotifica()
+            + setCivicoSedeLegale()
+            + setCivicoSedeNotifica()
+            + setCliente()
+            + setCodiceAmm()
+            + setCodiceFiscale()
+            + setCqs()
+            + setDlg()
+            + setEmail()
+            + setFax()
+            + setIndirizzoPec()
+            + setIndirizzoSedeLegale()
+            + setIndirizzoSedeNotifica()
+            + setLuogoSedeLegale()
+            + setLuogoSedeNotifica()
+            + setNazioneSedeLegale()
+            + setNazioneSedeNotifica()
+            + setNote()
+            + setNotificaPec()
+            + setPiva()
+            + setProvSedeLegale()
+            + setProvSedeNotifica()
+            + setRagioneSociale()
+            + setReferente()
+            + setRuolo()
+            + setTelefono()
+            + setValutazioneAmministrazione()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Amministrazione.AmministrazioneBuilder {
+            - capSedeLegale : String
+            - capSedeNotifica : String
+            - civicoSedeLegale : String
+            - civicoSedeNotifica : String
+            - cliente : Set<Cliente>
+            - codiceAmm : long
+            - codiceFiscale : String
+            - cqs : boolean
+            - dlg : boolean
+            - email : String
+            - fax : String
+            - indirizzoPec : String
+            - indirizzoSedeLegale : String
+            - indirizzoSedeNotifica : String
+            - luogoSedeLegale : String
+            - luogoSedeNotifica : String
+            - nazioneSedeLegale : String
+            - nazioneSedeNotifica : String
+            - note : String
+            - notificaPec : boolean
+            - piva : String
+            - provSedeLegale : String
+            - provSedeNotifica : String
+            - ragioneSociale : String
+            - referente : String
+            - ruolo : String
+            - telefono : String
+            - valutazioneAmministrazione : Set<ValutazioneAmministrazione>
+            + build()
+            + capSedeLegale()
+            + capSedeNotifica()
+            + civicoSedeLegale()
+            + civicoSedeNotifica()
+            + cliente()
+            + codiceAmm()
+            + codiceFiscale()
+            + cqs()
+            + dlg()
+            + email()
+            + fax()
+            + indirizzoPec()
+            + indirizzoSedeLegale()
+            + indirizzoSedeNotifica()
+            + luogoSedeLegale()
+            + luogoSedeNotifica()
+            + nazioneSedeLegale()
+            + nazioneSedeNotifica()
+            + note()
+            + notificaPec()
+            + piva()
+            + provSedeLegale()
+            + provSedeNotifica()
+            + ragioneSociale()
+            + referente()
+            + ruolo()
+            + telefono()
+            + toString()
+            + valutazioneAmministrazione()
+            ~ AmministrazioneBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Azienda {
+            - cap : String
+            - cellulare : String
+            - cf : String
+            - cognomeTitolare : String
+            - devisProxId : String
+            - email : String
+            - fax : String
+            - giorniNotificaConteggioEstinzione : Integer
+            - giorniNotificheCliente : Integer
+            - giorniNotificheNominativi : Integer
+            - id : Long
+            - indirizzo : String
+            - luogo : String
+            - nomeAzienda : String
+            - nomeTitolare : String
+            - oam : String
+            - pec : String
+            - piva : String
+            - printPdfEnabled : boolean
+            - provincia : String
+            - sitoWeb : String
+            - telefono : String
+            + Azienda()
+            + Azienda()
+            {static} + builder()
+            + getCap()
+            + getCellulare()
+            + getCf()
+            + getCognomeTitolare()
+            + getDevisProxId()
+            + getEmail()
+            + getFax()
+            + getGiorniNotificaConteggioEstinzione()
+            + getGiorniNotificheCliente()
+            + getGiorniNotificheNominativi()
+            + getId()
+            + getIndirizzo()
+            + getLuogo()
+            + getNomeAzienda()
+            + getNomeTitolare()
+            + getOam()
+            + getPec()
+            + getPiva()
+            + getProvincia()
+            + getSitoWeb()
+            + getTelefono()
+            + isPrintPdfEnabled()
+            + setCap()
+            + setCellulare()
+            + setCf()
+            + setCognomeTitolare()
+            + setDevisProxId()
+            + setEmail()
+            + setFax()
+            + setGiorniNotificaConteggioEstinzione()
+            + setGiorniNotificheCliente()
+            + setGiorniNotificheNominativi()
+            + setId()
+            + setIndirizzo()
+            + setLuogo()
+            + setNomeAzienda()
+            + setNomeTitolare()
+            + setOam()
+            + setPec()
+            + setPiva()
+            + setPrintPdfEnabled()
+            + setProvincia()
+            + setSitoWeb()
+            + setTelefono()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Azienda.AziendaBuilder {
+            - cap : String
+            - cellulare : String
+            - cf : String
+            - cognomeTitolare : String
+            - devisProxId : String
+            - email : String
+            - fax : String
+            - giorniNotificaConteggioEstinzione : Integer
+            - giorniNotificheCliente : Integer
+            - giorniNotificheNominativi : Integer
+            - id : Long
+            - indirizzo : String
+            - luogo : String
+            - nomeAzienda : String
+            - nomeTitolare : String
+            - oam : String
+            - pec : String
+            - piva : String
+            - printPdfEnabled : boolean
+            - provincia : String
+            - sitoWeb : String
+            - telefono : String
+            + build()
+            + cap()
+            + cellulare()
+            + cf()
+            + cognomeTitolare()
+            + devisProxId()
+            + email()
+            + fax()
+            + giorniNotificaConteggioEstinzione()
+            + giorniNotificheCliente()
+            + giorniNotificheNominativi()
+            + id()
+            + indirizzo()
+            + luogo()
+            + nomeAzienda()
+            + nomeTitolare()
+            + oam()
+            + pec()
+            + piva()
+            + printPdfEnabled()
+            + provincia()
+            + sitoWeb()
+            + telefono()
+            + toString()
+            ~ AziendaBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Backup {
+            - dateLastBackup : LocalDateTime
+            - id : Long
+            - passwordBackup : String
+            + Backup()
+            + Backup()
+            {static} + builder()
+            + getDateLastBackup()
+            + getId()
+            + getPasswordBackup()
+            + setDateLastBackup()
+            + setId()
+            + setPasswordBackup()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Backup.BackupBuilder {
+            - dateLastBackup : LocalDateTime
+            - id : Long
+            - passwordBackup : String
+            + build()
+            + dateLastBackup()
+            + id()
+            + passwordBackup()
+            + toString()
+            ~ BackupBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.CalendarioAppuntamento {
+            - descrizione : String
+            - fineAppuntamento : LocalDateTime
+            - id : Long
+            - inizioAppuntamento : LocalDateTime
+            - invioSmsClienteNominativo : boolean
+            - invioSmsOperatoreAssegnato : boolean
+            - titolo : String
+            + CalendarioAppuntamento()
+            + CalendarioAppuntamento()
+            {static} + builder()
+            + getDescrizione()
+            + getFineAppuntamento()
+            + getId()
+            + getInizioAppuntamento()
+            + getNominativo()
+            + getOperator()
+            + getOperatoreAssegnato()
+            + getPratica()
+            + getTitolo()
+            + isInvioSmsClienteNominativo()
+            + isInvioSmsOperatoreAssegnato()
+            + setDescrizione()
+            + setFineAppuntamento()
+            + setId()
+            + setInizioAppuntamento()
+            + setInvioSmsClienteNominativo()
+            + setInvioSmsOperatoreAssegnato()
+            + setNominativo()
+            + setOperator()
+            + setOperatoreAssegnato()
+            + setPratica()
+            + setTitolo()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.CalendarioAppuntamento.CalendarioAppuntamentoBuilder {
+            - descrizione : String
+            - fineAppuntamento : LocalDateTime
+            - id : Long
+            - inizioAppuntamento : LocalDateTime
+            - invioSmsClienteNominativo : boolean
+            - invioSmsOperatoreAssegnato : boolean
+            - titolo : String
+            + build()
+            + descrizione()
+            + fineAppuntamento()
+            + id()
+            + inizioAppuntamento()
+            + invioSmsClienteNominativo()
+            + invioSmsOperatoreAssegnato()
+            + nominativo()
+            + operator()
+            + operatoreAssegnato()
+            + pratica()
+            + titolo()
+            + toString()
+            ~ CalendarioAppuntamentoBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Campagna {
+            - campagnaImport : boolean
+            - campagnaSmsList : List<CampagnaSms>
+            - creationDateTime : LocalDateTime
+            - description : String
+            - id : Long
+            - name : String
+            - sentDateTime : LocalDateTime
+            - text : String
+            - totaleDestinatari : int
+            - totaleMessaggi : int
+            + Campagna()
+            + Campagna()
+            {static} + builder()
+            + getCampagnaSmsList()
+            + getCampagnaType()
+            + getCreationDateTime()
+            + getCreatorOperator()
+            + getDescription()
+            + getFiltroCampagnaMarketingViewModel()
+            + getId()
+            + getName()
+            + getSenderOperator()
+            + getSentDateTime()
+            + getText()
+            + getTotaleDestinatari()
+            + getTotaleMessaggi()
+            + isCampagnaImport()
+            + setCampagnaImport()
+            + setCampagnaSmsList()
+            + setCampagnaType()
+            + setCreationDateTime()
+            + setCreatorOperator()
+            + setDescription()
+            + setFiltroCampagnaMarketingViewModel()
+            + setId()
+            + setName()
+            + setSenderOperator()
+            + setSentDateTime()
+            + setText()
+            + setTotaleDestinatari()
+            + setTotaleMessaggi()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Campagna.CampagnaBuilder {
+            - campagnaImport : boolean
+            - campagnaSmsList : List<CampagnaSms>
+            - creationDateTime : LocalDateTime
+            - description : String
+            - id : Long
+            - name : String
+            - sentDateTime : LocalDateTime
+            - text : String
+            - totaleDestinatari : int
+            - totaleMessaggi : int
+            + build()
+            + campagnaImport()
+            + campagnaSmsList()
+            + campagnaType()
+            + creationDateTime()
+            + creatorOperator()
+            + description()
+            + filtroCampagnaMarketingViewModel()
+            + id()
+            + name()
+            + senderOperator()
+            + sentDateTime()
+            + text()
+            + toString()
+            + totaleDestinatari()
+            + totaleMessaggi()
+            ~ CampagnaBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        enum CampagnaType {
+          EMAIL
+          SMS
+          value
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.CampagnaSms {
+            - cognomeDestinatario : String
+            - dataEsito : LocalDateTime
+            - id : Long
+            - messageId : String
+            - nomeDestinatario : String
+            - numeroDestinatario : String
+            + CampagnaSms()
+            + CampagnaSms()
+            {static} + builder()
+            + getCampagna()
+            + getCliente()
+            + getCognomeDestinatario()
+            + getDataEsito()
+            + getEsito()
+            + getId()
+            + getMessageId()
+            + getNomeDestinatario()
+            + getNumeroDestinatario()
+            + setCampagna()
+            + setCliente()
+            + setCognomeDestinatario()
+            + setDataEsito()
+            + setEsito()
+            + setId()
+            + setMessageId()
+            + setNomeDestinatario()
+            + setNumeroDestinatario()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.CampagnaSms.CampagnaSmsBuilder {
+            - cognomeDestinatario : String
+            - dataEsito : LocalDateTime
+            - id : Long
+            - messageId : String
+            - nomeDestinatario : String
+            - numeroDestinatario : String
+            + build()
+            + campagna()
+            + cliente()
+            + cognomeDestinatario()
+            + dataEsito()
+            + esito()
+            + id()
+            + messageId()
+            + nomeDestinatario()
+            + numeroDestinatario()
+            + toString()
+            ~ CampagnaSmsBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Cliente {
+            - amministrazione : Set<Amministrazione>
+            - beni : String
+            - capNascita : String
+            - cat : String
+            - cat2 : String
+            - cf : String
+            - cittadinanza : String
+            - clienteFileSet : Set<ClientePraticaFile>
+            - cognome : String
+            - dataCliente : Date
+            - dataInizio : Date
+            - dataInizio2 : Date
+            - dataIns : Date
+            - dataNascita : Date
+            - dataRecallNominativo : Date
+            - durataRichiestaMesi : Integer
+            - email : String
+            - ente : String
+            - ente2 : String
+            - fornitoreLead : String
+            - id : long
+            - impiego : String
+            - impiego2 : String
+            - importoRichiesto : BigDecimal
+            - leadId : String
+            - luogoNascita : String
+            - nazioneNascita : String
+            - nettoMensileNominativo : BigDecimal
+            - nome : String
+            - note : String
+            - nrComponentiFamiliari : Integer
+            - occupazione : String
+            - occupazione2 : String
+            - pratica : Set<Pratica>
+            - preventivo : Set<Preventivo>
+            - provNascita : String
+            - provenienza : String
+            - provenienzaDesc : String
+            - qualifica : String
+            - qualifica2 : String
+            - secondaOccupazionePredefinita : boolean
+            - secondaOccupazioneRendered : boolean
+            - statoCivile : String
+            - statoNominativo : String
+            - telefono : String
+            - telefonoFisso : String
+            - telefonoLavoro : String
+            - telefonoLavoro2 : String
+            - tipo : String
+            - tipoContrattoLavoro : String
+            - tipoContrattoLavoro2 : String
+            - trattenuta : Set<Trattenute>
+            + Cliente()
+            + Cliente()
+            {static} + builder()
+            + getAmministrazione()
+            + getBeni()
+            + getCapNascita()
+            + getCat()
+            + getCat2()
+            + getCf()
+            + getCittadinanza()
+            + getClienteFileSet()
+            + getCognome()
+            + getConto()
+            + getDataCliente()
+            + getDataInizio()
+            + getDataInizio2()
+            + getDataIns()
+            + getDataNascita()
+            + getDataRecallNominativo()
+            + getDocumento()
+            + getDurataRichiestaMesi()
+            + getEmail()
+            + getEnte()
+            + getEnte2()
+            + getFornitoreLead()
+            + getId()
+            + getImpiego()
+            + getImpiego2()
+            + getImportoRichiesto()
+            + getLeadId()
+            + getLuogoNascita()
+            + getNazioneNascita()
+            + getNettoMensileNominativo()
+            + getNome()
+            + getNote()
+            + getNrComponentiFamiliari()
+            + getOccupazione()
+            + getOccupazione2()
+            + getOperatoreNominativo()
+            + getPratica()
+            + getPreventivo()
+            + getProvNascita()
+            + getProvenienza()
+            + getProvenienzaDesc()
+            + getQualifica()
+            + getQualifica2()
+            + getResidenza()
+            + getSesso()
+            + getStatoCivile()
+            + getStatoNominativo()
+            + getTelefono()
+            + getTelefonoFisso()
+            + getTelefonoLavoro()
+            + getTelefonoLavoro2()
+            + getTipo()
+            + getTipoContrattoLavoro()
+            + getTipoContrattoLavoro2()
+            + getTrattenuta()
+            + isSecondaOccupazionePredefinita()
+            + isSecondaOccupazioneRendered()
+            + setAmministrazione()
+            + setBeni()
+            + setCapNascita()
+            + setCat()
+            + setCat2()
+            + setCf()
+            + setCittadinanza()
+            + setClienteFileSet()
+            + setCognome()
+            + setConto()
+            + setDataCliente()
+            + setDataInizio()
+            + setDataInizio2()
+            + setDataIns()
+            + setDataNascita()
+            + setDataRecallNominativo()
+            + setDocumento()
+            + setDurataRichiestaMesi()
+            + setEmail()
+            + setEnte()
+            + setEnte2()
+            + setFornitoreLead()
+            + setId()
+            + setImpiego()
+            + setImpiego2()
+            + setImportoRichiesto()
+            + setLeadId()
+            + setLuogoNascita()
+            + setNazioneNascita()
+            + setNettoMensileNominativo()
+            + setNome()
+            + setNote()
+            + setNrComponentiFamiliari()
+            + setOccupazione()
+            + setOccupazione2()
+            + setOperatoreNominativo()
+            + setPratica()
+            + setPreventivo()
+            + setProvNascita()
+            + setProvenienza()
+            + setProvenienzaDesc()
+            + setQualifica()
+            + setQualifica2()
+            + setResidenza()
+            + setSecondaOccupazionePredefinita()
+            + setSecondaOccupazioneRendered()
+            + setSesso()
+            + setStatoCivile()
+            + setStatoNominativo()
+            + setTelefono()
+            + setTelefonoFisso()
+            + setTelefonoLavoro()
+            + setTelefonoLavoro2()
+            + setTipo()
+            + setTipoContrattoLavoro()
+            + setTipoContrattoLavoro2()
+            + setTrattenuta()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Cliente.ClienteBuilder {
+            - amministrazione : Set<Amministrazione>
+            - beni : String
+            - capNascita : String
+            - cat : String
+            - cat2 : String
+            - cf : String
+            - cittadinanza : String
+            - clienteFileSet : Set<ClientePraticaFile>
+            - cognome : String
+            - dataCliente : Date
+            - dataInizio : Date
+            - dataInizio2 : Date
+            - dataIns : Date
+            - dataNascita : Date
+            - dataRecallNominativo : Date
+            - durataRichiestaMesi : Integer
+            - email : String
+            - ente : String
+            - ente2 : String
+            - fornitoreLead : String
+            - id : long
+            - impiego : String
+            - impiego2 : String
+            - importoRichiesto : BigDecimal
+            - leadId : String
+            - luogoNascita : String
+            - nazioneNascita : String
+            - nettoMensileNominativo : BigDecimal
+            - nome : String
+            - note : String
+            - nrComponentiFamiliari : Integer
+            - occupazione : String
+            - occupazione2 : String
+            - pratica : Set<Pratica>
+            - preventivo : Set<Preventivo>
+            - provNascita : String
+            - provenienza : String
+            - provenienzaDesc : String
+            - qualifica : String
+            - qualifica2 : String
+            - secondaOccupazionePredefinita : boolean
+            - secondaOccupazioneRendered : boolean
+            - statoCivile : String
+            - statoNominativo : String
+            - telefono : String
+            - telefonoFisso : String
+            - telefonoLavoro : String
+            - telefonoLavoro2 : String
+            - tipo : String
+            - tipoContrattoLavoro : String
+            - tipoContrattoLavoro2 : String
+            - trattenuta : Set<Trattenute>
+            + amministrazione()
+            + beni()
+            + build()
+            + capNascita()
+            + cat()
+            + cat2()
+            + cf()
+            + cittadinanza()
+            + clienteFileSet()
+            + cognome()
+            + conto()
+            + dataCliente()
+            + dataInizio()
+            + dataInizio2()
+            + dataIns()
+            + dataNascita()
+            + dataRecallNominativo()
+            + documento()
+            + durataRichiestaMesi()
+            + email()
+            + ente()
+            + ente2()
+            + fornitoreLead()
+            + id()
+            + impiego()
+            + impiego2()
+            + importoRichiesto()
+            + leadId()
+            + luogoNascita()
+            + nazioneNascita()
+            + nettoMensileNominativo()
+            + nome()
+            + note()
+            + nrComponentiFamiliari()
+            + occupazione()
+            + occupazione2()
+            + operatoreNominativo()
+            + pratica()
+            + preventivo()
+            + provNascita()
+            + provenienza()
+            + provenienzaDesc()
+            + qualifica()
+            + qualifica2()
+            + residenza()
+            + secondaOccupazionePredefinita()
+            + secondaOccupazioneRendered()
+            + sesso()
+            + statoCivile()
+            + statoNominativo()
+            + telefono()
+            + telefonoFisso()
+            + telefonoLavoro()
+            + telefonoLavoro2()
+            + tipo()
+            + tipoContrattoLavoro()
+            + tipoContrattoLavoro2()
+            + toString()
+            + trattenuta()
+            ~ ClienteBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        enum Sesso {
+          FEMMINA
+          MASCHIO
+          formValue
+          value
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.ClientePraticaFile {
+            - fileName : String
+            - id : long
+            - length : int
+            + ClientePraticaFile()
+            + ClientePraticaFile()
+            {static} + builder()
+            + getCliente()
+            + getFileCategory()
+            + getFileName()
+            + getId()
+            + getLength()
+            + getPratica()
+            + setCliente()
+            + setFileCategory()
+            + setFileName()
+            + setId()
+            + setLength()
+            + setPratica()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.ClientePraticaFile.ClientePraticaFileBuilder {
+            - fileName : String
+            - id : long
+            - length : int
+            + build()
+            + cliente()
+            + fileCategory()
+            + fileName()
+            + id()
+            + length()
+            + pratica()
+            + toString()
+            ~ ClientePraticaFileBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Conto {
+            - banca : String
+            - codiceConto : long
+            - dataConto : Date
+            - iban : String
+            - sportello : String
+            - stipendio : boolean
+            + Conto()
+            + Conto()
+            {static} + builder()
+            + getBanca()
+            + getCliente()
+            + getCodiceConto()
+            + getDataConto()
+            + getIban()
+            + getSportello()
+            + isStipendio()
+            + setBanca()
+            + setCliente()
+            + setCodiceConto()
+            + setDataConto()
+            + setIban()
+            + setSportello()
+            + setStipendio()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Conto.ContoBuilder {
+            - banca : String
+            - codiceConto : long
+            - dataConto : Date
+            - iban : String
+            - sportello : String
+            - stipendio : boolean
+            + banca()
+            + build()
+            + cliente()
+            + codiceConto()
+            + dataConto()
+            + iban()
+            + sportello()
+            + stipendio()
+            + toString()
+            ~ ContoBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Coobbligato {
+            - cap : String
+            - cat : String
+            - cittadinanza : String
+            - civicoAbitazione : String
+            - codiceFiscale : String
+            - cognome : String
+            - dataAssunzione : Date
+            - dataNascita : Date
+            - dataRilascioDocumento : Date
+            - email : String
+            - ente : String
+            - id : long
+            - impiego : String
+            - indirizzo : String
+            - luogo : String
+            - luogoNascita : String
+            - luogoRilascioDocumento : String
+            - nazioneAbitazione : String
+            - nazioneNascita : String
+            - nazioneRilascioDocumento : String
+            - nettoStipendio : BigDecimal
+            - nome : String
+            - nrComponentiFamiliari : Integer
+            - numeroDocumento : String
+            - occupazione : String
+            - provincia : String
+            - provinciaNascita : String
+            - provinciaRilascioDocumento : String
+            - scadenzaDocumento : Date
+            - telefono : String
+            - telefonoLavoro : String
+            - tipoContrattoLavoro : String
+            - tipoDocumento : String
+            + Coobbligato()
+            + Coobbligato()
+            {static} + builder()
+            + getCap()
+            + getCat()
+            + getCittadinanza()
+            + getCivicoAbitazione()
+            + getCodiceFiscale()
+            + getCognome()
+            + getDataAssunzione()
+            + getDataNascita()
+            + getDataRilascioDocumento()
+            + getEmail()
+            + getEnte()
+            + getId()
+            + getImpiego()
+            + getIndirizzo()
+            + getLuogo()
+            + getLuogoNascita()
+            + getLuogoRilascioDocumento()
+            + getNazioneAbitazione()
+            + getNazioneNascita()
+            + getNazioneRilascioDocumento()
+            + getNettoStipendio()
+            + getNome()
+            + getNrComponentiFamiliari()
+            + getNumeroDocumento()
+            + getOccupazione()
+            + getPratica()
+            + getProvincia()
+            + getProvinciaNascita()
+            + getProvinciaRilascioDocumento()
+            + getScadenzaDocumento()
+            + getSesso()
+            + getTelefono()
+            + getTelefonoLavoro()
+            + getTipoContrattoLavoro()
+            + getTipoDocumento()
+            + setCap()
+            + setCat()
+            + setCittadinanza()
+            + setCivicoAbitazione()
+            + setCodiceFiscale()
+            + setCognome()
+            + setDataAssunzione()
+            + setDataNascita()
+            + setDataRilascioDocumento()
+            + setEmail()
+            + setEnte()
+            + setId()
+            + setImpiego()
+            + setIndirizzo()
+            + setLuogo()
+            + setLuogoNascita()
+            + setLuogoRilascioDocumento()
+            + setNazioneAbitazione()
+            + setNazioneNascita()
+            + setNazioneRilascioDocumento()
+            + setNettoStipendio()
+            + setNome()
+            + setNrComponentiFamiliari()
+            + setNumeroDocumento()
+            + setOccupazione()
+            + setPratica()
+            + setProvincia()
+            + setProvinciaNascita()
+            + setProvinciaRilascioDocumento()
+            + setScadenzaDocumento()
+            + setSesso()
+            + setTelefono()
+            + setTelefonoLavoro()
+            + setTipoContrattoLavoro()
+            + setTipoDocumento()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Coobbligato.CoobbligatoBuilder {
+            - cap : String
+            - cat : String
+            - cittadinanza : String
+            - civicoAbitazione : String
+            - codiceFiscale : String
+            - cognome : String
+            - dataAssunzione : Date
+            - dataNascita : Date
+            - dataRilascioDocumento : Date
+            - email : String
+            - ente : String
+            - id : long
+            - impiego : String
+            - indirizzo : String
+            - luogo : String
+            - luogoNascita : String
+            - luogoRilascioDocumento : String
+            - nazioneAbitazione : String
+            - nazioneNascita : String
+            - nazioneRilascioDocumento : String
+            - nettoStipendio : BigDecimal
+            - nome : String
+            - nrComponentiFamiliari : Integer
+            - numeroDocumento : String
+            - occupazione : String
+            - provincia : String
+            - provinciaNascita : String
+            - provinciaRilascioDocumento : String
+            - scadenzaDocumento : Date
+            - telefono : String
+            - telefonoLavoro : String
+            - tipoContrattoLavoro : String
+            - tipoDocumento : String
+            + build()
+            + cap()
+            + cat()
+            + cittadinanza()
+            + civicoAbitazione()
+            + codiceFiscale()
+            + cognome()
+            + dataAssunzione()
+            + dataNascita()
+            + dataRilascioDocumento()
+            + email()
+            + ente()
+            + id()
+            + impiego()
+            + indirizzo()
+            + luogo()
+            + luogoNascita()
+            + luogoRilascioDocumento()
+            + nazioneAbitazione()
+            + nazioneNascita()
+            + nazioneRilascioDocumento()
+            + nettoStipendio()
+            + nome()
+            + nrComponentiFamiliari()
+            + numeroDocumento()
+            + occupazione()
+            + pratica()
+            + provincia()
+            + provinciaNascita()
+            + provinciaRilascioDocumento()
+            + scadenzaDocumento()
+            + sesso()
+            + telefono()
+            + telefonoLavoro()
+            + tipoContrattoLavoro()
+            + tipoDocumento()
+            + toString()
+            ~ CoobbligatoBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Documento {
+            - codiceDoc : long
+            - luogoRilascioDoc : String
+            - nazioneRilascio : String
+            - numeroDoc : String
+            - provinciaRilascio : String
+            - rilascioDoc : Date
+            - scadenzaDoc : Date
+            - tipoDocumento : String
+            + Documento()
+            + Documento()
+            {static} + builder()
+            + getCliente()
+            + getCodiceDoc()
+            + getLuogoRilascioDoc()
+            + getNazioneRilascio()
+            + getNumeroDoc()
+            + getProvinciaRilascio()
+            + getRilascioDoc()
+            + getScadenzaDoc()
+            + getTipoDocumento()
+            + setCliente()
+            + setCodiceDoc()
+            + setLuogoRilascioDoc()
+            + setNazioneRilascio()
+            + setNumeroDoc()
+            + setProvinciaRilascio()
+            + setRilascioDoc()
+            + setScadenzaDoc()
+            + setTipoDocumento()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Documento.DocumentoBuilder {
+            - codiceDoc : long
+            - luogoRilascioDoc : String
+            - nazioneRilascio : String
+            - numeroDoc : String
+            - provinciaRilascio : String
+            - rilascioDoc : Date
+            - scadenzaDoc : Date
+            - tipoDocumento : String
+            + build()
+            + cliente()
+            + codiceDoc()
+            + luogoRilascioDoc()
+            + nazioneRilascio()
+            + numeroDoc()
+            + provinciaRilascio()
+            + rilascioDoc()
+            + scadenzaDoc()
+            + tipoDocumento()
+            + toString()
+            ~ DocumentoBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        enum TipoDocumento {
+          CARTA_IDENTITA
+          PASSAPORTO
+          PATENTE
+          value
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Estinzione {
+            - calcolaScadenza : String
+            - dataBustapaga : Date
+            - dataNotificaConteggioEstinzione : Date
+            - dataRinnovoEstinzione : Date
+            - durataEstinzione : Integer
+            - idEstinzione : long
+            - istitutoEst : String
+            - montanteEstinzione : BigDecimal
+            - rataEstinzione : BigDecimal
+            - scadenzaEstinzione : Date
+            - tipoEstinzione : String
+            + Estinzione()
+            + Estinzione()
+            {static} + builder()
+            + getCalcolaScadenza()
+            + getDataBustapaga()
+            + getDataNotificaConteggioEstinzione()
+            + getDataRinnovoEstinzione()
+            + getDurataEstinzione()
+            + getIdEstinzione()
+            + getIstitutoEst()
+            + getMontanteEstinzione()
+            + getPratica()
+            + getRataEstinzione()
+            + getScadenzaEstinzione()
+            + getStatoConteggioEstinzione()
+            + getTipoEstinzione()
+            + setCalcolaScadenza()
+            + setDataBustapaga()
+            + setDataNotificaConteggioEstinzione()
+            + setDataRinnovoEstinzione()
+            + setDurataEstinzione()
+            + setIdEstinzione()
+            + setIstitutoEst()
+            + setMontanteEstinzione()
+            + setPratica()
+            + setRataEstinzione()
+            + setScadenzaEstinzione()
+            + setStatoConteggioEstinzione()
+            + setTipoEstinzione()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Estinzione.EstinzioneBuilder {
+            - calcolaScadenza : String
+            - dataBustapaga : Date
+            - dataNotificaConteggioEstinzione : Date
+            - dataRinnovoEstinzione : Date
+            - durataEstinzione : Integer
+            - idEstinzione : long
+            - istitutoEst : String
+            - montanteEstinzione : BigDecimal
+            - rataEstinzione : BigDecimal
+            - scadenzaEstinzione : Date
+            - tipoEstinzione : String
+            + build()
+            + calcolaScadenza()
+            + dataBustapaga()
+            + dataNotificaConteggioEstinzione()
+            + dataRinnovoEstinzione()
+            + durataEstinzione()
+            + idEstinzione()
+            + istitutoEst()
+            + montanteEstinzione()
+            + pratica()
+            + rataEstinzione()
+            + scadenzaEstinzione()
+            + statoConteggioEstinzione()
+            + tipoEstinzione()
+            + toString()
+            ~ EstinzioneBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Finanziaria {
+            - id : Long
+            - name : String
+            - praticaSet : Set<Pratica>
+            + Finanziaria()
+            + Finanziaria()
+            {static} + builder()
+            + getId()
+            + getName()
+            + getPraticaSet()
+            + setId()
+            + setName()
+            + setPraticaSet()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Finanziaria.FinanziariaBuilder {
+            - id : Long
+            - name : String
+            - praticaSet : Set<Pratica>
+            + build()
+            + id()
+            + name()
+            + praticaSet()
+            + toString()
+            ~ FinanziariaBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.GeneralSetting {
+            - id : long
+            - storageEnabled : boolean
+            - usedStorageSpace : long
+            + GeneralSetting()
+            + GeneralSetting()
+            {static} + builder()
+            + getId()
+            + getUsedStorageSpace()
+            + isStorageEnabled()
+            + setId()
+            + setStorageEnabled()
+            + setUsedStorageSpace()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.GeneralSetting.GeneralSettingBuilder {
+            - id : long
+            - storageEnabled : boolean
+            - usedStorageSpace : long
+            + build()
+            + id()
+            + storageEnabled()
+            + toString()
+            + usedStorageSpace()
+            ~ GeneralSettingBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.InfoAccount {
+            - additionalUsers : int
+            - expirationDate : LocalDate
+            - fileStorage : boolean
+            - id : Long
+            - multiagency : boolean
+            - simulator : boolean
+            + InfoAccount()
+            + InfoAccount()
+            {static} + builder()
+            + getAdditionalUsers()
+            + getExpirationDate()
+            + getId()
+            + getVersion()
+            + isFileStorage()
+            + isMultiagency()
+            + isSimulator()
+            + setAdditionalUsers()
+            + setExpirationDate()
+            + setFileStorage()
+            + setId()
+            + setMultiagency()
+            + setSimulator()
+            + setVersion()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.InfoAccount.InfoAccountBuilder {
+            - additionalUsers : int
+            - expirationDate : LocalDate
+            - fileStorage : boolean
+            - id : Long
+            - multiagency : boolean
+            - simulator : boolean
+            + additionalUsers()
+            + build()
+            + expirationDate()
+            + fileStorage()
+            + id()
+            + multiagency()
+            + simulator()
+            + toString()
+            + version()
+            ~ InfoAccountBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.NominativoLog {
+            - commento : String
+            - dataRecall : LocalDateTime
+            - executionDateTime : LocalDateTime
+            - id : Long
+            + NominativoLog()
+            + NominativoLog()
+            {static} + builder()
+            + getCommento()
+            + getDataRecall()
+            + getExecutionDateTime()
+            + getId()
+            + getNominativo()
+            + getOperator()
+            + getOperatoreAssegnato()
+            + getPratica()
+            + getStatoNominativo()
+            + getStatoPratica()
+            + getTipoLog()
+            + setCommento()
+            + setDataRecall()
+            + setExecutionDateTime()
+            + setId()
+            + setNominativo()
+            + setOperator()
+            + setOperatoreAssegnato()
+            + setPratica()
+            + setStatoNominativo()
+            + setStatoPratica()
+            + setTipoLog()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.NominativoLog.NominativoLogBuilder {
+            - commento : String
+            - dataRecall : LocalDateTime
+            - executionDateTime : LocalDateTime
+            - id : Long
+            + build()
+            + commento()
+            + dataRecall()
+            + executionDateTime()
+            + id()
+            + nominativo()
+            + operator()
+            + operatoreAssegnato()
+            + pratica()
+            + statoNominativo()
+            + statoPratica()
+            + tipoLog()
+            + toString()
+            ~ NominativoLogBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.NoticeBoard {
+            - body : String
+            - dateTimeCreation : LocalDateTime
+            - fileNameAttached : String
+            - id : Long
+            - operatorSet : Set<Operator>
+            - title : String
+            + NoticeBoard()
+            + NoticeBoard()
+            {static} + builder()
+            + getAziendaAssigned()
+            + getBody()
+            + getCreatorOperator()
+            + getDateTimeCreation()
+            + getFileNameAttached()
+            + getId()
+            + getOperatorSet()
+            + getTitle()
+            + setAziendaAssigned()
+            + setBody()
+            + setCreatorOperator()
+            + setDateTimeCreation()
+            + setFileNameAttached()
+            + setId()
+            + setOperatorSet()
+            + setTitle()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.NoticeBoard.NoticeBoardBuilder {
+            - body : String
+            - dateTimeCreation : LocalDateTime
+            - fileNameAttached : String
+            - id : Long
+            - operatorSet : Set<Operator>
+            - title : String
+            + aziendaAssigned()
+            + body()
+            + build()
+            + creatorOperator()
+            + dateTimeCreation()
+            + fileNameAttached()
+            + id()
+            + operatorSet()
+            + title()
+            + toString()
+            ~ NoticeBoardBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.NotificaLeadSms {
+            - dataEsito : LocalDateTime
+            - id : Long
+            - smsId : String
+            + NotificaLeadSms()
+            + NotificaLeadSms()
+            {static} + builder()
+            + getCliente()
+            + getDataEsito()
+            + getEsito()
+            + getId()
+            + getSmsId()
+            + setCliente()
+            + setDataEsito()
+            + setEsito()
+            + setId()
+            + setSmsId()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.NotificaLeadSms.NotificaLeadSmsBuilder {
+            - dataEsito : LocalDateTime
+            - id : Long
+            - smsId : String
+            + build()
+            + cliente()
+            + dataEsito()
+            + esito()
+            + id()
+            + smsId()
+            + toString()
+            ~ NotificaLeadSmsBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Operator {
+            - email : String
+            - firstName : String
+            - id : long
+            - lastName : String
+            - leadRicevuti : long
+            - password : String
+            - phoneNumber : String
+            - receiveLeadEnabled : boolean
+            - role : Set<Role>
+            - smsBalance : int
+            - username : String
+            + Operator()
+            + Operator()
+            {static} + builder()
+            + getAzienda()
+            + getEmail()
+            + getFirstName()
+            + getId()
+            + getLastName()
+            + getLeadRicevuti()
+            + getPassword()
+            + getPermissionProfile()
+            + getPhoneNumber()
+            + getRole()
+            + getSmsBalance()
+            + getUsername()
+            + isReceiveLeadEnabled()
+            + setAzienda()
+            + setEmail()
+            + setFirstName()
+            + setId()
+            + setLastName()
+            + setLeadRicevuti()
+            + setPassword()
+            + setPermissionProfile()
+            + setPhoneNumber()
+            + setReceiveLeadEnabled()
+            + setRole()
+            + setSmsBalance()
+            + setUsername()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Operator.OperatorBuilder {
+            - email : String
+            - firstName : String
+            - id : long
+            - lastName : String
+            - leadRicevuti : long
+            - password : String
+            - phoneNumber : String
+            - receiveLeadEnabled : boolean
+            - role : Set<Role>
+            - smsBalance : int
+            - username : String
+            + azienda()
+            + build()
+            + email()
+            + firstName()
+            + id()
+            + lastName()
+            + leadRicevuti()
+            + password()
+            + permissionProfile()
+            + phoneNumber()
+            + receiveLeadEnabled()
+            + role()
+            + smsBalance()
+            + toString()
+            + username()
+            ~ OperatorBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Pratica {
+            - antiriciclaggioFileCaricato : boolean
+            - capitaleFinanziato : BigDecimal
+            - cinquanta : boolean
+            - codicePratica : long
+            - confermaProv : boolean
+            - coobbligato : Set<Coobbligato>
+            - dataCaricamento : Date
+            - dataDelibera : Date
+            - dataFirmaContratti : Date
+            - dataIstruita : Date
+            - dataIstruttoria : Date
+            - dataLiquidazione : Date
+            - dataNotificaStatoPratica : Date
+            - dataPerf : Date
+            - dataRecall : Date
+            - dataRinnovo : Date
+            - decorrenza : Date
+            - durata : Integer
+            - estinzione : Set<Estinzione>
+            - garanzia : String
+            - importoErogato : BigDecimal
+            - notePratica : String
+            - notiRecall : Date
+            - notiRinnovo : Date
+            - nrctr : String
+            - nrsecci : String
+            - percProv : BigDecimal
+            - perfezionata : boolean
+            - praticaFileSet : Set<ClientePraticaFile>
+            - provvigione : BigDecimal
+            - quintoMax : BigDecimal
+            - rata : BigDecimal
+            - rinnovata : boolean
+            - scadenzaPratica : Date
+            - spese : BigDecimal
+            - statoPratica : String
+            - taeg : BigDecimal
+            - tan : BigDecimal
+            - teg : BigDecimal
+            - tipoPratica : String
+            - tipoProvvigione : String
+            - web : boolean
+            + Pratica()
+            + Pratica()
+            {static} + builder()
+            + getCapitaleFinanziato()
+            + getCliente()
+            + getCodicePratica()
+            + getCoobbligato()
+            + getDataCaricamento()
+            + getDataDelibera()
+            + getDataFirmaContratti()
+            + getDataIstruita()
+            + getDataIstruttoria()
+            + getDataLiquidazione()
+            + getDataNotificaStatoPratica()
+            + getDataPerf()
+            + getDataRecall()
+            + getDataRinnovo()
+            + getDecorrenza()
+            + getDurata()
+            + getEstinzione()
+            + getFinanziaria()
+            + getGaranzia()
+            + getImportoErogato()
+            + getNotePratica()
+            + getNotiRecall()
+            + getNotiRinnovo()
+            + getNrctr()
+            + getNrsecci()
+            + getOperatore()
+            + getPercProv()
+            + getPraticaFileSet()
+            + getProvvigione()
+            + getQuintoMax()
+            + getRata()
+            + getScadenzaPratica()
+            + getSimulatorTable()
+            + getSpese()
+            + getStatoPratica()
+            + getTaeg()
+            + getTan()
+            + getTeg()
+            + getTipoPratica()
+            + getTipoProvvigione()
+            + isAntiriciclaggioFileCaricato()
+            + isCinquanta()
+            + isConfermaProv()
+            + isPerfezionata()
+            + isRinnovata()
+            + isWeb()
+            + setAntiriciclaggioFileCaricato()
+            + setCapitaleFinanziato()
+            + setCinquanta()
+            + setCliente()
+            + setCodicePratica()
+            + setConfermaProv()
+            + setCoobbligato()
+            + setDataCaricamento()
+            + setDataDelibera()
+            + setDataFirmaContratti()
+            + setDataIstruita()
+            + setDataIstruttoria()
+            + setDataLiquidazione()
+            + setDataNotificaStatoPratica()
+            + setDataPerf()
+            + setDataRecall()
+            + setDataRinnovo()
+            + setDecorrenza()
+            + setDurata()
+            + setEstinzione()
+            + setFinanziaria()
+            + setGaranzia()
+            + setImportoErogato()
+            + setNotePratica()
+            + setNotiRecall()
+            + setNotiRinnovo()
+            + setNrctr()
+            + setNrsecci()
+            + setOperatore()
+            + setPercProv()
+            + setPerfezionata()
+            + setPraticaFileSet()
+            + setProvvigione()
+            + setQuintoMax()
+            + setRata()
+            + setRinnovata()
+            + setScadenzaPratica()
+            + setSimulatorTable()
+            + setSpese()
+            + setStatoPratica()
+            + setTaeg()
+            + setTan()
+            + setTeg()
+            + setTipoPratica()
+            + setTipoProvvigione()
+            + setWeb()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Pratica.PraticaBuilder {
+            - antiriciclaggioFileCaricato : boolean
+            - capitaleFinanziato : BigDecimal
+            - cinquanta : boolean
+            - codicePratica : long
+            - confermaProv : boolean
+            - coobbligato : Set<Coobbligato>
+            - dataCaricamento : Date
+            - dataDelibera : Date
+            - dataFirmaContratti : Date
+            - dataIstruita : Date
+            - dataIstruttoria : Date
+            - dataLiquidazione : Date
+            - dataNotificaStatoPratica : Date
+            - dataPerf : Date
+            - dataRecall : Date
+            - dataRinnovo : Date
+            - decorrenza : Date
+            - durata : Integer
+            - estinzione : Set<Estinzione>
+            - garanzia : String
+            - importoErogato : BigDecimal
+            - notePratica : String
+            - notiRecall : Date
+            - notiRinnovo : Date
+            - nrctr : String
+            - nrsecci : String
+            - percProv : BigDecimal
+            - perfezionata : boolean
+            - praticaFileSet : Set<ClientePraticaFile>
+            - provvigione : BigDecimal
+            - quintoMax : BigDecimal
+            - rata : BigDecimal
+            - rinnovata : boolean
+            - scadenzaPratica : Date
+            - spese : BigDecimal
+            - statoPratica : String
+            - taeg : BigDecimal
+            - tan : BigDecimal
+            - teg : BigDecimal
+            - tipoPratica : String
+            - tipoProvvigione : String
+            - web : boolean
+            + antiriciclaggioFileCaricato()
+            + build()
+            + capitaleFinanziato()
+            + cinquanta()
+            + cliente()
+            + codicePratica()
+            + confermaProv()
+            + coobbligato()
+            + dataCaricamento()
+            + dataDelibera()
+            + dataFirmaContratti()
+            + dataIstruita()
+            + dataIstruttoria()
+            + dataLiquidazione()
+            + dataNotificaStatoPratica()
+            + dataPerf()
+            + dataRecall()
+            + dataRinnovo()
+            + decorrenza()
+            + durata()
+            + estinzione()
+            + finanziaria()
+            + garanzia()
+            + importoErogato()
+            + notePratica()
+            + notiRecall()
+            + notiRinnovo()
+            + nrctr()
+            + nrsecci()
+            + operatore()
+            + percProv()
+            + perfezionata()
+            + praticaFileSet()
+            + provvigione()
+            + quintoMax()
+            + rata()
+            + rinnovata()
+            + scadenzaPratica()
+            + simulatorTable()
+            + spese()
+            + statoPratica()
+            + taeg()
+            + tan()
+            + teg()
+            + tipoPratica()
+            + tipoProvvigione()
+            + toString()
+            + web()
+            ~ PraticaBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        enum TipoPratica {
+          CESSIONE_P
+          CESSIONE_S
+          DELEGA
+          PRESTITO
+          value
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Preferenza {
+            - id : long
+            - smsSenderValue : String
+            + Preferenza()
+            + Preferenza()
+            {static} + builder()
+            + getId()
+            + getSmsSenderValue()
+            + setId()
+            + setSmsSenderValue()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Preferenza.PreferenzaBuilder {
+            - id : long
+            - smsSenderValue : String
+            + build()
+            + id()
+            + smsSenderValue()
+            + toString()
+            ~ PreferenzaBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.PreferenzaStatoPratica {
+            - giorniNotifica : int
+            - id : long
+            + PreferenzaStatoPratica()
+            + PreferenzaStatoPratica()
+            {static} + builder()
+            + getAzienda()
+            + getGiorniNotifica()
+            + getId()
+            + getNomeStatoPratica()
+            + setAzienda()
+            + setGiorniNotifica()
+            + setId()
+            + setNomeStatoPratica()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.PreferenzaStatoPratica.PreferenzaStatoPraticaBuilder {
+            - giorniNotifica : int
+            - id : long
+            + azienda()
+            + build()
+            + giorniNotifica()
+            + id()
+            + nomeStatoPratica()
+            + toString()
+            ~ PreferenzaStatoPraticaBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Preventivo {
+            - dataCreazione : Date
+            - durata : Integer
+            - idPreventivo : long
+            - importo : BigDecimal
+            - notificaPreventivo : boolean
+            - percProvvigione : BigDecimal
+            - provvigione : BigDecimal
+            - rata : BigDecimal
+            - spese : BigDecimal
+            - taeg : BigDecimal
+            - tan : BigDecimal
+            - teg : BigDecimal
+            - tipoPratica : String
+            - tipoProvvigione : String
+            + Preventivo()
+            + Preventivo()
+            {static} + builder()
+            + getCliente()
+            + getDataCreazione()
+            + getDurata()
+            + getIdPreventivo()
+            + getImporto()
+            + getPercProvvigione()
+            + getProvvigione()
+            + getRata()
+            + getSimulatorTable()
+            + getSpese()
+            + getTaeg()
+            + getTan()
+            + getTeg()
+            + getTipoPratica()
+            + getTipoProvvigione()
+            + getTipologiaPreventivo()
+            + isNotificaPreventivo()
+            + setCliente()
+            + setDataCreazione()
+            + setDurata()
+            + setIdPreventivo()
+            + setImporto()
+            + setNotificaPreventivo()
+            + setPercProvvigione()
+            + setProvvigione()
+            + setRata()
+            + setSimulatorTable()
+            + setSpese()
+            + setTaeg()
+            + setTan()
+            + setTeg()
+            + setTipoPratica()
+            + setTipoProvvigione()
+            + setTipologiaPreventivo()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Preventivo.PreventivoBuilder {
+            - dataCreazione : Date
+            - durata : Integer
+            - idPreventivo : long
+            - importo : BigDecimal
+            - notificaPreventivo : boolean
+            - percProvvigione : BigDecimal
+            - provvigione : BigDecimal
+            - rata : BigDecimal
+            - spese : BigDecimal
+            - taeg : BigDecimal
+            - tan : BigDecimal
+            - teg : BigDecimal
+            - tipoPratica : String
+            - tipoProvvigione : String
+            + build()
+            + cliente()
+            + dataCreazione()
+            + durata()
+            + idPreventivo()
+            + importo()
+            + notificaPreventivo()
+            + percProvvigione()
+            + provvigione()
+            + rata()
+            + simulatorTable()
+            + spese()
+            + taeg()
+            + tan()
+            + teg()
+            + tipoPratica()
+            + tipoProvvigione()
+            + tipologiaPreventivo()
+            + toString()
+            ~ PreventivoBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        enum TipologiaPreventivo {
+          NUOVO
+          RINNOVO
+          value
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Residenza {
+            - capDomicilio : String
+            - capPrecedente : String
+            - capResidenza : String
+            - civicoDomicilio : String
+            - civicoPrecedente : String
+            - civicoResidenza : String
+            - codiceRes : long
+            - corrispondenza : String
+            - dataInizioResidenza : Date
+            - indirizzoDomicilio : String
+            - indirizzoPrecedente : String
+            - indirizzoResidenza : String
+            - luogoDomicilio : String
+            - luogoPrecedente : String
+            - luogoResidenza : String
+            - mutuo : boolean
+            - nazioneDomicilio : String
+            - nazionePrecedente : String
+            - nazioneResidenza : String
+            - provDomicilio : String
+            - provResidenza : String
+            - provinciaPrecedente : String
+            - speseAbitazione : BigDecimal
+            - tipoAbitazione : String
+            + Residenza()
+            + Residenza()
+            {static} + builder()
+            + getCapDomicilio()
+            + getCapPrecedente()
+            + getCapResidenza()
+            + getCivicoDomicilio()
+            + getCivicoPrecedente()
+            + getCivicoResidenza()
+            + getCliente()
+            + getCodiceRes()
+            + getCorrispondenza()
+            + getDataInizioResidenza()
+            + getIndirizzoDomicilio()
+            + getIndirizzoPrecedente()
+            + getIndirizzoResidenza()
+            + getLuogoDomicilio()
+            + getLuogoPrecedente()
+            + getLuogoResidenza()
+            + getNazioneDomicilio()
+            + getNazionePrecedente()
+            + getNazioneResidenza()
+            + getProvDomicilio()
+            + getProvResidenza()
+            + getProvinciaPrecedente()
+            + getSpeseAbitazione()
+            + getTipoAbitazione()
+            + isMutuo()
+            + setCapDomicilio()
+            + setCapPrecedente()
+            + setCapResidenza()
+            + setCivicoDomicilio()
+            + setCivicoPrecedente()
+            + setCivicoResidenza()
+            + setCliente()
+            + setCodiceRes()
+            + setCorrispondenza()
+            + setDataInizioResidenza()
+            + setIndirizzoDomicilio()
+            + setIndirizzoPrecedente()
+            + setIndirizzoResidenza()
+            + setLuogoDomicilio()
+            + setLuogoPrecedente()
+            + setLuogoResidenza()
+            + setMutuo()
+            + setNazioneDomicilio()
+            + setNazionePrecedente()
+            + setNazioneResidenza()
+            + setProvDomicilio()
+            + setProvResidenza()
+            + setProvinciaPrecedente()
+            + setSpeseAbitazione()
+            + setTipoAbitazione()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Residenza.ResidenzaBuilder {
+            - capDomicilio : String
+            - capPrecedente : String
+            - capResidenza : String
+            - civicoDomicilio : String
+            - civicoPrecedente : String
+            - civicoResidenza : String
+            - codiceRes : long
+            - corrispondenza : String
+            - dataInizioResidenza : Date
+            - indirizzoDomicilio : String
+            - indirizzoPrecedente : String
+            - indirizzoResidenza : String
+            - luogoDomicilio : String
+            - luogoPrecedente : String
+            - luogoResidenza : String
+            - mutuo : boolean
+            - nazioneDomicilio : String
+            - nazionePrecedente : String
+            - nazioneResidenza : String
+            - provDomicilio : String
+            - provResidenza : String
+            - provinciaPrecedente : String
+            - speseAbitazione : BigDecimal
+            - tipoAbitazione : String
+            + build()
+            + capDomicilio()
+            + capPrecedente()
+            + capResidenza()
+            + civicoDomicilio()
+            + civicoPrecedente()
+            + civicoResidenza()
+            + cliente()
+            + codiceRes()
+            + corrispondenza()
+            + dataInizioResidenza()
+            + indirizzoDomicilio()
+            + indirizzoPrecedente()
+            + indirizzoResidenza()
+            + luogoDomicilio()
+            + luogoPrecedente()
+            + luogoResidenza()
+            + mutuo()
+            + nazioneDomicilio()
+            + nazionePrecedente()
+            + nazioneResidenza()
+            + provDomicilio()
+            + provResidenza()
+            + provinciaPrecedente()
+            + speseAbitazione()
+            + tipoAbitazione()
+            + toString()
+            ~ ResidenzaBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.RicaricaComunicazione {
+            - amount : BigDecimal
+            - dateTime : LocalDateTime
+            - fatturaId : String
+            - id : long
+            - quantity : int
+            + RicaricaComunicazione()
+            + RicaricaComunicazione()
+            {static} + builder()
+            + getAmount()
+            + getDateTime()
+            + getFatturaId()
+            + getId()
+            + getOperatoreRicaricato()
+            + getPayer()
+            + getPaymentMethod()
+            + getQuantity()
+            + getRicaricaType()
+            + setAmount()
+            + setDateTime()
+            + setFatturaId()
+            + setId()
+            + setOperatoreRicaricato()
+            + setPayer()
+            + setPaymentMethod()
+            + setQuantity()
+            + setRicaricaType()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        enum PaymentMethod {
+          BANK_TRANSFER
+          CREDIT_CARD
+          VOUCHER
+          value
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.RicaricaComunicazione.RicaricaComunicazioneBuilder {
+            - amount : BigDecimal
+            - dateTime : LocalDateTime
+            - fatturaId : String
+            - id : long
+            - quantity : int
+            + amount()
+            + build()
+            + dateTime()
+            + fatturaId()
+            + id()
+            + operatoreRicaricato()
+            + payer()
+            + paymentMethod()
+            + quantity()
+            + ricaricaType()
+            + toString()
+            ~ RicaricaComunicazioneBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Role {
+            - id : Long
+            + Role()
+            + Role()
+            {static} + builder()
+            + getId()
+            + getRoleName()
+            + setId()
+            + setRoleName()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Role.RoleBuilder {
+            - id : Long
+            + build()
+            + id()
+            + roleName()
+            + toString()
+            ~ RoleBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        enum RoleName {
+          ACCESS_LOG_READ
+          ACCESS_LOG_READ_SUPER
+          ADMIN
+          AMMINISTRAZIONI_WRITE
+          AMMINISTRAZIONI_WRITE_NOT
+          ANTI_RICICLAGGIO
+          ANTI_RICICLAGGIO_OUT
+          ANTI_RICICLAGGIO_READ
+          ANTI_RICICLAGGIO_READ_NOT
+          BACKUP_DOWNLOAD
+          CALENDARIO_DELETE_ALL
+          CALENDARIO_DELETE_NOT
+          CALENDARIO_DELETE_OWN
+          CALENDARIO_DELETE_SUPER
+          CALENDARIO_READ_ALL
+          CALENDARIO_READ_NOT
+          CALENDARIO_READ_OWN
+          CALENDARIO_READ_SUPER
+          CALENDARIO_WRITE_ALL
+          CALENDARIO_WRITE_NOT
+          CALENDARIO_WRITE_OWN
+          CALENDARIO_WRITE_SUPER
+          CAMPAGNE_MARKETING_WRITE
+          CAMPAGNE_MARKETING_WRITE_NOT
+          CLIENTI_DELETE_ALL
+          CLIENTI_DELETE_NOT
+          CLIENTI_DELETE_OWN
+          CLIENTI_DELETE_SUPER
+          CLIENTI_READ_ALL
+          CLIENTI_READ_NOT
+          CLIENTI_READ_OWN
+          CLIENTI_READ_SUPER
+          CLIENTI_WRITE_ALL
+          CLIENTI_WRITE_NOT
+          CLIENTI_WRITE_OWN
+          CLIENTI_WRITE_SUPER
+          DATI_AZIENDA_WRITE
+          DATI_AZIENDA_WRITE_NOT
+          DATI_AZIENDA_WRITE_SUPER
+          FATTURAZIONE_READ_ALL
+          FATTURAZIONE_READ_NOT
+          FATTURAZIONE_READ_OWN
+          FATTURAZIONE_READ_SUPER
+          FATTURAZIONE_WRITE
+          FATTURAZIONE_WRITE_NOT
+          FATTURAZIONE_WRITE_SUPER
+          GESTIONE_PERMESSI_WRITE
+          GESTIONE_PERMESSI_WRITE_NOT
+          GESTIONE_PERMESSI_WRITE_SUPER
+          GRAFICI_READ_ALL
+          GRAFICI_READ_OWN
+          GRAFICI_READ_SUPER
+          NOMINATIVI_DELETE_ALL
+          NOMINATIVI_DELETE_NOT
+          NOMINATIVI_DELETE_OWN
+          NOMINATIVI_DELETE_SUPER
+          NOMINATIVI_READ_ALL
+          NOMINATIVI_READ_NOT
+          NOMINATIVI_READ_OWN
+          NOMINATIVI_READ_SUPER
+          NOMINATIVI_WRITE_ALL
+          NOMINATIVI_WRITE_NOT
+          NOMINATIVI_WRITE_OWN
+          NOMINATIVI_WRITE_SUPER
+          NOTICE_BOARD_READ
+          NOTICE_BOARD_READ_NOT
+          NOTICE_BOARD_READ_SUPER
+          NOTICE_BOARD_WRITE
+          NOTICE_BOARD_WRITE_NOT
+          NOTICE_BOARD_WRITE_SUPER
+          OPERATOR
+          PREFERENZE_WRITE
+          PREFERENZE_WRITE_NOT
+          PREFERENZE_WRITE_SUPER
+          RICARICA_WRITE
+          RICARICA_WRITE_NOT
+          RICARICA_WRITE_SUPER
+          SIMULATORI_DELETE_ALL
+          SIMULATORI_DELETE_NOT
+          SIMULATORI_DELETE_OWN
+          SIMULATORI_DELETE_SUPER
+          SIMULATORI_READ_ALL
+          SIMULATORI_READ_NOT
+          SIMULATORI_READ_OWN
+          SIMULATORI_READ_SUPER
+          SIMULATORI_WRITE_ALL
+          SIMULATORI_WRITE_NOT
+          SIMULATORI_WRITE_OWN
+          SIMULATORI_WRITE_SUPER
+          SYSADMIN
+          value
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Setting {
+            - agenziaSmsBalance : int
+            - alias : String
+            - id : long
+            - leadIlComparatoreEnabled : boolean
+            - mittenteSms : String
+            - sendSmsLead : boolean
+            - simulatorEnabled : boolean
+            - testoSmsAppuntamentoClienteNominativo : String
+            - testoSmsAppuntamentoOperatoreAssegnato : String
+            - testoSmsLead : String
+            + Setting()
+            + Setting()
+            {static} + builder()
+            + getAgenziaSmsBalance()
+            + getAlias()
+            + getAzienda()
+            + getId()
+            + getMittenteSms()
+            + getTestoSmsAppuntamentoClienteNominativo()
+            + getTestoSmsAppuntamentoOperatoreAssegnato()
+            + getTestoSmsLead()
+            + isLeadIlComparatoreEnabled()
+            + isSendSmsLead()
+            + isSimulatorEnabled()
+            + setAgenziaSmsBalance()
+            + setAlias()
+            + setAzienda()
+            + setId()
+            + setLeadIlComparatoreEnabled()
+            + setMittenteSms()
+            + setSendSmsLead()
+            + setSimulatorEnabled()
+            + setTestoSmsAppuntamentoClienteNominativo()
+            + setTestoSmsAppuntamentoOperatoreAssegnato()
+            + setTestoSmsLead()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Setting.SettingBuilder {
+            - agenziaSmsBalance : int
+            - alias : String
+            - id : long
+            - leadIlComparatoreEnabled : boolean
+            - mittenteSms : String
+            - sendSmsLead : boolean
+            - simulatorEnabled : boolean
+            - testoSmsAppuntamentoClienteNominativo : String
+            - testoSmsAppuntamentoOperatoreAssegnato : String
+            - testoSmsLead : String
+            + agenziaSmsBalance()
+            + alias()
+            + azienda()
+            + build()
+            + id()
+            + leadIlComparatoreEnabled()
+            + mittenteSms()
+            + sendSmsLead()
+            + simulatorEnabled()
+            + testoSmsAppuntamentoClienteNominativo()
+            + testoSmsAppuntamentoOperatoreAssegnato()
+            + testoSmsLead()
+            + toString()
+            ~ SettingBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.SimulatorTable {
+            # jobTypeSet : Set<Impiego>
+            - enabled : boolean
+            - grantedOperatorSet : Set<Operator>
+            - id : long
+            - name : String
+            - over : BigDecimal
+            - simulatorTableDetailsList : List<SimulatorTableDetails>
+            + SimulatorTable()
+            + SimulatorTable()
+            {static} + builder()
+            + getAzienda()
+            + getCreatorOperator()
+            + getGrantedOperatorSet()
+            + getId()
+            + getInquiryCostFeeType()
+            + getInsuranceCostFeeType()
+            + getJobTypeSet()
+            + getManagementFeesFeeType()
+            + getName()
+            + getOtherCostsFeeType()
+            + getOver()
+            + getSimulatorRoundingMode()
+            + getSimulatorTableDetailsList()
+            + getSimulatorTableType()
+            + getStampDutyFeeType()
+            + isEnabled()
+            + setAzienda()
+            + setCreatorOperator()
+            + setEnabled()
+            + setGrantedOperatorSet()
+            + setId()
+            + setInquiryCostFeeType()
+            + setInsuranceCostFeeType()
+            + setJobTypeSet()
+            + setManagementFeesFeeType()
+            + setName()
+            + setOtherCostsFeeType()
+            + setOver()
+            + setSimulatorRoundingMode()
+            + setSimulatorTableDetailsList()
+            + setSimulatorTableType()
+            + setStampDutyFeeType()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.SimulatorTable.SimulatorTableBuilder {
+            - enabled : boolean
+            - grantedOperatorSet : Set<Operator>
+            - id : long
+            - jobTypeSet : Set<Impiego>
+            - name : String
+            - over : BigDecimal
+            - simulatorTableDetailsList : List<SimulatorTableDetails>
+            + azienda()
+            + build()
+            + creatorOperator()
+            + enabled()
+            + grantedOperatorSet()
+            + id()
+            + inquiryCostFeeType()
+            + insuranceCostFeeType()
+            + jobTypeSet()
+            + managementFeesFeeType()
+            + name()
+            + otherCostsFeeType()
+            + over()
+            + simulatorRoundingMode()
+            + simulatorTableDetailsList()
+            + simulatorTableType()
+            + stampDutyFeeType()
+            + toString()
+            ~ SimulatorTableBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.SimulatorTableDetails {
+            - id : long
+            - inquiryCost : BigDecimal
+            - inquiryCostTaeg : BigDecimal
+            - insuranceCost : BigDecimal
+            - insuranceCostTaeg : BigDecimal
+            - length : int
+            - managementFees : BigDecimal
+            - managementFeesTaeg : BigDecimal
+            - maxAgentFees : BigDecimal
+            - maxInquiryCost : BigDecimal
+            - maxInsuranceCost : BigDecimal
+            - maxManagementFees : BigDecimal
+            - maxOtherCosts : BigDecimal
+            - maxStampDutyCost : BigDecimal
+            - maxTaeg : BigDecimal
+            - mensilita : int
+            - otherCosts : BigDecimal
+            - otherCostsTaeg : BigDecimal
+            - stampDutyCost : BigDecimal
+            - stampDutyCostTaeg : BigDecimal
+            - tan : BigDecimal
+            + SimulatorTableDetails()
+            + SimulatorTableDetails()
+            {static} + builder()
+            + getId()
+            + getInquiryCost()
+            + getInquiryCostTaeg()
+            + getInsuranceCost()
+            + getInsuranceCostTaeg()
+            + getLength()
+            + getManagementFees()
+            + getManagementFeesTaeg()
+            + getMaxAgentFees()
+            + getMaxInquiryCost()
+            + getMaxInsuranceCost()
+            + getMaxManagementFees()
+            + getMaxOtherCosts()
+            + getMaxStampDutyCost()
+            + getMaxTaeg()
+            + getMensilita()
+            + getOtherCosts()
+            + getOtherCostsTaeg()
+            + getSimulatorTable()
+            + getStampDutyCost()
+            + getStampDutyCostTaeg()
+            + getTan()
+            + setId()
+            + setInquiryCost()
+            + setInquiryCostTaeg()
+            + setInsuranceCost()
+            + setInsuranceCostTaeg()
+            + setLength()
+            + setManagementFees()
+            + setManagementFeesTaeg()
+            + setMaxAgentFees()
+            + setMaxInquiryCost()
+            + setMaxInsuranceCost()
+            + setMaxManagementFees()
+            + setMaxOtherCosts()
+            + setMaxStampDutyCost()
+            + setMaxTaeg()
+            + setMensilita()
+            + setOtherCosts()
+            + setOtherCostsTaeg()
+            + setSimulatorTable()
+            + setStampDutyCost()
+            + setStampDutyCostTaeg()
+            + setTan()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.SimulatorTableDetails.SimulatorTableDetailsBuilder {
+            - id : long
+            - inquiryCost : BigDecimal
+            - inquiryCostTaeg : BigDecimal
+            - insuranceCost : BigDecimal
+            - insuranceCostTaeg : BigDecimal
+            - length : int
+            - managementFees : BigDecimal
+            - managementFeesTaeg : BigDecimal
+            - maxAgentFees : BigDecimal
+            - maxInquiryCost : BigDecimal
+            - maxInsuranceCost : BigDecimal
+            - maxManagementFees : BigDecimal
+            - maxOtherCosts : BigDecimal
+            - maxStampDutyCost : BigDecimal
+            - maxTaeg : BigDecimal
+            - mensilita : int
+            - otherCosts : BigDecimal
+            - otherCostsTaeg : BigDecimal
+            - stampDutyCost : BigDecimal
+            - stampDutyCostTaeg : BigDecimal
+            - tan : BigDecimal
+            + build()
+            + id()
+            + inquiryCost()
+            + inquiryCostTaeg()
+            + insuranceCost()
+            + insuranceCostTaeg()
+            + length()
+            + managementFees()
+            + managementFeesTaeg()
+            + maxAgentFees()
+            + maxInquiryCost()
+            + maxInsuranceCost()
+            + maxManagementFees()
+            + maxOtherCosts()
+            + maxStampDutyCost()
+            + maxTaeg()
+            + mensilita()
+            + otherCosts()
+            + otherCostsTaeg()
+            + simulatorTable()
+            + stampDutyCost()
+            + stampDutyCostTaeg()
+            + tan()
+            + toString()
+            ~ SimulatorTableDetailsBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Trattenute {
+            - busta : Date
+            - calcolaDat : String
+            - codStip : long
+            - dataRinnovoTrat : Date
+            - durataTrat : Integer
+            - istitutoTrat : String
+            - montanteTrat : BigDecimal
+            - notiCoes : Date
+            - rataTrat : BigDecimal
+            - scadenzaTrat : Date
+            - tipoTrat : String
+            + Trattenute()
+            + Trattenute()
+            {static} + builder()
+            + getBusta()
+            + getCalcolaDat()
+            + getCliente()
+            + getCodStip()
+            + getDataRinnovoTrat()
+            + getDurataTrat()
+            + getIstitutoTrat()
+            + getMontanteTrat()
+            + getNotiCoes()
+            + getRataTrat()
+            + getScadenzaTrat()
+            + getTipoTrat()
+            + setBusta()
+            + setCalcolaDat()
+            + setCliente()
+            + setCodStip()
+            + setDataRinnovoTrat()
+            + setDurataTrat()
+            + setIstitutoTrat()
+            + setMontanteTrat()
+            + setNotiCoes()
+            + setRataTrat()
+            + setScadenzaTrat()
+            + setTipoTrat()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        enum TipoImpegno {
+          CESSIONE_P
+          CESSIONE_S
+          DELEGA
+          PIGNORAMENTO
+          PRESTITO
+          value
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.Trattenute.TrattenuteBuilder {
+            - busta : Date
+            - calcolaDat : String
+            - codStip : long
+            - dataRinnovoTrat : Date
+            - durataTrat : Integer
+            - istitutoTrat : String
+            - montanteTrat : BigDecimal
+            - notiCoes : Date
+            - rataTrat : BigDecimal
+            - scadenzaTrat : Date
+            - tipoTrat : String
+            + build()
+            + busta()
+            + calcolaDat()
+            + cliente()
+            + codStip()
+            + dataRinnovoTrat()
+            + durataTrat()
+            + istitutoTrat()
+            + montanteTrat()
+            + notiCoes()
+            + rataTrat()
+            + scadenzaTrat()
+            + tipoTrat()
+            + toString()
+            ~ TrattenuteBuilder()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.ValutazioneAmministrazione {
+            - compagnia : String
+            - dataValutazione : Date
+            - id : long
+            - infoAggiuntive : String
+            - valutazione : String
+            + ValutazioneAmministrazione()
+            + ValutazioneAmministrazione()
+            {static} + builder()
+            + getAmministrazione()
+            + getCompagnia()
+            + getDataValutazione()
+            + getId()
+            + getInfoAggiuntive()
+            + getValutazione()
+            + setAmministrazione()
+            + setCompagnia()
+            + setDataValutazione()
+            + setId()
+            + setInfoAggiuntive()
+            + setValutazione()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace db {
+      namespace entity {
+        class com.woonders.lacemscommon.db.entity.ValutazioneAmministrazione.ValutazioneAmministrazioneBuilder {
+            - compagnia : String
+            - dataValutazione : Date
+            - id : long
+            - infoAggiuntive : String
+            - valutazione : String
+            + amministrazione()
+            + build()
+            + compagnia()
+            + dataValutazione()
+            + id()
+            + infoAggiuntive()
+            + toString()
+            + valutazione()
+            ~ ValutazioneAmministrazioneBuilder()
+        }
+      }
+    }
+  }
+  
+
+  com.woonders.lacemscommon.db.entity.AccessLog o-- com.woonders.lacemscommon.db.entity.Operator : operator
+  com.woonders.lacemscommon.db.entity.AccessLog +-down- com.woonders.lacemscommon.db.entity.AccessLog.AccessLogBuilder
+  com.woonders.lacemscommon.db.entity.AccessLog.AccessLogBuilder o-- com.woonders.lacemscommon.db.entity.Operator : operator
+  com.woonders.lacemscommon.db.entity.Amministrazione +-down- com.woonders.lacemscommon.db.entity.Amministrazione.AmministrazioneBuilder
+  com.woonders.lacemscommon.db.entity.Azienda +-down- com.woonders.lacemscommon.db.entity.Azienda.AziendaBuilder
+  com.woonders.lacemscommon.db.entity.Backup +-down- com.woonders.lacemscommon.db.entity.Backup.BackupBuilder
+  com.woonders.lacemscommon.db.entity.CalendarioAppuntamento o-- com.woonders.lacemscommon.db.entity.Cliente : nominativo
+  com.woonders.lacemscommon.db.entity.CalendarioAppuntamento o-- com.woonders.lacemscommon.db.entity.Operator : operator
+  com.woonders.lacemscommon.db.entity.CalendarioAppuntamento o-- com.woonders.lacemscommon.db.entity.Operator : operatoreAssegnato
+  com.woonders.lacemscommon.db.entity.CalendarioAppuntamento o-- com.woonders.lacemscommon.db.entity.Pratica : pratica
+  com.woonders.lacemscommon.db.entity.CalendarioAppuntamento +-down- com.woonders.lacemscommon.db.entity.CalendarioAppuntamento.CalendarioAppuntamentoBuilder
+  com.woonders.lacemscommon.db.entity.CalendarioAppuntamento.CalendarioAppuntamentoBuilder o-- com.woonders.lacemscommon.db.entity.Cliente : nominativo
+  com.woonders.lacemscommon.db.entity.CalendarioAppuntamento.CalendarioAppuntamentoBuilder o-- com.woonders.lacemscommon.db.entity.Operator : operator
+  com.woonders.lacemscommon.db.entity.CalendarioAppuntamento.CalendarioAppuntamentoBuilder o-- com.woonders.lacemscommon.db.entity.Operator : operatoreAssegnato
+  com.woonders.lacemscommon.db.entity.CalendarioAppuntamento.CalendarioAppuntamentoBuilder o-- com.woonders.lacemscommon.db.entity.Pratica : pratica
+  com.woonders.lacemscommon.db.entity.Campagna o-- com.woonders.lacemscommon.db.entity.Campagna.CampagnaType : campagnaType
+  com.woonders.lacemscommon.db.entity.Campagna o-- com.woonders.lacemscommon.db.entity.Operator : creatorOperator
+  com.woonders.lacemscommon.db.entity.Campagna o-- com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel : filtroCampagnaMarketingViewModel
+  com.woonders.lacemscommon.db.entity.Campagna o-- com.woonders.lacemscommon.db.entity.Operator : senderOperator
+  com.woonders.lacemscommon.db.entity.Campagna +-down- com.woonders.lacemscommon.db.entity.Campagna.CampagnaBuilder
+  com.woonders.lacemscommon.db.entity.Campagna +-down- com.woonders.lacemscommon.db.entity.Campagna.CampagnaType
+  com.woonders.lacemscommon.db.entity.Campagna.CampagnaBuilder o-- com.woonders.lacemscommon.db.entity.Campagna.CampagnaType : campagnaType
+  com.woonders.lacemscommon.db.entity.Campagna.CampagnaBuilder o-- com.woonders.lacemscommon.db.entity.Operator : creatorOperator
+  com.woonders.lacemscommon.db.entity.Campagna.CampagnaBuilder o-- com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel : filtroCampagnaMarketingViewModel
+  com.woonders.lacemscommon.db.entity.Campagna.CampagnaBuilder o-- com.woonders.lacemscommon.db.entity.Operator : senderOperator
+  com.woonders.lacemscommon.db.entity.CampagnaSms o-- com.woonders.lacemscommon.db.entity.Campagna : campagna
+  com.woonders.lacemscommon.db.entity.CampagnaSms o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.CampagnaSms o-- com.woonders.lacemscommon.db.entityenum.EsitoSmsNotificaLead : esito
+  com.woonders.lacemscommon.db.entity.CampagnaSms +-down- com.woonders.lacemscommon.db.entity.CampagnaSms.CampagnaSmsBuilder
+  com.woonders.lacemscommon.db.entity.CampagnaSms.CampagnaSmsBuilder o-- com.woonders.lacemscommon.db.entity.Campagna : campagna
+  com.woonders.lacemscommon.db.entity.CampagnaSms.CampagnaSmsBuilder o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.CampagnaSms.CampagnaSmsBuilder o-- com.woonders.lacemscommon.db.entityenum.EsitoSmsNotificaLead : esito
+  com.woonders.lacemscommon.db.entity.Cliente o-- com.woonders.lacemscommon.db.entity.Conto : conto
+  com.woonders.lacemscommon.db.entity.Cliente o-- com.woonders.lacemscommon.db.entity.Documento : documento
+  com.woonders.lacemscommon.db.entity.Cliente o-- com.woonders.lacemscommon.db.entity.Operator : operatoreNominativo
+  com.woonders.lacemscommon.db.entity.Cliente o-- com.woonders.lacemscommon.db.entity.Residenza : residenza
+  com.woonders.lacemscommon.db.entity.Cliente o-- com.woonders.lacemscommon.db.entity.Cliente.Sesso : sesso
+  com.woonders.lacemscommon.db.entity.Cliente +-down- com.woonders.lacemscommon.db.entity.Cliente.ClienteBuilder
+  com.woonders.lacemscommon.db.entity.Cliente +-down- com.woonders.lacemscommon.db.entity.Cliente.Sesso
+  com.woonders.lacemscommon.db.entity.Cliente.ClienteBuilder o-- com.woonders.lacemscommon.db.entity.Conto : conto
+  com.woonders.lacemscommon.db.entity.Cliente.ClienteBuilder o-- com.woonders.lacemscommon.db.entity.Documento : documento
+  com.woonders.lacemscommon.db.entity.Cliente.ClienteBuilder o-- com.woonders.lacemscommon.db.entity.Operator : operatoreNominativo
+  com.woonders.lacemscommon.db.entity.Cliente.ClienteBuilder o-- com.woonders.lacemscommon.db.entity.Residenza : residenza
+  com.woonders.lacemscommon.db.entity.Cliente.ClienteBuilder o-- com.woonders.lacemscommon.db.entity.Cliente.Sesso : sesso
+  com.woonders.lacemscommon.db.entity.ClientePraticaFile o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.ClientePraticaFile o-- com.woonders.lacemscommon.service.FileService.FileCategory : fileCategory
+  com.woonders.lacemscommon.db.entity.ClientePraticaFile o-- com.woonders.lacemscommon.db.entity.Pratica : pratica
+  com.woonders.lacemscommon.db.entity.ClientePraticaFile +-down- com.woonders.lacemscommon.db.entity.ClientePraticaFile.ClientePraticaFileBuilder
+  com.woonders.lacemscommon.db.entity.ClientePraticaFile.ClientePraticaFileBuilder o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.ClientePraticaFile.ClientePraticaFileBuilder o-- com.woonders.lacemscommon.service.FileService.FileCategory : fileCategory
+  com.woonders.lacemscommon.db.entity.ClientePraticaFile.ClientePraticaFileBuilder o-- com.woonders.lacemscommon.db.entity.Pratica : pratica
+  com.woonders.lacemscommon.db.entity.Conto o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.Conto +-down- com.woonders.lacemscommon.db.entity.Conto.ContoBuilder
+  com.woonders.lacemscommon.db.entity.Conto.ContoBuilder o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.Coobbligato o-- com.woonders.lacemscommon.db.entity.Pratica : pratica
+  com.woonders.lacemscommon.db.entity.Coobbligato o-- com.woonders.lacemscommon.db.entity.Cliente.Sesso : sesso
+  com.woonders.lacemscommon.db.entity.Coobbligato +-down- com.woonders.lacemscommon.db.entity.Coobbligato.CoobbligatoBuilder
+  com.woonders.lacemscommon.db.entity.Coobbligato.CoobbligatoBuilder o-- com.woonders.lacemscommon.db.entity.Pratica : pratica
+  com.woonders.lacemscommon.db.entity.Coobbligato.CoobbligatoBuilder o-- com.woonders.lacemscommon.db.entity.Cliente.Sesso : sesso
+  com.woonders.lacemscommon.db.entity.Documento o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.Documento +-down- com.woonders.lacemscommon.db.entity.Documento.DocumentoBuilder
+  com.woonders.lacemscommon.db.entity.Documento +-down- com.woonders.lacemscommon.db.entity.Documento.TipoDocumento
+  com.woonders.lacemscommon.db.entity.Documento.DocumentoBuilder o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.Estinzione o-- com.woonders.lacemscommon.db.entity.Pratica : pratica
+  com.woonders.lacemscommon.db.entity.Estinzione o-- com.woonders.lacemscommon.db.entityenum.StatoConteggioEstinzione : statoConteggioEstinzione
+  com.woonders.lacemscommon.db.entity.Estinzione +-down- com.woonders.lacemscommon.db.entity.Estinzione.EstinzioneBuilder
+  com.woonders.lacemscommon.db.entity.Estinzione.EstinzioneBuilder o-- com.woonders.lacemscommon.db.entity.Pratica : pratica
+  com.woonders.lacemscommon.db.entity.Estinzione.EstinzioneBuilder o-- com.woonders.lacemscommon.db.entityenum.StatoConteggioEstinzione : statoConteggioEstinzione
+  com.woonders.lacemscommon.db.entity.Finanziaria +-down- com.woonders.lacemscommon.db.entity.Finanziaria.FinanziariaBuilder
+  com.woonders.lacemscommon.db.entity.GeneralSetting +-down- com.woonders.lacemscommon.db.entity.GeneralSetting.GeneralSettingBuilder
+  com.woonders.lacemscommon.db.entity.InfoAccount o-- com.woonders.lacemscommon.db.entityenum.AccountVersion : version
+  com.woonders.lacemscommon.db.entity.InfoAccount +-down- com.woonders.lacemscommon.db.entity.InfoAccount.InfoAccountBuilder
+  com.woonders.lacemscommon.db.entity.InfoAccount.InfoAccountBuilder o-- com.woonders.lacemscommon.db.entityenum.AccountVersion : version
+  com.woonders.lacemscommon.db.entity.NominativoLog o-- com.woonders.lacemscommon.db.entity.Cliente : nominativo
+  com.woonders.lacemscommon.db.entity.NominativoLog o-- com.woonders.lacemscommon.db.entity.Operator : operator
+  com.woonders.lacemscommon.db.entity.NominativoLog o-- com.woonders.lacemscommon.db.entity.Operator : operatoreAssegnato
+  com.woonders.lacemscommon.db.entity.NominativoLog o-- com.woonders.lacemscommon.db.entity.Pratica : pratica
+  com.woonders.lacemscommon.db.entity.NominativoLog o-- com.woonders.lacemscommon.db.entityenum.StatoNominativo : statoNominativo
+  com.woonders.lacemscommon.db.entity.NominativoLog o-- com.woonders.lacemscommon.db.entityenum.StatoPratica : statoPratica
+  com.woonders.lacemscommon.db.entity.NominativoLog o-- com.woonders.lacemscommon.service.LogService.TipoLog : tipoLog
+  com.woonders.lacemscommon.db.entity.NominativoLog +-down- com.woonders.lacemscommon.db.entity.NominativoLog.NominativoLogBuilder
+  com.woonders.lacemscommon.db.entity.NominativoLog.NominativoLogBuilder o-- com.woonders.lacemscommon.db.entity.Cliente : nominativo
+  com.woonders.lacemscommon.db.entity.NominativoLog.NominativoLogBuilder o-- com.woonders.lacemscommon.db.entity.Operator : operator
+  com.woonders.lacemscommon.db.entity.NominativoLog.NominativoLogBuilder o-- com.woonders.lacemscommon.db.entity.Operator : operatoreAssegnato
+  com.woonders.lacemscommon.db.entity.NominativoLog.NominativoLogBuilder o-- com.woonders.lacemscommon.db.entity.Pratica : pratica
+  com.woonders.lacemscommon.db.entity.NominativoLog.NominativoLogBuilder o-- com.woonders.lacemscommon.db.entityenum.StatoNominativo : statoNominativo
+  com.woonders.lacemscommon.db.entity.NominativoLog.NominativoLogBuilder o-- com.woonders.lacemscommon.db.entityenum.StatoPratica : statoPratica
+  com.woonders.lacemscommon.db.entity.NominativoLog.NominativoLogBuilder o-- com.woonders.lacemscommon.service.LogService.TipoLog : tipoLog
+  com.woonders.lacemscommon.db.entity.NoticeBoard o-- com.woonders.lacemscommon.db.entity.Azienda : aziendaAssigned
+  com.woonders.lacemscommon.db.entity.NoticeBoard o-- com.woonders.lacemscommon.db.entity.Operator : creatorOperator
+  com.woonders.lacemscommon.db.entity.NoticeBoard +-down- com.woonders.lacemscommon.db.entity.NoticeBoard.NoticeBoardBuilder
+  com.woonders.lacemscommon.db.entity.NoticeBoard.NoticeBoardBuilder o-- com.woonders.lacemscommon.db.entity.Azienda : aziendaAssigned
+  com.woonders.lacemscommon.db.entity.NoticeBoard.NoticeBoardBuilder o-- com.woonders.lacemscommon.db.entity.Operator : creatorOperator
+  com.woonders.lacemscommon.db.entity.NotificaLeadSms o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.NotificaLeadSms o-- com.woonders.lacemscommon.db.entityenum.EsitoSmsNotificaLead : esito
+  com.woonders.lacemscommon.db.entity.NotificaLeadSms +-down- com.woonders.lacemscommon.db.entity.NotificaLeadSms.NotificaLeadSmsBuilder
+  com.woonders.lacemscommon.db.entity.NotificaLeadSms.NotificaLeadSmsBuilder o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.NotificaLeadSms.NotificaLeadSmsBuilder o-- com.woonders.lacemscommon.db.entityenum.EsitoSmsNotificaLead : esito
+  com.woonders.lacemscommon.db.entity.Operator o-- com.woonders.lacemscommon.db.entity.Azienda : azienda
+  com.woonders.lacemscommon.db.entity.Operator o-- com.woonders.lacemscommon.laceenum.PermissionProfile : permissionProfile
+  com.woonders.lacemscommon.db.entity.Operator +-down- com.woonders.lacemscommon.db.entity.Operator.OperatorBuilder
+  com.woonders.lacemscommon.db.entity.Operator.OperatorBuilder o-- com.woonders.lacemscommon.db.entity.Azienda : azienda
+  com.woonders.lacemscommon.db.entity.Operator.OperatorBuilder o-- com.woonders.lacemscommon.laceenum.PermissionProfile : permissionProfile
+  com.woonders.lacemscommon.db.entity.Pratica o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.Pratica o-- com.woonders.lacemscommon.db.entity.Finanziaria : finanziaria
+  com.woonders.lacemscommon.db.entity.Pratica o-- com.woonders.lacemscommon.db.entity.Operator : operatore
+  com.woonders.lacemscommon.db.entity.Pratica o-- com.woonders.lacemscommon.db.entity.SimulatorTable : simulatorTable
+  com.woonders.lacemscommon.db.entity.Pratica +-down- com.woonders.lacemscommon.db.entity.Pratica.PraticaBuilder
+  com.woonders.lacemscommon.db.entity.Pratica +-down- com.woonders.lacemscommon.db.entity.Pratica.TipoPratica
+  com.woonders.lacemscommon.db.entity.Pratica.PraticaBuilder o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.Pratica.PraticaBuilder o-- com.woonders.lacemscommon.db.entity.Finanziaria : finanziaria
+  com.woonders.lacemscommon.db.entity.Pratica.PraticaBuilder o-- com.woonders.lacemscommon.db.entity.Operator : operatore
+  com.woonders.lacemscommon.db.entity.Pratica.PraticaBuilder o-- com.woonders.lacemscommon.db.entity.SimulatorTable : simulatorTable
+  com.woonders.lacemscommon.db.entity.Preferenza +-down- com.woonders.lacemscommon.db.entity.Preferenza.PreferenzaBuilder
+  com.woonders.lacemscommon.db.entity.PreferenzaStatoPratica o-- com.woonders.lacemscommon.db.entity.Azienda : azienda
+  com.woonders.lacemscommon.db.entity.PreferenzaStatoPratica o-- com.woonders.lacemscommon.db.entityenum.StatoPratica : nomeStatoPratica
+  com.woonders.lacemscommon.db.entity.PreferenzaStatoPratica +-down- com.woonders.lacemscommon.db.entity.PreferenzaStatoPratica.PreferenzaStatoPraticaBuilder
+  com.woonders.lacemscommon.db.entity.PreferenzaStatoPratica.PreferenzaStatoPraticaBuilder o-- com.woonders.lacemscommon.db.entity.Azienda : azienda
+  com.woonders.lacemscommon.db.entity.PreferenzaStatoPratica.PreferenzaStatoPraticaBuilder o-- com.woonders.lacemscommon.db.entityenum.StatoPratica : nomeStatoPratica
+  com.woonders.lacemscommon.db.entity.Preventivo o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.Preventivo o-- com.woonders.lacemscommon.db.entity.SimulatorTable : simulatorTable
+  com.woonders.lacemscommon.db.entity.Preventivo o-- com.woonders.lacemscommon.db.entity.Preventivo.TipologiaPreventivo : tipologiaPreventivo
+  com.woonders.lacemscommon.db.entity.Preventivo +-down- com.woonders.lacemscommon.db.entity.Preventivo.PreventivoBuilder
+  com.woonders.lacemscommon.db.entity.Preventivo +-down- com.woonders.lacemscommon.db.entity.Preventivo.TipologiaPreventivo
+  com.woonders.lacemscommon.db.entity.Preventivo.PreventivoBuilder o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.Preventivo.PreventivoBuilder o-- com.woonders.lacemscommon.db.entity.SimulatorTable : simulatorTable
+  com.woonders.lacemscommon.db.entity.Preventivo.PreventivoBuilder o-- com.woonders.lacemscommon.db.entity.Preventivo.TipologiaPreventivo : tipologiaPreventivo
+  com.woonders.lacemscommon.db.entity.Residenza o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.Residenza +-down- com.woonders.lacemscommon.db.entity.Residenza.ResidenzaBuilder
+  com.woonders.lacemscommon.db.entity.Residenza.ResidenzaBuilder o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.RicaricaComunicazione o-- com.woonders.lacemscommon.db.entity.Operator : operatoreRicaricato
+  com.woonders.lacemscommon.db.entity.RicaricaComunicazione o-- com.woonders.lacemscommon.db.entity.Operator : payer
+  com.woonders.lacemscommon.db.entity.RicaricaComunicazione o-- com.woonders.lacemscommon.db.entity.RicaricaComunicazione.PaymentMethod : paymentMethod
+  com.woonders.lacemscommon.db.entity.RicaricaComunicazione o-- com.woonders.lacemscommon.db.entityenum.RicaricaType : ricaricaType
+  com.woonders.lacemscommon.db.entity.RicaricaComunicazione +-down- com.woonders.lacemscommon.db.entity.RicaricaComunicazione.PaymentMethod
+  com.woonders.lacemscommon.db.entity.RicaricaComunicazione +-down- com.woonders.lacemscommon.db.entity.RicaricaComunicazione.RicaricaComunicazioneBuilder
+  com.woonders.lacemscommon.db.entity.RicaricaComunicazione.RicaricaComunicazioneBuilder o-- com.woonders.lacemscommon.db.entity.Operator : operatoreRicaricato
+  com.woonders.lacemscommon.db.entity.RicaricaComunicazione.RicaricaComunicazioneBuilder o-- com.woonders.lacemscommon.db.entity.Operator : payer
+  com.woonders.lacemscommon.db.entity.RicaricaComunicazione.RicaricaComunicazioneBuilder o-- com.woonders.lacemscommon.db.entity.RicaricaComunicazione.PaymentMethod : paymentMethod
+  com.woonders.lacemscommon.db.entity.RicaricaComunicazione.RicaricaComunicazioneBuilder o-- com.woonders.lacemscommon.db.entityenum.RicaricaType : ricaricaType
+  com.woonders.lacemscommon.db.entity.Role .up.|> java.io.Serializable
+  com.woonders.lacemscommon.db.entity.Role o-- com.woonders.lacemscommon.db.entity.Role.RoleName : roleName
+  com.woonders.lacemscommon.db.entity.Role +-down- com.woonders.lacemscommon.db.entity.Role.RoleBuilder
+  com.woonders.lacemscommon.db.entity.Role +-down- com.woonders.lacemscommon.db.entity.Role.RoleName
+  com.woonders.lacemscommon.db.entity.Role.RoleBuilder o-- com.woonders.lacemscommon.db.entity.Role.RoleName : roleName
+  com.woonders.lacemscommon.db.entity.Setting o-- com.woonders.lacemscommon.db.entity.Azienda : azienda
+  com.woonders.lacemscommon.db.entity.Setting +-down- com.woonders.lacemscommon.db.entity.Setting.SettingBuilder
+  com.woonders.lacemscommon.db.entity.Setting.SettingBuilder o-- com.woonders.lacemscommon.db.entity.Azienda : azienda
+  com.woonders.lacemscommon.db.entity.SimulatorTable o-- com.woonders.lacemscommon.db.entity.Azienda : azienda
+  com.woonders.lacemscommon.db.entity.SimulatorTable o-- com.woonders.lacemscommon.db.entity.Operator : creatorOperator
+  com.woonders.lacemscommon.db.entity.SimulatorTable o-- com.woonders.lacemscommon.db.entityenum.FeeType : inquiryCostFeeType
+  com.woonders.lacemscommon.db.entity.SimulatorTable o-- com.woonders.lacemscommon.db.entityenum.FeeType : insuranceCostFeeType
+  com.woonders.lacemscommon.db.entity.SimulatorTable o-- com.woonders.lacemscommon.db.entityenum.FeeType : managementFeesFeeType
+  com.woonders.lacemscommon.db.entity.SimulatorTable o-- com.woonders.lacemscommon.db.entityenum.FeeType : otherCostsFeeType
+  com.woonders.lacemscommon.db.entity.SimulatorTable o-- com.woonders.lacemscommon.db.entityenum.SimulatorRoundingMode : simulatorRoundingMode
+  com.woonders.lacemscommon.db.entity.SimulatorTable o-- com.woonders.lacemscommon.db.entity.Pratica.TipoPratica : simulatorTableType
+  com.woonders.lacemscommon.db.entity.SimulatorTable o-- com.woonders.lacemscommon.db.entityenum.FeeType : stampDutyFeeType
+  com.woonders.lacemscommon.db.entity.SimulatorTable +-down- com.woonders.lacemscommon.db.entity.SimulatorTable.SimulatorTableBuilder
+  com.woonders.lacemscommon.db.entity.SimulatorTable.SimulatorTableBuilder o-- com.woonders.lacemscommon.db.entity.Azienda : azienda
+  com.woonders.lacemscommon.db.entity.SimulatorTable.SimulatorTableBuilder o-- com.woonders.lacemscommon.db.entity.Operator : creatorOperator
+  com.woonders.lacemscommon.db.entity.SimulatorTable.SimulatorTableBuilder o-- com.woonders.lacemscommon.db.entityenum.FeeType : inquiryCostFeeType
+  com.woonders.lacemscommon.db.entity.SimulatorTable.SimulatorTableBuilder o-- com.woonders.lacemscommon.db.entityenum.FeeType : insuranceCostFeeType
+  com.woonders.lacemscommon.db.entity.SimulatorTable.SimulatorTableBuilder o-- com.woonders.lacemscommon.db.entityenum.FeeType : managementFeesFeeType
+  com.woonders.lacemscommon.db.entity.SimulatorTable.SimulatorTableBuilder o-- com.woonders.lacemscommon.db.entityenum.FeeType : otherCostsFeeType
+  com.woonders.lacemscommon.db.entity.SimulatorTable.SimulatorTableBuilder o-- com.woonders.lacemscommon.db.entityenum.SimulatorRoundingMode : simulatorRoundingMode
+  com.woonders.lacemscommon.db.entity.SimulatorTable.SimulatorTableBuilder o-- com.woonders.lacemscommon.db.entity.Pratica.TipoPratica : simulatorTableType
+  com.woonders.lacemscommon.db.entity.SimulatorTable.SimulatorTableBuilder o-- com.woonders.lacemscommon.db.entityenum.FeeType : stampDutyFeeType
+  com.woonders.lacemscommon.db.entity.SimulatorTableDetails o-- com.woonders.lacemscommon.db.entity.SimulatorTable : simulatorTable
+  com.woonders.lacemscommon.db.entity.SimulatorTableDetails +-down- com.woonders.lacemscommon.db.entity.SimulatorTableDetails.SimulatorTableDetailsBuilder
+  com.woonders.lacemscommon.db.entity.SimulatorTableDetails.SimulatorTableDetailsBuilder o-- com.woonders.lacemscommon.db.entity.SimulatorTable : simulatorTable
+  com.woonders.lacemscommon.db.entity.Trattenute o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.Trattenute +-down- com.woonders.lacemscommon.db.entity.Trattenute.TipoImpegno
+  com.woonders.lacemscommon.db.entity.Trattenute +-down- com.woonders.lacemscommon.db.entity.Trattenute.TrattenuteBuilder
+  com.woonders.lacemscommon.db.entity.Trattenute.TrattenuteBuilder o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.db.entity.ValutazioneAmministrazione o-- com.woonders.lacemscommon.db.entity.Amministrazione : amministrazione
+  com.woonders.lacemscommon.db.entity.ValutazioneAmministrazione +-down- com.woonders.lacemscommon.db.entity.ValutazioneAmministrazione.ValutazioneAmministrazioneBuilder
+  com.woonders.lacemscommon.db.entity.ValutazioneAmministrazione.ValutazioneAmministrazioneBuilder o-- com.woonders.lacemscommon.db.entity.Amministrazione : amministrazione
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

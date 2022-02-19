@@ -1,0 +1,3397 @@
+@startuml
+
+title __VIEWMODEL's Class Diagram__\n
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      abstract class com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel {
+          + compareTo()
+          {abstract} # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.AccessLogViewModel {
+          - id : long
+          - loginDateTime : LocalDateTime
+          + AccessLogViewModel()
+          + AccessLogViewModel()
+          {static} + builder()
+          + equals()
+          + getId()
+          + getLoginDateTime()
+          + getOperator()
+          + hashCode()
+          + setId()
+          + setLoginDateTime()
+          + setOperator()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.AccessLogViewModel.AccessLogViewModelBuilder {
+          - id : long
+          - loginDateTime : LocalDateTime
+          + build()
+          + id()
+          + loginDateTime()
+          + operator()
+          + toString()
+          ~ AccessLogViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.AmministrazioneViewModel {
+          - capSedeLegale : String
+          - capSedeNotifica : String
+          - civicoSedeLegale : String
+          - civicoSedeNotifica : String
+          - clienteViewModelList : List<ClienteViewModel>
+          - codiceAmm : long
+          - codiceFiscale : String
+          - cqs : boolean
+          - dlg : boolean
+          - email : String
+          - fax : String
+          - indirizzoPec : String
+          - indirizzoSedeLegale : String
+          - indirizzoSedeNotifica : String
+          - luogoSedeLegale : String
+          - luogoSedeNotifica : String
+          - nazioneSedeLegale : String
+          - nazioneSedeNotifica : String
+          - note : String
+          - notificaPec : boolean
+          - piva : String
+          - provSedeLegale : String
+          - provSedeNotifica : String
+          - ragioneSociale : String
+          - referente : String
+          - ruolo : String
+          - telefono : String
+          - valutazioneAmministrazioneViewModelList : List<ValutazioneAmministrazioneViewModel>
+          + AmministrazioneViewModel()
+          + AmministrazioneViewModel()
+          + addValutazioneAmministrazioneViewModel()
+          {static} + builder()
+          + equals()
+          + getCapSedeLegale()
+          + getCapSedeNotifica()
+          + getCivicoSedeLegale()
+          + getCivicoSedeNotifica()
+          + getClienteViewModelList()
+          + getCodiceAmm()
+          + getCodiceFiscale()
+          + getEmail()
+          + getFax()
+          + getIndirizzoPec()
+          + getIndirizzoSedeLegale()
+          + getIndirizzoSedeNotifica()
+          + getLuogoSedeLegale()
+          + getLuogoSedeNotifica()
+          + getNazioneSedeLegale()
+          + getNazioneSedeNotifica()
+          + getNote()
+          + getPiva()
+          + getProvSedeLegale()
+          + getProvSedeNotifica()
+          + getRagioneSociale()
+          + getReferente()
+          + getRuolo()
+          + getTelefono()
+          + getValutazioneAmministrazioneViewModelList()
+          + hashCode()
+          + isCqs()
+          + isDlg()
+          + isNotificaPec()
+          + removeValutazioneAmministrazioneViewModel()
+          + setCapSedeLegale()
+          + setCapSedeNotifica()
+          + setCivicoSedeLegale()
+          + setCivicoSedeNotifica()
+          + setClienteViewModelList()
+          + setCodiceAmm()
+          + setCodiceFiscale()
+          + setCqs()
+          + setDlg()
+          + setEmail()
+          + setFax()
+          + setIndirizzoPec()
+          + setIndirizzoSedeLegale()
+          + setIndirizzoSedeNotifica()
+          + setLuogoSedeLegale()
+          + setLuogoSedeNotifica()
+          + setNazioneSedeLegale()
+          + setNazioneSedeNotifica()
+          + setNote()
+          + setNotificaPec()
+          + setPiva()
+          + setProvSedeLegale()
+          + setProvSedeNotifica()
+          + setRagioneSociale()
+          + setReferente()
+          + setRuolo()
+          + setTelefono()
+          + setValutazioneAmministrazioneViewModelList()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.AmministrazioneViewModel.AmministrazioneViewModelBuilder {
+          - capSedeLegale : String
+          - capSedeNotifica : String
+          - civicoSedeLegale : String
+          - civicoSedeNotifica : String
+          - clienteViewModelList : List<ClienteViewModel>
+          - codiceAmm : long
+          - codiceFiscale : String
+          - cqs : boolean
+          - dlg : boolean
+          - email : String
+          - fax : String
+          - indirizzoPec : String
+          - indirizzoSedeLegale : String
+          - indirizzoSedeNotifica : String
+          - luogoSedeLegale : String
+          - luogoSedeNotifica : String
+          - nazioneSedeLegale : String
+          - nazioneSedeNotifica : String
+          - note : String
+          - notificaPec : boolean
+          - piva : String
+          - provSedeLegale : String
+          - provSedeNotifica : String
+          - ragioneSociale : String
+          - referente : String
+          - ruolo : String
+          - telefono : String
+          - valutazioneAmministrazioneViewModelList : List<ValutazioneAmministrazioneViewModel>
+          + build()
+          + capSedeLegale()
+          + capSedeNotifica()
+          + civicoSedeLegale()
+          + civicoSedeNotifica()
+          + clienteViewModelList()
+          + codiceAmm()
+          + codiceFiscale()
+          + cqs()
+          + dlg()
+          + email()
+          + fax()
+          + indirizzoPec()
+          + indirizzoSedeLegale()
+          + indirizzoSedeNotifica()
+          + luogoSedeLegale()
+          + luogoSedeNotifica()
+          + nazioneSedeLegale()
+          + nazioneSedeNotifica()
+          + note()
+          + notificaPec()
+          + piva()
+          + provSedeLegale()
+          + provSedeNotifica()
+          + ragioneSociale()
+          + referente()
+          + ruolo()
+          + telefono()
+          + toString()
+          + valutazioneAmministrazioneViewModelList()
+          ~ AmministrazioneViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.AziendaViewModel {
+          - cap : String
+          - cellulare : String
+          - cf : String
+          - cognomeTitolare : String
+          - devisProxId : String
+          - email : String
+          - fax : String
+          - giorniNotificaConteggioEstinzione : Integer
+          - giorniNotificheCliente : Integer
+          - giorniNotificheNominativi : Integer
+          - id : long
+          - indirizzo : String
+          - luogo : String
+          - nomeAzienda : String
+          - nomeTitolare : String
+          - oam : String
+          - pec : String
+          - piva : String
+          - printPdfEnabled : boolean
+          - provincia : String
+          - sitoWeb : String
+          - telefono : String
+          + AziendaViewModel()
+          + AziendaViewModel()
+          {static} + builder()
+          + equals()
+          + getCap()
+          + getCellulare()
+          + getCf()
+          + getCognomeTitolare()
+          + getDevisProxId()
+          + getEmail()
+          + getFax()
+          + getGiorniNotificaConteggioEstinzione()
+          + getGiorniNotificheCliente()
+          + getGiorniNotificheNominativi()
+          + getId()
+          + getIndirizzo()
+          + getLuogo()
+          + getNomeAzienda()
+          + getNomeTitolare()
+          + getOam()
+          + getPec()
+          + getPiva()
+          + getProvincia()
+          + getSitoWeb()
+          + getTelefono()
+          + hashCode()
+          + isPrintPdfEnabled()
+          + setCap()
+          + setCellulare()
+          + setCf()
+          + setCognomeTitolare()
+          + setDevisProxId()
+          + setEmail()
+          + setFax()
+          + setGiorniNotificaConteggioEstinzione()
+          + setGiorniNotificheCliente()
+          + setGiorniNotificheNominativi()
+          + setId()
+          + setIndirizzo()
+          + setLuogo()
+          + setNomeAzienda()
+          + setNomeTitolare()
+          + setOam()
+          + setPec()
+          + setPiva()
+          + setPrintPdfEnabled()
+          + setProvincia()
+          + setSitoWeb()
+          + setTelefono()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.AziendaViewModel.AziendaViewModelBuilder {
+          - cap : String
+          - cellulare : String
+          - cf : String
+          - cognomeTitolare : String
+          - devisProxId : String
+          - email : String
+          - fax : String
+          - giorniNotificaConteggioEstinzione : Integer
+          - giorniNotificheCliente : Integer
+          - giorniNotificheNominativi : Integer
+          - id : long
+          - indirizzo : String
+          - luogo : String
+          - nomeAzienda : String
+          - nomeTitolare : String
+          - oam : String
+          - pec : String
+          - piva : String
+          - printPdfEnabled : boolean
+          - provincia : String
+          - sitoWeb : String
+          - telefono : String
+          + build()
+          + cap()
+          + cellulare()
+          + cf()
+          + cognomeTitolare()
+          + devisProxId()
+          + email()
+          + fax()
+          + giorniNotificaConteggioEstinzione()
+          + giorniNotificheCliente()
+          + giorniNotificheNominativi()
+          + id()
+          + indirizzo()
+          + luogo()
+          + nomeAzienda()
+          + nomeTitolare()
+          + oam()
+          + pec()
+          + piva()
+          + printPdfEnabled()
+          + provincia()
+          + sitoWeb()
+          + telefono()
+          + toString()
+          ~ AziendaViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.BackupViewModel {
+          - dateLastBackup : LocalDateTime
+          - id : Long
+          - passwordBackup : String
+          + BackupViewModel()
+          + BackupViewModel()
+          {static} + builder()
+          + equals()
+          + getDateLastBackup()
+          + getId()
+          + getPasswordBackup()
+          + hashCode()
+          + setDateLastBackup()
+          + setId()
+          + setPasswordBackup()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.BackupViewModel.BackupViewModelBuilder {
+          - dateLastBackup : LocalDateTime
+          - id : Long
+          - passwordBackup : String
+          + build()
+          + dateLastBackup()
+          + id()
+          + passwordBackup()
+          + toString()
+          ~ BackupViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.CalendarioAppuntamentoViewModel {
+          - descrizione : String
+          - fineAppuntamento : LocalDateTime
+          - id : long
+          - inizioAppuntamento : LocalDateTime
+          - invioSmsClienteNominativo : boolean
+          - invioSmsOperatoreAssegnato : boolean
+          - titolo : String
+          + CalendarioAppuntamentoViewModel()
+          + CalendarioAppuntamentoViewModel()
+          {static} + builder()
+          + equals()
+          + getDescrizione()
+          + getFineAppuntamento()
+          + getId()
+          + getInizioAppuntamento()
+          + getNominativo()
+          + getOperator()
+          + getOperatorAssegnato()
+          + getPratica()
+          + getTitolo()
+          + hashCode()
+          + isInvioSmsClienteNominativo()
+          + isInvioSmsOperatoreAssegnato()
+          + setDescrizione()
+          + setFineAppuntamento()
+          + setId()
+          + setInizioAppuntamento()
+          + setInvioSmsClienteNominativo()
+          + setInvioSmsOperatoreAssegnato()
+          + setNominativo()
+          + setOperator()
+          + setOperatorAssegnato()
+          + setPratica()
+          + setTitolo()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.CalendarioAppuntamentoViewModel.CalendarioAppuntamentoViewModelBuilder {
+          - descrizione : String
+          - fineAppuntamento : LocalDateTime
+          - id : long
+          - inizioAppuntamento : LocalDateTime
+          - invioSmsClienteNominativo : boolean
+          - invioSmsOperatoreAssegnato : boolean
+          - titolo : String
+          + build()
+          + descrizione()
+          + fineAppuntamento()
+          + id()
+          + inizioAppuntamento()
+          + invioSmsClienteNominativo()
+          + invioSmsOperatoreAssegnato()
+          + nominativo()
+          + operator()
+          + operatorAssegnato()
+          + pratica()
+          + titolo()
+          + toString()
+          ~ CalendarioAppuntamentoViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.CampagnaSmsViewModel {
+          - cognomeDestinatario : String
+          - dataEsito : LocalDateTime
+          - id : long
+          - messageId : String
+          - nomeDestinatario : String
+          - numeroDestinatario : String
+          + CampagnaSmsViewModel()
+          + CampagnaSmsViewModel()
+          {static} + builder()
+          + equals()
+          + getCampagna()
+          + getCliente()
+          + getCognomeDestinatario()
+          + getDataEsito()
+          + getEsito()
+          + getId()
+          + getMessageId()
+          + getNomeDestinatario()
+          + getNumeroDestinatario()
+          + hashCode()
+          + setCampagna()
+          + setCliente()
+          + setCognomeDestinatario()
+          + setDataEsito()
+          + setEsito()
+          + setId()
+          + setMessageId()
+          + setNomeDestinatario()
+          + setNumeroDestinatario()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.CampagnaSmsViewModel.CampagnaSmsViewModelBuilder {
+          - cognomeDestinatario : String
+          - dataEsito : LocalDateTime
+          - id : long
+          - messageId : String
+          - nomeDestinatario : String
+          - numeroDestinatario : String
+          + build()
+          + campagna()
+          + cliente()
+          + cognomeDestinatario()
+          + dataEsito()
+          + esito()
+          + id()
+          + messageId()
+          + nomeDestinatario()
+          + numeroDestinatario()
+          + toString()
+          ~ CampagnaSmsViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel {
+          - campagnaImport : boolean
+          - creationDateTime : LocalDateTime
+          - description : String
+          - id : long
+          - name : String
+          - sentDateTime : LocalDateTime
+          - text : String
+          - totaleDestinatari : int
+          - totaleMessaggi : int
+          + CampagnaViewModel()
+          + CampagnaViewModel()
+          {static} + builder()
+          + equals()
+          + getCampagnaType()
+          + getCreationDateTime()
+          + getCreatorOperatorViewModel()
+          + getDescription()
+          + getFiltroCampagnaMarketingViewModel()
+          + getId()
+          + getName()
+          + getSenderOperatorViewModel()
+          + getSentDateTime()
+          + getText()
+          + getTotaleDestinatari()
+          + getTotaleMessaggi()
+          + hashCode()
+          + isCampagnaImport()
+          + setCampagnaImport()
+          + setCampagnaType()
+          + setCreationDateTime()
+          + setCreatorOperatorViewModel()
+          + setDescription()
+          + setFiltroCampagnaMarketingViewModel()
+          + setId()
+          + setName()
+          + setSenderOperatorViewModel()
+          + setSentDateTime()
+          + setText()
+          + setTotaleDestinatari()
+          + setTotaleMessaggi()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel.CampagnaViewModelBuilder {
+          - campagnaImport : boolean
+          - creationDateTime : LocalDateTime
+          - description : String
+          - id : long
+          - name : String
+          - sentDateTime : LocalDateTime
+          - text : String
+          - totaleDestinatari : int
+          - totaleMessaggi : int
+          + build()
+          + campagnaImport()
+          + campagnaType()
+          + creationDateTime()
+          + creatorOperatorViewModel()
+          + description()
+          + filtroCampagnaMarketingViewModel()
+          + id()
+          + name()
+          + senderOperatorViewModel()
+          + sentDateTime()
+          + text()
+          + toString()
+          + totaleDestinatari()
+          + totaleMessaggi()
+          ~ CampagnaViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.ClientePraticaFileViewModel {
+          - fileName : String
+          - id : long
+          - length : int
+          + ClientePraticaFileViewModel()
+          + ClientePraticaFileViewModel()
+          {static} + builder()
+          + equals()
+          + getCliente()
+          + getFileCategory()
+          + getFileName()
+          + getId()
+          + getLength()
+          + getPratica()
+          + hashCode()
+          + setCliente()
+          + setFileCategory()
+          + setFileName()
+          + setId()
+          + setLength()
+          + setPratica()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.ClientePraticaFileViewModel.ClientePraticaFileViewModelBuilder {
+          - fileName : String
+          - id : long
+          - length : int
+          + build()
+          + cliente()
+          + fileCategory()
+          + fileName()
+          + id()
+          + length()
+          + pratica()
+          + toString()
+          ~ ClientePraticaFileViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.ClienteViewModel {
+          - amministrazioneViewModelList : List<AmministrazioneViewModel>
+          - anniAssunzione : Integer
+          - anniAssunzione2 : Integer
+          - beni : String
+          - capNascita : String
+          - cat : String
+          - cat2 : String
+          - cf : String
+          - cittadinanza : String
+          - clienteFileViewModelList : List<ClientePraticaFileViewModel>
+          - cognome : String
+          - dataCliente : Date
+          - dataInizio : Date
+          - dataInizio2 : Date
+          - dataIns : Date
+          - dataNascita : Date
+          - dataRecallNominativo : Date
+          - durataRichiestaMesi : Integer
+          - email : String
+          - ente : String
+          - ente2 : String
+          - eta : String
+          - fornitoreLead : String
+          - id : long
+          - impiego : String
+          - impiego2 : String
+          - importoRichiesto : BigDecimal
+          - leadId : String
+          - luogoNascita : String
+          - nazioneNascita : String
+          - nettoMensileNominativo : BigDecimal
+          - nome : String
+          - note : String
+          - nrComponentiFamiliari : Integer
+          - occupazione : String
+          - occupazione2 : String
+          - praticaViewModelList : List<PraticaViewModel>
+          - preventivoViewModelList : List<PreventivoViewModel>
+          - provNascita : String
+          - provenienza : String
+          - provenienzaDesc : String
+          - qualifica : String
+          - qualifica2 : String
+          - secondaOccupazionePredefinita : boolean
+          - secondaOccupazioneRendered : boolean
+          - statoCivile : String
+          - statoNominativo : String
+          - telefono : String
+          - telefonoFisso : String
+          - telefonoLavoro : String
+          - telefonoLavoro2 : String
+          - tipo : String
+          - tipoContrattoLavoro : String
+          - tipoContrattoLavoro2 : String
+          - trattenutaViewModelList : List<TrattenuteViewModel>
+          + ClienteViewModel()
+          + ClienteViewModel()
+          {static} + builder()
+          + equals()
+          + getAmministrazioneViewModelList()
+          + getAnniAssunzione()
+          + getAnniAssunzione2()
+          + getBeni()
+          + getCapNascita()
+          + getCat()
+          + getCat2()
+          + getCf()
+          + getCittadinanza()
+          + getClienteFileViewModelList()
+          + getCognome()
+          + getContoViewModel()
+          + getDataCliente()
+          + getDataInizio()
+          + getDataInizio2()
+          + getDataIns()
+          + getDataNascita()
+          + getDataRecallNominativo()
+          + getDocumentoViewModel()
+          + getDurataRichiestaMesi()
+          + getEmail()
+          + getEnte()
+          + getEnte2()
+          + getEta()
+          + getFornitoreLead()
+          + getId()
+          + getImpiego()
+          + getImpiego2()
+          + getImportoRichiesto()
+          + getLeadId()
+          + getLuogoNascita()
+          + getNazioneNascita()
+          + getNettoMensileNominativo()
+          + getNome()
+          + getNote()
+          + getNrComponentiFamiliari()
+          + getOccupazione()
+          + getOccupazione2()
+          + getOperatoreNominativo()
+          + getOpt()
+          + getPraticaViewModelList()
+          + getPreventivoViewModelList()
+          + getProvNascita()
+          + getProvenienza()
+          + getProvenienzaDesc()
+          + getQualifica()
+          + getQualifica2()
+          + getResidenzaViewModel()
+          + getSesso()
+          + getStatoCivile()
+          + getStatoNominativo()
+          + getTelefono()
+          + getTelefonoFisso()
+          + getTelefonoLavoro()
+          + getTelefonoLavoro2()
+          + getTipo()
+          + getTipoContrattoLavoro()
+          + getTipoContrattoLavoro2()
+          + getTrattenutaViewModelList()
+          + hashCode()
+          + isSecondaOccupazionePredefinita()
+          + isSecondaOccupazioneRendered()
+          + setAmministrazioneViewModelList()
+          + setAnniAssunzione()
+          + setAnniAssunzione2()
+          + setBeni()
+          + setCapNascita()
+          + setCat()
+          + setCat2()
+          + setCf()
+          + setCittadinanza()
+          + setClienteFileViewModelList()
+          + setCognome()
+          + setContoViewModel()
+          + setDataCliente()
+          + setDataInizio()
+          + setDataInizio2()
+          + setDataIns()
+          + setDataNascita()
+          + setDataRecallNominativo()
+          + setDocumentoViewModel()
+          + setDurataRichiestaMesi()
+          + setEmail()
+          + setEnte()
+          + setEnte2()
+          + setEta()
+          + setFornitoreLead()
+          + setId()
+          + setImpiego()
+          + setImpiego2()
+          + setImportoRichiesto()
+          + setLeadId()
+          + setLuogoNascita()
+          + setNazioneNascita()
+          + setNettoMensileNominativo()
+          + setNome()
+          + setNote()
+          + setNrComponentiFamiliari()
+          + setOccupazione()
+          + setOccupazione2()
+          + setOperatoreNominativo()
+          + setOpt()
+          + setPraticaViewModelList()
+          + setPreventivoViewModelList()
+          + setProvNascita()
+          + setProvenienza()
+          + setProvenienzaDesc()
+          + setQualifica()
+          + setQualifica2()
+          + setResidenzaViewModel()
+          + setSecondaOccupazionePredefinita()
+          + setSecondaOccupazioneRendered()
+          + setSesso()
+          + setStatoCivile()
+          + setStatoNominativo()
+          + setTelefono()
+          + setTelefonoFisso()
+          + setTelefonoLavoro()
+          + setTelefonoLavoro2()
+          + setTipo()
+          + setTipoContrattoLavoro()
+          + setTipoContrattoLavoro2()
+          + setTrattenutaViewModelList()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.ClienteViewModel.ClienteViewModelBuilder {
+          - amministrazioneViewModelList : List<AmministrazioneViewModel>
+          - anniAssunzione : Integer
+          - anniAssunzione2 : Integer
+          - beni : String
+          - capNascita : String
+          - cat : String
+          - cat2 : String
+          - cf : String
+          - cittadinanza : String
+          - clienteFileViewModelList : List<ClientePraticaFileViewModel>
+          - cognome : String
+          - dataCliente : Date
+          - dataInizio : Date
+          - dataInizio2 : Date
+          - dataIns : Date
+          - dataNascita : Date
+          - dataRecallNominativo : Date
+          - durataRichiestaMesi : Integer
+          - email : String
+          - ente : String
+          - ente2 : String
+          - eta : String
+          - fornitoreLead : String
+          - id : long
+          - impiego : String
+          - impiego2 : String
+          - importoRichiesto : BigDecimal
+          - leadId : String
+          - luogoNascita : String
+          - nazioneNascita : String
+          - nettoMensileNominativo : BigDecimal
+          - nome : String
+          - note : String
+          - nrComponentiFamiliari : Integer
+          - occupazione : String
+          - occupazione2 : String
+          - praticaViewModelList : List<PraticaViewModel>
+          - preventivoViewModelList : List<PreventivoViewModel>
+          - provNascita : String
+          - provenienza : String
+          - provenienzaDesc : String
+          - qualifica : String
+          - qualifica2 : String
+          - secondaOccupazionePredefinita : boolean
+          - secondaOccupazioneRendered : boolean
+          - statoCivile : String
+          - statoNominativo : String
+          - telefono : String
+          - telefonoFisso : String
+          - telefonoLavoro : String
+          - telefonoLavoro2 : String
+          - tipo : String
+          - tipoContrattoLavoro : String
+          - tipoContrattoLavoro2 : String
+          - trattenutaViewModelList : List<TrattenuteViewModel>
+          + amministrazioneViewModelList()
+          + anniAssunzione()
+          + anniAssunzione2()
+          + beni()
+          + build()
+          + capNascita()
+          + cat()
+          + cat2()
+          + cf()
+          + cittadinanza()
+          + clienteFileViewModelList()
+          + cognome()
+          + contoViewModel()
+          + dataCliente()
+          + dataInizio()
+          + dataInizio2()
+          + dataIns()
+          + dataNascita()
+          + dataRecallNominativo()
+          + documentoViewModel()
+          + durataRichiestaMesi()
+          + email()
+          + ente()
+          + ente2()
+          + eta()
+          + fornitoreLead()
+          + id()
+          + impiego()
+          + impiego2()
+          + importoRichiesto()
+          + leadId()
+          + luogoNascita()
+          + nazioneNascita()
+          + nettoMensileNominativo()
+          + nome()
+          + note()
+          + nrComponentiFamiliari()
+          + occupazione()
+          + occupazione2()
+          + operatoreNominativo()
+          + opt()
+          + praticaViewModelList()
+          + preventivoViewModelList()
+          + provNascita()
+          + provenienza()
+          + provenienzaDesc()
+          + qualifica()
+          + qualifica2()
+          + residenzaViewModel()
+          + secondaOccupazionePredefinita()
+          + secondaOccupazioneRendered()
+          + sesso()
+          + statoCivile()
+          + statoNominativo()
+          + telefono()
+          + telefonoFisso()
+          + telefonoLavoro()
+          + telefonoLavoro2()
+          + tipo()
+          + tipoContrattoLavoro()
+          + tipoContrattoLavoro2()
+          + toString()
+          + trattenutaViewModelList()
+          ~ ClienteViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.ContoViewModel {
+          - banca : String
+          - codiceConto : long
+          - dataConto : Date
+          - iban : String
+          - sportello : String
+          - stipendio : boolean
+          + ContoViewModel()
+          + ContoViewModel()
+          {static} + builder()
+          + equals()
+          + getBanca()
+          + getCodiceConto()
+          + getDataConto()
+          + getIban()
+          + getSportello()
+          + hashCode()
+          + isStipendio()
+          + setBanca()
+          + setCodiceConto()
+          + setDataConto()
+          + setIban()
+          + setSportello()
+          + setStipendio()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.ContoViewModel.ContoViewModelBuilder {
+          - banca : String
+          - codiceConto : long
+          - dataConto : Date
+          - iban : String
+          - sportello : String
+          - stipendio : boolean
+          + banca()
+          + build()
+          + codiceConto()
+          + dataConto()
+          + iban()
+          + sportello()
+          + stipendio()
+          + toString()
+          ~ ContoViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.CoobbligatoViewModel {
+          - cap : String
+          - cat : String
+          - cittadinanza : String
+          - civicoAbitazione : String
+          - codiceFiscale : String
+          - cognome : String
+          - dataAssunzione : Date
+          - dataNascita : Date
+          - dataRilascioDocumento : Date
+          - email : String
+          - ente : String
+          - id : long
+          - impiego : String
+          - indirizzo : String
+          - luogo : String
+          - luogoNascita : String
+          - luogoRilascioDocumento : String
+          - nazioneAbitazione : String
+          - nazioneNascita : String
+          - nazioneRilascioDocumento : String
+          - nettoStipendio : BigDecimal
+          - nome : String
+          - nrComponentiFamiliari : Integer
+          - numeroDocumento : String
+          - occupazione : String
+          - provincia : String
+          - provinciaNascita : String
+          - provinciaRilascioDocumento : String
+          - scadenzaDocumento : Date
+          - telefono : String
+          - telefonoLavoro : String
+          - tipoContrattoLavoro : String
+          - tipoDocumento : String
+          + CoobbligatoViewModel()
+          + CoobbligatoViewModel()
+          {static} + builder()
+          + equals()
+          + getCap()
+          + getCat()
+          + getCittadinanza()
+          + getCivicoAbitazione()
+          + getCodiceFiscale()
+          + getCognome()
+          + getDataAssunzione()
+          + getDataNascita()
+          + getDataRilascioDocumento()
+          + getEmail()
+          + getEnte()
+          + getId()
+          + getImpiego()
+          + getIndirizzo()
+          + getLuogo()
+          + getLuogoNascita()
+          + getLuogoRilascioDocumento()
+          + getNazioneAbitazione()
+          + getNazioneNascita()
+          + getNazioneRilascioDocumento()
+          + getNettoStipendio()
+          + getNome()
+          + getNrComponentiFamiliari()
+          + getNumeroDocumento()
+          + getOccupazione()
+          + getProvincia()
+          + getProvinciaNascita()
+          + getProvinciaRilascioDocumento()
+          + getScadenzaDocumento()
+          + getSesso()
+          + getTelefono()
+          + getTelefonoLavoro()
+          + getTipoContrattoLavoro()
+          + getTipoDocumento()
+          + hashCode()
+          + setCap()
+          + setCat()
+          + setCittadinanza()
+          + setCivicoAbitazione()
+          + setCodiceFiscale()
+          + setCognome()
+          + setDataAssunzione()
+          + setDataNascita()
+          + setDataRilascioDocumento()
+          + setEmail()
+          + setEnte()
+          + setId()
+          + setImpiego()
+          + setIndirizzo()
+          + setLuogo()
+          + setLuogoNascita()
+          + setLuogoRilascioDocumento()
+          + setNazioneAbitazione()
+          + setNazioneNascita()
+          + setNazioneRilascioDocumento()
+          + setNettoStipendio()
+          + setNome()
+          + setNrComponentiFamiliari()
+          + setNumeroDocumento()
+          + setOccupazione()
+          + setProvincia()
+          + setProvinciaNascita()
+          + setProvinciaRilascioDocumento()
+          + setScadenzaDocumento()
+          + setSesso()
+          + setTelefono()
+          + setTelefonoLavoro()
+          + setTipoContrattoLavoro()
+          + setTipoDocumento()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.CoobbligatoViewModel.CoobbligatoViewModelBuilder {
+          - cap : String
+          - cat : String
+          - cittadinanza : String
+          - civicoAbitazione : String
+          - codiceFiscale : String
+          - cognome : String
+          - dataAssunzione : Date
+          - dataNascita : Date
+          - dataRilascioDocumento : Date
+          - email : String
+          - ente : String
+          - id : long
+          - impiego : String
+          - indirizzo : String
+          - luogo : String
+          - luogoNascita : String
+          - luogoRilascioDocumento : String
+          - nazioneAbitazione : String
+          - nazioneNascita : String
+          - nazioneRilascioDocumento : String
+          - nettoStipendio : BigDecimal
+          - nome : String
+          - nrComponentiFamiliari : Integer
+          - numeroDocumento : String
+          - occupazione : String
+          - provincia : String
+          - provinciaNascita : String
+          - provinciaRilascioDocumento : String
+          - scadenzaDocumento : Date
+          - telefono : String
+          - telefonoLavoro : String
+          - tipoContrattoLavoro : String
+          - tipoDocumento : String
+          + build()
+          + cap()
+          + cat()
+          + cittadinanza()
+          + civicoAbitazione()
+          + codiceFiscale()
+          + cognome()
+          + dataAssunzione()
+          + dataNascita()
+          + dataRilascioDocumento()
+          + email()
+          + ente()
+          + id()
+          + impiego()
+          + indirizzo()
+          + luogo()
+          + luogoNascita()
+          + luogoRilascioDocumento()
+          + nazioneAbitazione()
+          + nazioneNascita()
+          + nazioneRilascioDocumento()
+          + nettoStipendio()
+          + nome()
+          + nrComponentiFamiliari()
+          + numeroDocumento()
+          + occupazione()
+          + provincia()
+          + provinciaNascita()
+          + provinciaRilascioDocumento()
+          + scadenzaDocumento()
+          + sesso()
+          + telefono()
+          + telefonoLavoro()
+          + tipoContrattoLavoro()
+          + tipoDocumento()
+          + toString()
+          ~ CoobbligatoViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.DocumentoViewModel {
+          - codiceDoc : long
+          - luogoRilascioDoc : String
+          - nazioneRilascio : String
+          - numeroDoc : String
+          - provinciaRilascio : String
+          - rilascioDoc : Date
+          - scadenzaDoc : Date
+          - tipoDocumento : String
+          + DocumentoViewModel()
+          + DocumentoViewModel()
+          {static} + builder()
+          + equals()
+          + getCodiceDoc()
+          + getLuogoRilascioDoc()
+          + getNazioneRilascio()
+          + getNumeroDoc()
+          + getProvinciaRilascio()
+          + getRilascioDoc()
+          + getScadenzaDoc()
+          + getTipoDocumento()
+          + hashCode()
+          + setCodiceDoc()
+          + setLuogoRilascioDoc()
+          + setNazioneRilascio()
+          + setNumeroDoc()
+          + setProvinciaRilascio()
+          + setRilascioDoc()
+          + setScadenzaDoc()
+          + setTipoDocumento()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.DocumentoViewModel.DocumentoViewModelBuilder {
+          - codiceDoc : long
+          - luogoRilascioDoc : String
+          - nazioneRilascio : String
+          - numeroDoc : String
+          - provinciaRilascio : String
+          - rilascioDoc : Date
+          - scadenzaDoc : Date
+          - tipoDocumento : String
+          + build()
+          + codiceDoc()
+          + luogoRilascioDoc()
+          + nazioneRilascio()
+          + numeroDoc()
+          + provinciaRilascio()
+          + rilascioDoc()
+          + scadenzaDoc()
+          + tipoDocumento()
+          + toString()
+          ~ DocumentoViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.EstinzioneViewModel {
+          - calcolaScadenza : String
+          - conteggioEstinzione : BigDecimal
+          - dataBustapaga : Date
+          - dataNotificaConteggioEstinzione : Date
+          - dataRinnovoEstinzione : Date
+          - durataEstinzione : Integer
+          - idEstinzione : long
+          - istitutoEst : String
+          - mesiScadenza : Integer
+          - montanteEstinzione : BigDecimal
+          - rataEstinzione : BigDecimal
+          - scadenzaEstinzione : Date
+          - tipoEstinzione : String
+          - viewId : String
+          + EstinzioneViewModel()
+          + EstinzioneViewModel()
+          {static} + builder()
+          + equals()
+          + getCalcolaScadenza()
+          + getConteggioEstinzione()
+          + getDataBustapaga()
+          + getDataNotificaConteggioEstinzione()
+          + getDataRinnovoEstinzione()
+          + getDurataEstinzione()
+          + getIdEstinzione()
+          + getIstitutoEst()
+          + getMesiScadenza()
+          + getMontanteEstinzione()
+          + getRataEstinzione()
+          + getScadenzaEstinzione()
+          + getStatoConteggioEstinzione()
+          + getTipoEstinzione()
+          + getViewId()
+          + hashCode()
+          + setCalcolaScadenza()
+          + setConteggioEstinzione()
+          + setDataBustapaga()
+          + setDataNotificaConteggioEstinzione()
+          + setDataRinnovoEstinzione()
+          + setDurataEstinzione()
+          + setIdEstinzione()
+          + setIstitutoEst()
+          + setMesiScadenza()
+          + setMontanteEstinzione()
+          + setRataEstinzione()
+          + setScadenzaEstinzione()
+          + setStatoConteggioEstinzione()
+          + setTipoEstinzione()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.EstinzioneViewModel.EstinzioneViewModelBuilder {
+          - calcolaScadenza : String
+          - conteggioEstinzione : BigDecimal
+          - dataBustapaga : Date
+          - dataNotificaConteggioEstinzione : Date
+          - dataRinnovoEstinzione : Date
+          - durataEstinzione : Integer
+          - idEstinzione : long
+          - istitutoEst : String
+          - mesiScadenza : Integer
+          - montanteEstinzione : BigDecimal
+          - rataEstinzione : BigDecimal
+          - scadenzaEstinzione : Date
+          - tipoEstinzione : String
+          + build()
+          + calcolaScadenza()
+          + conteggioEstinzione()
+          + dataBustapaga()
+          + dataNotificaConteggioEstinzione()
+          + dataRinnovoEstinzione()
+          + durataEstinzione()
+          + idEstinzione()
+          + istitutoEst()
+          + mesiScadenza()
+          + montanteEstinzione()
+          + rataEstinzione()
+          + scadenzaEstinzione()
+          + statoConteggioEstinzione()
+          + tipoEstinzione()
+          + toString()
+          ~ EstinzioneViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.FileViewModel {
+          - clientePraticaId : String
+          - fileName : String
+          - tenantId : String
+          {static} + builder()
+          + equals()
+          + getClientePraticaId()
+          + getFileCategory()
+          + getFileName()
+          + getTenantId()
+          + hashCode()
+          + setClientePraticaId()
+          + setFileCategory()
+          + setFileName()
+          + setTenantId()
+          + toString()
+          # canEqual()
+          ~ FileViewModel()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.FileViewModel.FileViewModelBuilder {
+          - clientePraticaId : String
+          - fileName : String
+          - tenantId : String
+          + build()
+          + clientePraticaId()
+          + fileCategory()
+          + fileName()
+          + tenantId()
+          + toString()
+          ~ FileViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel {
+          - anniAssunzione : Integer
+          - anniPensionamento : Integer
+          - dataFineRinnovoImpegnoNominativo : LocalDate
+          - dataFineRinnovoPraticaCoesistenzaCliente : LocalDate
+          - dataInizioRinnovoImpegnoNominativo : LocalDate
+          - dataInizioRinnovoPraticaCoesistenzaCliente : LocalDate
+          - etaFrom : Integer
+          - etaTo : Integer
+          - id : long
+          - impiego : String
+          - provenienza : String
+          - provinciaResidenza : String
+          - statoNominativo : String
+          - statoPratica : String
+          - tipoPratica : String
+          + FiltroCampagnaMarketingViewModel()
+          + FiltroCampagnaMarketingViewModel()
+          {static} + builder()
+          + equals()
+          + getAmministrazioneViewModel()
+          + getAnniAssunzione()
+          + getAnniPensionamento()
+          + getDataFineRinnovoImpegnoNominativo()
+          + getDataFineRinnovoPraticaCoesistenzaCliente()
+          + getDataInizioRinnovoImpegnoNominativo()
+          + getDataInizioRinnovoPraticaCoesistenzaCliente()
+          + getEtaFrom()
+          + getEtaTo()
+          + getFiltroRinnoviPraticaCoesistenza()
+          + getId()
+          + getImpiego()
+          + getProvenienza()
+          + getProvinciaResidenza()
+          + getSesso()
+          + getStatoNominativo()
+          + getStatoPratica()
+          + getTipo()
+          + getTipoPratica()
+          + hashCode()
+          + setAmministrazioneViewModel()
+          + setAnniAssunzione()
+          + setAnniPensionamento()
+          + setDataFineRinnovoImpegnoNominativo()
+          + setDataFineRinnovoPraticaCoesistenzaCliente()
+          + setDataInizioRinnovoImpegnoNominativo()
+          + setDataInizioRinnovoPraticaCoesistenzaCliente()
+          + setEtaFrom()
+          + setEtaTo()
+          + setFiltroRinnoviPraticaCoesistenza()
+          + setId()
+          + setImpiego()
+          + setProvenienza()
+          + setProvinciaResidenza()
+          + setSesso()
+          + setStatoNominativo()
+          + setStatoPratica()
+          + setTipo()
+          + setTipoPratica()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel.FiltroCampagnaMarketingViewModelBuilder {
+          - anniAssunzione : Integer
+          - anniPensionamento : Integer
+          - dataFineRinnovoImpegnoNominativo : LocalDate
+          - dataFineRinnovoPraticaCoesistenzaCliente : LocalDate
+          - dataInizioRinnovoImpegnoNominativo : LocalDate
+          - dataInizioRinnovoPraticaCoesistenzaCliente : LocalDate
+          - etaFrom : Integer
+          - etaTo : Integer
+          - id : long
+          - impiego : String
+          - provenienza : String
+          - provinciaResidenza : String
+          - statoNominativo : String
+          - statoPratica : String
+          - tipoPratica : String
+          + amministrazioneViewModel()
+          + anniAssunzione()
+          + anniPensionamento()
+          + build()
+          + dataFineRinnovoImpegnoNominativo()
+          + dataFineRinnovoPraticaCoesistenzaCliente()
+          + dataInizioRinnovoImpegnoNominativo()
+          + dataInizioRinnovoPraticaCoesistenzaCliente()
+          + etaFrom()
+          + etaTo()
+          + filtroRinnoviPraticaCoesistenza()
+          + id()
+          + impiego()
+          + provenienza()
+          + provinciaResidenza()
+          + sesso()
+          + statoNominativo()
+          + statoPratica()
+          + tipo()
+          + tipoPratica()
+          + toString()
+          ~ FiltroCampagnaMarketingViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.FinanziariaViewModel {
+          - id : long
+          - name : String
+          + FinanziariaViewModel()
+          + FinanziariaViewModel()
+          {static} + builder()
+          + equals()
+          + getId()
+          + getName()
+          + hashCode()
+          + setId()
+          + setName()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.FinanziariaViewModel.FinanziariaViewModelBuilder {
+          - id : long
+          - name : String
+          + build()
+          + id()
+          + name()
+          + toString()
+          ~ FinanziariaViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.GeneralSettingViewModel {
+          - id : long
+          - storageEnabled : boolean
+          - usedStorageSpace : long
+          + GeneralSettingViewModel()
+          + GeneralSettingViewModel()
+          {static} + builder()
+          + equals()
+          + getId()
+          + getUsedStorageSpace()
+          + hashCode()
+          + isStorageEnabled()
+          + setId()
+          + setStorageEnabled()
+          + setUsedStorageSpace()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.GeneralSettingViewModel.GeneralSettingViewModelBuilder {
+          - id : long
+          - storageEnabled : boolean
+          - usedStorageSpace : long
+          + build()
+          + id()
+          + storageEnabled()
+          + toString()
+          + usedStorageSpace()
+          ~ GeneralSettingViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.InfoAccountViewModel {
+          - additionalUsers : int
+          - expirationDate : LocalDate
+          - fileStorage : boolean
+          - id : long
+          - multiagency : boolean
+          - simulator : boolean
+          + InfoAccountViewModel()
+          + InfoAccountViewModel()
+          {static} + builder()
+          + equals()
+          + getAdditionalUsers()
+          + getExpirationDate()
+          + getId()
+          + getVersion()
+          + hashCode()
+          + isFileStorage()
+          + isMultiagency()
+          + isSimulator()
+          + setAdditionalUsers()
+          + setExpirationDate()
+          + setFileStorage()
+          + setId()
+          + setMultiagency()
+          + setSimulator()
+          + setVersion()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.InfoAccountViewModel.InfoAccountViewModelBuilder {
+          - additionalUsers : int
+          - expirationDate : LocalDate
+          - fileStorage : boolean
+          - id : long
+          - multiagency : boolean
+          - simulator : boolean
+          + additionalUsers()
+          + build()
+          + expirationDate()
+          + fileStorage()
+          + id()
+          + multiagency()
+          + simulator()
+          + toString()
+          + version()
+          ~ InfoAccountViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel {
+          - commento : String
+          - dataRecall : LocalDateTime
+          - executionDateTime : LocalDateTime
+          - id : long
+          - shortCommento : String
+          - stato : String
+          + NominativoLogViewModel()
+          + NominativoLogViewModel()
+          {static} + builder()
+          + equals()
+          + getCommento()
+          + getDataRecall()
+          + getExecutionDateTime()
+          + getId()
+          + getNominativo()
+          + getOperator()
+          + getOperatoreAssegnato()
+          + getPratica()
+          + getShortCommento()
+          + getStato()
+          + getTipoLog()
+          + hashCode()
+          + setCommento()
+          + setDataRecall()
+          + setExecutionDateTime()
+          + setId()
+          + setNominativo()
+          + setOperator()
+          + setOperatoreAssegnato()
+          + setPratica()
+          + setShortCommento()
+          + setStato()
+          + setTipoLog()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel.NominativoLogViewModelBuilder {
+          - commento : String
+          - dataRecall : LocalDateTime
+          - executionDateTime : LocalDateTime
+          - id : long
+          - shortCommento : String
+          - stato : String
+          + build()
+          + commento()
+          + dataRecall()
+          + executionDateTime()
+          + id()
+          + nominativo()
+          + operator()
+          + operatoreAssegnato()
+          + pratica()
+          + shortCommento()
+          + stato()
+          + tipoLog()
+          + toString()
+          ~ NominativoLogViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.NoticeBoardViewModel {
+          - body : String
+          - dateTimeCreation : LocalDateTime
+          - fileNameAttached : String
+          - id : long
+          - operatorViewModelList : List<OperatorViewModel>
+          - title : String
+          + NoticeBoardViewModel()
+          + NoticeBoardViewModel()
+          {static} + builder()
+          + equals()
+          + getAziendaAssigned()
+          + getBody()
+          + getCreatorOperator()
+          + getDateTimeCreation()
+          + getFileNameAttached()
+          + getId()
+          + getOperatorViewModelList()
+          + getTitle()
+          + hashCode()
+          + setAziendaAssigned()
+          + setBody()
+          + setCreatorOperator()
+          + setDateTimeCreation()
+          + setFileNameAttached()
+          + setId()
+          + setOperatorViewModelList()
+          + setTitle()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.NoticeBoardViewModel.NoticeBoardViewModelBuilder {
+          - body : String
+          - dateTimeCreation : LocalDateTime
+          - fileNameAttached : String
+          - id : long
+          - operatorViewModelList : List<OperatorViewModel>
+          - title : String
+          + aziendaAssigned()
+          + body()
+          + build()
+          + creatorOperator()
+          + dateTimeCreation()
+          + fileNameAttached()
+          + id()
+          + operatorViewModelList()
+          + title()
+          + toString()
+          ~ NoticeBoardViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.NotificaLeadSmsViewModel {
+          - dataEsito : LocalDateTime
+          - id : long
+          + NotificaLeadSmsViewModel()
+          + NotificaLeadSmsViewModel()
+          {static} + builder()
+          + equals()
+          + getDataEsito()
+          + getEsito()
+          + getId()
+          + hashCode()
+          + setDataEsito()
+          + setEsito()
+          + setId()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.NotificaLeadSmsViewModel.NotificaLeadSmsViewModelBuilder {
+          - dataEsito : LocalDateTime
+          - id : long
+          + build()
+          + dataEsito()
+          + esito()
+          + id()
+          + toString()
+          ~ NotificaLeadSmsViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.OperatorViewModel {
+          - email : String
+          - firstName : String
+          - id : long
+          - lastName : String
+          - leadRicevuti : long
+          - password : String
+          - phoneNumber : String
+          - receiveLeadEnabled : boolean
+          - roleViewModelList : List<RoleViewModel>
+          - sectionPermissionMap : Map<MenuSection, Map<PermissionType, RoleName>>
+          - smsBalance : int
+          - username : String
+          + OperatorViewModel()
+          + OperatorViewModel()
+          {static} + builder()
+          + equals()
+          + getAzienda()
+          + getEmail()
+          + getFirstName()
+          + getId()
+          + getLastName()
+          + getLeadRicevuti()
+          + getPassword()
+          + getPermissionProfile()
+          + getPhoneNumber()
+          + getRoleViewModelList()
+          + getSectionPermissionMap()
+          + getSmsBalance()
+          + getUsername()
+          + hashCode()
+          + isReceiveLeadEnabled()
+          + setAzienda()
+          + setEmail()
+          + setFirstName()
+          + setId()
+          + setLastName()
+          + setLeadRicevuti()
+          + setPassword()
+          + setPermissionProfile()
+          + setPhoneNumber()
+          + setReceiveLeadEnabled()
+          + setRoleViewModelList()
+          + setSectionPermissionMap()
+          + setSmsBalance()
+          + setUsername()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      enum MenuSection {
+        AMMINISTRAZIONI
+        ANTI_RICICLAGGIO
+        CALENDARIO
+        CAMPAGNE_MARKETING
+        CLIENTI
+        DATI_AZIENDA
+        FATTURAZIONE
+        GESTIONE_PERMESSI
+        GRAFICI
+        NOMINATIVI
+        NOTICE_BOARD
+        PREFERENZE
+        RICARICA
+        SIMULATORI
+        value
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.OperatorViewModel.OperatorViewModelBuilder {
+          - email : String
+          - firstName : String
+          - id : long
+          - lastName : String
+          - leadRicevuti : long
+          - password : String
+          - phoneNumber : String
+          - receiveLeadEnabled : boolean
+          - roleViewModelList : List<RoleViewModel>
+          - sectionPermissionMap : Map<MenuSection, Map<PermissionType, RoleName>>
+          - smsBalance : int
+          - username : String
+          + azienda()
+          + build()
+          + email()
+          + firstName()
+          + id()
+          + lastName()
+          + leadRicevuti()
+          + password()
+          + permissionProfile()
+          + phoneNumber()
+          + receiveLeadEnabled()
+          + roleViewModelList()
+          + sectionPermissionMap()
+          + smsBalance()
+          + toString()
+          + username()
+          ~ OperatorViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      enum Permission {
+        DELETE_ALL
+        DELETE_NOT
+        DELETE_OWN
+        READ_ALL
+        READ_NOT
+        READ_OWN
+        WRITE_ALL
+        WRITE_NOT
+        WRITE_OWN
+        value
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      enum PermissionType {
+        DELETE
+        READ
+        WRITE
+        value
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.PraticaViewModel {
+          - antiriciclaggioFileCaricato : boolean
+          - capitaleFinanziato : String
+          - cinquanta : boolean
+          - codicePratica : long
+          - confermaProv : boolean
+          - conteggioEstinzioneTot : BigDecimal
+          - coobbligatoViewModelList : List<CoobbligatoViewModel>
+          - dataCaricamento : Date
+          - dataDelibera : Date
+          - dataFirmaContratti : Date
+          - dataIstruita : Date
+          - dataIstruttoria : Date
+          - dataLiquidazione : Date
+          - dataNotificaStatoPratica : Date
+          - dataPerf : Date
+          - dataRecall : Date
+          - dataRinnovo : Date
+          - debitoResiduo : BigDecimal
+          - decorrenza : Date
+          - durata : Integer
+          - estinzioneViewModelList : List<EstinzioneViewModel>
+          - garanzia : String
+          - importoErogato : BigDecimal
+          - interessi : BigDecimal
+          - montante : BigDecimal
+          - nettoMensile : BigDecimal
+          - nettoRicavo : BigDecimal
+          - notePratica : String
+          - notiRecall : Date
+          - notiRinnovo : Date
+          - nrctr : String
+          - nrsecci : String
+          - percProv : BigDecimal
+          - perfezionata : boolean
+          - praticaFileViewModelList : List<ClientePraticaFileViewModel>
+          - provTotale : BigDecimal
+          - provvigione : BigDecimal
+          - quintoMax : BigDecimal
+          - rata : BigDecimal
+          - rateScadenza : int
+          - rinnovata : boolean
+          - scadenzaPratica : Date
+          - spese : BigDecimal
+          - statoPratica : String
+          - taeg : BigDecimal
+          - tan : BigDecimal
+          - teg : BigDecimal
+          - tipoPratica : String
+          - tipoProvvigione : String
+          - viewId : String
+          - web : boolean
+          + PraticaViewModel()
+          + PraticaViewModel()
+          {static} + builder()
+          + equals()
+          + getCapitaleFinanziato()
+          + getClienteViewModel()
+          + getCodicePratica()
+          + getConteggioEstinzioneTot()
+          + getCoobbligatoViewModelList()
+          + getDataCaricamento()
+          + getDataDelibera()
+          + getDataFirmaContratti()
+          + getDataIstruita()
+          + getDataIstruttoria()
+          + getDataLiquidazione()
+          + getDataNotificaStatoPratica()
+          + getDataPerf()
+          + getDataRecall()
+          + getDataRinnovo()
+          + getDebitoResiduo()
+          + getDecorrenza()
+          + getDurata()
+          + getEstinzioneViewModelList()
+          + getFinanziariaViewModel()
+          + getGaranzia()
+          + getImportoErogato()
+          + getInteressi()
+          + getMontante()
+          + getNettoMensile()
+          + getNettoRicavo()
+          + getNotePratica()
+          + getNotiRecall()
+          + getNotiRinnovo()
+          + getNrctr()
+          + getNrsecci()
+          + getOperatore()
+          + getPercProv()
+          + getPraticaFileViewModelList()
+          + getProvTotale()
+          + getProvvigione()
+          + getQuintoMax()
+          + getRata()
+          + getRateScadenza()
+          + getScadenzaPratica()
+          + getSimulatorTableViewModel()
+          + getSpese()
+          + getStatoPratica()
+          + getTaeg()
+          + getTan()
+          + getTeg()
+          + getTipoPratica()
+          + getTipoProvvigione()
+          + getViewId()
+          + hashCode()
+          + isAntiriciclaggioFileCaricato()
+          + isCinquanta()
+          + isConfermaProv()
+          + isPerfezionata()
+          + isRinnovata()
+          + isWeb()
+          + setAntiriciclaggioFileCaricato()
+          + setCapitaleFinanziato()
+          + setCinquanta()
+          + setClienteViewModel()
+          + setCodicePratica()
+          + setConfermaProv()
+          + setConteggioEstinzioneTot()
+          + setCoobbligatoViewModelList()
+          + setDataCaricamento()
+          + setDataDelibera()
+          + setDataFirmaContratti()
+          + setDataIstruita()
+          + setDataIstruttoria()
+          + setDataLiquidazione()
+          + setDataNotificaStatoPratica()
+          + setDataPerf()
+          + setDataRecall()
+          + setDataRinnovo()
+          + setDebitoResiduo()
+          + setDecorrenza()
+          + setDurata()
+          + setEstinzioneViewModelList()
+          + setFinanziariaViewModel()
+          + setGaranzia()
+          + setImportoErogato()
+          + setInteressi()
+          + setMontante()
+          + setNettoMensile()
+          + setNettoRicavo()
+          + setNotePratica()
+          + setNotiRecall()
+          + setNotiRinnovo()
+          + setNrctr()
+          + setNrsecci()
+          + setOperatore()
+          + setPercProv()
+          + setPerfezionata()
+          + setPraticaFileViewModelList()
+          + setProvTotale()
+          + setProvvigione()
+          + setQuintoMax()
+          + setRata()
+          + setRateScadenza()
+          + setRinnovata()
+          + setScadenzaPratica()
+          + setSimulatorTableViewModel()
+          + setSpese()
+          + setStatoPratica()
+          + setTaeg()
+          + setTan()
+          + setTeg()
+          + setTipoPratica()
+          + setTipoProvvigione()
+          + setWeb()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.PraticaViewModel.PraticaViewModelBuilder {
+          - antiriciclaggioFileCaricato : boolean
+          - capitaleFinanziato : String
+          - cinquanta : boolean
+          - codicePratica : long
+          - confermaProv : boolean
+          - conteggioEstinzioneTot : BigDecimal
+          - coobbligatoViewModelList : List<CoobbligatoViewModel>
+          - dataCaricamento : Date
+          - dataDelibera : Date
+          - dataFirmaContratti : Date
+          - dataIstruita : Date
+          - dataIstruttoria : Date
+          - dataLiquidazione : Date
+          - dataNotificaStatoPratica : Date
+          - dataPerf : Date
+          - dataRecall : Date
+          - dataRinnovo : Date
+          - debitoResiduo : BigDecimal
+          - decorrenza : Date
+          - durata : Integer
+          - estinzioneViewModelList : List<EstinzioneViewModel>
+          - garanzia : String
+          - importoErogato : BigDecimal
+          - interessi : BigDecimal
+          - montante : BigDecimal
+          - nettoMensile : BigDecimal
+          - nettoRicavo : BigDecimal
+          - notePratica : String
+          - notiRecall : Date
+          - notiRinnovo : Date
+          - nrctr : String
+          - nrsecci : String
+          - percProv : BigDecimal
+          - perfezionata : boolean
+          - praticaFileViewModelList : List<ClientePraticaFileViewModel>
+          - provTotale : BigDecimal
+          - provvigione : BigDecimal
+          - quintoMax : BigDecimal
+          - rata : BigDecimal
+          - rateScadenza : int
+          - rinnovata : boolean
+          - scadenzaPratica : Date
+          - spese : BigDecimal
+          - statoPratica : String
+          - taeg : BigDecimal
+          - tan : BigDecimal
+          - teg : BigDecimal
+          - tipoPratica : String
+          - tipoProvvigione : String
+          - web : boolean
+          + antiriciclaggioFileCaricato()
+          + build()
+          + capitaleFinanziato()
+          + cinquanta()
+          + clienteViewModel()
+          + codicePratica()
+          + confermaProv()
+          + conteggioEstinzioneTot()
+          + coobbligatoViewModelList()
+          + dataCaricamento()
+          + dataDelibera()
+          + dataFirmaContratti()
+          + dataIstruita()
+          + dataIstruttoria()
+          + dataLiquidazione()
+          + dataNotificaStatoPratica()
+          + dataPerf()
+          + dataRecall()
+          + dataRinnovo()
+          + debitoResiduo()
+          + decorrenza()
+          + durata()
+          + estinzioneViewModelList()
+          + finanziariaViewModel()
+          + garanzia()
+          + importoErogato()
+          + interessi()
+          + montante()
+          + nettoMensile()
+          + nettoRicavo()
+          + notePratica()
+          + notiRecall()
+          + notiRinnovo()
+          + nrctr()
+          + nrsecci()
+          + operatore()
+          + percProv()
+          + perfezionata()
+          + praticaFileViewModelList()
+          + provTotale()
+          + provvigione()
+          + quintoMax()
+          + rata()
+          + rateScadenza()
+          + rinnovata()
+          + scadenzaPratica()
+          + simulatorTableViewModel()
+          + spese()
+          + statoPratica()
+          + taeg()
+          + tan()
+          + teg()
+          + tipoPratica()
+          + tipoProvvigione()
+          + toString()
+          + web()
+          ~ PraticaViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.PreferenzaStatoPraticaViewModel {
+          - giorniNotifica : int
+          - id : long
+          + PreferenzaStatoPraticaViewModel()
+          + PreferenzaStatoPraticaViewModel()
+          {static} + builder()
+          + equals()
+          + getAziendaViewModel()
+          + getGiorniNotifica()
+          + getId()
+          + getNomeStatoPratica()
+          + hashCode()
+          + setAziendaViewModel()
+          + setGiorniNotifica()
+          + setId()
+          + setNomeStatoPratica()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.PreferenzaStatoPraticaViewModel.PreferenzaStatoPraticaViewModelBuilder {
+          - giorniNotifica : int
+          - id : long
+          + aziendaViewModel()
+          + build()
+          + giorniNotifica()
+          + id()
+          + nomeStatoPratica()
+          + toString()
+          ~ PreferenzaStatoPraticaViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.PreventivoViewModel {
+          - dataCreazione : Date
+          - durata : Integer
+          - idPreventivo : long
+          - importo : BigDecimal
+          - interessi : BigDecimal
+          - notificaPreventivo : boolean
+          - percProvvigione : BigDecimal
+          - provTotale : BigDecimal
+          - provvigione : BigDecimal
+          - rata : BigDecimal
+          - spese : BigDecimal
+          - taeg : BigDecimal
+          - tan : BigDecimal
+          - teg : BigDecimal
+          - tipoPratica : String
+          - tipoProvvigione : String
+          - viewId : String
+          + PreventivoViewModel()
+          + PreventivoViewModel()
+          {static} + builder()
+          + equals()
+          + getDataCreazione()
+          + getDurata()
+          + getIdPreventivo()
+          + getImporto()
+          + getInteressi()
+          + getPercProvvigione()
+          + getProvTotale()
+          + getProvvigione()
+          + getRata()
+          + getSimulatorTableViewModel()
+          + getSpese()
+          + getTaeg()
+          + getTan()
+          + getTeg()
+          + getTipoPratica()
+          + getTipoProvvigione()
+          + getTipologiaPreventivo()
+          + getViewId()
+          + hashCode()
+          + isNotificaPreventivo()
+          + setDataCreazione()
+          + setDurata()
+          + setIdPreventivo()
+          + setImporto()
+          + setInteressi()
+          + setNotificaPreventivo()
+          + setPercProvvigione()
+          + setProvTotale()
+          + setProvvigione()
+          + setRata()
+          + setSimulatorTableViewModel()
+          + setSpese()
+          + setTaeg()
+          + setTan()
+          + setTeg()
+          + setTipoPratica()
+          + setTipoProvvigione()
+          + setTipologiaPreventivo()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.PreventivoViewModel.PreventivoViewModelBuilder {
+          - dataCreazione : Date
+          - durata : Integer
+          - idPreventivo : long
+          - importo : BigDecimal
+          - interessi : BigDecimal
+          - notificaPreventivo : boolean
+          - percProvvigione : BigDecimal
+          - provTotale : BigDecimal
+          - provvigione : BigDecimal
+          - rata : BigDecimal
+          - spese : BigDecimal
+          - taeg : BigDecimal
+          - tan : BigDecimal
+          - teg : BigDecimal
+          - tipoPratica : String
+          - tipoProvvigione : String
+          + build()
+          + dataCreazione()
+          + durata()
+          + idPreventivo()
+          + importo()
+          + interessi()
+          + notificaPreventivo()
+          + percProvvigione()
+          + provTotale()
+          + provvigione()
+          + rata()
+          + simulatorTableViewModel()
+          + spese()
+          + taeg()
+          + tan()
+          + teg()
+          + tipoPratica()
+          + tipoProvvigione()
+          + tipologiaPreventivo()
+          + toString()
+          ~ PreventivoViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.ResidenzaViewModel {
+          - capDomicilio : String
+          - capPrecedente : String
+          - capResidenza : String
+          - civicoDomicilio : String
+          - civicoPrecedente : String
+          - civicoResidenza : String
+          - codiceRes : long
+          - corrispondenza : String
+          - dataInizioResidenza : Date
+          - indirizzoDomicilio : String
+          - indirizzoPrecedente : String
+          - indirizzoResidenza : String
+          - luogoDomicilio : String
+          - luogoPrecedente : String
+          - luogoResidenza : String
+          - mutuo : boolean
+          - nazioneDomicilio : String
+          - nazionePrecedente : String
+          - nazioneResidenza : String
+          - provDomicilio : String
+          - provResidenza : String
+          - provinciaPrecedente : String
+          - speseAbitazione : BigDecimal
+          - tipoAbitazione : String
+          + ResidenzaViewModel()
+          + ResidenzaViewModel()
+          {static} + builder()
+          + equals()
+          + getCapDomicilio()
+          + getCapPrecedente()
+          + getCapResidenza()
+          + getCivicoDomicilio()
+          + getCivicoPrecedente()
+          + getCivicoResidenza()
+          + getCodiceRes()
+          + getCorrispondenza()
+          + getDataInizioResidenza()
+          + getIndirizzoDomicilio()
+          + getIndirizzoPrecedente()
+          + getIndirizzoResidenza()
+          + getLuogoDomicilio()
+          + getLuogoPrecedente()
+          + getLuogoResidenza()
+          + getNazioneDomicilio()
+          + getNazionePrecedente()
+          + getNazioneResidenza()
+          + getProvDomicilio()
+          + getProvResidenza()
+          + getProvinciaPrecedente()
+          + getSpeseAbitazione()
+          + getTipoAbitazione()
+          + hashCode()
+          + isMutuo()
+          + setCapDomicilio()
+          + setCapPrecedente()
+          + setCapResidenza()
+          + setCivicoDomicilio()
+          + setCivicoPrecedente()
+          + setCivicoResidenza()
+          + setCodiceRes()
+          + setCorrispondenza()
+          + setDataInizioResidenza()
+          + setIndirizzoDomicilio()
+          + setIndirizzoPrecedente()
+          + setIndirizzoResidenza()
+          + setLuogoDomicilio()
+          + setLuogoPrecedente()
+          + setLuogoResidenza()
+          + setMutuo()
+          + setNazioneDomicilio()
+          + setNazionePrecedente()
+          + setNazioneResidenza()
+          + setProvDomicilio()
+          + setProvResidenza()
+          + setProvinciaPrecedente()
+          + setSpeseAbitazione()
+          + setTipoAbitazione()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.ResidenzaViewModel.ResidenzaViewModelBuilder {
+          - capDomicilio : String
+          - capPrecedente : String
+          - capResidenza : String
+          - civicoDomicilio : String
+          - civicoPrecedente : String
+          - civicoResidenza : String
+          - codiceRes : long
+          - corrispondenza : String
+          - dataInizioResidenza : Date
+          - indirizzoDomicilio : String
+          - indirizzoPrecedente : String
+          - indirizzoResidenza : String
+          - luogoDomicilio : String
+          - luogoPrecedente : String
+          - luogoResidenza : String
+          - mutuo : boolean
+          - nazioneDomicilio : String
+          - nazionePrecedente : String
+          - nazioneResidenza : String
+          - provDomicilio : String
+          - provResidenza : String
+          - provinciaPrecedente : String
+          - speseAbitazione : BigDecimal
+          - tipoAbitazione : String
+          + build()
+          + capDomicilio()
+          + capPrecedente()
+          + capResidenza()
+          + civicoDomicilio()
+          + civicoPrecedente()
+          + civicoResidenza()
+          + codiceRes()
+          + corrispondenza()
+          + dataInizioResidenza()
+          + indirizzoDomicilio()
+          + indirizzoPrecedente()
+          + indirizzoResidenza()
+          + luogoDomicilio()
+          + luogoPrecedente()
+          + luogoResidenza()
+          + mutuo()
+          + nazioneDomicilio()
+          + nazionePrecedente()
+          + nazioneResidenza()
+          + provDomicilio()
+          + provResidenza()
+          + provinciaPrecedente()
+          + speseAbitazione()
+          + tipoAbitazione()
+          + toString()
+          ~ ResidenzaViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.RicaricaComunicazioneViewModel {
+          - amount : BigDecimal
+          - dateTime : LocalDateTime
+          - fatturaId : String
+          - id : long
+          - quantity : int
+          + RicaricaComunicazioneViewModel()
+          + RicaricaComunicazioneViewModel()
+          {static} + builder()
+          + equals()
+          + getAmount()
+          + getDateTime()
+          + getFatturaId()
+          + getId()
+          + getOperatoreRicaricato()
+          + getPayer()
+          + getPaymentMethod()
+          + getQuantity()
+          + getRicaricaType()
+          + hashCode()
+          + setAmount()
+          + setDateTime()
+          + setFatturaId()
+          + setId()
+          + setOperatoreRicaricato()
+          + setPayer()
+          + setPaymentMethod()
+          + setQuantity()
+          + setRicaricaType()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.RicaricaComunicazioneViewModel.RicaricaComunicazioneViewModelBuilder {
+          - amount : BigDecimal
+          - dateTime : LocalDateTime
+          - fatturaId : String
+          - id : long
+          - quantity : int
+          + amount()
+          + build()
+          + dateTime()
+          + fatturaId()
+          + id()
+          + operatoreRicaricato()
+          + payer()
+          + paymentMethod()
+          + quantity()
+          + ricaricaType()
+          + toString()
+          ~ RicaricaComunicazioneViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.RoleViewModel {
+          - id : long
+          + RoleViewModel()
+          + RoleViewModel()
+          {static} + builder()
+          + equals()
+          + getId()
+          + getRoleName()
+          + hashCode()
+          + setId()
+          + setRoleName()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.RoleViewModel.RoleViewModelBuilder {
+          - id : long
+          + build()
+          + id()
+          + roleName()
+          + toString()
+          ~ RoleViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.SettingViewModel {
+          - alias : String
+          - id : long
+          - leadIlComparatoreEnabled : boolean
+          - mittenteSms : String
+          - notificaLeadSmsBalance : int
+          - sendSmsLead : boolean
+          - simulatorEnabled : boolean
+          - testoSmsAppuntamentoClienteNominativo : String
+          - testoSmsAppuntamentoOperatoreAssegnato : String
+          - testoSmsLead : String
+          + SettingViewModel()
+          + SettingViewModel()
+          {static} + builder()
+          + equals()
+          + getAlias()
+          + getAziendaViewModel()
+          + getId()
+          + getMittenteSms()
+          + getNotificaLeadSmsBalance()
+          + getTestoSmsAppuntamentoClienteNominativo()
+          + getTestoSmsAppuntamentoOperatoreAssegnato()
+          + getTestoSmsLead()
+          + hashCode()
+          + isLeadIlComparatoreEnabled()
+          + isSendSmsLead()
+          + isSimulatorEnabled()
+          + setAlias()
+          + setAziendaViewModel()
+          + setId()
+          + setLeadIlComparatoreEnabled()
+          + setMittenteSms()
+          + setNotificaLeadSmsBalance()
+          + setSendSmsLead()
+          + setSimulatorEnabled()
+          + setTestoSmsAppuntamentoClienteNominativo()
+          + setTestoSmsAppuntamentoOperatoreAssegnato()
+          + setTestoSmsLead()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.SettingViewModel.SettingViewModelBuilder {
+          - alias : String
+          - id : long
+          - leadIlComparatoreEnabled : boolean
+          - mittenteSms : String
+          - notificaLeadSmsBalance : int
+          - sendSmsLead : boolean
+          - simulatorEnabled : boolean
+          - testoSmsAppuntamentoClienteNominativo : String
+          - testoSmsAppuntamentoOperatoreAssegnato : String
+          - testoSmsLead : String
+          + alias()
+          + aziendaViewModel()
+          + build()
+          + id()
+          + leadIlComparatoreEnabled()
+          + mittenteSms()
+          + notificaLeadSmsBalance()
+          + sendSmsLead()
+          + simulatorEnabled()
+          + testoSmsAppuntamentoClienteNominativo()
+          + testoSmsAppuntamentoOperatoreAssegnato()
+          + testoSmsLead()
+          + toString()
+          ~ SettingViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.SimulatorTableDetailsViewModel {
+          - id : long
+          - inquiryCost : BigDecimal
+          - inquiryCostTaeg : BigDecimal
+          - insuranceCost : BigDecimal
+          - insuranceCostTaeg : BigDecimal
+          - length : int
+          - managementFees : BigDecimal
+          - managementFeesTaeg : BigDecimal
+          - maxAgentFees : BigDecimal
+          - maxInquiryCost : BigDecimal
+          - maxInsuranceCost : BigDecimal
+          - maxManagementFees : BigDecimal
+          - maxOtherCosts : BigDecimal
+          - maxStampDutyCost : BigDecimal
+          - maxTaeg : BigDecimal
+          - mensilita : int
+          - otherCosts : BigDecimal
+          - otherCostsTaeg : BigDecimal
+          - stampDutyCost : BigDecimal
+          - stampDutyCostTaeg : BigDecimal
+          - tan : BigDecimal
+          - viewId : String
+          + SimulatorTableDetailsViewModel()
+          + SimulatorTableDetailsViewModel()
+          {static} + builder()
+          + equals()
+          + getId()
+          + getInquiryCost()
+          + getInquiryCostTaeg()
+          + getInsuranceCost()
+          + getInsuranceCostTaeg()
+          + getLength()
+          + getManagementFees()
+          + getManagementFeesTaeg()
+          + getMaxAgentFees()
+          + getMaxInquiryCost()
+          + getMaxInsuranceCost()
+          + getMaxManagementFees()
+          + getMaxOtherCosts()
+          + getMaxStampDutyCost()
+          + getMaxTaeg()
+          + getMensilita()
+          + getOtherCosts()
+          + getOtherCostsTaeg()
+          + getSimulatorTableViewModel()
+          + getStampDutyCost()
+          + getStampDutyCostTaeg()
+          + getTan()
+          + getViewId()
+          + hashCode()
+          + setId()
+          + setInquiryCost()
+          + setInquiryCostTaeg()
+          + setInsuranceCost()
+          + setInsuranceCostTaeg()
+          + setLength()
+          + setManagementFees()
+          + setManagementFeesTaeg()
+          + setMaxAgentFees()
+          + setMaxInquiryCost()
+          + setMaxInsuranceCost()
+          + setMaxManagementFees()
+          + setMaxOtherCosts()
+          + setMaxStampDutyCost()
+          + setMaxTaeg()
+          + setMensilita()
+          + setOtherCosts()
+          + setOtherCostsTaeg()
+          + setSimulatorTableViewModel()
+          + setStampDutyCost()
+          + setStampDutyCostTaeg()
+          + setTan()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.SimulatorTableDetailsViewModel.SimulatorTableDetailsViewModelBuilder {
+          - id : long
+          - inquiryCost : BigDecimal
+          - inquiryCostTaeg : BigDecimal
+          - insuranceCost : BigDecimal
+          - insuranceCostTaeg : BigDecimal
+          - length : int
+          - managementFees : BigDecimal
+          - managementFeesTaeg : BigDecimal
+          - maxAgentFees : BigDecimal
+          - maxInquiryCost : BigDecimal
+          - maxInsuranceCost : BigDecimal
+          - maxManagementFees : BigDecimal
+          - maxOtherCosts : BigDecimal
+          - maxStampDutyCost : BigDecimal
+          - maxTaeg : BigDecimal
+          - mensilita : int
+          - otherCosts : BigDecimal
+          - otherCostsTaeg : BigDecimal
+          - stampDutyCost : BigDecimal
+          - stampDutyCostTaeg : BigDecimal
+          - tan : BigDecimal
+          + build()
+          + id()
+          + inquiryCost()
+          + inquiryCostTaeg()
+          + insuranceCost()
+          + insuranceCostTaeg()
+          + length()
+          + managementFees()
+          + managementFeesTaeg()
+          + maxAgentFees()
+          + maxInquiryCost()
+          + maxInsuranceCost()
+          + maxManagementFees()
+          + maxOtherCosts()
+          + maxStampDutyCost()
+          + maxTaeg()
+          + mensilita()
+          + otherCosts()
+          + otherCostsTaeg()
+          + simulatorTableViewModel()
+          + stampDutyCost()
+          + stampDutyCostTaeg()
+          + tan()
+          + toString()
+          ~ SimulatorTableDetailsViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel {
+          - grantedOperatorViewModelList : List<OperatorViewModel>
+          - id : long
+          - jobTypeList : List<Impiego>
+          - name : String
+          - over : BigDecimal
+          - simulatorTableDetailsViewModelList : List<SimulatorTableDetailsViewModel>
+          + SimulatorTableViewModel()
+          + SimulatorTableViewModel()
+          {static} + builder()
+          + equals()
+          + getAziendaViewModel()
+          + getCreatorOperatorViewModel()
+          + getGrantedOperatorViewModelList()
+          + getId()
+          + getInquiryCostFeeType()
+          + getInsuranceCostFeeType()
+          + getJobTypeList()
+          + getManagementFeesFeeType()
+          + getName()
+          + getOtherCostsFeeType()
+          + getOver()
+          + getSimulatorRoundingMode()
+          + getSimulatorTableDetailsViewModelList()
+          + getSimulatorTableStatus()
+          + getSimulatorTableType()
+          + getStampDutyFeeType()
+          + hashCode()
+          + setAziendaViewModel()
+          + setCreatorOperatorViewModel()
+          + setGrantedOperatorViewModelList()
+          + setId()
+          + setInquiryCostFeeType()
+          + setInsuranceCostFeeType()
+          + setJobTypeList()
+          + setManagementFeesFeeType()
+          + setName()
+          + setOtherCostsFeeType()
+          + setOver()
+          + setSimulatorRoundingMode()
+          + setSimulatorTableDetailsViewModelList()
+          + setSimulatorTableStatus()
+          + setSimulatorTableType()
+          + setStampDutyFeeType()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      enum SimulatorTableStatus {
+        DISABLED
+        ENABLED
+        enabled
+        label
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableViewModelBuilder {
+          - grantedOperatorViewModelList : List<OperatorViewModel>
+          - id : long
+          - jobTypeList : List<Impiego>
+          - name : String
+          - over : BigDecimal
+          - simulatorTableDetailsViewModelList : List<SimulatorTableDetailsViewModel>
+          + aziendaViewModel()
+          + build()
+          + creatorOperatorViewModel()
+          + grantedOperatorViewModelList()
+          + id()
+          + inquiryCostFeeType()
+          + insuranceCostFeeType()
+          + jobTypeList()
+          + managementFeesFeeType()
+          + name()
+          + otherCostsFeeType()
+          + over()
+          + simulatorRoundingMode()
+          + simulatorTableDetailsViewModelList()
+          + simulatorTableStatus()
+          + simulatorTableType()
+          + stampDutyFeeType()
+          + toString()
+          ~ SimulatorTableViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.TrattenuteViewModel {
+          - busta : Date
+          - calcolaDat : String
+          - codStip : long
+          - conteggioTrat : BigDecimal
+          - dataRinnovoTrat : Date
+          - durataTrat : Integer
+          - istitutoTrat : String
+          - montanteTrat : BigDecimal
+          - notiCoes : Date
+          - rataTrat : BigDecimal
+          - rateScadenza : Integer
+          - scadenzaTrat : Date
+          - tipoTrat : String
+          - viewId : String
+          + TrattenuteViewModel()
+          + TrattenuteViewModel()
+          {static} + builder()
+          + equals()
+          + getBusta()
+          + getCalcolaDat()
+          + getCodStip()
+          + getConteggioTrat()
+          + getDataRinnovoTrat()
+          + getDurataTrat()
+          + getIstitutoTrat()
+          + getMontanteTrat()
+          + getNotiCoes()
+          + getRataTrat()
+          + getRateScadenza()
+          + getScadenzaTrat()
+          + getTipoTrat()
+          + getViewId()
+          + hashCode()
+          + setBusta()
+          + setCalcolaDat()
+          + setCodStip()
+          + setConteggioTrat()
+          + setDataRinnovoTrat()
+          + setDurataTrat()
+          + setIstitutoTrat()
+          + setMontanteTrat()
+          + setNotiCoes()
+          + setRataTrat()
+          + setRateScadenza()
+          + setScadenzaTrat()
+          + setTipoTrat()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.TrattenuteViewModel.TrattenuteViewModelBuilder {
+          - busta : Date
+          - calcolaDat : String
+          - codStip : long
+          - conteggioTrat : BigDecimal
+          - dataRinnovoTrat : Date
+          - durataTrat : Integer
+          - istitutoTrat : String
+          - montanteTrat : BigDecimal
+          - notiCoes : Date
+          - rataTrat : BigDecimal
+          - rateScadenza : Integer
+          - scadenzaTrat : Date
+          - tipoTrat : String
+          + build()
+          + busta()
+          + calcolaDat()
+          + codStip()
+          + conteggioTrat()
+          + dataRinnovoTrat()
+          + durataTrat()
+          + istitutoTrat()
+          + montanteTrat()
+          + notiCoes()
+          + rataTrat()
+          + rateScadenza()
+          + scadenzaTrat()
+          + tipoTrat()
+          + toString()
+          ~ TrattenuteViewModelBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.ValutazioneAmministrazioneViewModel {
+          - compagnia : String
+          - dataValutazione : Date
+          - id : long
+          - infoAggiuntive : String
+          - valutazione : String
+          - viewId : String
+          + ValutazioneAmministrazioneViewModel()
+          + ValutazioneAmministrazioneViewModel()
+          {static} + builder()
+          + equals()
+          + getCompagnia()
+          + getDataValutazione()
+          + getId()
+          + getInfoAggiuntive()
+          + getValutazione()
+          + hashCode()
+          + setCompagnia()
+          + setDataValutazione()
+          + setId()
+          + setInfoAggiuntive()
+          + setValutazione()
+          + toString()
+          # canEqual()
+          # getIdToCompare()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.viewmodel {
+      class com.woonders.lacemscommon.app.viewmodel.ValutazioneAmministrazioneViewModel.ValutazioneAmministrazioneViewModelBuilder {
+          - compagnia : String
+          - dataValutazione : Date
+          - id : long
+          - infoAggiuntive : String
+          - valutazione : String
+          + build()
+          + compagnia()
+          + dataValutazione()
+          + id()
+          + infoAggiuntive()
+          + toString()
+          + valutazione()
+          ~ ValutazioneAmministrazioneViewModelBuilder()
+      }
+    }
+  }
+  
+
+  com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel .up.|> java.io.Serializable
+  com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel .up.|> java.lang.Comparable
+  com.woonders.lacemscommon.app.viewmodel.AccessLogViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.AccessLogViewModel o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operator
+  com.woonders.lacemscommon.app.viewmodel.AccessLogViewModel +-down- com.woonders.lacemscommon.app.viewmodel.AccessLogViewModel.AccessLogViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.AccessLogViewModel.AccessLogViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operator
+  com.woonders.lacemscommon.app.viewmodel.AmministrazioneViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.AmministrazioneViewModel +-down- com.woonders.lacemscommon.app.viewmodel.AmministrazioneViewModel.AmministrazioneViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.AziendaViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.AziendaViewModel +-down- com.woonders.lacemscommon.app.viewmodel.AziendaViewModel.AziendaViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.BackupViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.BackupViewModel +-down- com.woonders.lacemscommon.app.viewmodel.BackupViewModel.BackupViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.CalendarioAppuntamentoViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.CalendarioAppuntamentoViewModel o-- com.woonders.lacemscommon.app.viewmodel.ClienteViewModel : nominativo
+  com.woonders.lacemscommon.app.viewmodel.CalendarioAppuntamentoViewModel o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operator
+  com.woonders.lacemscommon.app.viewmodel.CalendarioAppuntamentoViewModel o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operatorAssegnato
+  com.woonders.lacemscommon.app.viewmodel.CalendarioAppuntamentoViewModel o-- com.woonders.lacemscommon.app.viewmodel.PraticaViewModel : pratica
+  com.woonders.lacemscommon.app.viewmodel.CalendarioAppuntamentoViewModel +-down- com.woonders.lacemscommon.app.viewmodel.CalendarioAppuntamentoViewModel.CalendarioAppuntamentoViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.CalendarioAppuntamentoViewModel.CalendarioAppuntamentoViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.ClienteViewModel : nominativo
+  com.woonders.lacemscommon.app.viewmodel.CalendarioAppuntamentoViewModel.CalendarioAppuntamentoViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operator
+  com.woonders.lacemscommon.app.viewmodel.CalendarioAppuntamentoViewModel.CalendarioAppuntamentoViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operatorAssegnato
+  com.woonders.lacemscommon.app.viewmodel.CalendarioAppuntamentoViewModel.CalendarioAppuntamentoViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.PraticaViewModel : pratica
+  com.woonders.lacemscommon.app.viewmodel.CampagnaSmsViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.CampagnaSmsViewModel o-- com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel : campagna
+  com.woonders.lacemscommon.app.viewmodel.CampagnaSmsViewModel o-- com.woonders.lacemscommon.app.viewmodel.ClienteViewModel : cliente
+  com.woonders.lacemscommon.app.viewmodel.CampagnaSmsViewModel o-- com.woonders.lacemscommon.db.entityenum.EsitoSmsNotificaLead : esito
+  com.woonders.lacemscommon.app.viewmodel.CampagnaSmsViewModel +-down- com.woonders.lacemscommon.app.viewmodel.CampagnaSmsViewModel.CampagnaSmsViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.CampagnaSmsViewModel.CampagnaSmsViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel : campagna
+  com.woonders.lacemscommon.app.viewmodel.CampagnaSmsViewModel.CampagnaSmsViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.ClienteViewModel : cliente
+  com.woonders.lacemscommon.app.viewmodel.CampagnaSmsViewModel.CampagnaSmsViewModelBuilder o-- com.woonders.lacemscommon.db.entityenum.EsitoSmsNotificaLead : esito
+  com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel o-- com.woonders.lacemscommon.db.entity.Campagna.CampagnaType : campagnaType
+  com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : creatorOperatorViewModel
+  com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel o-- com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel : filtroCampagnaMarketingViewModel
+  com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : senderOperatorViewModel
+  com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel +-down- com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel.CampagnaViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel.CampagnaViewModelBuilder o-- com.woonders.lacemscommon.db.entity.Campagna.CampagnaType : campagnaType
+  com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel.CampagnaViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : creatorOperatorViewModel
+  com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel.CampagnaViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel : filtroCampagnaMarketingViewModel
+  com.woonders.lacemscommon.app.viewmodel.CampagnaViewModel.CampagnaViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : senderOperatorViewModel
+  com.woonders.lacemscommon.app.viewmodel.ClientePraticaFileViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.ClientePraticaFileViewModel o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.app.viewmodel.ClientePraticaFileViewModel o-- com.woonders.lacemscommon.service.FileService.FileCategory : fileCategory
+  com.woonders.lacemscommon.app.viewmodel.ClientePraticaFileViewModel o-- com.woonders.lacemscommon.db.entity.Pratica : pratica
+  com.woonders.lacemscommon.app.viewmodel.ClientePraticaFileViewModel +-down- com.woonders.lacemscommon.app.viewmodel.ClientePraticaFileViewModel.ClientePraticaFileViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.ClientePraticaFileViewModel.ClientePraticaFileViewModelBuilder o-- com.woonders.lacemscommon.db.entity.Cliente : cliente
+  com.woonders.lacemscommon.app.viewmodel.ClientePraticaFileViewModel.ClientePraticaFileViewModelBuilder o-- com.woonders.lacemscommon.service.FileService.FileCategory : fileCategory
+  com.woonders.lacemscommon.app.viewmodel.ClientePraticaFileViewModel.ClientePraticaFileViewModelBuilder o-- com.woonders.lacemscommon.db.entity.Pratica : pratica
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel o-- com.woonders.lacemscommon.app.viewmodel.ContoViewModel : contoViewModel
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel o-- com.woonders.lacemscommon.app.viewmodel.DocumentoViewModel : documentoViewModel
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operatoreNominativo
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel o-- com.woonders.lacemscommon.util.DateToCalendar : opt
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel o-- com.woonders.lacemscommon.app.viewmodel.ResidenzaViewModel : residenzaViewModel
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel o-- com.woonders.lacemscommon.db.entity.Cliente.Sesso : sesso
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel +-down- com.woonders.lacemscommon.app.viewmodel.ClienteViewModel.ClienteViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel.ClienteViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.ContoViewModel : contoViewModel
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel.ClienteViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.DocumentoViewModel : documentoViewModel
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel.ClienteViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operatoreNominativo
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel.ClienteViewModelBuilder o-- com.woonders.lacemscommon.util.DateToCalendar : opt
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel.ClienteViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.ResidenzaViewModel : residenzaViewModel
+  com.woonders.lacemscommon.app.viewmodel.ClienteViewModel.ClienteViewModelBuilder o-- com.woonders.lacemscommon.db.entity.Cliente.Sesso : sesso
+  com.woonders.lacemscommon.app.viewmodel.ContoViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.ContoViewModel +-down- com.woonders.lacemscommon.app.viewmodel.ContoViewModel.ContoViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.CoobbligatoViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.CoobbligatoViewModel o-- com.woonders.lacemscommon.db.entity.Cliente.Sesso : sesso
+  com.woonders.lacemscommon.app.viewmodel.CoobbligatoViewModel +-down- com.woonders.lacemscommon.app.viewmodel.CoobbligatoViewModel.CoobbligatoViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.CoobbligatoViewModel.CoobbligatoViewModelBuilder o-- com.woonders.lacemscommon.db.entity.Cliente.Sesso : sesso
+  com.woonders.lacemscommon.app.viewmodel.DocumentoViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.DocumentoViewModel +-down- com.woonders.lacemscommon.app.viewmodel.DocumentoViewModel.DocumentoViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.EstinzioneViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.EstinzioneViewModel o-- com.woonders.lacemscommon.db.entityenum.StatoConteggioEstinzione : statoConteggioEstinzione
+  com.woonders.lacemscommon.app.viewmodel.EstinzioneViewModel +-down- com.woonders.lacemscommon.app.viewmodel.EstinzioneViewModel.EstinzioneViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.EstinzioneViewModel.EstinzioneViewModelBuilder o-- com.woonders.lacemscommon.db.entityenum.StatoConteggioEstinzione : statoConteggioEstinzione
+  com.woonders.lacemscommon.app.viewmodel.FileViewModel o-- com.woonders.lacemscommon.service.FileService.FileCategory : fileCategory
+  com.woonders.lacemscommon.app.viewmodel.FileViewModel +-down- com.woonders.lacemscommon.app.viewmodel.FileViewModel.FileViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.FileViewModel.FileViewModelBuilder o-- com.woonders.lacemscommon.service.FileService.FileCategory : fileCategory
+  com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel o-- com.woonders.lacemscommon.app.viewmodel.AmministrazioneViewModel : amministrazioneViewModel
+  com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel o-- com.woonders.lacemscommon.laceenum.FiltroRinnoviPraticaCoesistenza : filtroRinnoviPraticaCoesistenza
+  com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel o-- com.woonders.lacemscommon.db.entity.Cliente.Sesso : sesso
+  com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel o-- com.woonders.lacemscommon.db.entityenum.Tipo : tipo
+  com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel +-down- com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel.FiltroCampagnaMarketingViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel.FiltroCampagnaMarketingViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.AmministrazioneViewModel : amministrazioneViewModel
+  com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel.FiltroCampagnaMarketingViewModelBuilder o-- com.woonders.lacemscommon.laceenum.FiltroRinnoviPraticaCoesistenza : filtroRinnoviPraticaCoesistenza
+  com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel.FiltroCampagnaMarketingViewModelBuilder o-- com.woonders.lacemscommon.db.entity.Cliente.Sesso : sesso
+  com.woonders.lacemscommon.app.viewmodel.FiltroCampagnaMarketingViewModel.FiltroCampagnaMarketingViewModelBuilder o-- com.woonders.lacemscommon.db.entityenum.Tipo : tipo
+  com.woonders.lacemscommon.app.viewmodel.FinanziariaViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.FinanziariaViewModel +-down- com.woonders.lacemscommon.app.viewmodel.FinanziariaViewModel.FinanziariaViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.GeneralSettingViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.GeneralSettingViewModel +-down- com.woonders.lacemscommon.app.viewmodel.GeneralSettingViewModel.GeneralSettingViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.InfoAccountViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.InfoAccountViewModel o-- com.woonders.lacemscommon.db.entityenum.AccountVersion : version
+  com.woonders.lacemscommon.app.viewmodel.InfoAccountViewModel +-down- com.woonders.lacemscommon.app.viewmodel.InfoAccountViewModel.InfoAccountViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.InfoAccountViewModel.InfoAccountViewModelBuilder o-- com.woonders.lacemscommon.db.entityenum.AccountVersion : version
+  com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel o-- com.woonders.lacemscommon.app.viewmodel.ClienteViewModel : nominativo
+  com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operator
+  com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operatoreAssegnato
+  com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel o-- com.woonders.lacemscommon.app.viewmodel.PraticaViewModel : pratica
+  com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel o-- com.woonders.lacemscommon.service.LogService.TipoLog : tipoLog
+  com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel +-down- com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel.NominativoLogViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel.NominativoLogViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.ClienteViewModel : nominativo
+  com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel.NominativoLogViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operator
+  com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel.NominativoLogViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operatoreAssegnato
+  com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel.NominativoLogViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.PraticaViewModel : pratica
+  com.woonders.lacemscommon.app.viewmodel.NominativoLogViewModel.NominativoLogViewModelBuilder o-- com.woonders.lacemscommon.service.LogService.TipoLog : tipoLog
+  com.woonders.lacemscommon.app.viewmodel.NoticeBoardViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.NoticeBoardViewModel o-- com.woonders.lacemscommon.app.viewmodel.AziendaViewModel : aziendaAssigned
+  com.woonders.lacemscommon.app.viewmodel.NoticeBoardViewModel o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : creatorOperator
+  com.woonders.lacemscommon.app.viewmodel.NoticeBoardViewModel +-down- com.woonders.lacemscommon.app.viewmodel.NoticeBoardViewModel.NoticeBoardViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.NoticeBoardViewModel.NoticeBoardViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.AziendaViewModel : aziendaAssigned
+  com.woonders.lacemscommon.app.viewmodel.NoticeBoardViewModel.NoticeBoardViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : creatorOperator
+  com.woonders.lacemscommon.app.viewmodel.NotificaLeadSmsViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.NotificaLeadSmsViewModel o-- com.woonders.lacemscommon.db.entityenum.EsitoSmsNotificaLead : esito
+  com.woonders.lacemscommon.app.viewmodel.NotificaLeadSmsViewModel +-down- com.woonders.lacemscommon.app.viewmodel.NotificaLeadSmsViewModel.NotificaLeadSmsViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.NotificaLeadSmsViewModel.NotificaLeadSmsViewModelBuilder o-- com.woonders.lacemscommon.db.entityenum.EsitoSmsNotificaLead : esito
+  com.woonders.lacemscommon.app.viewmodel.OperatorViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.OperatorViewModel o-- com.woonders.lacemscommon.app.viewmodel.AziendaViewModel : azienda
+  com.woonders.lacemscommon.app.viewmodel.OperatorViewModel o-- com.woonders.lacemscommon.laceenum.PermissionProfile : permissionProfile
+  com.woonders.lacemscommon.app.viewmodel.OperatorViewModel +-down- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel.MenuSection
+  com.woonders.lacemscommon.app.viewmodel.OperatorViewModel +-down- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel.OperatorViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.OperatorViewModel +-down- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel.Permission
+  com.woonders.lacemscommon.app.viewmodel.OperatorViewModel +-down- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel.PermissionType
+  com.woonders.lacemscommon.app.viewmodel.OperatorViewModel.OperatorViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.AziendaViewModel : azienda
+  com.woonders.lacemscommon.app.viewmodel.OperatorViewModel.OperatorViewModelBuilder o-- com.woonders.lacemscommon.laceenum.PermissionProfile : permissionProfile
+  com.woonders.lacemscommon.app.viewmodel.PraticaViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.PraticaViewModel o-- com.woonders.lacemscommon.app.viewmodel.ClienteViewModel : clienteViewModel
+  com.woonders.lacemscommon.app.viewmodel.PraticaViewModel o-- com.woonders.lacemscommon.app.viewmodel.FinanziariaViewModel : finanziariaViewModel
+  com.woonders.lacemscommon.app.viewmodel.PraticaViewModel o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operatore
+  com.woonders.lacemscommon.app.viewmodel.PraticaViewModel o-- com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel : simulatorTableViewModel
+  com.woonders.lacemscommon.app.viewmodel.PraticaViewModel +-down- com.woonders.lacemscommon.app.viewmodel.PraticaViewModel.PraticaViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.PraticaViewModel.PraticaViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.ClienteViewModel : clienteViewModel
+  com.woonders.lacemscommon.app.viewmodel.PraticaViewModel.PraticaViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.FinanziariaViewModel : finanziariaViewModel
+  com.woonders.lacemscommon.app.viewmodel.PraticaViewModel.PraticaViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operatore
+  com.woonders.lacemscommon.app.viewmodel.PraticaViewModel.PraticaViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel : simulatorTableViewModel
+  com.woonders.lacemscommon.app.viewmodel.PreferenzaStatoPraticaViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.PreferenzaStatoPraticaViewModel o-- com.woonders.lacemscommon.app.viewmodel.AziendaViewModel : aziendaViewModel
+  com.woonders.lacemscommon.app.viewmodel.PreferenzaStatoPraticaViewModel o-- com.woonders.lacemscommon.db.entityenum.StatoPratica : nomeStatoPratica
+  com.woonders.lacemscommon.app.viewmodel.PreferenzaStatoPraticaViewModel +-down- com.woonders.lacemscommon.app.viewmodel.PreferenzaStatoPraticaViewModel.PreferenzaStatoPraticaViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.PreferenzaStatoPraticaViewModel.PreferenzaStatoPraticaViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.AziendaViewModel : aziendaViewModel
+  com.woonders.lacemscommon.app.viewmodel.PreferenzaStatoPraticaViewModel.PreferenzaStatoPraticaViewModelBuilder o-- com.woonders.lacemscommon.db.entityenum.StatoPratica : nomeStatoPratica
+  com.woonders.lacemscommon.app.viewmodel.PreventivoViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.PreventivoViewModel o-- com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel : simulatorTableViewModel
+  com.woonders.lacemscommon.app.viewmodel.PreventivoViewModel o-- com.woonders.lacemscommon.db.entity.Preventivo.TipologiaPreventivo : tipologiaPreventivo
+  com.woonders.lacemscommon.app.viewmodel.PreventivoViewModel +-down- com.woonders.lacemscommon.app.viewmodel.PreventivoViewModel.PreventivoViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.PreventivoViewModel.PreventivoViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel : simulatorTableViewModel
+  com.woonders.lacemscommon.app.viewmodel.PreventivoViewModel.PreventivoViewModelBuilder o-- com.woonders.lacemscommon.db.entity.Preventivo.TipologiaPreventivo : tipologiaPreventivo
+  com.woonders.lacemscommon.app.viewmodel.ResidenzaViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.ResidenzaViewModel +-down- com.woonders.lacemscommon.app.viewmodel.ResidenzaViewModel.ResidenzaViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.RicaricaComunicazioneViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.RicaricaComunicazioneViewModel o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operatoreRicaricato
+  com.woonders.lacemscommon.app.viewmodel.RicaricaComunicazioneViewModel o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : payer
+  com.woonders.lacemscommon.app.viewmodel.RicaricaComunicazioneViewModel o-- com.woonders.lacemscommon.db.entity.RicaricaComunicazione.PaymentMethod : paymentMethod
+  com.woonders.lacemscommon.app.viewmodel.RicaricaComunicazioneViewModel o-- com.woonders.lacemscommon.db.entityenum.RicaricaType : ricaricaType
+  com.woonders.lacemscommon.app.viewmodel.RicaricaComunicazioneViewModel +-down- com.woonders.lacemscommon.app.viewmodel.RicaricaComunicazioneViewModel.RicaricaComunicazioneViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.RicaricaComunicazioneViewModel.RicaricaComunicazioneViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : operatoreRicaricato
+  com.woonders.lacemscommon.app.viewmodel.RicaricaComunicazioneViewModel.RicaricaComunicazioneViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : payer
+  com.woonders.lacemscommon.app.viewmodel.RicaricaComunicazioneViewModel.RicaricaComunicazioneViewModelBuilder o-- com.woonders.lacemscommon.db.entity.RicaricaComunicazione.PaymentMethod : paymentMethod
+  com.woonders.lacemscommon.app.viewmodel.RicaricaComunicazioneViewModel.RicaricaComunicazioneViewModelBuilder o-- com.woonders.lacemscommon.db.entityenum.RicaricaType : ricaricaType
+  com.woonders.lacemscommon.app.viewmodel.RoleViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.RoleViewModel o-- com.woonders.lacemscommon.db.entity.Role.RoleName : roleName
+  com.woonders.lacemscommon.app.viewmodel.RoleViewModel +-down- com.woonders.lacemscommon.app.viewmodel.RoleViewModel.RoleViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.RoleViewModel.RoleViewModelBuilder o-- com.woonders.lacemscommon.db.entity.Role.RoleName : roleName
+  com.woonders.lacemscommon.app.viewmodel.SettingViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.SettingViewModel o-- com.woonders.lacemscommon.app.viewmodel.AziendaViewModel : aziendaViewModel
+  com.woonders.lacemscommon.app.viewmodel.SettingViewModel +-down- com.woonders.lacemscommon.app.viewmodel.SettingViewModel.SettingViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.SettingViewModel.SettingViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.AziendaViewModel : aziendaViewModel
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableDetailsViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableDetailsViewModel o-- com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel : simulatorTableViewModel
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableDetailsViewModel +-down- com.woonders.lacemscommon.app.viewmodel.SimulatorTableDetailsViewModel.SimulatorTableDetailsViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableDetailsViewModel.SimulatorTableDetailsViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel : simulatorTableViewModel
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel o-- com.woonders.lacemscommon.app.viewmodel.AziendaViewModel : aziendaViewModel
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : creatorOperatorViewModel
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel o-- com.woonders.lacemscommon.db.entityenum.FeeType : inquiryCostFeeType
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel o-- com.woonders.lacemscommon.db.entityenum.FeeType : insuranceCostFeeType
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel o-- com.woonders.lacemscommon.db.entityenum.FeeType : managementFeesFeeType
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel o-- com.woonders.lacemscommon.db.entityenum.FeeType : otherCostsFeeType
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel o-- com.woonders.lacemscommon.db.entityenum.SimulatorRoundingMode : simulatorRoundingMode
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel o-- com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableStatus : simulatorTableStatus
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel o-- com.woonders.lacemscommon.db.entity.Pratica.TipoPratica : simulatorTableType
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel o-- com.woonders.lacemscommon.db.entityenum.FeeType : stampDutyFeeType
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel +-down- com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableStatus
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel +-down- com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.AziendaViewModel : aziendaViewModel
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.OperatorViewModel : creatorOperatorViewModel
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableViewModelBuilder o-- com.woonders.lacemscommon.db.entityenum.FeeType : inquiryCostFeeType
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableViewModelBuilder o-- com.woonders.lacemscommon.db.entityenum.FeeType : insuranceCostFeeType
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableViewModelBuilder o-- com.woonders.lacemscommon.db.entityenum.FeeType : managementFeesFeeType
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableViewModelBuilder o-- com.woonders.lacemscommon.db.entityenum.FeeType : otherCostsFeeType
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableViewModelBuilder o-- com.woonders.lacemscommon.db.entityenum.SimulatorRoundingMode : simulatorRoundingMode
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableViewModelBuilder o-- com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableStatus : simulatorTableStatus
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableViewModelBuilder o-- com.woonders.lacemscommon.db.entity.Pratica.TipoPratica : simulatorTableType
+  com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel.SimulatorTableViewModelBuilder o-- com.woonders.lacemscommon.db.entityenum.FeeType : stampDutyFeeType
+  com.woonders.lacemscommon.app.viewmodel.TrattenuteViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.TrattenuteViewModel +-down- com.woonders.lacemscommon.app.viewmodel.TrattenuteViewModel.TrattenuteViewModelBuilder
+  com.woonders.lacemscommon.app.viewmodel.ValutazioneAmministrazioneViewModel -up-|> com.woonders.lacemscommon.app.viewmodel.AbstractBaseViewModel
+  com.woonders.lacemscommon.app.viewmodel.ValutazioneAmministrazioneViewModel +-down- com.woonders.lacemscommon.app.viewmodel.ValutazioneAmministrazioneViewModel.ValutazioneAmministrazioneViewModelBuilder
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

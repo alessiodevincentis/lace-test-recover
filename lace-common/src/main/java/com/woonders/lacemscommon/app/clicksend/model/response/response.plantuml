@@ -1,0 +1,477 @@
+@startuml
+
+title __RESPONSE's Class Diagram__\n
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      abstract class com.woonders.lacemscommon.app.clicksend.model.response.AbstractBaseResponse {
+          - httpCode : int
+          - responseCode : String
+          - responseMsg : String
+          + AbstractBaseResponse()
+          + AbstractBaseResponse()
+          + getHttpCode()
+          + getResponseCode()
+          + getResponseMsg()
+          + isOk()
+          + setHttpCode()
+          + setResponseCode()
+          + setResponseMsg()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      enum HttpStatusCode {
+        HTTP_200
+        value
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      enum ResponseCode {
+        SUCCESS
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      class com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryDataResponse {
+          ~ getSmsHistoryResponseList : List<GetSmsHistoryResponse>
+          - currentPage : long
+          - from : int
+          - lastPage : long
+          - nextPageUrl : String
+          - perPage : int
+          - prevPageUrl : String
+          - to : int
+          - total : long
+          + GetSmsHistoryDataResponse()
+          + GetSmsHistoryDataResponse()
+          {static} + builder()
+          + getCurrentPage()
+          + getFrom()
+          + getGetSmsHistoryResponseList()
+          + getLastPage()
+          + getNextPageUrl()
+          + getPerPage()
+          + getPrevPageUrl()
+          + getTo()
+          + getTotal()
+          + setCurrentPage()
+          + setFrom()
+          + setGetSmsHistoryResponseList()
+          + setLastPage()
+          + setNextPageUrl()
+          + setPerPage()
+          + setPrevPageUrl()
+          + setTo()
+          + setTotal()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      class com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryDataResponse.GetSmsHistoryDataResponseBuilder {
+          - currentPage : long
+          - from : int
+          - getSmsHistoryResponseList : List<GetSmsHistoryResponse>
+          - lastPage : long
+          - nextPageUrl : String
+          - perPage : int
+          - prevPageUrl : String
+          - to : int
+          - total : long
+          + build()
+          + currentPage()
+          + from()
+          + getSmsHistoryResponseList()
+          + lastPage()
+          + nextPageUrl()
+          + perPage()
+          + prevPageUrl()
+          + to()
+          + toString()
+          + total()
+          ~ GetSmsHistoryDataResponseBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      class com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryMainResponse {
+          + GetSmsHistoryMainResponse()
+          + GetSmsHistoryMainResponse()
+          {static} + builder()
+          + getGetSmsHistoryDataResponse()
+          + setGetSmsHistoryDataResponse()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      class com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryMainResponse.GetSmsHistoryMainResponseBuilder {
+          + build()
+          + getSmsHistoryDataResponse()
+          + toString()
+          ~ GetSmsHistoryMainResponseBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      class com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryResponse {
+          - apiUsername : String
+          - body : String
+          - carrier : String
+          - contactId : long
+          - country : String
+          - customString : String
+          - date : LocalDateTime
+          - direction : String
+          - errorCode : String
+          - errorText : String
+          - firstName : String
+          - from : String
+          - fromEmail : String
+          - lastName : String
+          - listId : String
+          - messageId : String
+          - messageParts : int
+          - messagePrice : BigDecimal
+          - schedule : LocalDateTime
+          - status : String
+          - statusCode : String
+          - statusText : String
+          - subaccountId : long
+          - to : String
+          - userId : long
+          + GetSmsHistoryResponse()
+          + GetSmsHistoryResponse()
+          {static} + builder()
+          + getApiUsername()
+          + getBody()
+          + getCarrier()
+          + getContactId()
+          + getCountry()
+          + getCustomString()
+          + getDate()
+          + getDirection()
+          + getErrorCode()
+          + getErrorText()
+          + getFirstName()
+          + getFrom()
+          + getFromEmail()
+          + getLastName()
+          + getListId()
+          + getMessageId()
+          + getMessageParts()
+          + getMessagePrice()
+          + getSchedule()
+          + getStatus()
+          + getStatusCode()
+          + getStatusText()
+          + getSubaccountId()
+          + getTo()
+          + getUserId()
+          + setApiUsername()
+          + setBody()
+          + setCarrier()
+          + setContactId()
+          + setCountry()
+          + setCustomString()
+          + setDate()
+          + setDirection()
+          + setErrorCode()
+          + setErrorText()
+          + setFirstName()
+          + setFrom()
+          + setFromEmail()
+          + setLastName()
+          + setListId()
+          + setMessageId()
+          + setMessageParts()
+          + setMessagePrice()
+          + setSchedule()
+          + setStatus()
+          + setStatusCode()
+          + setStatusText()
+          + setSubaccountId()
+          + setTo()
+          + setUserId()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      class com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryResponse.GetSmsHistoryResponseBuilder {
+          - apiUsername : String
+          - body : String
+          - carrier : String
+          - contactId : long
+          - country : String
+          - customString : String
+          - date : LocalDateTime
+          - direction : String
+          - errorCode : String
+          - errorText : String
+          - firstName : String
+          - from : String
+          - fromEmail : String
+          - lastName : String
+          - listId : String
+          - messageId : String
+          - messageParts : int
+          - messagePrice : BigDecimal
+          - schedule : LocalDateTime
+          - status : String
+          - statusCode : String
+          - statusText : String
+          - subaccountId : long
+          - to : String
+          - userId : long
+          + apiUsername()
+          + body()
+          + build()
+          + carrier()
+          + contactId()
+          + country()
+          + customString()
+          + date()
+          + direction()
+          + errorCode()
+          + errorText()
+          + firstName()
+          + from()
+          + fromEmail()
+          + lastName()
+          + listId()
+          + messageId()
+          + messageParts()
+          + messagePrice()
+          + schedule()
+          + status()
+          + statusCode()
+          + statusText()
+          + subaccountId()
+          + to()
+          + toString()
+          + userId()
+          ~ GetSmsHistoryResponseBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      class com.woonders.lacemscommon.app.clicksend.model.response.SendSmsDataResponse {
+          - queuedCount : long
+          - sendSmsResponseList : List<SendSmsResponse>
+          - totalCount : long
+          - totalPrice : BigDecimal
+          + SendSmsDataResponse()
+          + SendSmsDataResponse()
+          {static} + builder()
+          + getQueuedCount()
+          + getSendSmsResponseList()
+          + getTotalCount()
+          + getTotalPrice()
+          + setQueuedCount()
+          + setSendSmsResponseList()
+          + setTotalCount()
+          + setTotalPrice()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      class com.woonders.lacemscommon.app.clicksend.model.response.SendSmsDataResponse.SendSmsDataResponseBuilder {
+          - queuedCount : long
+          - sendSmsResponseList : List<SendSmsResponse>
+          - totalCount : long
+          - totalPrice : BigDecimal
+          + build()
+          + queuedCount()
+          + sendSmsResponseList()
+          + toString()
+          + totalCount()
+          + totalPrice()
+          ~ SendSmsDataResponseBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      class com.woonders.lacemscommon.app.clicksend.model.response.SendSmsMainResponse {
+          + SendSmsMainResponse()
+          + SendSmsMainResponse()
+          {static} + builder()
+          + getSendSmsDataResponse()
+          + setSendSmsDataResponse()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      class com.woonders.lacemscommon.app.clicksend.model.response.SendSmsMainResponse.SendSmsMainResponseBuilder {
+          + build()
+          + sendSmsDataResponse()
+          + toString()
+          ~ SendSmsMainResponseBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      class com.woonders.lacemscommon.app.clicksend.model.response.SendSmsResponse {
+          - body : String
+          - carrier : String
+          - country : String
+          - customString : String
+          - date : LocalDateTime
+          - direction : String
+          - from : String
+          - messageId : String
+          - messageParts : int
+          - messagePrice : BigDecimal
+          - schedule : LocalDateTime
+          - status : String
+          - subaccountId : long
+          - to : String
+          - userId : long
+          + SendSmsResponse()
+          + SendSmsResponse()
+          {static} + builder()
+          + getBody()
+          + getCarrier()
+          + getCountry()
+          + getCustomString()
+          + getDate()
+          + getDirection()
+          + getFrom()
+          + getMessageId()
+          + getMessageParts()
+          + getMessagePrice()
+          + getSchedule()
+          + getStatus()
+          + getSubaccountId()
+          + getTo()
+          + getUserId()
+          + setBody()
+          + setCarrier()
+          + setCountry()
+          + setCustomString()
+          + setDate()
+          + setDirection()
+          + setFrom()
+          + setMessageId()
+          + setMessageParts()
+          + setMessagePrice()
+          + setSchedule()
+          + setStatus()
+          + setSubaccountId()
+          + setTo()
+          + setUserId()
+          + toString()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace app.clicksend.model.response {
+      class com.woonders.lacemscommon.app.clicksend.model.response.SendSmsResponse.SendSmsResponseBuilder {
+          - body : String
+          - carrier : String
+          - country : String
+          - customString : String
+          - date : LocalDateTime
+          - direction : String
+          - from : String
+          - messageId : String
+          - messageParts : int
+          - messagePrice : BigDecimal
+          - schedule : LocalDateTime
+          - status : String
+          - subaccountId : long
+          - to : String
+          - userId : long
+          + body()
+          + build()
+          + carrier()
+          + country()
+          + customString()
+          + date()
+          + direction()
+          + from()
+          + messageId()
+          + messageParts()
+          + messagePrice()
+          + schedule()
+          + status()
+          + subaccountId()
+          + to()
+          + toString()
+          + userId()
+          ~ SendSmsResponseBuilder()
+      }
+    }
+  }
+  
+
+  com.woonders.lacemscommon.app.clicksend.model.response.AbstractBaseResponse +-down- com.woonders.lacemscommon.app.clicksend.model.response.AbstractBaseResponse.HttpStatusCode
+  com.woonders.lacemscommon.app.clicksend.model.response.AbstractBaseResponse +-down- com.woonders.lacemscommon.app.clicksend.model.response.AbstractBaseResponse.ResponseCode
+  com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryDataResponse +-down- com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryDataResponse.GetSmsHistoryDataResponseBuilder
+  com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryMainResponse -up-|> com.woonders.lacemscommon.app.clicksend.model.response.AbstractBaseResponse
+  com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryMainResponse o-- com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryDataResponse : getSmsHistoryDataResponse
+  com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryMainResponse +-down- com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryMainResponse.GetSmsHistoryMainResponseBuilder
+  com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryMainResponse.GetSmsHistoryMainResponseBuilder o-- com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryDataResponse : getSmsHistoryDataResponse
+  com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryResponse +-down- com.woonders.lacemscommon.app.clicksend.model.response.GetSmsHistoryResponse.GetSmsHistoryResponseBuilder
+  com.woonders.lacemscommon.app.clicksend.model.response.SendSmsDataResponse +-down- com.woonders.lacemscommon.app.clicksend.model.response.SendSmsDataResponse.SendSmsDataResponseBuilder
+  com.woonders.lacemscommon.app.clicksend.model.response.SendSmsMainResponse -up-|> com.woonders.lacemscommon.app.clicksend.model.response.AbstractBaseResponse
+  com.woonders.lacemscommon.app.clicksend.model.response.SendSmsMainResponse o-- com.woonders.lacemscommon.app.clicksend.model.response.SendSmsDataResponse : sendSmsDataResponse
+  com.woonders.lacemscommon.app.clicksend.model.response.SendSmsMainResponse +-down- com.woonders.lacemscommon.app.clicksend.model.response.SendSmsMainResponse.SendSmsMainResponseBuilder
+  com.woonders.lacemscommon.app.clicksend.model.response.SendSmsMainResponse.SendSmsMainResponseBuilder o-- com.woonders.lacemscommon.app.clicksend.model.response.SendSmsDataResponse : sendSmsDataResponse
+  com.woonders.lacemscommon.app.clicksend.model.response.SendSmsResponse +-down- com.woonders.lacemscommon.app.clicksend.model.response.SendSmsResponse.SendSmsResponseBuilder
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

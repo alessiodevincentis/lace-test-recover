@@ -1,0 +1,290 @@
+@startuml
+
+title __CONFIG's Class Diagram__\n
+
+  namespace com.woonders.lacemscommon {
+    namespace config {
+      class com.woonders.lacemscommon.config.AWSConfiguration {
+          {static} + BUCKET_NAME : String
+          {static} + BUCKET_NAME_BACKUP : String
+          - REGION_NAME : String
+          + AWSConfiguration()
+          + amazonS3Client()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace config {
+      class com.woonders.lacemscommon.config.Constants {
+          {static} + APP_DOMAIN : String
+          {static} + APP_WORKING_DIR : String
+          {static} + EMPTY_DEFAULT_DB_NAME : String
+          {static} + EXCEPTION_ERROR : String
+          {static} + HTTPS_ENABLED : boolean
+          {static} + IL_COMPARATORE_LEAD_ACTIVATION_EMAIL : String
+          {static} + MAX_LOGIN_ATTEMPTS : int
+          {static} + REPOSITORY_PACKAGE : String
+          {static} + SELECT_ONE_MENU_AZIENDA_NAME : String
+          {static} + SLOT_MINUTES_SCHEDULE : int
+          {static} + TENANT_NAME_LOG_KEY : String
+          {static} - ACCESS_LOG_INDEX_PATH : String
+          {static} - ACCESS_LOG_PATH : String
+          {static} - ADMIN_PATH : String
+          {static} - AMMINISTRAZIONI_PATH : String
+          {static} - ANALYTICS_CLIENTI_INDEX_PATH : String
+          {static} - ANALYTICS_NOMINATIVI_INDEX_PATH : String
+          {static} - ANALYTICS_PATH : String
+          {static} - ANTIRICICLAGGIO_ADMIN_PATH : String
+          {static} - ANTIRICICLAGGIO_PATH : String
+          {static} - APP_PATH : String
+          {static} - AZIENDA_PATH : String
+          {static} - BACKUP_INDEX_PATH : String
+          {static} - BACKUP_PATH : String
+          {static} - CAMBIO_PASSWORD_ANTIRICICLAGGIO_INDEX_PATH : String
+          {static} - CAMBIO_PASSWORD_INDEX_PATH : String
+          {static} - CHANGEPSW_PATH : String
+          {static} - CHOOSE_DOMAIN_PATH : String
+          {static} - CLIENTI_PATH : String
+          {static} - DASHBOARD_NOMINATIVO_PATH : String
+          {static} - DATATABLE_ADVANCED_SEARCH_CLIENTI_INDEX_PATH : String
+          {static} - DATATABLE_ADVANCED_SEARCH_NOMINATIVI_INDEX_PATH : String
+          {static} - DATATABLE_ANTIRICICLAGGIO_ADMIN_PATH : String
+          {static} - DATATABLE_ANTIRICICLAGGIO_PATH : String
+          {static} - DATATABLE_STATO_CONTEGGIO_ESTINZIONE_PATH : String
+          {static} - DATATABLE_STATO_NOMINATIVO_PATH : String
+          {static} - DATATABLE_STATO_PRATICA_PATH : String
+          {static} - DATI_PERSONALI_INDEX_PATH : String
+          {static} - DATI_PERSONALI_PATH : String
+          {static} - DELETE_CLIENTE_PRATICA_PATH : String
+          {static} - DELETE_KEY_PATH : String
+          {static} - DETTAGLIO_CAMPAGNA_MARKETING_PATH : String
+          {static} - EMPTY_STRING : String
+          {static} - FATTURAZIONE_INDEX_PATH : String
+          {static} - FATTURAZIONE_PATH : String
+          {static} - GESTIONE_PERMESSI_INDEX_PATH : String
+          {static} - GESTIONE_PERMESSI_PATH : String
+          {static} - INFO_ACCOUNT_INDEX_PATH : String
+          {static} - INFO_ACCOUNT_PATH : String
+          {static} - INFO_CAMPAGNE_MARKETING_PATH : String
+          {static} - INVITE_FRIENDS_INDEX_PATH : String
+          {static} - INVITE_FRIENDS_PATH : String
+          {static} - MANAGE_ROLES_PATH : String
+          {static} - MANAGE_USERS_PATH : String
+          {static} - MARKETING_PATH : String
+          {static} - NEW_LINE : String
+          {static} - NEW_SIMULATOR_TABLE_PATH : String
+          {static} - NOMINATIVI_PATH : String
+          {static} - NOTICE_BOARD_DATATABLE_INDEX_PATH : String
+          {static} - NOTICE_BOARD_INDEX_PATH : String
+          {static} - NOTICE_BOARD_PATH : String
+          {static} - NUOVA_AMMINISTRAZIONE_CHECK_RAGIONE_SOCIALE_PATH : String
+          {static} - NUOVA_CAMPAGNA_MARKETING_PATH : String
+          {static} - NUOVA_PRATICA_CHECK_CF_PATH : String
+          {static} - NUOVO_NOMINATIVO_PATH : String
+          {static} - PDF_VIEW_PATH : String
+          {static} - PREFERENZE_INDEX_PATH : String
+          {static} - REDIRECT : String
+          {static} - RICARICA_PATH : String
+          {static} - RICARICA_SMS_PATH : String
+          {static} - RUN_SIMULATOR_PATH : String
+          {static} - SEARCH_AMMINISTRAZIONE_PATH : String
+          {static} - SEARCH_CLIENTE_NOMINATIVO_PATH : String
+          {static} - SEARCH_PATH : String
+          {static} - SECURE_PATH : String
+          {static} - SESSION_EXPIRED_PATH : String
+          {static} - SETTINGS_CAMPAGNE_MARKETING_PATH : String
+          {static} - SETTINGS_PATH : String
+          {static} - SIMULATOR_PATH : String
+          {static} - SIMULATOR_TABLE_LIST_PATH : String
+          {static} - STATO_NOMINATIVI_PATH : String
+          {static} - STATO_PRATICHE_CESSIONI_DELEGHE_PATH : String
+          {static} - STATO_PRATICHE_PRESTITI_PATH : String
+          {static} - SYSADMIN_DASHBOARD_PATH : String
+          {static} - SYSADMIN_PATH : String
+          {static} + getAccessLogPath()
+          {static} + getAnalyticsClientiPath()
+          {static} + getAnalyticsNominativiPath()
+          {static} + getAntiriciclaggioAdminPath()
+          {static} + getAntiriciclaggioPath()
+          {static} + getAziendaPath()
+          {static} + getBackupPath()
+          {static} + getCambioPasswordAntiriciclaggioPath()
+          {static} + getCambioPasswordPath()
+          {static} + getChooseDomainPath()
+          {static} + getCreateNewSimulatorTablePath()
+          {static} + getDashboardNominativoPath()
+          {static} + getDashboardPath()
+          {static} + getDatatableAdvancedSearchClientiPath()
+          {static} + getDatatableAdvancedSearchNominativiPath()
+          {static} + getDatatableAmministrazionePath()
+          {static} + getDatatableAntiriciclaggioAdminPath()
+          {static} + getDatatableAntiriciclaggioPath()
+          {static} + getDatatableCheckNominativoPath()
+          {static} + getDatatableCheckPath()
+          {static} + getDatatableDashboardNotificationPath()
+          {static} + getDatatableDashboardNotificationPreventivoPath()
+          {static} + getDatatableNominativoOmessiPath()
+          {static} + getDatatableNominativoRinnoviPath()
+          {static} + getDatatablePath()
+          {static} + getDatatablePraticheDaPerfezionarePath()
+          {static} + getDatatablePratichePerfezionatePath()
+          {static} + getDatatableStatoConteggioEstinzionePath()
+          {static} + getDatatableStatoNominativoPath()
+          {static} + getDatatableStatoPraticaPath()
+          {static} + getDatiPersonaliPath()
+          {static} + getDeleteClientePraticaPath()
+          {static} + getDeleteDatatablePath()
+          {static} + getDeletePath()
+          {static} + getDettaglioCampagnaMarketingPath()
+          {static} + getEmptyString()
+          {static} + getFatturazionePath()
+          {static} + getFormsAmministrazionePath()
+          {static} + getFormsNominativoPath()
+          {static} + getFormsPath()
+          {static} + getGestionePermessiPath()
+          {static} + getInfoAccountPath()
+          {static} + getInfoCampagneMarketingPath()
+          {static} + getInviteFriendsPath()
+          {static} + getLoginPath()
+          {static} + getManageRolesPath()
+          {static} + getManageUsersPath()
+          {static} + getNewLine()
+          {static} + getNoticeBoardDatatablePath()
+          {static} + getNoticeBoardPath()
+          {static} + getNuovaAmministrazioneCheckRagioneSocialePath()
+          {static} + getNuovaCampagnaMarketingPath()
+          {static} + getNuovaPraticaCheckCfPath()
+          {static} + getNuovoNominativoPath()
+          {static} + getPdfAmministrazionePath()
+          {static} + getPdfModPath()
+          {static} + getPdfNominativoPath()
+          {static} + getPdfNoticeBoardPath()
+          {static} + getPdfViewPath()
+          {static} + getPreferenzePath()
+          {static} + getRicaricaSmsPath()
+          {static} + getRunSimulatorPath()
+          {static} + getSearchAmministrazionePath()
+          {static} + getSearchClienteNominativoPath()
+          {static} + getSessionExpiredPath()
+          {static} + getSettingsCampagneMarketingPath()
+          {static} + getSimulatorTableListTablePath()
+          {static} + getStatoNominativiPath()
+          {static} + getStatoPraticheCessioniDeleghePath()
+          {static} + getStatoPratichePrestitiPath()
+          {static} + getSysAdminDashboardPath()
+          {static} - appendRedirect()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace config {
+      class com.woonders.lacemscommon.config.DevisProxTenantDto {
+          - aziendaId : long
+          - devisProxTenantId : String
+          - tenantName : String
+          {static} + builder()
+          + getAziendaId()
+          + getDevisProxTenantId()
+          + getTenantName()
+          + setAziendaId()
+          + setDevisProxTenantId()
+          + setTenantName()
+          ~ DevisProxTenantDto()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace config {
+      class com.woonders.lacemscommon.config.DevisProxTenantDto.DevisProxTenantDtoBuilder {
+          - aziendaId : long
+          - devisProxTenantId : String
+          - tenantName : String
+          + aziendaId()
+          + build()
+          + devisProxTenantId()
+          + tenantName()
+          + toString()
+          ~ DevisProxTenantDtoBuilder()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace config {
+      class com.woonders.lacemscommon.config.InternationalizationConfig {
+          + italyReloadableResourceBundleMessageSource()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace config {
+      class com.woonders.lacemscommon.config.InternationalizationConfig.ItalyReloadableResourceBundleMessageSource {
+          + getMessage()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace config {
+      class com.woonders.lacemscommon.config.SmsTenantManager {
+          {static} + JSF_NAME : String
+          {static} + NAME : String
+          {static} - SMSLIST_KEY : String
+          {static} - log : Logger
+          + getSmsTenantRepository()
+          - getIdSmsListFromDb()
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace config {
+      class com.woonders.lacemscommon.config.TenantManager {
+          {static} + JSF_NAME : String
+          {static} + NAME : String
+          {static} - DEVIS_PROX_ID_MAP_KEY : String
+          {static} - TENANT_LIST_KEY : String
+          - devisProxCache : Cache<String, Map<String, DevisProxTenantDto>>
+          {static} - log : Logger
+          - multiTenantDataSource : DataSource
+          - tenantCache : Cache<String, List<String>>
+          + getDevisProxCache()
+          + getMultiTenantDataSource()
+          + getTenantCache()
+          + getTenantDtoFromDevisProxId()
+          + getTenantService()
+          + isTenantAvailable()
+          ~ contextRefreshedEvent()
+          - generateTenantDevisProxMap()
+          - getTenantListFromDb()
+      }
+    }
+  }
+  
+
+  com.woonders.lacemscommon.config.DevisProxTenantDto +-down- com.woonders.lacemscommon.config.DevisProxTenantDto.DevisProxTenantDtoBuilder
+  com.woonders.lacemscommon.config.InternationalizationConfig +-down- com.woonders.lacemscommon.config.InternationalizationConfig.ItalyReloadableResourceBundleMessageSource
+  com.woonders.lacemscommon.config.InternationalizationConfig.ItalyReloadableResourceBundleMessageSource -up-|> org.springframework.context.support.ReloadableResourceBundleMessageSource
+  com.woonders.lacemscommon.config.SmsTenantManager o-- com.woonders.lacemscommon.db.tenantrepository.SmsTenantRepository : smsTenantRepository
+  com.woonders.lacemscommon.config.TenantManager o-- com.woonders.lacemscommon.service.TenantService : tenantService
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

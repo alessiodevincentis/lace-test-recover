@@ -1,0 +1,1332 @@
+@startuml
+
+title __IMPL's Class Diagram__\n
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        abstract class com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl {
+            + findClienteByIdCliente()
+            + findClienteByIdPratica()
+            + findContoByIdCliente()
+            + findCoobbligatoByIdPratica()
+            + findDocumentoByIdCliente()
+            + findEstinzioniByIdPratica()
+            + findPraticaByCodicePratica()
+            + findPraticheByIdCliente()
+            + findPreventiviByIdCliente()
+            + findResidenzaByIdCliente()
+            + findTrattenuteByIdCliente()
+            + getDataNotificaByStatoPraticaAndAziendaId()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        abstract class com.woonders.lacemscommon.service.impl.AbstractFileServiceImpl {
+            {static} - log : Logger
+            + canUploadFile()
+            + delete()
+            + deleteAllFilesInCategory()
+            + getFileListInCategory()
+            + getTotalFileAvailableSpace()
+            + getUsedStorageSpace()
+            + modifyUsedStorageSpace()
+            + save()
+            - getPredicateToRetrieveClientePraticaFile()
+            - getPredicateToRetrieveClientePraticaFile()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.AccessLogServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + getAccessLogList()
+            + getOne()
+            + saveLogin()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.AmazonS3FileServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - CLIENTI_FOLDER_NAME : String
+            - amazonS3 : AmazonS3
+            {static} - log : Logger
+            + delete()
+            + deleteFileForNoticeBoard()
+            + getFile()
+            + getFileForNoticeBoard()
+            + save()
+            - deleteFileFromS3()
+            - generateFileKey()
+            - generateFileKeyNoticeBoard()
+            - getFileFromS3()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.AmministrazioneServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + completeAmministrazione()
+            + findByCodiceFiscale()
+            + findByPiva()
+            + findByRagioneSociale()
+            + findDistinctByCliente_Id()
+            + findDistinctByRagioneSocialeContaining()
+            + findOne()
+            + save()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.AnalyticsClientiServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + countPraticheByStatoPraticheCollectionAndBetweenDateAndTipoPratica()
+            + getAnalyticsProvvigioneClienteList()
+            + sumByMontanteOrErogatoPraticheByStatoPraticheCollectionAndBetweenDateAndTipoPratica()
+            + sumProvvigioniAgenzia()
+            - sumByProvvigioneTotalePraticheByStatoPraticheCollectionAndBetweenDate()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.AnalyticsNominativiServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + countNominativiDiventatiClientiByProvenienza()
+            + countNominativiProvenienzaLead()
+            + countNominativiProvenienzaLeadToCliente()
+            + countNominativiTotaliByProvenienza()
+            + getAllFornitoriLead()
+            + getListNominativiTotalAndBecomeClienti()
+            - countNominativiDiventatiClientiByProvenienza()
+            - countNominativiTotaliByProvenienza()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.AntiriciclaggioServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + findPraticheAntiriciclaggio()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.AziendaServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + count()
+            + findAll()
+            + getOne()
+            + save()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.BackupServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            - amazonS3 : AmazonS3
+            {static} - log : Logger
+            + checkPassword()
+            + findAllAmministrazioni()
+            + findAllNominativi()
+            + findAllPratiche()
+            + getFileBackup()
+            + getLastBackupDate()
+            + saveBackupFile()
+            + updateDateBackup()
+            + updatePasswordBackup()
+            - generateFileKeyBackup()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoFacadeImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - log : Logger
+            + sendSmsAppuntamento()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - COMMENTO_APPUNTAMENTO_ELIMINATO : String
+            {static} - COMMENTO_APPUNTAMENTO_MODIFICATO : String
+            {static} - COMMENTO_NUOVO_APPUNTAMENTO : String
+            {static} - log : Logger
+            + changeTimeOne()
+            + deleteAppuntamento()
+            + findPraticheByIdCliente()
+            + getAppuntamenti()
+            + getAppuntamenti()
+            + getOne()
+            + saveAppuntamento()
+            + sendSmsAppuntamento()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.CampagnaMarketingFacadeImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + importaNominativi()
+            + saveAndSendCampagna()
+            + sendCampagna()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - log : Logger
+            + countByEsitoCampagna()
+            + countByEsitoCampagnaAndTipo()
+            + countByListEsitoCampagnaSms()
+            + findCampagna()
+            + findCampagnaSms()
+            + getCampagnaList()
+            + getCampagnaSmsList()
+            + getCliente()
+            + getNuovaCampagnaResultList()
+            + importaNominativi()
+            + save()
+            + saveAndSendCampagna()
+            + startSmsSendingCampagna()
+            + writeCampagnaInfoSent()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.CheckNominativoServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + findNominativoByCognomeAndNomeAndDataNascita()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - log : Logger
+            + deleteEstinzione()
+            + deleteSecondaOccupazione()
+            + deleteTrattenuta()
+            + findByCliente_Id()
+            + findByPratica_CodicePratica()
+            + findClienteByCodiceFiscale()
+            + getPraticaById()
+            + saveNewClienteWithPratica()
+            + setAntiriciclaggioFileCaricato()
+            - saveClientePraticaRelatedFields()
+            - setPerfezionata()
+            - setTipoCliente()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        enum PdfCategory {
+          ALLEGATI
+          ANAGRAFICA
+          FATTURA
+          PRECONTRATTUALE
+          PRIVACY
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.CoobbligatoServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + delete()
+            + findDistinctByPratica_CodicePratica()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.DashboardNominativoServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + countImpegniRinnovabili()
+            + countNewLead()
+            + countNominativiInDataRecall()
+            + countNominativiOmessi()
+            + findImpegniRinnovabili()
+            + getNominativiInDataRecall()
+            + getNominativiWithDataRecallExpired()
+            + getNominativo()
+            + getTrattenuta()
+            + setNullDataRecallNominativo()
+            + setRinnovoTrattenute()
+            - generateClienteTrattenuteViewModel()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.DashboardServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + calcTotalValueStatistics()
+            + countByDataRecallToday()
+            + countByDataRinnovoBeforeThanDays()
+            + countByDataRinnovoTrattenutaBeforeThanDays()
+            + countByPreventiviInCorso()
+            + countByTipoPraticaInMeseCorrente()
+            + countByTipoPraticaPerfezionataInAnnoCorrente()
+            + findByDataRecallToday()
+            + findByDataRinnovoBeforeThanDays()
+            + findByDataRinnovoTrattenutaBeforeThanDays()
+            + findByPreventiviInCorso()
+            + getClientePreventivo()
+            + getLastPraticheClientiCaricati()
+            + getPratica()
+            + getPraticaOnPreventivoCliente()
+            + removeNotificaPreventivo()
+            + removeNotificaRecall()
+            + removeNotificaRinnovoPratica()
+            + removeNotificaTrattenuta()
+            - findAllPraticheByCliente_Id()
+            - getBooleanBuilderGrafico()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        enum NotificationCategory {
+          COESISTENZA
+          PRATICA
+          RECALL
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.DeleteClienteServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + deleteByCf()
+            + deletePratica()
+            + findByCf()
+            + findPraticheToDeleteByCf()
+            + setListToDelete()
+            - deleteFilesForPratica()
+            - setFieldListCliente()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.FatturazioneServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - log : Logger
+            + getPratica()
+            + perfezionaPratiche()
+            + perfezionaPratiche()
+            + searchPraticheDaPerfezionare()
+            + searchPratichePerfezionate()
+            + sumTotaleMontantePraticheDaPerfezionare()
+            + sumTotaleMontantePratichePerfezionate()
+            + sumTotaleProvvigionePraticheDaPerfezionare()
+            + sumTotaleProvvigionePratichePerfezionate()
+            + updateDecorrenzaPratica()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.FattureInCloudServiceImpl {
+            {static} - MITTENTE_FATTURE_IN_CLOUD_DEFAULT : String
+            {static} - SEZIONALE_FATTURE_LACE : String
+            {static} - log : Logger
+            + FattureInCloudServiceImpl()
+            + createNewDoc()
+            + eliminaFattura()
+            + getLinkFattura()
+            + inviaMailFattura()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.FinanziariaServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + findAll()
+            + getOne()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.GestionePermessiServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + saveNewPermission()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.InfoAccountServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - log : Logger
+            + getOne()
+            + getOperatorsNumber()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.LocalFileServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + delete()
+            + deleteFileForNoticeBoard()
+            + getFile()
+            + getFileForNoticeBoard()
+            + save()
+            - categoryFolderExists()
+            - clientePraticaFolderExists()
+            - fileExists()
+            - tenantFolderExists()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.LogServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + getNominativoLog()
+            + getPraticaLog()
+            + isLastEntrySame()
+            + log()
+            + log()
+            + logCustomAction()
+            - createNominativoLog()
+            - getPageLog()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.LoginAttemptServiceImpl {
+            - attemptsCache : LoadingCache<String, Integer>
+            - maxAttempts : int
+            + init()
+            + isBlocked()
+            + storeFailedLogin()
+            + storeSucceededLogin()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.NominativoServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - log : Logger
+            + creaPraticaDaPreventivoNominativo()
+            + delete()
+            + deletePreventivo()
+            + deleteTrattenuta()
+            + getNotificaLeadSms()
+            + saveNominativo()
+            - getEstinzioniFromImpegniInCorsoNominativo()
+            - saveNominativoRelatedFields()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.NoticeBoardServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} + NOTICE_BOARD_FOLDER_NAME : String
+            - amazonS3 : AmazonS3
+            {static} - log : Logger
+            + addOperatorIntoOperatorSet()
+            + countNoticesToRead()
+            + delete()
+            + getAllNotices()
+            + getAllOperatorsByNoticeIdExcludeCreatorId()
+            + getNotice()
+            + isFileAttached()
+            + isNoticeToRead()
+            + save()
+            + setFileNameNull()
+            - generateFileKeyNoticeBoard()
+            - saveFile()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.OperatorServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - log : Logger
+            - passwordEncoder : PasswordEncoder
+            + changeData()
+            + changePassword()
+            + delete()
+            + findAll()
+            + findAllAppOperator()
+            + findAppOperatorListByAziendaId()
+            + findByRoleName()
+            + findByRoleNameInAndAzienda_Id()
+            + findByUsernameViewModel()
+            + findOperatorViewModelByUsername()
+            + getAllReceiveLeadEnabledOperatorByAziendaId()
+            + getOne()
+            + loadUserByUsername()
+            + mail()
+            + mailList()
+            + save()
+            + save()
+            + updateReceiveLeadEnabledOperatorsByAziendaId()
+            - getAuthorities()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.PraticheInCorsoServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + getAltrePraticheInCorsoByClienteSenzaPraticaAttualmenteVisibile()
+            - rimuoviPraticaSelezionata()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.PreferenzaStatoPraticaServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + getAllPreferenzaStatoPraticaByAziendaId()
+            + save()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.PreventivoServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + creaPratica()
+            + deletePreventivo()
+            + getAllPraticheAttiveEstinguibili()
+            + getAllTrattenuteEstinguibili()
+            + getClienteRepository()
+            + getClienteViewModelCreator()
+            + getEstinzioneRepository()
+            + getEstinzioneViewModelCreator()
+            + getPraticaRepository()
+            + getPraticaViewModelCreator()
+            + getPreferenzaStatoPraticaRepository()
+            + getPreventivoPraticaUtil()
+            + getPreventivoRepository()
+            + getPreventivoViewModelCreator()
+            + getTrattenuteRepository()
+            + getTrattenuteViewModelCreator()
+            + getUtil()
+            + setClienteRepository()
+            + setClienteViewModelCreator()
+            + setEstinzioneRepository()
+            + setEstinzioneViewModelCreator()
+            + setPraticaRepository()
+            + setPraticaViewModelCreator()
+            + setPreferenzaStatoPraticaRepository()
+            + setPreventivoPraticaUtil()
+            + setPreventivoRepository()
+            + setPreventivoViewModelCreator()
+            + setTrattenuteRepository()
+            + setTrattenuteViewModelCreator()
+            + setUtil()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.RicaricaServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - log : Logger
+            + findFatturaPdfLinkByRicaricaId()
+            + getTopUpList()
+            + makePayment()
+            - createArticoloList()
+            - createPagamentoList()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.RoleServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + delete()
+            + findAll()
+            + findOne()
+            + save()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.SearchServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + advancedSearchClienti()
+            + advancedSearchNominativi()
+            + completeClientiNominativi()
+            + filterListByCliente()
+            + findByNrContratto()
+            + findByTelefono()
+            + findOne()
+            + getOperatorList()
+            + getPratica()
+            + getSelectedClientePratica()
+            + searchByCodiceFiscale()
+            + searchByCognome()
+            - advancedSearchCreator()
+            - setFieldListCliente()
+            - setFieldListNominativo()
+            - setList()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.SettingServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + findAll()
+            + getByAziendaId()
+            + getGeneralSetting()
+            + isSimulatorEnabledByAziendaId()
+            + save()
+            + save()
+            + setLeadIlComparatoreEnabled()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.SimulatorTableServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + clone()
+            + delete()
+            + enable()
+            + findAll()
+            + findAssigned()
+            + findOne()
+            + getDetails()
+            + isTableUsedSomewhere()
+            + save()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.SmsLeadServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - log : Logger
+            + sendLeadNotificaSms()
+            - decrementaBalance()
+            - isCreditAvailable()
+            - isNotificaSmsLeadEnabled()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.SmsServiceFacadeImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - log : Logger
+            + checkEnoughBalance()
+            + checkEnoughBalance()
+            + sendSms()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.SmsServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - log : Logger
+            + calcSmsPricingInfo()
+            + calcSmsPricingInfo()
+            + decrementaBalance()
+            + sendSms()
+            + updateStatusNotificaSmsLead()
+            + updateStatusNotificaSmsMarketing()
+            - checkIfStatusNeedsToBeChanged()
+            - getSmsPrice()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.SmsTenantServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + getSmsTenantList()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.StatoNominativoServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + countNominativiByStatoNominativo()
+            + getNominativiByStatoNominativo()
+            + isContainsDataRecallNominativoLessToday()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + countByStatoPraticaAndTipoClienteAndUsername()
+            + countEstinzioniByStatoConteggioEstinzioneAndTipoClienteAndUsername()
+            + findByStatoPraticaAndTipoClienteAndUsername()
+            + findEstinzioniByStatoConteggioEstinzioneAndTipoClienteAndUsername()
+            + getClientePratica()
+            + getEstinzione()
+            + getEstinzionePraticaCliente()
+            + isContainsDatesToBeNotified()
+            + isContainsDatesToBeNotified()
+            + updateDataNotificaByCodicePratica()
+            + updateDataNotificaConteggioEstinzioneByIdEstinzione()
+            + updateStatoConteggioEstinzioneByIdEstinzione()
+            + updateStatoPraticaByCodicePratica()
+            - calcNotifyDateForFindEstinzioni()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.StripePaymentServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            {static} - EUR : String
+            {static} - STRIPE_SECRET_KEY : String
+            {static} - log : Logger
+            + StripePaymentServiceImpl()
+            + makePayment()
+            - increaseSmsBalance()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.TenantServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + getActiveTenantList()
+        }
+      }
+    }
+  }
+  
+
+  namespace com.woonders.lacemscommon {
+    namespace service {
+      namespace impl {
+        class com.woonders.lacemscommon.service.impl.ValutazioneAmministrazioneServiceImpl {
+            {static} + JSF_NAME : String
+            {static} + NAME : String
+            + delete()
+            + findDistinctByAmministrazione_CodiceAmm()
+        }
+      }
+    }
+  }
+  
+
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl .up.|> com.woonders.lacemscommon.service.AppService
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.db.repository.ContoRepository : contoRepository
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ContoViewModelCreator : contoViewModelCreator
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.db.repository.CoobbligatoRepository : coobbligatoRepository
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.CoobbligatoViewModelCreator : coobbligatoViewModelCreator
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.db.repository.DocumentoRepository : documentoRepository
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.DocumentoViewModelCreator : documentoViewModelCreator
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.db.repository.EstinzioneRepository : estinzioneRepository
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.EstinzioneViewModelCreator : estinzioneViewModelCreator
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PraticaViewModelCreator : praticaViewModelCreator
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.db.repository.PreferenzaStatoPraticaRepository : preferenzaStatoPraticaRepository
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PreferenzaStatoPraticaViewModelCreator : preferenzaStatoPraticaViewModelCreator
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.db.repository.PreventivoRepository : preventivoRepository
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PreventivoViewModelCreator : preventivoViewModelCreator
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.db.repository.ResidenzaRepository : residenzaRepository
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ResidenzaViewModelCreator : residenzaViewModelCreator
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.db.repository.TrattenuteRepository : trattenuteRepository
+  com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.TrattenuteViewModelCreator : trattenuteViewModelCreator
+  com.woonders.lacemscommon.service.impl.AbstractFileServiceImpl .up.|> com.woonders.lacemscommon.service.FileService
+  com.woonders.lacemscommon.service.impl.AbstractFileServiceImpl o-- com.woonders.lacemscommon.db.repository.ClientePraticaFileRepository : clientePraticaFileRepository
+  com.woonders.lacemscommon.service.impl.AbstractFileServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.AbstractFileServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.AbstractFileServiceImpl o-- com.woonders.lacemscommon.service.SettingService : settingService
+  com.woonders.lacemscommon.service.impl.AccessLogServiceImpl .up.|> com.woonders.lacemscommon.service.AccessLogService
+  com.woonders.lacemscommon.service.impl.AccessLogServiceImpl o-- com.woonders.lacemscommon.db.repository.AccessLogRepository : accessLogRepository
+  com.woonders.lacemscommon.service.impl.AccessLogServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.AccessLogViewModelCreator : accessLogViewModelCreator
+  com.woonders.lacemscommon.service.impl.AccessLogServiceImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.service.impl.AmazonS3FileServiceImpl -up-|> com.woonders.lacemscommon.service.impl.AbstractFileServiceImpl
+  com.woonders.lacemscommon.service.impl.AmministrazioneServiceImpl .up.|> com.woonders.lacemscommon.service.AmministrazioneService
+  com.woonders.lacemscommon.service.impl.AmministrazioneServiceImpl o-- com.woonders.lacemscommon.db.repository.AmministrazioneRepository : amministrazioneRepository
+  com.woonders.lacemscommon.service.impl.AmministrazioneServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.AmministrazioneViewModelCreator : amministrazioneViewModelCreator
+  com.woonders.lacemscommon.service.impl.AmministrazioneServiceImpl o-- com.woonders.lacemscommon.db.repository.ValutazioneAmministrazioneRepository : valutazioneAmministrazioneRepository
+  com.woonders.lacemscommon.service.impl.AnalyticsClientiServiceImpl .up.|> com.woonders.lacemscommon.service.AnalyticsClientiService
+  com.woonders.lacemscommon.service.impl.AnalyticsClientiServiceImpl o-- com.woonders.lacemscommon.util.AnalyticsUtil : analyticsUtil
+  com.woonders.lacemscommon.service.impl.AnalyticsClientiServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.AnalyticsClientiServiceImpl o-- com.woonders.lacemscommon.db.entityutil.PraticaUtil : praticaUtil
+  com.woonders.lacemscommon.service.impl.AnalyticsClientiServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.AnalyticsNominativiServiceImpl .up.|> com.woonders.lacemscommon.service.AnalyticsNominativiService
+  com.woonders.lacemscommon.service.impl.AnalyticsNominativiServiceImpl o-- com.woonders.lacemscommon.util.AnalyticsUtil : analyticsUtil
+  com.woonders.lacemscommon.service.impl.AnalyticsNominativiServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.AnalyticsNominativiServiceImpl o-- com.woonders.lacemscommon.util.DateConversionUtil : dateConversionUtil
+  com.woonders.lacemscommon.service.impl.AnalyticsNominativiServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.AntiriciclaggioServiceImpl .up.|> com.woonders.lacemscommon.service.AntiriciclaggioService
+  com.woonders.lacemscommon.service.impl.AntiriciclaggioServiceImpl o-- com.woonders.lacemscommon.app.model.util.ClientePraticaUtil : clientePraticaUtil
+  com.woonders.lacemscommon.service.impl.AntiriciclaggioServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.AntiriciclaggioServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.AntiriciclaggioServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.AntiriciclaggioServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PraticaViewModelCreator : praticaViewModelCreator
+  com.woonders.lacemscommon.service.impl.AntiriciclaggioServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.AntiriciclaggioServiceImpl o-- com.woonders.lacemscommon.db.QueryDSLHelper : queryDSLHelper
+  com.woonders.lacemscommon.service.impl.AziendaServiceImpl .up.|> com.woonders.lacemscommon.service.AziendaService
+  com.woonders.lacemscommon.service.impl.AziendaServiceImpl o-- com.woonders.lacemscommon.db.repository.AziendaRepository : aziendaRepository
+  com.woonders.lacemscommon.service.impl.AziendaServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.AziendaViewModelCreator : aziendaViewModelCreator
+  com.woonders.lacemscommon.service.impl.BackupServiceImpl .up.|> com.woonders.lacemscommon.service.BackupService
+  com.woonders.lacemscommon.service.impl.BackupServiceImpl o-- com.woonders.lacemscommon.db.repository.AmministrazioneRepository : amministrazioneRepository
+  com.woonders.lacemscommon.service.impl.BackupServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.AmministrazioneViewModelCreator : amministrazioneViewModelCreator
+  com.woonders.lacemscommon.service.impl.BackupServiceImpl o-- com.woonders.lacemscommon.db.repository.BackupRepository : backupRepository
+  com.woonders.lacemscommon.service.impl.BackupServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.BackupServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoFacadeImpl .up.|> com.woonders.lacemscommon.service.CalendarioAppuntamentoFacade
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoFacadeImpl o-- com.woonders.lacemscommon.util.DateConversionUtil : dateConversionUtil
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoFacadeImpl o-- com.woonders.lacemscommon.util.RequestUtil : requestUtil
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoFacadeImpl o-- com.woonders.lacemscommon.service.SmsService : smsService
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoFacadeImpl o-- com.woonders.lacemscommon.sms.SmsUtil : smsUtil
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl .up.|> com.woonders.lacemscommon.service.CalendarioAppuntamentoService
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl o-- com.woonders.lacemscommon.service.AziendaService : aziendaService
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl o-- com.woonders.lacemscommon.service.CalendarioAppuntamentoFacade : calendarioAppuntamentoFacade
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl o-- com.woonders.lacemscommon.db.repository.CalendarioAppuntamentoRepository : calendarioAppuntamentoRepository
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.CalendarioAppuntamentoViewModelCreator : calendarioAppuntamentoViewModelCreator
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl o-- com.woonders.lacemscommon.util.DateConversionUtil : dateConversionUtil
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl o-- com.woonders.lacemscommon.service.LogService : logService
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PraticaViewModelCreator : praticaViewModelCreator
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl o-- com.woonders.lacemscommon.service.SettingService : settingService
+  com.woonders.lacemscommon.service.impl.CalendarioAppuntamentoServiceImpl o-- com.woonders.lacemscommon.db.entityutil.SettingUtil : settingUtil
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingFacadeImpl .up.|> com.woonders.lacemscommon.service.CampagnaMarketingFacade
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingFacadeImpl o-- com.woonders.lacemscommon.service.CampagnaMarketingService : campagnaMarketingService
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl .up.|> com.woonders.lacemscommon.service.CampagnaMarketingService
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.service.AziendaService : aziendaService
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.db.repository.CampagnaRepository : campagnaRepository
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.db.repository.CampagnaSmsRepository : campagnaSmsRepository
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.CampagnaSmsViewModelCreator : campagnaSmsViewModelCreator
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.CampagnaViewModelCreator : campagnaViewModelCreator
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.db.QueryDSLHelper : queryDSLHelper
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.util.RequestUtil : requestUtil
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.service.SettingService : settingService
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.db.entityutil.SettingUtil : settingUtil
+  com.woonders.lacemscommon.service.impl.CampagnaMarketingServiceImpl o-- com.woonders.lacemscommon.sms.SmsSenderExecutor : smsSenderExecutor
+  com.woonders.lacemscommon.service.impl.CheckNominativoServiceImpl .up.|> com.woonders.lacemscommon.service.CheckNominativoService
+  com.woonders.lacemscommon.service.impl.CheckNominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.CheckNominativoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.CheckNominativoServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl .up.|> com.woonders.lacemscommon.service.ClienteManagerService
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl -up-|> com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.db.repository.AmministrazioneRepository : amministrazioneRepository
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.AmministrazioneViewModelCreator : amministrazioneViewModelCreator
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.db.repository.ClientePraticaFileRepository : clientePraticaFileRepository
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClientePraticaFileViewModelCreator : clientePraticaFileViewModelCreator
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.db.repository.ContoRepository : contoRepository
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ContoViewModelCreator : contoViewModelCreator
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.db.repository.CoobbligatoRepository : coobbligatoRepository
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.CoobbligatoViewModelCreator : coobbligatoViewModelCreator
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.db.repository.DocumentoRepository : documentoRepository
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.DocumentoViewModelCreator : documentoViewModelCreator
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.db.repository.EstinzioneRepository : estinzioneRepository
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.EstinzioneViewModelCreator : estinzioneViewModelCreator
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.service.LogService : logService
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PraticaViewModelCreator : praticaViewModelCreator
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.db.repository.PreventivoRepository : preventivoRepository
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PreventivoViewModelCreator : preventivoViewModelCreator
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.db.repository.ResidenzaRepository : residenzaRepository
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ResidenzaViewModelCreator : residenzaViewModelCreator
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.db.repository.TrattenuteRepository : trattenuteRepository
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.TrattenuteViewModelCreator : trattenuteViewModelCreator
+  com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl +-down- com.woonders.lacemscommon.service.impl.ClienteManagerServiceImpl.PdfCategory
+  com.woonders.lacemscommon.service.impl.CoobbligatoServiceImpl .up.|> com.woonders.lacemscommon.service.CoobbligatoService
+  com.woonders.lacemscommon.service.impl.CoobbligatoServiceImpl o-- com.woonders.lacemscommon.db.repository.CoobbligatoRepository : coobbligatoRepository
+  com.woonders.lacemscommon.service.impl.CoobbligatoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.CoobbligatoViewModelCreator : coobbligatoViewModelCreator
+  com.woonders.lacemscommon.service.impl.DashboardNominativoServiceImpl .up.|> com.woonders.lacemscommon.service.DashboardNominativoService
+  com.woonders.lacemscommon.service.impl.DashboardNominativoServiceImpl -up-|> com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl
+  com.woonders.lacemscommon.service.impl.DashboardNominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.DashboardNominativoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.DashboardNominativoServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.DashboardNominativoServiceImpl o-- com.woonders.lacemscommon.db.QueryDSLHelper : queryDSLHelper
+  com.woonders.lacemscommon.service.impl.DashboardNominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.TrattenuteRepository : trattenuteRepository
+  com.woonders.lacemscommon.service.impl.DashboardNominativoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.TrattenuteViewModelCreator : trattenuteViewModelCreator
+  com.woonders.lacemscommon.service.impl.DashboardServiceImpl .up.|> com.woonders.lacemscommon.service.DashboardService
+  com.woonders.lacemscommon.service.impl.DashboardServiceImpl o-- com.woonders.lacemscommon.app.model.util.ClientePraticaUtil : clientePraticaUtil
+  com.woonders.lacemscommon.service.impl.DashboardServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.DashboardServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.DashboardServiceImpl o-- com.woonders.lacemscommon.db.entityutil.PraticaUtil : praticaUtil
+  com.woonders.lacemscommon.service.impl.DashboardServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PraticaViewModelCreator : praticaViewModelCreator
+  com.woonders.lacemscommon.service.impl.DashboardServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.DashboardServiceImpl o-- com.woonders.lacemscommon.db.repository.PreventivoRepository : preventivoRepository
+  com.woonders.lacemscommon.service.impl.DashboardServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PreventivoViewModelCreator : preventivoViewModelCreator
+  com.woonders.lacemscommon.service.impl.DashboardServiceImpl o-- com.woonders.lacemscommon.db.QueryDSLHelper : queryDSLHelper
+  com.woonders.lacemscommon.service.impl.DashboardServiceImpl o-- com.woonders.lacemscommon.db.repository.TrattenuteRepository : trattenuteRepository
+  com.woonders.lacemscommon.service.impl.DashboardServiceImpl +-down- com.woonders.lacemscommon.service.impl.DashboardServiceImpl.NotificationCategory
+  com.woonders.lacemscommon.service.impl.DeleteClienteServiceImpl .up.|> com.woonders.lacemscommon.service.DeleteClienteService
+  com.woonders.lacemscommon.service.impl.DeleteClienteServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.DeleteClienteServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.DeleteClienteServiceImpl o-- com.woonders.lacemscommon.service.FileService : fileService
+  com.woonders.lacemscommon.service.impl.DeleteClienteServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.DeleteClienteServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PraticaViewModelCreator : praticaViewModelCreator
+  com.woonders.lacemscommon.service.impl.FatturazioneServiceImpl .up.|> com.woonders.lacemscommon.service.FatturazioneService
+  com.woonders.lacemscommon.service.impl.FatturazioneServiceImpl o-- com.woonders.lacemscommon.app.model.util.ClientePraticaUtil : clientePraticaUtil
+  com.woonders.lacemscommon.service.impl.FatturazioneServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.FatturazioneServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.FatturazioneServiceImpl o-- com.woonders.lacemscommon.service.OperatorService : operatorService
+  com.woonders.lacemscommon.service.impl.FatturazioneServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.FatturazioneServiceImpl o-- com.woonders.lacemscommon.db.entityutil.PraticaUtil : praticaUtil
+  com.woonders.lacemscommon.service.impl.FatturazioneServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PraticaViewModelCreator : praticaViewModelCreator
+  com.woonders.lacemscommon.service.impl.FatturazioneServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.FatturazioneServiceImpl o-- com.woonders.lacemscommon.db.QueryDSLHelper : queryDSLHelper
+  com.woonders.lacemscommon.service.impl.FattureInCloudServiceImpl .up.|> com.woonders.lacemscommon.service.FattureInCloudService
+  com.woonders.lacemscommon.service.impl.FattureInCloudServiceImpl o-- com.woonders.lacemscommon.fattureincloud.FattureInCloudClient : fattureInCloudClient
+  com.woonders.lacemscommon.service.impl.FattureInCloudServiceImpl o-- com.woonders.lacemscommon.util.IvaUtil : ivaUtil
+  com.woonders.lacemscommon.service.impl.FattureInCloudServiceImpl o-- com.woonders.lacemscommon.retryutil.LaceRetryTemplate : laceRetryTemplate
+  com.woonders.lacemscommon.service.impl.FattureInCloudServiceImpl o-- com.woonders.lacemscommon.slack.SlackUtil : slackUtil
+  com.woonders.lacemscommon.service.impl.FinanziariaServiceImpl .up.|> com.woonders.lacemscommon.service.FinanziariaService
+  com.woonders.lacemscommon.service.impl.FinanziariaServiceImpl o-- com.woonders.lacemscommon.db.repository.FinanziariaRepository : finanziariaRepository
+  com.woonders.lacemscommon.service.impl.FinanziariaServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.FinanziariaViewModelCreator : finanziariaViewModelCreator
+  com.woonders.lacemscommon.service.impl.GestionePermessiServiceImpl .up.|> com.woonders.lacemscommon.service.GestionePermessiService
+  com.woonders.lacemscommon.service.impl.GestionePermessiServiceImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.service.impl.GestionePermessiServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.OperatorViewModelCreator : operatorViewModelCreator
+  com.woonders.lacemscommon.service.impl.InfoAccountServiceImpl .up.|> com.woonders.lacemscommon.service.InfoAccountService
+  com.woonders.lacemscommon.service.impl.InfoAccountServiceImpl o-- com.woonders.lacemscommon.db.repository.InfoAccountRepository : infoAccountRepository
+  com.woonders.lacemscommon.service.impl.InfoAccountServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.InfoAccountViewModelCreator : infoAccountViewModelCreator
+  com.woonders.lacemscommon.service.impl.InfoAccountServiceImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.service.impl.LocalFileServiceImpl -up-|> com.woonders.lacemscommon.service.impl.AbstractFileServiceImpl
+  com.woonders.lacemscommon.service.impl.LogServiceImpl .up.|> com.woonders.lacemscommon.service.LogService
+  com.woonders.lacemscommon.service.impl.LogServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.LogServiceImpl o-- com.woonders.lacemscommon.config.InternationalizationConfig.ItalyReloadableResourceBundleMessageSource : italyReloadableResourceBundleMessageSource
+  com.woonders.lacemscommon.service.impl.LogServiceImpl o-- com.woonders.lacemscommon.db.repository.NominativoLogRepository : nominativoLogRepository
+  com.woonders.lacemscommon.service.impl.LogServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.NominativoLogViewModelCreator : nominativoLogViewModelCreator
+  com.woonders.lacemscommon.service.impl.LogServiceImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.service.impl.LogServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.LogServiceImpl o-- com.woonders.lacemscommon.db.QueryDSLHelper : queryDSLHelper
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl .up.|> com.woonders.lacemscommon.service.NominativoService
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl -up-|> com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.AmministrazioneRepository : amministrazioneRepository
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.AmministrazioneViewModelCreator : amministrazioneViewModelCreator
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.CalendarioAppuntamentoRepository : calendarioAppuntamentoRepository
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.ContoRepository : contoRepository
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.DocumentoRepository : documentoRepository
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.EstinzioneRepository : estinzioneRepository
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.db.entityutil.EstinzioneUtil : estinzioneUtil
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.EstinzioneViewModelCreator : estinzioneViewModelCreator
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.service.LogService : logService
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.NotificaLeadSmsRepository : notificaLeadSmsRepository
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.NotificaLeadSmsViewModelCreator : notificaLeadSmsViewModelCreator
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.service.OperatorService : operatorService
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PraticaViewModelCreator : praticaViewModelCreator
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.ResidenzaRepository : residenzaRepository
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ResidenzaViewModelCreator : residenzaViewModelCreator
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.db.entityutil.TrattenutaUtil : trattenutaUtil
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.TrattenuteRepository : trattenuteRepository
+  com.woonders.lacemscommon.service.impl.NominativoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.TrattenuteViewModelCreator : trattenuteViewModelCreator
+  com.woonders.lacemscommon.service.impl.NoticeBoardServiceImpl .up.|> com.woonders.lacemscommon.service.NoticeBoardService
+  com.woonders.lacemscommon.service.impl.NoticeBoardServiceImpl o-- com.woonders.lacemscommon.db.repository.AziendaRepository : aziendaRepository
+  com.woonders.lacemscommon.service.impl.NoticeBoardServiceImpl o-- com.woonders.lacemscommon.db.repository.NoticeBoardRepository : noticeBoardRepository
+  com.woonders.lacemscommon.service.impl.NoticeBoardServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.NoticeBoardViewModelCreator : noticeBoardViewModelCreator
+  com.woonders.lacemscommon.service.impl.NoticeBoardServiceImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.service.impl.NoticeBoardServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.NoticeBoardServiceImpl o-- com.woonders.lacemscommon.db.QueryDSLHelper : queryDSLHelper
+  com.woonders.lacemscommon.service.impl.OperatorServiceImpl .up.|> com.woonders.lacemscommon.service.OperatorService
+  com.woonders.lacemscommon.service.impl.OperatorServiceImpl o-- com.woonders.lacemscommon.service.impl.LoginAttemptServiceImpl : loginAttemptService
+  com.woonders.lacemscommon.service.impl.OperatorServiceImpl o-- com.woonders.lacemscommon.network.NetworkUtil : networkUtil
+  com.woonders.lacemscommon.service.impl.OperatorServiceImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.service.impl.OperatorServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.OperatorViewModelCreator : operatorViewModelCreator
+  com.woonders.lacemscommon.service.impl.OperatorServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.PraticheInCorsoServiceImpl .up.|> com.woonders.lacemscommon.service.PraticheInCorsoService
+  com.woonders.lacemscommon.service.impl.PraticheInCorsoServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.PraticheInCorsoServiceImpl o-- com.woonders.lacemscommon.app.model.util.PraticheInCorsoModelUtil : praticheInCorsoModelUtil
+  com.woonders.lacemscommon.service.impl.PreferenzaStatoPraticaServiceImpl .up.|> com.woonders.lacemscommon.service.PreferenzaStatoPraticaService
+  com.woonders.lacemscommon.service.impl.PreferenzaStatoPraticaServiceImpl o-- com.woonders.lacemscommon.db.repository.PreferenzaStatoPraticaRepository : preferenzaStatoPraticaRepository
+  com.woonders.lacemscommon.service.impl.PreferenzaStatoPraticaServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PreferenzaStatoPraticaViewModelCreator : preferenzaStatoPraticaViewModelCreator
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl .up.|> com.woonders.lacemscommon.service.PreventivoService
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl -up-|> com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl o-- com.woonders.lacemscommon.db.repository.EstinzioneRepository : estinzioneRepository
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.EstinzioneViewModelCreator : estinzioneViewModelCreator
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PraticaViewModelCreator : praticaViewModelCreator
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl o-- com.woonders.lacemscommon.db.repository.PreferenzaStatoPraticaRepository : preferenzaStatoPraticaRepository
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl o-- com.woonders.lacemscommon.util.PreventivoPraticaUtil : preventivoPraticaUtil
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl o-- com.woonders.lacemscommon.db.repository.PreventivoRepository : preventivoRepository
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PreventivoViewModelCreator : preventivoViewModelCreator
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl o-- com.woonders.lacemscommon.db.repository.TrattenuteRepository : trattenuteRepository
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.TrattenuteViewModelCreator : trattenuteViewModelCreator
+  com.woonders.lacemscommon.service.impl.PreventivoServiceImpl o-- com.woonders.lacemscommon.db.entityutil.PreventivoUtil : util
+  com.woonders.lacemscommon.service.impl.RicaricaServiceImpl .up.|> com.woonders.lacemscommon.service.RicaricaService
+  com.woonders.lacemscommon.service.impl.RicaricaServiceImpl o-- com.woonders.lacemscommon.service.AziendaService : aziendaService
+  com.woonders.lacemscommon.service.impl.RicaricaServiceImpl o-- com.woonders.lacemscommon.service.FattureInCloudService : fattureInCloudService
+  com.woonders.lacemscommon.service.impl.RicaricaServiceImpl o-- com.woonders.lacemscommon.service.PaymentService : paymentService
+  com.woonders.lacemscommon.service.impl.RicaricaServiceImpl o-- com.woonders.lacemscommon.db.QueryDSLHelper : queryDSLHelper
+  com.woonders.lacemscommon.service.impl.RicaricaServiceImpl o-- com.woonders.lacemscommon.db.repository.RicaricaComunicazioneRepository : ricaricaComunicazioneRepository
+  com.woonders.lacemscommon.service.impl.RicaricaServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.RicaricaComunicazioneViewModelCreator : ricaricaComunicazioneViewModelCreator
+  com.woonders.lacemscommon.service.impl.RicaricaServiceImpl o-- com.woonders.lacemscommon.slack.SlackUtil : slackUtil
+  com.woonders.lacemscommon.service.impl.RoleServiceImpl .up.|> com.woonders.lacemscommon.service.RoleService
+  com.woonders.lacemscommon.service.impl.RoleServiceImpl o-- com.woonders.lacemscommon.db.repository.RoleRepository : roleRepository
+  com.woonders.lacemscommon.service.impl.RoleServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.RoleViewModelCreator : roleViewModelCreator
+  com.woonders.lacemscommon.service.impl.SearchServiceImpl .up.|> com.woonders.lacemscommon.service.SearchService
+  com.woonders.lacemscommon.service.impl.SearchServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.AmministrazioneViewModelCreator : amministrazioneViewModelCreator
+  com.woonders.lacemscommon.service.impl.SearchServiceImpl o-- com.woonders.lacemscommon.app.model.util.ClientePraticaUtil : clientePraticaUtil
+  com.woonders.lacemscommon.service.impl.SearchServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.SearchServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.SearchServiceImpl o-- com.woonders.lacemscommon.util.DateConversionUtil : dateConversionUtil
+  com.woonders.lacemscommon.service.impl.SearchServiceImpl o-- com.woonders.lacemscommon.service.OperatorService : operatorService
+  com.woonders.lacemscommon.service.impl.SearchServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.SearchServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PraticaViewModelCreator : praticaViewModelCreator
+  com.woonders.lacemscommon.service.impl.SearchServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.SearchServiceImpl o-- com.woonders.lacemscommon.db.QueryDSLHelper : queryDSLHelper
+  com.woonders.lacemscommon.service.impl.SettingServiceImpl .up.|> com.woonders.lacemscommon.service.SettingService
+  com.woonders.lacemscommon.service.impl.SettingServiceImpl o-- com.woonders.lacemscommon.db.repository.GeneralSettingRepository : generalSettingRepository
+  com.woonders.lacemscommon.service.impl.SettingServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.GeneralSettingViewModelCreator : generalSettingViewModelCreator
+  com.woonders.lacemscommon.service.impl.SettingServiceImpl o-- com.woonders.lacemscommon.db.repository.SettingRepository : settingRepository
+  com.woonders.lacemscommon.service.impl.SettingServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.SettingViewModelCreator : settingViewModelCreator
+  com.woonders.lacemscommon.service.impl.SimulatorTableServiceImpl .up.|> com.woonders.lacemscommon.service.SimulatorTableService
+  com.woonders.lacemscommon.service.impl.SimulatorTableServiceImpl o-- com.woonders.lacemscommon.db.repository.AziendaRepository : aziendaRepository
+  com.woonders.lacemscommon.service.impl.SimulatorTableServiceImpl o-- com.woonders.lacemscommon.util.NumberUtil : numberUtil
+  com.woonders.lacemscommon.service.impl.SimulatorTableServiceImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.service.impl.SimulatorTableServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.OperatorViewModelCreator : operatorViewModelCreator
+  com.woonders.lacemscommon.service.impl.SimulatorTableServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.SimulatorTableServiceImpl o-- com.woonders.lacemscommon.db.repository.PreventivoRepository : preventivoRepository
+  com.woonders.lacemscommon.service.impl.SimulatorTableServiceImpl o-- com.woonders.lacemscommon.db.QueryDSLHelper : queryDSLHelper
+  com.woonders.lacemscommon.service.impl.SimulatorTableServiceImpl o-- com.woonders.lacemscommon.db.repository.SimulatorTableDetailsRepository : simulatorTableDetailsRepository
+  com.woonders.lacemscommon.service.impl.SimulatorTableServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.SimulatorTableDetailsViewModelCreator : simulatorTableDetailsViewModelCreator
+  com.woonders.lacemscommon.service.impl.SimulatorTableServiceImpl o-- com.woonders.lacemscommon.db.repository.SimulatorTableRepository : simulatorTableRepository
+  com.woonders.lacemscommon.service.impl.SimulatorTableServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.SimulatorTableViewModelCreator : simulatorTableViewModelCreator
+  com.woonders.lacemscommon.service.impl.SmsLeadServiceImpl .up.|> com.woonders.lacemscommon.service.SmsLeadService
+  com.woonders.lacemscommon.service.impl.SmsLeadServiceImpl o-- com.woonders.lacemscommon.service.AziendaService : aziendaService
+  com.woonders.lacemscommon.service.impl.SmsLeadServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.SmsLeadServiceImpl o-- com.woonders.lacemscommon.db.repository.NotificaLeadSmsRepository : notificaLeadSmsRepository
+  com.woonders.lacemscommon.service.impl.SmsLeadServiceImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.service.impl.SmsLeadServiceImpl o-- com.woonders.lacemscommon.service.SettingService : settingService
+  com.woonders.lacemscommon.service.impl.SmsLeadServiceImpl o-- com.woonders.lacemscommon.db.entityutil.SettingUtil : settingUtil
+  com.woonders.lacemscommon.service.impl.SmsLeadServiceImpl o-- com.woonders.lacemscommon.service.SmsService : smsService
+  com.woonders.lacemscommon.service.impl.SmsLeadServiceImpl o-- com.woonders.lacemscommon.sms.SmsUtil : smsUtil
+  com.woonders.lacemscommon.service.impl.SmsServiceFacadeImpl .up.|> com.woonders.lacemscommon.service.SmsServiceFacade
+  com.woonders.lacemscommon.service.impl.SmsServiceFacadeImpl o-- com.woonders.lacemscommon.service.AziendaService : aziendaService
+  com.woonders.lacemscommon.service.impl.SmsServiceFacadeImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.service.impl.SmsServiceFacadeImpl o-- com.woonders.lacemscommon.service.SettingService : settingService
+  com.woonders.lacemscommon.service.impl.SmsServiceFacadeImpl o-- com.woonders.lacemscommon.db.entityutil.SettingUtil : settingUtil
+  com.woonders.lacemscommon.service.impl.SmsServiceFacadeImpl o-- com.woonders.lacemscommon.service.SmsService : smsService
+  com.woonders.lacemscommon.service.impl.SmsServiceFacadeImpl o-- com.woonders.lacemscommon.sms.SmsUtil : smsUtil
+  com.woonders.lacemscommon.service.impl.SmsServiceImpl .up.|> com.woonders.lacemscommon.service.SmsService
+  com.woonders.lacemscommon.service.impl.SmsServiceImpl o-- com.woonders.lacemscommon.service.AziendaService : aziendaService
+  com.woonders.lacemscommon.service.impl.SmsServiceImpl o-- com.woonders.lacemscommon.db.repository.CampagnaSmsRepository : campagnaSmsRepository
+  com.woonders.lacemscommon.service.impl.SmsServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.SmsServiceImpl o-- com.woonders.lacemscommon.util.DateConversionUtil : dateConversionUtil
+  com.woonders.lacemscommon.service.impl.SmsServiceImpl o-- com.woonders.lacemscommon.db.repository.NotificaLeadSmsRepository : notificaLeadSmsRepository
+  com.woonders.lacemscommon.service.impl.SmsServiceImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.service.impl.SmsServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.SmsServiceImpl o-- com.woonders.lacemscommon.service.SettingService : settingService
+  com.woonders.lacemscommon.service.impl.SmsServiceImpl o-- com.woonders.lacemscommon.db.entityutil.SettingUtil : settingUtil
+  com.woonders.lacemscommon.service.impl.SmsServiceImpl o-- com.woonders.lacemscommon.sms.SmsClient : smsClient
+  com.woonders.lacemscommon.service.impl.SmsTenantServiceImpl o-- com.woonders.lacemscommon.db.tenantrepository.SmsTenantRepository : smsTenantRepository
+  com.woonders.lacemscommon.service.impl.StatoNominativoServiceImpl .up.|> com.woonders.lacemscommon.service.StatoNominativoService
+  com.woonders.lacemscommon.service.impl.StatoNominativoServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.StatoNominativoServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.StatoNominativoServiceImpl o-- com.woonders.lacemscommon.db.QueryDSLHelper : queryDSLHelper
+  com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl .up.|> com.woonders.lacemscommon.service.StatoPraticheService
+  com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl -up-|> com.woonders.lacemscommon.service.impl.AbstractAppServiceImpl
+  com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl o-- com.woonders.lacemscommon.db.repository.AziendaRepository : aziendaRepository
+  com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl o-- com.woonders.lacemscommon.app.model.util.ClientePraticaUtil : clientePraticaUtil
+  com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl o-- com.woonders.lacemscommon.db.repository.ClienteRepository : clienteRepository
+  com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ClienteViewModelCreator : clienteViewModelCreator
+  com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl o-- com.woonders.lacemscommon.db.repository.EstinzioneRepository : estinzioneRepository
+  com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl o-- com.woonders.lacemscommon.db.entityutil.EstinzioneUtil : estinzioneUtil
+  com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.EstinzioneViewModelCreator : estinzioneViewModelCreator
+  com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl o-- com.woonders.lacemscommon.db.repository.PraticaRepository : praticaRepository
+  com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.PraticaViewModelCreator : praticaViewModelCreator
+  com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl o-- com.woonders.lacemscommon.util.PredicateHelper : predicateHelper
+  com.woonders.lacemscommon.service.impl.StatoPraticheServiceImpl o-- com.woonders.lacemscommon.db.QueryDSLHelper : queryDSLHelper
+  com.woonders.lacemscommon.service.impl.StripePaymentServiceImpl .up.|> com.woonders.lacemscommon.service.PaymentService
+  com.woonders.lacemscommon.service.impl.StripePaymentServiceImpl o-- com.woonders.lacemscommon.service.AziendaService : aziendaService
+  com.woonders.lacemscommon.service.impl.StripePaymentServiceImpl o-- com.woonders.lacemscommon.db.entityutil.AziendaUtil : aziendaUtil
+  com.woonders.lacemscommon.service.impl.StripePaymentServiceImpl o-- com.woonders.lacemscommon.db.repository.OperatorRepository : operatorRepository
+  com.woonders.lacemscommon.service.impl.StripePaymentServiceImpl o-- com.woonders.lacemscommon.db.repository.RicaricaComunicazioneRepository : ricaricaComunicazioneRepository
+  com.woonders.lacemscommon.service.impl.StripePaymentServiceImpl o-- com.woonders.lacemscommon.service.SettingService : settingService
+  com.woonders.lacemscommon.service.impl.StripePaymentServiceImpl o-- com.woonders.lacemscommon.slack.SlackUtil : slackUtil
+  com.woonders.lacemscommon.service.impl.TenantServiceImpl .up.|> com.woonders.lacemscommon.service.TenantService
+  com.woonders.lacemscommon.service.impl.TenantServiceImpl o-- com.woonders.lacemscommon.db.tenantrepository.TenantRepository : tenantRepository
+  com.woonders.lacemscommon.service.impl.ValutazioneAmministrazioneServiceImpl .up.|> com.woonders.lacemscommon.service.ValutazioneAmministrazioneService
+  com.woonders.lacemscommon.service.impl.ValutazioneAmministrazioneServiceImpl o-- com.woonders.lacemscommon.db.repository.ValutazioneAmministrazioneRepository : valutazioneAmministrazioneRepository
+  com.woonders.lacemscommon.service.impl.ValutazioneAmministrazioneServiceImpl o-- com.woonders.lacemscommon.app.viewmodel.creator.ValutazioneAmministrazioneViewModelCreator : valutazioneAmministrazioneViewModelCreator
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
