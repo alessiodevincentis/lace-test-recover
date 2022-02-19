@@ -1,0 +1,147 @@
+@startuml
+
+title __ANALYTICS's Class Diagram__\n
+
+  namespace com.woonders.lacemsjsf.view.analytics {
+    class com.woonders.lacemsjsf.view.analytics.AnalyticsClientiView {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        {static} - TOT_PROVVIGIONE_AGENZIA : String
+        - analyticsProvvigioneClienteList : List<AnalyticsProvvigioneCliente>
+        - from : LocalDate
+        - operatoriSelezionati : List<String>
+        - pieModelPraticheCaricate : PieChartModel
+        - pieModelPraticheLiquidate : PieChartModel
+        - pieModelPraticheTotali : PieChartModel
+        - to : LocalDate
+        - totaleProvvigioneAgenzia : BigDecimal
+        + getAnalyticsClientiService()
+        + getAnalyticsProvvigioneClienteList()
+        + getAnalyticsUtil()
+        + getAziendaSelectionView()
+        + getDateConversionUtil()
+        + getFrom()
+        + getHttpSessionUtil()
+        + getNumberUtil()
+        + getOperatoriSelezionati()
+        + getPieModelPraticheCaricate()
+        + getPieModelPraticheLiquidate()
+        + getPieModelPraticheTotali()
+        + getPresetDate()
+        + getSumErogatoCaricate()
+        + getSumErogatoLiquidate()
+        + getSumMontanteCaricate()
+        + getSumMontanteLiquidate()
+        + getTo()
+        + getTotalePratiche()
+        + getTotalePraticheCaricate()
+        + getTotalePraticheLiquidate()
+        + getTotaleProvvigioneAgenzia()
+        + getTotaleProvvigioniAgenzia()
+        + init()
+        + preProcessPDF()
+        + setAnalyticsClientiService()
+        + setAnalyticsProvvigioneClienteList()
+        + setAnalyticsUtil()
+        + setAziendaSelectionView()
+        + setDateConversionUtil()
+        + setDateFromPreset()
+        + setFrom()
+        + setHttpSessionUtil()
+        + setListProvvigioniOperator()
+        + setNumberUtil()
+        + setOperatoriSelezionati()
+        + setPieModelPraticheCaricate()
+        + setPieModelPraticheLiquidate()
+        + setPieModelPraticheTotali()
+        + setPresetDate()
+        + setTo()
+        + setTotaleProvvigioneAgenzia()
+        - getNumberPraticheByTipoPraticaAndStatoPratica()
+        - getSumMontanteOrErogateCaricateOrLiquidate()
+        - setOptionPieChart()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.analytics {
+    class com.woonders.lacemsjsf.view.analytics.AnalyticsNominativiView {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        {static} - NO_FORNITORE : String
+        - analyticsNominativiOperatoreList : List<AnalyticsNominativiOperatore>
+        - from : LocalDate
+        - operatoriSelezionati : List<String>
+        - pieModelNominativiLeadToClienti : PieChartModel
+        - pieModelNominativiLeadTotali : PieChartModel
+        - pieModelNominativiToClienti : PieChartModel
+        - pieModelNominativiTotali : PieChartModel
+        - to : LocalDate
+        + getAnalyticsNominativiOperatoreList()
+        + getAnalyticsNominativiService()
+        + getAnalyticsUtil()
+        + getAziendaSelectionView()
+        + getFrom()
+        + getHttpSessionUtil()
+        + getNominativiToClienti()
+        + getNominativiTotali()
+        + getOperatoriSelezionati()
+        + getPieModelNominativiLeadByFornitore()
+        + getPieModelNominativiLeadToClienti()
+        + getPieModelNominativiLeadToClientiByFornitore()
+        + getPieModelNominativiLeadTotali()
+        + getPieModelNominativiToClienti()
+        + getPieModelNominativiToClientiByProvenienza()
+        + getPieModelNominativiTotali()
+        + getPieModelNominativiTotaliByProvenienza()
+        + getPresetDate()
+        + getTo()
+        + init()
+        + setAnalyticsNominativiOperatoreList()
+        + setAnalyticsNominativiService()
+        + setAnalyticsUtil()
+        + setAziendaSelectionView()
+        + setDateFromPreset()
+        + setFrom()
+        + setHttpSessionUtil()
+        + setListNominativiOperatoreList()
+        + setOperatoriSelezionati()
+        + setPieModelNominativiLeadToClienti()
+        + setPieModelNominativiLeadTotali()
+        + setPieModelNominativiToClienti()
+        + setPieModelNominativiTotali()
+        + setPresetDate()
+        + setTo()
+        - countNominativiByProvenienza()
+        - countNominativiProvenienzaLead()
+        - countNominativiProvenienzaLeadToCliente()
+        - countNominativiToClientiByProvenienza()
+        - getAllFornitoriLead()
+        - setOptionPieChart()
+    }
+  }
+  
+
+  com.woonders.lacemsjsf.view.analytics.AnalyticsClientiView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.analytics.AnalyticsClientiView o-- com.woonders.lacemscommon.service.AnalyticsClientiService : analyticsClientiService
+  com.woonders.lacemsjsf.view.analytics.AnalyticsClientiView o-- com.woonders.lacemscommon.util.AnalyticsUtil : analyticsUtil
+  com.woonders.lacemsjsf.view.analytics.AnalyticsClientiView o-- com.woonders.lacemsjsf.view.aziendaselection.AziendaSelectionView : aziendaSelectionView
+  com.woonders.lacemsjsf.view.analytics.AnalyticsClientiView o-- com.woonders.lacemscommon.util.DateConversionUtil : dateConversionUtil
+  com.woonders.lacemsjsf.view.analytics.AnalyticsClientiView o-- com.woonders.lacemsjsf.util.HttpSessionUtil : httpSessionUtil
+  com.woonders.lacemsjsf.view.analytics.AnalyticsClientiView o-- com.woonders.lacemscommon.util.NumberUtil : numberUtil
+  com.woonders.lacemsjsf.view.analytics.AnalyticsClientiView o-- com.woonders.lacemscommon.laceenum.AnalyticsDateEnum : presetDate
+  com.woonders.lacemsjsf.view.analytics.AnalyticsNominativiView o-- com.woonders.lacemscommon.service.AnalyticsNominativiService : analyticsNominativiService
+  com.woonders.lacemsjsf.view.analytics.AnalyticsNominativiView o-- com.woonders.lacemscommon.util.AnalyticsUtil : analyticsUtil
+  com.woonders.lacemsjsf.view.analytics.AnalyticsNominativiView o-- com.woonders.lacemsjsf.view.aziendaselection.AziendaSelectionView : aziendaSelectionView
+  com.woonders.lacemsjsf.view.analytics.AnalyticsNominativiView o-- com.woonders.lacemsjsf.util.HttpSessionUtil : httpSessionUtil
+  com.woonders.lacemsjsf.view.analytics.AnalyticsNominativiView o-- com.woonders.lacemscommon.laceenum.AnalyticsDateEnum : presetDate
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

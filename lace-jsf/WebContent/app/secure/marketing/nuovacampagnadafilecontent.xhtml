@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui">
+      
+     <p:accordionPanel activeIndex="null" id="fileAccordion" widgetVar="panelNuovaCampagnaDaFile">
+       <p:tab title="Crea una Nuova Campagna da File">      
+        <div class="card card-w-title">
+         <h1>Importa contatti da un file Excel</h1>
+         <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group">
+            <p:fileUpload  mode="advanced" dragDropSupport="false" id="fileImport" widgetVar="fileImportWidget"
+           label="#{constantResolverView.chooseLabelButtonFile}" update="form:resultFilterTable form:firstAvantiButton"
+           cancelLabel="#{constantResolverView.cancelLabelButtonFile}" 
+           disabled="#{!nuovaCampagnaMarketingView.filtraImportButtonEnabled}"
+           uploadLabel="#{constantResolverView.importLabelButtonFile}" 
+           fileLimit="#{constantResolverView.maxFileImportCampagne}"
+           sizeLimit="#{constantResolverView.excelCampagneSizeLimit}"
+           allowTypes="#{constantResolverView.allowTypesImportFileCampagne}"
+           invalidFileMessage="#{propertiesUtil.msgInvalidFile}"
+           invalidSizeMessage="#{propertiesUtil.msgInvalidSizeFile}"
+           fileUploadListener="#{nuovaCampagnaMarketingView.handleFileUpload}"
+            fileLimitMessage="#{propertiesUtil.msgSmsUploadFilelimit}"/>
+           
+	       <p:commandButton value="Esempio di Importazione" style="width:auto;" 
+	       ajax="false" icon="ui-icon-file-download" immediate="true">
+	        <p:fileDownload value="#{nuovaCampagnaMarketingView.sampleFile}"/>
+	      </p:commandButton> 
+      </p:panelGrid>
+        </div>
+            
+      </p:tab>      
+    </p:accordionPanel>
+      
+</html>      

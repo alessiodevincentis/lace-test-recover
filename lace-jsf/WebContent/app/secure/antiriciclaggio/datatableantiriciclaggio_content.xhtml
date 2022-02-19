@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+    <f:event type="preRenderView"
+             listener="#{aziendaSelectionView.setCurrentMenuSection('ANTIRICICLAGGIO_AFTER_SEARCH')}"/>
+</f:metadata>
+
+<p:dataTable id="eventsDT" var="c" value="#{datatableAntiriciclaggioView.clientePraticaLazyDataModel}" lazy="true"
+             sortBy="#{c.clienteViewModel.cognome}"
+             rowKey="#{c.praticaViewModel.codicePratica}"
+             rows="10" paginator="true"
+             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+             rowsPerPageTemplate="5,10,15"
+             emptyMessage="In Base ai Criteri di Ricerca Scelti non Abbiamo Trovato Nessun Cliente"
+             reflow="true" tableStyle="width:auto;text-align:center;">
+    <f:facet name="header">
+        Clienti Caricati
+        <p:commandButton id="toggler" type="button" value="Colonne" style="float:right"
+                         icon="fa fa-columns" styleClass="green-btn"/>
+        <p:columnToggler datasource="eventsDT" trigger="toggler"/>
+    </f:facet>
+
+    <f:facet name="{Exporters}">
+        <h:commandLink>
+            <p:graphicImage library="img" name="excel.png" width="24"/>
+            <p:dataExporter type="xls" target="eventsDT" fileName="ClientiCaricati"/>
+        </h:commandLink>
+
+        <h:commandLink>
+            <p:graphicImage library="img" name="pdf.png" width="24"/>
+            <p:dataExporter type="pdf" target="eventsDT" fileName="ClientiCaricati"
+                            preProcessor="#{datatableAntiriciclaggioView.preProcessPDF}"/>
+        </h:commandLink>
+    </f:facet>
+
+    <p:column exportable="false">
+        <p:commandButton process="@this"
+                         action="#{datatableAntiriciclaggioView.showAntiriciclaggioPdf(c.praticaViewModel.codicePratica)}"
+                         icon="fa fa-download"/>
+    </p:column>
+    <p:column headerText="Agenzia" rendered="#{aziendaSelectionView.aziendaColumnShown}">
+        <h:outputText value="#{c.praticaViewModel.operatore.azienda.nomeAzienda}"/>
+    </p:column>
+    <p:column headerText="Caricamento" sortBy="#{c.praticaViewModel.dataCaricamento}">
+        <h:outputText value="#{c.praticaViewModel.dataCaricamento}">
+            <f:converter
+                    converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+        </h:outputText>
+    </p:column>
+    <p:column headerText="CF">
+        <h:outputText value="#{c.clienteViewModel.cf}"/>
+    </p:column>
+    <p:column headerText="Cognome" sortBy="#{c.clienteViewModel.cognome}">
+        <h:outputText value="#{c.clienteViewModel.cognome}"/>
+    </p:column>
+    <p:column headerText="Nome">
+        <h:outputText value="#{c.clienteViewModel.nome}"/>
+    </p:column>
+    <p:column headerText="DataNascita" sortBy="#{c.clienteViewModel.dataNascita}">
+        <h:outputText value="#{c.clienteViewModel.dataNascita}">
+            <f:converter
+                    converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+        </h:outputText>
+    </p:column>
+    <p:column headerText="Comune">
+        <h:outputText value="#{c.clienteViewModel.luogoNascita}"/>
+    </p:column>
+    <p:column headerText="Telefono">
+        <h:outputText value="#{c.clienteViewModel.telefono}"/>
+    </p:column>
+    <p:column headerText="Documento">
+        <h:outputText value="#{c.clienteViewModel.documentoViewModel.tipoDocumento}"/>
+    </p:column>
+    <p:column headerText="Numero Documento">
+        <h:outputText value="#{c.clienteViewModel.documentoViewModel.numeroDoc}"/>
+    </p:column>
+    <p:column headerText="Nr.Secci">
+        <h:outputText value="#{c.praticaViewModel.nrsecci}"/>
+    </p:column>
+    <p:column headerText="Nr.Ctr">
+        <h:outputText value="#{c.praticaViewModel.nrctr}"/>
+    </p:column>
+    <p:column headerText="ID Pratica">
+        <h:outputText value="#{c.praticaViewModel.codicePratica}"/>
+    </p:column>
+    <p:column headerText="Operazione">
+        <h:outputText value="#{c.praticaViewModel.tipoPratica}"/>
+    </p:column>
+    <p:column headerText="StatoPratica">
+        <h:outputText value="#{c.praticaViewModel.statoPratica}"/>
+    </p:column>
+    <p:column headerText="Rata">
+        <h:outputText value="#{c.praticaViewModel.rata}"/>
+    </p:column>
+    <p:column headerText="Durata">
+        <h:outputText value="#{c.praticaViewModel.durata}"/>
+    </p:column>
+    <p:column headerText="Erogato">
+        <h:outputText value="#{c.praticaViewModel.importoErogato}"/>
+    </p:column>
+    <p:column headerText="Liquidazione" sortBy="#{c.praticaViewModel.dataLiquidazione}">
+        <h:outputText value="#{c.praticaViewModel.dataLiquidazione}">
+            <f:converter
+                    converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+        </h:outputText>
+    </p:column>
+    <p:column headerText="Note">
+        <h:outputText value="#{c.clienteViewModel.note}"/>
+    </p:column>
+</p:dataTable>
+
+</html>

@@ -1,0 +1,7 @@
+/*
+puts the google places autocomplete dropdown results above the bootstrap modal 1050 zindex.
+https://github.com/twbs/bootstrap/issues/4160
+*/
+.pac-container {
+    z-index: 1051 !important;
+}

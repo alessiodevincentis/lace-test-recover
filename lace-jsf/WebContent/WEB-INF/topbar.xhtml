@@ -1,0 +1,152 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:composite-custom="http://java.sun.com/jsf/composite/composite-custom"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <div class="topbar clearfix">
+        <div class="topbar-left">
+            <div class="logo"></div>
+        </div>
+
+        <div class="topbar-right">
+            <a id="menu-button" href="#">
+                <i></i>
+            </a>
+
+            <a id="topbar-menu-button" href="#">
+                <i class="material-icons">&#xE5D2;</i>
+            </a>
+            <ul class="topbar-items fadeInDown animated">
+                <ui:fragment
+                        rendered="#{guestPreferences.profileMode == 'overlay'||guestPreferences.menuLayout == 'menu-layout-static menu-layout-horizontal'}">
+                    <li class="profile-item">
+                        <a href="#">
+                            <div class="profile-image"></div>
+                            <span class="topbar-item-name"><p:outputLabel
+                                    value="#{navigationBackingBean.username}"/></span>
+                        </a>
+
+                        <ul class="ultima-menu animated">
+                            <li role="menuitem">
+                                <a href="#{navigationBackingBean.getAziendaOutcome()}" class="ripplelink">
+                                    <i class="material-icons">&#xE84F;</i>
+                                    <span>Dati Azienda</span>
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#{navigationBackingBean.getDatiPersonaliOutcome()}" class="ripplelink">
+                                    <i class="material-icons">&#xE7FD;</i>
+                                    <span>Dati Personali</span>
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#{navigationBackingBean.getPreferenzeOutcome()}" class="ripplelink">
+                                    <i class="material-icons">&#xE8B9;</i>
+                                    <span>Preferenze</span>
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#{navigationBackingBean.getCambioPasswordOutcome()}" class="ripplelink">
+                                    <i class="material-icons">&#xE90D;</i>
+                                    <span>Cambia Password</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ui:fragment>
+
+                <h:panelGroup>
+
+                    <li>
+                        <a href="#">
+                            <i class="topbar-icon material-icons animated swing">&#xE0C9;</i>
+                            <span class="topbar-badge animated rubberBand"><p:outputPanel
+                                    id="smsTotalPanel">#{dashboardNotificationView.balanceSmsNotificaLead() + dashboardNotificationView.balanceSmsMarketingOperatore()}</p:outputPanel></span>
+                            <span class="topbar-item-name">SMS</span>
+                        </a>
+
+                        <ul class="ultima-menu animated">
+                            <p:outputPanel id="smsDetailPanel">
+                                <li role="menuitem">
+                                    <a class="topbar-message">
+                                        <i class="material-icons">&#xE0C9;</i>
+                                        <span>SMS Agenzia Residui: #{dashboardNotificationView.balanceSmsNotificaLead()}</span>
+                                    </a>
+                                </li>
+                                <li role="menuitem">
+                                    <a class="topbar-message">
+                                        <i class="material-icons">&#xE0C9;</i>
+                                        <span>SMS Operatore Residui: #{dashboardNotificationView.balanceSmsMarketingOperatore()}</span>
+                                    </a>
+                                </li>
+                            </p:outputPanel>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="topbar-icon material-icons animated shake">&#xE003;</i>
+                            <p:outputPanel id="noticetopbaricon">
+                                <span class="#{noticeBoardView.numberOfNoticeToDisplayOnStyle()} animated rubberBand shake">#{noticeBoardView.numberOfNoticeToDisplayOnIcon()}</span>
+                                <span class="topbar-item-name">Bacheca Avvisi</span>
+                            </p:outputPanel>
+                        </a>
+                        <ul class="ultima-menu animated">
+                            <p:outputPanel id="noticetopbardisplay">
+                                <li role="menuitem">
+                                    <a href="#{navigationBackingBean.getNoticeBoardDatatableOutcome()}">
+                                        <i class="material-icons">&#xE8EF;</i>
+                                        <span>#{noticeBoardView.numberOfNoticeToDisplay()}</span>
+                                    </a>
+                                </li>
+                            </p:outputPanel>
+                            <p:outputPanel id="noticetopbarnew" rendered="#{noticeBoardView.buttonSaveRendered}">
+                                <li role="menuitem">
+                                    <a href="#{navigationBackingBean.getNoticeBoardOutcome()}">
+                                        <i class="material-icons">&#xE003;</i>
+                                        <span>Aggiungi un nuovo avviso</span>
+                                    </a>
+                                </li>
+                            </p:outputPanel>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <h:form id="topbarform">
+                            <p:outputLabel value="Seleziona l'agenzia da visualizzare:"
+                                           rendered="#{aziendaSelectionView.aziendaSelectShown}" style="color: white;">
+                                <p:selectOneMenu id="aziendaDaVisualizzareSelect"
+                                                 value="#{aziendaSelectionView.selectedAziendaId}"
+                                                 style="margin-left: 1em;">
+                                    <f:selectItem itemLabel="Qualsiasi"
+                                                  itemDisabled="#{aziendaSelectionView.qualsiasiAziendaDisabled}"
+                                                  noSelectionOption="#{aziendaSelectionView.qualsiasiAziendaDisabled}"/>
+                                    <f:selectItems value="#{aziendaSelectionView.aziendaViewModelList}" var="azienda"
+                                                   itemLabel="#{azienda.nomeAzienda}" itemValue="#{azienda.id}"/>
+
+                                    <!-- resetValus=true FONDAMENTALE altrimenti se viene causato un errore di validazione quando cambi selection le inputtext e simili non vengono resettati -->
+                                    <p:ajax event="change"
+                                            update="form smsTotalPanel smsDetailPanel noticetopbarnew noticetopbardisplay noticetopbaricon"
+                                            resetValues="true"/>
+                                </p:selectOneMenu>
+                            </p:outputLabel>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        </h:form>
+                    </li>
+
+                </h:panelGroup>
+
+            </ul>
+
+            <composite-custom:infobutton infoMessageList="#{infoHelpView.infoMultiAgenziaList}" styleClass="green-btn"
+                                         rendered="#{aziendaSelectionView.aziendaSelectShown}"/>
+
+        </div>
+
+    </div>
+
+</ui:composition>

@@ -1,0 +1,193 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pu="http://primefaces.org/ultima">
+
+    <body>
+
+    <script>
+        window.customerlySettings = {
+            app_id: "aa86784c",
+            user_id: "#{httpSessionUtil.username}",// Optional
+            name: "#{infoOperatore.cognome}" + " #{infoOperatore.nome}",
+            email: "#{infoOperatore.mail}",
+            //Inside attributes you can add every custom data you prefer to track
+            attributes: {
+                tenant: window.location.hostname
+            }
+        };
+
+        //segnala errore "expression expected" ma in realta funziona benissimo, se lo mettiamo invece tra virgolette poi lo interpreta come stringa e non funziona
+        if (#{constantResolverView.customerlyEnabled}) {
+            !function () {
+                function e() {
+                    var e = t.createElement("script");
+                    e.type = "text/javascript", e.async = !0, e.src = "https://widget.customerly.io/widget/aa86784c";
+                    var r = t.getElementsByTagName("script")[0];
+                    r.parentNode.insertBefore(e, r)
+                }
+
+                var r = window, t = document, n = function () {
+                    n.c(arguments)
+                };
+                r.customerly_queue = [], n.c = function (e) {
+                    r.customerly_queue.push(e)
+                }, r.customerly = n, r.attachEvent ? r.attachEvent("onload", e) : r.addEventListener("load", e, !1)
+            }();
+        }
+    </script>
+
+    <h:form id="menus">
+        <div class="layout-menu #{guestPreferences.menuClass}">
+            <div class="nano">
+                <div class="nano-content menu-scroll-content">
+                    <ui:fragment
+                            rendered="#{guestPreferences.profileMode == 'inline' and guestPreferences.menuLayout != 'menu-layout-static menu-layout-horizontal'}">
+
+                        <ui:include src="./profileinfo.xhtml"/>
+
+                        <ul id="profile-menu" class="ultima-menu">
+                            <li role="menuitem">
+                                <a href="#{navigationBackingBean.getInfoAccountOutcome()}" class="ripplelink">
+                                    <i class="material-icons">&#xE88E;</i>
+                                    <span>Info Account</span>
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#{navigationBackingBean.getAziendaOutcome()}" class="ripplelink">
+                                    <i class="material-icons">&#xE84F;</i>
+                                    <span>Dati Azienda</span>
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#{navigationBackingBean.getDatiPersonaliOutcome()}" class="ripplelink">
+                                    <i class="material-icons">&#xE7FD;</i>
+                                    <span>Dati Personali</span>
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#{navigationBackingBean.getPreferenzeOutcome()}" class="ripplelink">
+                                    <i class="material-icons">&#xE8B9;</i>
+                                    <span>Preferenze</span>
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a href="#{navigationBackingBean.getCambioPasswordOutcome()}" class="ripplelink">
+                                    <i class="material-icons">&#xE90D;</i>
+                                    <span>Cambia Password</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </ui:fragment>
+
+
+                    <pu:menu widgetVar="me">
+                        <p:menuitem id="um_dashboard" value="Dashboard" icon="&#xE871;"
+                                    action="#{navigationBackingBean.getDashboardOutcome()}"/>
+                        <p:submenu id="campagne" label="Campagne Marketing" icon="&#xE0D0;"
+                                   rendered="#{utilResolverView.campagneMarketingMenuEntryRendered}">
+                            <p:menuitem id="nuovocampagna" value="Nuova Campagna" icon="&#xE03B;"
+                                        action="#{navigationBackingBean.getNuovaCampagnaMarketingOutcome()}"/>
+                            <p:menuitem id="esitocampagne" value="Info e Statistiche" icon="&#xE24B;"
+                                        action="#{navigationBackingBean.getInfoCampagneMarketingOutcome()}"/>
+                        </p:submenu>
+                        <p:submenu id="simulatori" label="Simulatori" icon="&#xE8B0;"
+                                   rendered="#{navigationBackingBean.simulatorSectionRendered}">
+                            <p:menuitem id="creatabelle" value="Crea Nuova Tabella" icon="&#xE150;"
+                                        rendered="#{navigationBackingBean.simulatorCreateTableSectionRendered}"
+                                        action="#{navigationBackingBean.getCreateNewSimulatorTableOutcome()}"/>
+                            <p:menuitem id="listatabelle" value="Lista Tabelle" icon="&#xE242;"
+                                        action="#{navigationBackingBean.getSimulatorTableListOutcome()}"/>
+                            <p:menuitem id="provasimulazione" value="Simulazione preventivo" icon="&#xE039;"
+                                        action="#{navigationBackingBean.getRunSimulatorOutcome()}"
+                                        actionListener="#{runSimulatorView.setParameterSimulatorTableSelectionDisabledAndSource(true, null)}"/>
+                        </p:submenu>
+                        <p:submenu id="nominativi" label="Nominativi" icon="&#xE8A3;"
+                                   rendered="#{navigationBackingBean.isNominativoSectionRendered()}">
+                            <p:menuitem id="rm_nominativi" value="Gestione Nominativi"
+                                        icon="&#xE0CF;"
+                                        action="#{navigationBackingBean.getDashboardNominativoOutcome()}"/>
+                            <p:menuitem id="rm_nuovonominativo" value="Nuovo Nominativo"
+                                        icon="&#xE7FE;" action="#{navigationBackingBean.getNuovoNominativoOutcome()}"/>
+                            <p:menuitem id="rm_statonominativi" value="Stato Nominativi"
+                                        icon="&#xE896;" action="#{navigationBackingBean.getStatoNominativiOutcome()}"/>
+                            <p:menuitem id="analyticsnominativi" value="Statistiche Nominativi" icon="&#xE6C4;"
+                                        action="#{navigationBackingBean.getAnalyticsNominativiOutcome()}"/>
+                        </p:submenu>
+                        <p:submenu id="clienti" label="Clienti" icon="&#xE7EF;"
+                                   rendered="#{navigationBackingBean.isClienteSectionRendered()}">
+                            <p:submenu id="statopratichesubmenu" label="Stato Pratiche" icon="&#xE896;">
+                                <p:menuitem id="statopratichecessioni" value="Cessioni/Deleghe" icon="&#xE892;"
+                                            action="#{navigationBackingBean.getStatoPraticheCessioniDelegheOutcome()}"/>
+                                <p:menuitem id="statopraticheprestiti" value="Prestiti Personali" icon="&#xE893;"
+                                            action="#{navigationBackingBean.getStatoPratichePrestitiOutcome()}"/>
+                            </p:submenu>
+                            <p:menuitem id="nuovocl" value="Nuova Pratica" icon="&#xE7FE;"
+                                        action="#{navigationBackingBean.getNuovaPraticaCheckCfOutcome()}"
+                                        rendered="#{navigationBackingBean.nuovaPraticaRendered}"/>
+                            <p:menuitem id="eliminacl" value="Elimina Cliente/Pratica" icon="&#xE16C;"
+                                        action="#{navigationBackingBean.getDeleteClientePraticaOutcome()}"
+                                        rendered="#{navigationBackingBean.isDeleteClienteSectionRendered()}"/>
+                            <p:menuitem id="analyticscl" value="Statistiche Clienti" icon="&#xE6C4;"
+                                        action="#{navigationBackingBean.getAnalyticsClientiOutcome()}"/>
+                        </p:submenu>
+                        <p:menuitem id="cercacl" value="Cerca" icon="&#xE8B6;"
+                                    rendered="#{navigationBackingBean.isClienteOrNominativoReadRendered()}"
+                                    action="#{navigationBackingBean.getSearchClienteNominativoOutcome()}"/>
+                        <p:submenu id="fatt" label="Fatturazione" icon="&#xE85D;"
+                                   rendered="#{navigationBackingBean.isClienteOrNominativoReadRendered()}">
+                            <p:menuitem id="perf" value="Perfeziona Pratiche" icon="&#xE880;"
+                                        action="#{navigationBackingBean.getFatturazioneOutcome()}"/>
+                        </p:submenu>
+                        <p:submenu id="amm" label="Amministrazioni" icon="&#xE7F1;">
+                            <p:menuitem id="nuovoamm" value="Nuova Amministrazione" icon="&#xE02E;"
+                                        action="#{navigationBackingBean.getNuovaAmministrazioneCheckRagioneSocialeOutcome()}"
+                                        rendered="#{navigationBackingBean.nuovaAmministrazioneRendered}"/>
+                            <p:menuitem id="cercaamm" value="Cerca Amministrazione" icon="&#xE8B6;"
+                                        action="#{navigationBackingBean.getSearchAmministrazioneOutcome()}"/>
+                        </p:submenu>
+                        <p:menuitem id="rm_antiriciclaggio" value="AntiRiciclaggio" icon="&#xE8F4;"
+                                    action="#{navigationBackingBean.getAntiriciclaggioAdminOutcome()}"
+                                    rendered="#{navigationBackingBean.isAntiriciclaggioSectionRendered()}"/>
+                        <p:submenu id="utenti" label="Gestione Utenti" icon="&#xE7F1;"
+                        		rendered="#{navigationBackingBean.isGestioneUtentiRendered()}">
+                            <p:menuitem id="nuovooperatore" value="Nuovo Operatore" icon="&#xE7FE;"
+                                    action="#{navigationBackingBean.getNuovoOperatoreOutcome()}"
+                                    rendered="#{navigationBackingBean.isNuovoUtenteRendered()}"/>
+                            <p:menuitem id="eliminaoperatore" value="Elimina Operatore" icon="&#xE7FF;"
+                                    action="#{navigationBackingBean.getEliminaOperatoreOutcome()}"
+                                    rendered="#{navigationBackingBean.isDeleteUtenteRendered()}"/>
+                            <p:menuitem id="rm_permessi" value="Gestione Permessi" icon="&#xE32A;"
+                                    action="#{navigationBackingBean.getGestionePermessiOutcome()}"/>
+                        </p:submenu>
+                        <p:submenu id="privacy" label="Gestione Privacy" icon="&#xe8e8;"
+                        		rendered="#{navigationBackingBean.isGestionePricavyRendered()}">
+                            <p:menuitem id="nuovotemplate" value="Aggiungi Privacy" icon="&#xe435;"
+                                    action="#{navigationBackingBean.getGestionePrivacyTemplateOutcome()}"
+                                    rendered="#{navigationBackingBean.isGestionePricavyRendered()}"/>
+                 		</p:submenu>    
+                        
+                        <p:menuitem id="leads" value="Policy Data Retention" icon="&#xe886;"
+                                    action="#{navigationBackingBean.getGestioneLeadsOutcome()}"
+                                    rendered="#{navigationBackingBean.isGestioneLeadsDataRetentionRendered()}"/>                     
+                        <p:menuitem id="rm_backup" value="Backup manuale" icon="&#xE2C0;"
+                                    action="#{navigationBackingBean.getBackupOutcome()}"
+                                    rendered="#{navigationBackingBean.isBackupSectionRendered()}"/>
+                        <p:menuitem id="rm_accesslog" value="Log degli accessi" icon="&#xE32A;"
+                                    action="#{navigationBackingBean.getAccessLogOutcome()}"
+                                    rendered="#{navigationBackingBean.isAccessLogSectionRendered()}"/>
+                        <p:menuitem id="rm_invitefriends" value="Invita Amici"
+                                    action="#{navigationBackingBean.getInviteFriendsOutcome()}"
+                                    icon="&#xE8F6;"/>
+                        <p:menuitem id="rm_logout" value="Logout" action="#{loginBackingBean.logoutAction}"
+                                    icon="&#xE8AC;"/>
+                    </pu:menu>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </h:form>
+    </body>
+</ui:composition>

@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+
+        
+       <h:body>
+       <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-lg-12">
+                
+				<div class="card card-w-title">
+               		<h1>Inserisci Privacy</h1>
+					<p:panelGrid id="privacythis" columns="2" layout="grid" styleClass="ui-panelgrid-blank form-group">
+						<p:outputLabel value="Provenienza:">
+					        <p:selectOneMenu effect="fold" id="provenienza" label="Provenienza"
+					                         value="#{privacyView.privacyTemplateViewModel.provenienza}">
+					            <f:selectItem itemLabel="" itemValue=""/>
+					            <f:selectItems value="#{constantResolverView.provenienza}" var="v"
+					                           itemLabel="#{v.value}" itemValue="#{v.value}"/>
+					        </p:selectOneMenu>
+				    	</p:outputLabel>
+				    	
+				    	<p:outputLabel value="Fornitore Lead:">
+					        <p:selectOneMenu effect="fold" id="fornitorelead" label="Fornitore Lead"
+					                         value="#{privacyView.privacyTemplateViewModel.fornitoreLead}">
+					            <f:selectItem itemLabel="" itemValue=""/>
+					            <f:selectItems value="#{constantResolverView.fornitoreLead}" var="v"
+					                           itemLabel="#{v.value}" itemValue="#{v.value}"/>
+					        </p:selectOneMenu>
+				    	</p:outputLabel>
+				    	
+					
+ 						<p:outputLabel for="testoprivacy" value="Testo:">
+	                       <p:inputTextarea id="testoprivacy" rows="7" cols="30"
+                                      value="#{privacyView.privacyTemplateViewModel.privacyText}" autoResize="true"/>
+	                   </p:outputLabel>
+	                   
+				    	
+			    		<p:commandButton value="Salva Privacy" 
+                 					action="#{privacyView.nuovoTemplateAction}"
+                                  icon="fa fa-step-forward Fs18 White" iconPos="right"
+                                  rendered="#{privacyView.hasPrivacyRole()}"/>
+	                                   
+               		</p:panelGrid>
+               		
+               		<p:dataTable id="pricavyDT" var="c" value="#{privacyView.privacyViewModelList}"
+                                     selectionMode="single"
+                                     selection="#{privacyView.privacyTemplateSelected}"
+                                     sortBy="#{c.dateCreate}" rowKey="#{c.id}"
+                                     rows="10" paginator="true"
+                                     rowsPerPageTemplate="5,10,15"
+                                     emptyMessage="In Base ai Criteri di Ricerca Scelti non Abbiamo Trovato Nessuna Privacy"
+                                     reflow="true" tableStyle="text-align:center;width:auto" widgetVar="recallTable">
+                            
+                            <p:ajax event="rowSelect" update="form:privacythis" listener="#{privacyView.onRowSelect}"/>
+                            
+                            <p:column headerText="Provenienza" sortBy="#{c.provenienza}">
+                                <h:outputText value="#{c.provenienza}"/>
+                            </p:column>
+                            <p:column headerText="Fornitore Lead" sortBy="#{c.fornitoreLead}">
+                                <h:outputText value="#{c.fornitoreLead}"/>
+                            </p:column>
+                            <p:column headerText="Testo">
+                                <h:outputText value="#{c.privacyText}"/>
+                            </p:column>
+                            <p:column headerText="Data Creazione">
+                                <h:outputText value="#{c.dateCreate}"/>
+                            </p:column>
+                        </p:dataTable>
+               		
+           		</div>
+           </div>
+        </div>
+
+        </h:body>
+
+    </ui:define>
+
+</ui:composition>

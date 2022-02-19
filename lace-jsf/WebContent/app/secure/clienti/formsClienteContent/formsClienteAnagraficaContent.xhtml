@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:lacems="http://lacems.com/ui"
+      xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+        <h:outputScript library="js" name="formsClienteAnagraficaAutocomplete.js"/>
+      
+			<p:panelGrid columns="4" layout="grid" styleClass="ui-panelgrid-blank form-group">
+			
+				<p:commandButton icon="fa fa-check Fs20 White" iconPos="right" styleClass="green-btn Fright" value="Calcola Codice Fiscale"
+				action="#{anagraficaView.calcCF(registerCliente.clienteViewModel)}" update="cf"
+				process="@this cognome nome datanascita luogonascita sesso"/>
+				
+ 				<p:commandButton icon="fa fa-check Fs20 White" iconPos="right" styleClass="green-btn Fright" value="Calcola Inverso Codice Fiscale"
+ 				action="#{anagraficaView.calcInversoCF(registerCliente.clienteViewModel)}" update="sesso datanascita luogonascita eta"
+ 				process="@this cf" oncomplete="initializeFormsClienteAnagraficaAutocomplete();"/>                 
+				<p:spacer/>
+				<p:spacer/>
+
+               <p:outputLabel value="Codice Fiscale:*">
+                   <p:inputText id="cf" value="#{registerCliente.clienteViewModel.cf}"
+                                required="true"
+                                label="Codice Fiscale" maxlength="16">
+                       <p:ajax event="change" update="prefin"/>
+                       <p:ajax event="change" update="allegati"/>
+                       <p:ajax event="change" update="agenzia"/>
+                   </p:inputText>
+               </p:outputLabel>
+
+
+               <p:outputLabel value="Cognome:*">
+                   <p:inputText id="cognome" value="#{registerCliente.clienteViewModel.cognome}"
+                                required="true" label="Cognome" maxlength="40">
+                       <p:ajax event="change" update="prefin"/>
+                       <p:ajax event="change" update="allegati"/>
+                       <p:ajax event="change" update="agenzia"/>
+                   </p:inputText>
+               </p:outputLabel>
+
+               <p:outputLabel value="Nome:*">
+                   <p:inputText value="#{registerCliente.clienteViewModel.nome}" required="true"
+                                label="Nome" maxlength="40" id="nome">
+                       <p:ajax event="change" update="prefin"/>
+                       <p:ajax event="change" update="allegati"/>
+                       <p:ajax event="change" update="agenzia"/>
+                   </p:inputText>
+               </p:outputLabel>
+
+               <p:outputLabel for="sesso" value="Seleziona il Sesso:">
+                   <p:selectOneRadio id="sesso" value="#{registerCliente.clienteViewModel.sesso}">
+                       <f:selectItem itemLabel="Maschio" itemValue="MASCHIO"/>
+                       <f:selectItem itemLabel="Femmina" itemValue="FEMMINA"/>
+                   </p:selectOneRadio>
+               </p:outputLabel>
+
+
+               <p:outputLabel for="datanascita" value="Data di Nascita:">
+                   <p:calendar id="datanascita"
+                               value="#{registerCliente.clienteViewModel.dataNascita}"
+                               pattern="dd/MM/yyyy" mask="true" navigator="true" showOn="button">
+                       <p:ajax event="change" update="eta"
+                               listener="#{anagraficaView.calcEta(registerCliente.clienteViewModel)}"/>
+                       <p:ajax event="dateSelect" update="eta"
+                               listener="#{anagraficaView.calcEta(registerCliente.clienteViewModel)}"/>
+                   </p:calendar>
+               </p:outputLabel>
+
+               <p:outputLabel for="eta" value="Età del Cliente:">
+                   <p:inputText id="eta" value=" #{registerCliente.clienteViewModel.eta}"
+                                readonly="true"/>
+               </p:outputLabel>
+
+
+               <p:outputLabel for="luogonascita" value="Comune di Nascita:">
+                   <p:inputText id="luogonascita"
+                                value="#{registerCliente.clienteViewModel.luogoNascita}"
+                                label="luogoNascita"/>
+               </p:outputLabel>
+
+
+               <p:outputLabel for="provnascita" value="Provincia di Nascita:">
+                   <p:inputText id="provnascita"
+                                value="#{registerCliente.clienteViewModel.provNascita}"
+                                label="provNascita" maxlength="2"/>
+               </p:outputLabel>
+
+                <p:outputLabel for="nazionenascita" value="Nazione di Nascita:">
+                    <p:inputText id="nazionenascita"
+                                 value="#{registerCliente.clienteViewModel.nazioneNascita}" maxlength="2"/>
+                </p:outputLabel>
+               
+               <p:outputLabel for="cittadinanza" value="Cittadinanza:">
+                   <p:inputText id="cittadinanza"
+                                value="#{registerCliente.clienteViewModel.cittadinanza}"
+                                label="cittadinanza"/>
+               </p:outputLabel>                                    
+
+               <p:outputLabel for="telefonocellulare" value="Telefono Cellulare:">
+                    <p:inputText id="telefonocellulare"
+                                value="#{registerCliente.clienteViewModel.telefono}"
+                                label="Telefono Cellulare">
+                        <p:ajax event="change" update="openSmsDialogButton"/>
+                   </p:inputText>
+               </p:outputLabel>
+
+               <p:outputLabel for="telefonofisso" value="Telefono Fisso:">
+                   <p:inputText id="telefonofisso"
+                                value="#{registerCliente.clienteViewModel.telefonoFisso}"
+                                label="Telefono Fisso"/>
+               </p:outputLabel>
+
+               <p:outputLabel for="email" value="Indirizzo Email:">
+                   <p:inputText id="email" value="#{registerCliente.clienteViewModel.email}"
+                                label="Email"
+                                validatorMessage="Email non valida">
+                       <f:validateRegex
+                               pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                       <p:ajax event="change" update="openmail"/>
+                   </p:inputText>
+               </p:outputLabel>
+
+                <p:outputLabel for="indresidenza" value="Indirizzo di Residenza:">
+                    <p:inputText id="indresidenza"
+                                 value="#{registerCliente.residenzaViewModel.indirizzoResidenza}"
+                                 label="indirizzoResidenza"/>
+                </p:outputLabel>
+
+                <p:outputLabel for="civicoresidenza" value="Civico Residenza:">
+                    <p:inputText id="civicoresidenza"
+                                 value="#{registerCliente.residenzaViewModel.civicoResidenza}" label="civicoResidenza"/>
+                </p:outputLabel>
+
+               <p:outputLabel for="luogoresidenza" value="Comune di Residenza:">
+                   <p:inputText id="luogoresidenza"
+                                value="#{registerCliente.residenzaViewModel.luogoResidenza}"
+                                label="luogoResidenza"/>
+               </p:outputLabel>
+
+               <p:outputLabel for="provresidenza" value="Provincia di Residenza:">
+                   <p:inputText id="provresidenza"
+                                value="#{registerCliente.residenzaViewModel.provResidenza}"
+                                label="provinciaResidenza" maxlength="2"/>
+               </p:outputLabel>
+
+               <p:outputLabel for="capresidenza" value="CAP di Residenza:">
+                   <p:inputText id="capresidenza"
+                                value="#{registerCliente.residenzaViewModel.capResidenza}"
+                                label="capResidenza"/>
+               </p:outputLabel>
+
+                <p:outputLabel for="nazioneresidenza" value="Nazione di Residenza:">
+                    <p:inputText id="nazioneresidenza"
+                                 value="#{registerCliente.residenzaViewModel.nazioneResidenza}"/>
+                </p:outputLabel>
+
+               <p:outputLabel for="dataresidenza" value="Inizio Residenza:"
+                              rendered="#{registerCliente.praticaRendered.isDataResidenza()}">
+                   <p:calendar id="dataresidenza"
+                               value="#{registerCliente.residenzaViewModel.dataInizioResidenza}"
+                               pattern="dd/MM/yyyy" mask="true" navigator="true" showOn="button">
+                       <p:ajax event="change" update="indirizzoprec civicoprec luogoprec provprec capprec nazioneprec"/>
+                       <p:ajax event="dateSelect" update="indirizzoprec civicoprec luogoprec provprec capprec nazioneprec"/>                     
+                       <p:ajax event="change" oncomplete="initializeIndirizzoPrecedenteAutocomplete()"/>
+                       <p:ajax event="dateSelect" oncomplete="initializeIndirizzoPrecedenteAutocomplete()"/>    
+                   </p:calendar>
+               </p:outputLabel>
+
+               <p:outputLabel for="indirizzoprec" value="Indirizzo Precedente: (Meno di 4 anni)"
+                              rendered="#{registerCliente.praticaRendered.isIndirizzoPrecedente()}">
+                   <p:inputText id="indirizzoprec" disabled="#{registerCliente.isMenoQuattroAnni()}"
+                                value="#{registerCliente.residenzaViewModel.indirizzoPrecedente}"/>
+               </p:outputLabel>
+
+                <p:outputLabel for="civicoprec" value="Civico Precedente:"
+                               rendered="#{registerCliente.praticaRendered.isCivicoPrecedente()}">
+                    <p:inputText id="civicoprec" disabled="#{registerCliente.isMenoQuattroAnni()}"
+                                 value="#{registerCliente.residenzaViewModel.civicoPrecedente}"/>
+                </p:outputLabel>
+
+               <p:outputLabel for="luogoprec" value="Comune Precedente:"
+                              rendered="#{registerCliente.praticaRendered.isLuogoPrecedente()}">
+                   <p:inputText id="luogoprec" disabled="#{registerCliente.isMenoQuattroAnni()}"
+                                value="#{registerCliente.residenzaViewModel.luogoPrecedente}"/>
+               </p:outputLabel>
+
+               <p:outputLabel for="provprec" value="Provincia Precedente:"
+                              rendered="#{registerCliente.praticaRendered.isProvinciaPrecedente()}">
+                   <p:inputText id="provprec" disabled="#{registerCliente.isMenoQuattroAnni()}"
+                                value="#{registerCliente.residenzaViewModel.provinciaPrecedente}"
+                                maxlength="2"/>
+               </p:outputLabel>
+
+               <p:outputLabel for="capprec" value="CAP Precedente:"
+                              rendered="#{registerCliente.praticaRendered.isCapPrecedente()}">
+                   <p:inputText id="capprec" disabled="#{registerCliente.isMenoQuattroAnni()}"
+                                value="#{registerCliente.residenzaViewModel.capPrecedente}"/>
+               </p:outputLabel>
+
+                <p:outputLabel for="nazioneprec" value="Nazione Precedente:"
+                               rendered="#{registerCliente.praticaRendered.isNazionePrecedente()}">
+                    <p:inputText id="nazioneprec" disabled="#{registerCliente.isMenoQuattroAnni()}"
+                                 value="#{registerCliente.residenzaViewModel.nazionePrecedente}"/>
+                </p:outputLabel>
+
+               <p:outputLabel for="tipoabitazione" value="Tipo Abitazione:"
+                              rendered="#{registerCliente.praticaRendered.isTipoAbitazione()}">
+                   <p:selectOneMenu id="tipoabitazione"
+                                    value="#{registerCliente.residenzaViewModel.tipoAbitazione}">
+                       <f:selectItem itemLabel="Proprieta'" itemValue="Proprieta'"/>
+                       <f:selectItem itemLabel="Affitto" itemValue="Affitto"/>
+                       <f:selectItem itemLabel="Presso Parenti" itemValue="Parenti"/>
+                       <f:selectItem itemLabel="Presso Terzi" itemValue="Terzi"/>
+                   </p:selectOneMenu>
+               </p:outputLabel>
+
+               <p:panelGrid columns="2" styleClass="ui-panelgrid-blank"
+                            rendered="#{registerCliente.praticaRendered.isMutuo()}">
+                   <p:outputLabel value="Abitazione con Mutuo?"/>
+                   <p:inputSwitch onLabel="Si" offLabel="No"
+                                  value="#{registerCliente.residenzaViewModel.mutuo}"/>
+               </p:panelGrid>
+
+               <p:outputLabel for="speseabitazione" value="Spese Abitazione:"
+                              rendered="#{registerCliente.praticaRendered.isSpeseAbitazione()}">
+                   <lacems:InputNumberEuro id="speseabitazione"
+                                value="#{registerCliente.residenzaViewModel.speseAbitazione}"
+                                label="Spese Abitazione"/>
+               </p:outputLabel>
+
+               <p:outputLabel for="corrispondenza" value="Corrispondenza:">
+                   <p:selectOneMenu id="corrispondenza"
+                                    value="#{registerCliente.residenzaViewModel.corrispondenza}">
+                       <f:selectItem itemLabel="Residenza"/>
+                       <f:selectItem itemLabel="Domicilio" itemValue="Domicilio"/>
+                       <f:selectItem itemLabel="Altro" itemValue="Altro"/>
+                       <p:ajax event="change" update="domicilioaltro civicodomicilioaltro luogodomicilioaltro 
+                       provdomicilioaltro capdomicilioaltro nazionedomicilioaltro"/>
+                       <p:ajax event="change" oncomplete="initializeIndirizzoDomicilioAltroAutocomplete()"/>                       
+                   </p:selectOneMenu>
+               </p:outputLabel>
+
+               <p:outputLabel for="domicilioaltro" value="Indirizzo Domicilio/Altro:">
+                   <p:inputText id="domicilioaltro" disabled="#{registerCliente.isDomicilioAltroDisabled()}"
+                                value="#{registerCliente.residenzaViewModel.indirizzoDomicilio}"
+                                label="domicilioAltro"/>
+               </p:outputLabel>
+
+                <p:outputLabel for="civicodomicilioaltro" value="Civico Domicilio/Altro:">
+                    <p:inputText id="civicodomicilioaltro" disabled="#{registerCliente.isDomicilioAltroDisabled()}"
+                                 value="#{registerCliente.residenzaViewModel.civicoDomicilio}"/>
+                </p:outputLabel>
+
+               <p:outputLabel for="luogodomicilioaltro" value="Comune Domicilio/Altro:">
+                   <p:inputText id="luogodomicilioaltro" disabled="#{registerCliente.isDomicilioAltroDisabled()}"
+                                value="#{registerCliente.residenzaViewModel.luogoDomicilio}"/>
+               </p:outputLabel>
+
+               <p:outputLabel for="provdomicilioaltro" value="Provincia Domicilio/Altro:">
+                   <p:inputText id="provdomicilioaltro" disabled="#{registerCliente.isDomicilioAltroDisabled()}"
+                                value="#{registerCliente.residenzaViewModel.provDomicilio}"
+                                maxlength="2"/>
+               </p:outputLabel>
+
+               <p:outputLabel for="capdomicilioaltro" value="CAP Domicilio/Altro:">
+                   <p:inputText id="capdomicilioaltro" disabled="#{registerCliente.isDomicilioAltroDisabled()}"
+                                value="#{registerCliente.residenzaViewModel.capDomicilio}"/>
+               </p:outputLabel>
+
+                <p:outputLabel for="nazionedomicilioaltro" value="Nazione Domicilio/Altro:">
+                    <p:inputText id="nazionedomicilioaltro" disabled="#{registerCliente.isDomicilioAltroDisabled()}"
+                                 value="#{registerCliente.residenzaViewModel.nazioneDomicilio}"/>
+                </p:outputLabel>
+
+               <p:outputLabel for="statocivile" value="Seleziona lo Stato Civile:"
+                              rendered="#{registerCliente.praticaRendered.isStatoCivile()}">
+                   <p:selectOneMenu effect="fold" id="statocivile"
+                                    value="#{registerCliente.clienteViewModel.statoCivile}">
+                       <f:selectItem itemLabel="Stato Civile" itemValue=""/>
+                       <f:selectItem itemLabel="Vedovo" itemValue="Vedovo"/>
+                       <f:selectItem itemLabel="Coniugato" itemValue="Coniugato"/>
+                       <f:selectItem itemLabel="Nubile" itemValue="Nubile"/>
+                       <f:selectItem itemLabel="Celibe" itemValue="Celibe"/>
+                       <f:selectItem itemLabel="Divorziato" itemValue="Divorziato"/>
+                       <f:selectItem itemLabel="Separato" itemValue="Separato"/>
+                       <p:ajax event="change" update="beni"/>
+                   </p:selectOneMenu>
+               </p:outputLabel>
+
+               <p:outputLabel for="beni" value="Seleziona lo Stato Patrimoniale:"
+                              rendered="#{registerCliente.praticaRendered.isStatoPatrimoniale()}">
+                   <p:selectOneButton id="beni" value="#{registerCliente.clienteViewModel.beni}"
+                                      disabled="#{registerCliente.clienteViewModel.statoCivile == 'Celibe' or registerCliente.clienteViewModel.statoCivile=='Nubile' or registerCliente.clienteViewModel.statoCivile==''}">
+                       <f:selectItem itemLabel="Separazione" itemValue="Separazione"/>
+                       <f:selectItem itemLabel="Comunione" itemValue="Comunione"/>
+                   </p:selectOneButton>
+               </p:outputLabel>
+
+               <p:outputLabel for="nrcomponentifam" value="Nr.Componenti Familiari:"
+                              rendered="#{registerCliente.praticaRendered.isComponentiFamiliari()}">
+                <p:spinner id="nrcomponentifam" value="#{registerCliente.clienteViewModel.nrComponentiFamiliari}" min="0" />
+               </p:outputLabel>
+
+               <p:outputLabel for="notebutton" value="Note sul Cliente:">
+                   <p:commandButton id="notebutton" value="Clicca per Inserire delle Note"
+                                    type="button" icon="fa fa-plus Fs18 White"
+                                    styleClass="green-btn"/>
+               </p:outputLabel>
+
+               <p:overlayPanel id="overnote" for="notebutton" hideEffect="fade">
+                   <p:panelGrid columns="1" id="panelnote" layout="grid"
+                                style="border:0px !important; background:none;"
+                       styleClass="ui-panelgrid-blank">
+
+                <p:inputTextarea id="note"
+                                 placeholder="Eventuali Note Aggiuntive sul Cliente"
+                                 rows="5" cols="43"
+                                 value="#{registerCliente.clienteViewModel.note}"
+                                 maxlength="160" counter="display"
+                                 counterTemplate="{0} caratteri rimanenti"
+                                 autoResize="false">
+                    <p:outputLabel for="note" id="display"/>
+                </p:inputTextarea>
+
+            </p:panelGrid>
+        </p:overlayPanel>
+    </p:panelGrid> 
+</html>         

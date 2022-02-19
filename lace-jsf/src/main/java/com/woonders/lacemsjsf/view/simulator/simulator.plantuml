@@ -1,0 +1,222 @@
+@startuml
+
+title __SIMULATOR's Class Diagram__\n
+
+  namespace com.woonders.lacemsjsf.view.simulator {
+    class com.woonders.lacemsjsf.view.simulator.RunSimulatorView {
+        - agentFees : BigDecimal
+        - amountChoosen : BigDecimal
+        - paymentChoosen : BigDecimal
+        - selectedJobTypeList : List<Impiego>
+        - simulatorResultList : List<SimulatorResult>
+        - simulatorTableViewModelList : List<SimulatorTableViewModel>
+        - uprightRemaining : BigDecimal
+        + RunSimulatorView()
+        + getAgentFees()
+        + getAmountChoosen()
+        + getHttpSessionUtil()
+        + getNumberUtil()
+        + getPassaggioParametriUtils()
+        + getPaymentChoosen()
+        + getPropertiesUtil()
+        + getRowTableResultChoosen()
+        + getSelectedJobTypeList()
+        + getSimulatorResultList()
+        + getSimulatorTableService()
+        + getSimulatorTableType()
+        + getSimulatorTableViewModelChoosen()
+        + getSimulatorTableViewModelList()
+        + getSimulatorUtil()
+        + getUprightRemaining()
+        + init()
+        + isAmountModeChoosen()
+        + isDisabledButtonRunSimulator()
+        + isDisabledTableSelection()
+        + isExcedeedTaegOrExcedeedAgentfees()
+        + isNoTablesAvailable()
+        + isPaymentModeChoosen()
+        + onRowSelect()
+        + refreshTables()
+        + resetResultTable()
+        + runSimulatorByAmount()
+        + selectAllJobType()
+        + setAgentFees()
+        + setAmountChoosen()
+        + setHttpSessionUtil()
+        + setNumberUtil()
+        + setParameterSimulatorTableSelectionDisabledAndSource()
+        + setPassaggioParametriUtils()
+        + setPaymentChoosen()
+        + setPropertiesUtil()
+        + setRowTableResultChoosen()
+        + setSelectedJobTypeList()
+        + setSimulatorResultList()
+        + setSimulatorTableService()
+        + setSimulatorTableType()
+        + setSimulatorTableViewModelChoosen()
+        + setSimulatorTableViewModelList()
+        + setSimulatorUtil()
+        + setUprightRemaining()
+        - setParameterSimulatorResultRowChoosen()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.simulator {
+    class com.woonders.lacemsjsf.view.simulator.SimulatorTableConverter {
+        + SimulatorTableConverter()
+        + getAsObject()
+        + getAsString()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.simulator {
+    class com.woonders.lacemsjsf.view.simulator.SimulatorTableListView {
+        {static} - log : Logger
+        - simulatorTableViewModelLazyDataModel : LazyDataModel<SimulatorTableViewModel>
+        + getAgenziaName()
+        + getAziendaSelectionView()
+        + getHttpSessionUtil()
+        + getJobTypeListString()
+        + getPassaggioParametriUtils()
+        + getPropertiesUtil()
+        + getSelectedSimulatorTableViewModel()
+        + getSimulatorTableService()
+        + getSimulatorTableViewModelLazyDataModel()
+        + init()
+        + isDisabledSelection()
+        + onRowSelect()
+        + setAziendaSelectionView()
+        + setHttpSessionUtil()
+        + setPassaggioParametriUtils()
+        + setPropertiesUtil()
+        + setSelectedSimulatorTableViewModel()
+        + setSimulatorTableService()
+        + setSimulatorTableViewModelLazyDataModel()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.simulator {
+    class com.woonders.lacemsjsf.view.simulator.SimulatorUtilsView {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        + getHttpSessionUtil()
+        + getObjectFromSimulatorResultRowChoosen()
+        + getOperatorService()
+        + getPassaggioParametriUtils()
+        + setHttpSessionUtil()
+        + setOperatorService()
+        + setPassaggioParametriUtils()
+        - getPraticaViewModelWithSimulatorResultRowChoosen()
+        - getPreventivoViewModelWithSimulatorResultRowChoosen()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.simulator {
+    class com.woonders.lacemsjsf.view.simulator.SimulatorView {
+        {static} - EURO : String
+        {static} - PERCENTAGE : String
+        {static} - TABLE_ACTIVE : String
+        {static} - TABLE_NOT_ACTIVE : String
+        - allOperatorViewModelList : List<OperatorViewModel>
+        {static} - log : Logger
+        - simulatorTableDetailsViewModelList : List<SimulatorTableDetailsViewModel>
+        + SimulatorView()
+        + activateDisableTable()
+        + addRowTableAction()
+        + addValueOnAllLenghtOfTable()
+        + cloneTable()
+        + deleteTable()
+        + deselectAllJobType()
+        + getAllOperatorViewModelList()
+        + getHttpSessionUtil()
+        + getInfoCreatorTableText()
+        + getNumberUtil()
+        + getOperatorService()
+        + getPassaggioParametriUtils()
+        + getPropertiesUtil()
+        + getSimulatorTableDetailsViewModelAllLenght()
+        + getSimulatorTableDetailsViewModelList()
+        + getSimulatorTableDetailsViewModelNewRow()
+        + getSimulatorTableService()
+        + getSimulatorTableViewModel()
+        + getStatusTableText()
+        + init()
+        + isDisabledButtonDeleteRow()
+        + isDisabledButtonIfActive()
+        + isDisabledColumn()
+        + isDisabledIfNoFeeType()
+        + isPrestitoTable()
+        + isRenderedButtonDeleteTable()
+        + isRenderedIdZero()
+        + isTableUsedSomewhere()
+        + loadOperatorsFromDb()
+        + removeRowTableAction()
+        + saveTable()
+        + selectAllJobType()
+        + selectAllOperators()
+        + setAllOperatorViewModelList()
+        + setHttpSessionUtil()
+        + setNumberUtil()
+        + setOperatorService()
+        + setPassaggioParametriUtils()
+        + setPropertiesUtil()
+        + setSimulatorTableDetailsViewModelAllLenght()
+        + setSimulatorTableDetailsViewModelList()
+        + setSimulatorTableDetailsViewModelNewRow()
+        + setSimulatorTableService()
+        + setSimulatorTableViewModel()
+        + setSymbolInputNumber()
+        - getChosenAziendaId()
+        - updateAllModels()
+        - updateEnabledDisabledTable()
+    }
+  }
+  
+
+  com.woonders.lacemsjsf.view.simulator.RunSimulatorView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.simulator.RunSimulatorView o-- com.woonders.lacemsjsf.util.HttpSessionUtil : httpSessionUtil
+  com.woonders.lacemsjsf.view.simulator.RunSimulatorView o-- com.woonders.lacemscommon.util.NumberUtil : numberUtil
+  com.woonders.lacemsjsf.view.simulator.RunSimulatorView o-- com.woonders.lacemsjsf.util.PassaggioParametriUtils : passaggioParametriUtils
+  com.woonders.lacemsjsf.view.simulator.RunSimulatorView o-- com.woonders.lacemsjsf.config.PropertiesUtil : propertiesUtil
+  com.woonders.lacemsjsf.view.simulator.RunSimulatorView o-- com.woonders.lacemscommon.app.model.SimulatorResult : rowTableResultChoosen
+  com.woonders.lacemsjsf.view.simulator.RunSimulatorView o-- com.woonders.lacemscommon.service.SimulatorTableService : simulatorTableService
+  com.woonders.lacemsjsf.view.simulator.RunSimulatorView o-- com.woonders.lacemscommon.db.entity.Pratica.TipoPratica : simulatorTableType
+  com.woonders.lacemsjsf.view.simulator.RunSimulatorView o-- com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel : simulatorTableViewModelChoosen
+  com.woonders.lacemsjsf.view.simulator.RunSimulatorView o-- com.woonders.lacemscommon.util.SimulatorUtil : simulatorUtil
+  com.woonders.lacemsjsf.view.simulator.SimulatorTableConverter -up-|> com.woonders.lacemsjsf.util.BaseConverter
+  com.woonders.lacemsjsf.view.simulator.SimulatorTableConverter o-- com.woonders.lacemscommon.service.SimulatorTableService : simulatorTableService
+  com.woonders.lacemsjsf.view.simulator.SimulatorTableListView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.simulator.SimulatorTableListView o-- com.woonders.lacemsjsf.view.aziendaselection.AziendaSelectionView : aziendaSelectionView
+  com.woonders.lacemsjsf.view.simulator.SimulatorTableListView o-- com.woonders.lacemsjsf.util.HttpSessionUtil : httpSessionUtil
+  com.woonders.lacemsjsf.view.simulator.SimulatorTableListView o-- com.woonders.lacemsjsf.util.PassaggioParametriUtils : passaggioParametriUtils
+  com.woonders.lacemsjsf.view.simulator.SimulatorTableListView o-- com.woonders.lacemsjsf.config.PropertiesUtil : propertiesUtil
+  com.woonders.lacemsjsf.view.simulator.SimulatorTableListView o-- com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel : selectedSimulatorTableViewModel
+  com.woonders.lacemsjsf.view.simulator.SimulatorTableListView o-- com.woonders.lacemscommon.service.SimulatorTableService : simulatorTableService
+  com.woonders.lacemsjsf.view.simulator.SimulatorUtilsView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.simulator.SimulatorUtilsView o-- com.woonders.lacemsjsf.util.HttpSessionUtil : httpSessionUtil
+  com.woonders.lacemsjsf.view.simulator.SimulatorUtilsView o-- com.woonders.lacemscommon.service.OperatorService : operatorService
+  com.woonders.lacemsjsf.view.simulator.SimulatorUtilsView o-- com.woonders.lacemsjsf.util.PassaggioParametriUtils : passaggioParametriUtils
+  com.woonders.lacemsjsf.view.simulator.SimulatorView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.simulator.SimulatorView o-- com.woonders.lacemsjsf.util.HttpSessionUtil : httpSessionUtil
+  com.woonders.lacemsjsf.view.simulator.SimulatorView o-- com.woonders.lacemscommon.util.NumberUtil : numberUtil
+  com.woonders.lacemsjsf.view.simulator.SimulatorView o-- com.woonders.lacemscommon.service.OperatorService : operatorService
+  com.woonders.lacemsjsf.view.simulator.SimulatorView o-- com.woonders.lacemsjsf.util.PassaggioParametriUtils : passaggioParametriUtils
+  com.woonders.lacemsjsf.view.simulator.SimulatorView o-- com.woonders.lacemsjsf.config.PropertiesUtil : propertiesUtil
+  com.woonders.lacemsjsf.view.simulator.SimulatorView o-- com.woonders.lacemscommon.app.viewmodel.SimulatorTableDetailsViewModel : simulatorTableDetailsViewModelAllLenght
+  com.woonders.lacemsjsf.view.simulator.SimulatorView o-- com.woonders.lacemscommon.app.viewmodel.SimulatorTableDetailsViewModel : simulatorTableDetailsViewModelNewRow
+  com.woonders.lacemsjsf.view.simulator.SimulatorView o-- com.woonders.lacemscommon.service.SimulatorTableService : simulatorTableService
+  com.woonders.lacemsjsf.view.simulator.SimulatorView o-- com.woonders.lacemscommon.app.viewmodel.SimulatorTableViewModel : simulatorTableViewModel
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

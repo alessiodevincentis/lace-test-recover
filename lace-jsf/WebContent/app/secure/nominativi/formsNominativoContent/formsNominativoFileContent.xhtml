@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<p:outputPanel rendered="#{register.archiviazioneRendered.documentiClienteRendered}">
+    <p:remoteCommand action="#{fileManagerView.processUploadedFileList}"
+                     name="processAttachments" process="@this form:fileUploadPanel"/>
+
+    <p:remoteCommand action="#{fileManagerView.beginFileUpload}" name="beginFileUpload"
+                     process="@this form:fileUploadPanel"/>
+
+    <p:accordionPanel>
+        <p:tab title="Documenti del Cliente" titleStyleClass="Fs18 White">
+
+            <p:panelGrid columns="1" id="panelDocumentsFile" layout="grid"
+                         styleClass="ui-panelgrid-blank form-group">
+
+                <p:fileUpload fileUploadListener="#{fileManagerView.handleFileUploadAnagrafica}"
+                              oncomplete="beginFileUpload([{name: 'uploadingFilesCount', value: anagraficaNominativoFileCount},
+                                              {name: 'uploadingFileCategory', value: 'ANAGRAFICA'}]);processAttachments()"
+                              mode="advanced" dragDropSupport="false"
+                              label="#{constantResolverView.chooseLabelButtonFile}"
+                              cancelLabel="#{constantResolverView.cancelLabelButtonFile}"
+                              uploadLabel="#{constantResolverView.uploadLabelButtonFile}"
+                              multiple="true"
+                              allowTypes="#{constantResolverView.allowTypesFile}"
+                              sizeLimit="#{constantResolverView.pdfSizeLimit}"
+                              invalidFileMessage="#{propertiesUtil.msgInvalidFile}"
+                              invalidSizeMessage="#{propertiesUtil.msgInvalidFileSize}" process="@none"
+                              id="documentiUpload"
+                              disabled="#{fileManagerView.isFileStorageDisabled() || !register.canWriteNominativo()}"
+                              widgetVar="documentiUploadWidget"
+                              onstart="anagraficaNominativoFileCount=PF('documentiUploadWidget').files.length"
+                              sequential="true"/>
+
+                <p:tooltip for="documentiUpload"
+                           value="#{propertiesUtil.msgFunctionalityNotEnabledFull}"
+                           position="top" hideEffect="clip" showEffect="clip"
+                           rendered="#{fileManagerView.isFileStorageDisabled()}"/>
+
+                <p:commandButton value="Visualizza file" icon="fa fa-folder-open Fs18 White"
+                                 iconPos="right" id="visualizzaFileAnagraficaButton" style="width:auto;"
+                                 action="#{fileManagerView.setFileListToDisplay('ANAGRAFICA')}"
+                                 update="form:fileListDialog" process="@this"
+                                 disabled="#{fileManagerView.isFileStorageDisabled()}"/>
+
+                <p:tooltip for="visualizzaFileAnagraficaButton"
+                           value="#{propertiesUtil.msgFunctionalityNotEnabledFull}"
+                           position="top" hideEffect="clip" showEffect="clip"
+                           rendered="#{fileManagerView.isFileStorageDisabled()}"/>
+
+            </p:panelGrid>
+        </p:tab>
+    </p:accordionPanel>
+</p:outputPanel>
+
+
+<p:dialog id="fileListDialog" header="Visualizza File" widgetVar="fileListDialog" modal="true" dynamic="true"
+          resizable="false" draggable="false">
+
+    <!-- ui-noborder not working -->
+    <p:scrollPanel mode="native" style="border: none" styleClass="scrollablePanelMaxDimension">
+        <p:outputPanel id="fileListOutputPanel">
+            <p:repeat value="#{fileManagerView.fileViewModelList}" var="file">
+                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+
+                    <p:outputPanel>
+                        <h:panelGrid columns="4" cellpadding="5">
+                            <h:outputText value="Nome:"/>
+                            <h:outputText value="#{file.fileName}" style="font-weight: bold"/>
+                            <p:commandButton icon="fa fa-download"
+                                             action="#{fileManagerView.setPdfToDisplayParameters(file.tenantId, file.clientePraticaId, file.fileCategory, file.fileName)}"
+                                             process="@this"
+                                             oncomplete="openNewWindow('/app/secure/showpdfview.xhtml')"/>
+                            <p:commandButton icon="fa fa-remove" styleClass="red-btn"
+                                             action="#{fileManagerView.deleteFile(file.tenantId, file.clientePraticaId, file.fileCategory, file.fileName)}"
+                                             process="@this" update=":form:fileListOutputPanel">
+                                <p:confirm header="Conferma"
+                                           message="Eliminare Definitivamente il file?"
+                                           icon="ui-icon-alert"/>
+                            </p:commandButton>
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+                <hr/>
+            </p:repeat>
+        </p:outputPanel>
+    </p:scrollPanel>
+
+</p:dialog>
+</html>                                                  
+                  

@@ -1,0 +1,296 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:composite-custom="http://java.sun.com/jsf/composite/composite-custom">
+
+    <ui:define name="title">Dashboard</ui:define>
+
+
+    <ui:define name="head">
+        <script type="text/javascript">
+            // Blue : #3E98D3  |  Red : #EF3F61  |  Green : #2BB673  |  Orange : #F15732
+            //<![CDATA[
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.title = '';
+                this.cfg.seriesColors = ['#2B9C6A', '#FFC107', '#03A9F4'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#ffffff',
+                    gridLineColor: '#EEEEEE',
+                    shadow: false
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#212121'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    lineWidth: 1,
+                    markerOptions: {
+                        shadow: false,
+                        size: 7,
+                        style: 'circle'
+                    }
+                }
+            }
+
+            //]]>
+        </script>
+        <style type="text/css">
+            .main-content {
+                padding: 0;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{aziendaSelectionView.setCurrentMenuSection('DASHBOARD')}"/>
+            <f:event type="preRenderView" listener="#{lineChartModelView.refreshChart()}"/>
+        </f:metadata>
+
+        <h:body>
+            <div class="ui-g dashboard">
+
+                <div class="ui-g-12 ui-md-8">
+                    <p:panel header="MONTANTE TOTALE PER MESI">
+                        <p:selectOneMenu effect="fold" value="#{lineChartModelView.graficoEnum}">
+                            <f:selectItems value="#{constantResolverView.graficoEnum}" var="v"
+                                           itemLabel="#{v.value}" itemValue="#{v}"/>
+                            <p:ajax event="change" update="chart" listener="#{lineChartModelView.createLineModel()}"/>
+                        </p:selectOneMenu>
+                        <p:chart id="chart" type="line" model="#{lineChartModelView.lineModel}" responsive="true"/>
+                    </p:panel>
+                </div>
+
+                <div class="ui-g-12 ui-md-4 task-list">
+                    <p:panel header="INFO SUI NOMINATIVI">
+                        <ul>
+                            <li>
+                                <div class="Fleft MarRight10"><i class="material-icons">&#xE003;</i></div>
+                                <span class="task-name Fs20"><p:commandLink style="color: black"
+                                                                            action="#{dashboardNominativo.viewNominativiDaLavorare}"
+                                                                            process="@this">Nuovi Lead</p:commandLink></span>
+                                <span class="task-name Fs30 Fright">#{dashboardNotificationView.newLeadSize()}</span>
+                            </li>
+                            <li>
+                                <div class="Fleft MarRight10"><i class="material-icons">&#xE7F0;</i></div>
+                                <span class="task-name Fs20"><p:commandLink style="color: black"
+                                                                            action="#{dashboardNominativo.viewNominativiDaLavorare}"
+                                                                            process="@this">Da Lavorare</p:commandLink></span>
+                                <span class="task-name Fs30 Fright">#{dashboardNotificationView.nominativiDaLavorareSize()}</span>
+                            </li>
+                            <li>
+                                <div class="Fleft MarRight10"><i class="material-icons">&#xE61C;</i></div>
+                                <span class="task-name Fs20"><p:commandLink style="color: black"
+                                                                            action="#{navigationBackingBean.getDashboardNominativoOutcome()}"
+                                                                            process="@this">Da Richiamare Oggi</p:commandLink></span>
+                                <span class="task-name Fs30 Fright">#{dashboardNotificationView.nominativiRecallSize()}</span>
+                            </li>
+                            <li>
+                                <div class="Fleft MarRight10"><i class="material-icons">&#xE620;</i></div>
+                                <span class="task-name Fs20"><p:commandLink style="color: black"
+                                                                            action="#{navigationBackingBean.getNominativiOmessiOutcome()}"
+                                                                            process="@this">Nominativi Omessi</p:commandLink></span>
+                                <span class="task-name Fs30 Fright">#{dashboardNotificationView.nominativiOmessiSize()}</span>
+                            </li>
+                            <li>
+                                <div class="Fleft MarRight10"><i class="material-icons">&#xE7F7;</i></div>
+                                <span class="task-name Fs20"><p:commandLink style="color: black"
+                                                                            action="#{dashboardNominativo.viewRinnovoImpegni}"
+                                                                            process="@this">Impegni Rinnovabili</p:commandLink></span>
+                                <span class="task-name Fs30 Fright">#{dashboardNotificationView.impegniRinnovabiliSize()}</span>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li style="border: none;">
+                                <div class="ui-g">
+                                    <p:commandButton value="MAGGIORI INFO" process="@this"
+                                                     action="#{navigationBackingBean.getDashboardNominativoOutcome()}"
+                                                     icon="fa fa-plus Fs16"/>
+                                </div>
+                            </li>
+                        </ul>
+                    </p:panel>
+                </div>
+
+                <composite-custom:widget icon="&#xE7F7;" valueWidget1="Pratiche Rinnovabili"
+                                         valueWidget2="#{dashboardNotificationView.numberRinnovoPratica()}" colorBox="4"
+                                         actionValue="#{dashboardNotificationView.findPraticaRinnovabile('PRATICA')}"
+                                         widthTot="3"/>
+
+                <composite-custom:widget icon="&#xE7F4;" valueWidget1="Coesistenze Rinnovabili"
+                                         valueWidget2="#{dashboardNotificationView.numberRinnovoCoesistenza()}"
+                                         colorBox="3"
+                                         actionValue="#{dashboardNotificationView.findCoesistenzaRinnovabile('COESISTENZA')}"
+                                         widthTot="3"/>
+
+                <composite-custom:widget icon="&#xE61D;" valueWidget1="Clienti Da Richiamare"
+                                         valueWidget2="#{dashboardNotificationView.numberRecall()}" colorBox="2"
+                                         actionValue="#{dashboardNotificationView.findClienteToRecall('RECALL')}"
+                                         widthTot="3"/>
+
+                <composite-custom:widget icon="&#xE873;" valueWidget1="Preventivi dei Clienti"
+                                         valueWidget2="#{dashboardNotificationView.preventiviInCorsoSize()}"
+                                         colorBox="1"
+                                         actionValue="#{dashboardNotificationView.findPreventivo()}" widthTot="3"/>
+
+
+                <div class="ui-g-12 ui-md-9">
+                    <div class="card w-title">
+                        <h1>Calendario Appuntamenti
+
+                            <composite-custom:infobuttondialog layoutToIncludeName="infocalendariodialog.xhtml"
+                                                               onCloseJs="pauseVideo();"/>
+
+                            <p:selectCheckboxMenu value="#{calendarioAppuntamentiView.operatoriSelezionati}"
+                                                  label="Filtra per Operatore:"
+                                                  filter="true" filterMatchMode="contains" style="margin-right:2em;"
+                                                  styleClass="Fright Fs16"
+                                                  rendered="#{calendarioAppuntamentiView.isSelectCheckboxMenuRendered()}">
+                                <f:selectItems var="opt"
+                                               value="#{utilResolverView.getOperatorsStringList('CALENDARIO', 'READ')}"
+                                               itemLabel="#{opt}" itemValue="#{opt}"/>
+                                <p:ajax event="change" update="schedule"/>
+                            </p:selectCheckboxMenu>
+
+                        </h1>
+
+                        <p:growl id="scheduleGrowl"/>
+
+                        <p:schedule id="schedule" value="#{calendarioAppuntamentiView.lazyEventModel}"
+                                    widgetVar="myschedule" timeFormat="HH:mm" clientTimeZone="local" axisFormat="HH:mm"
+                                    allDaySlot="false" displayEventEnd="true">
+                            <p:ajax event="dateSelect" listener="#{calendarioAppuntamentiView.onDateSelect}"
+                                    update="dettagliAppuntamento" oncomplete="PF('newAppuntamentoWizard').show();"/>
+                            <p:ajax event="eventSelect" listener="#{calendarioAppuntamentiView.onEventSelect}"/>
+                            <p:ajax event="eventMove" listener="#{calendarioAppuntamentiView.onEventMove}"/>
+                            <p:ajax event="eventResize" listener="#{calendarioAppuntamentiView.onEventResize}"/>
+                        </p:schedule>
+
+                        <ui:include src="/app/secure/calendario/calendarioAppuntamentiDialogWizardDashboard.xhtml"/>
+                        <ui:include src="/app/secure/calendario/calendarioAppuntamentiDialogDashboardView.xhtml"/>
+                        <ui:include src="/app/secure/calendario/confirmDialogAppuntamentiEsistenti.xhtml"/>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-3">
+                    <div class="card overview" style="margin-bottom: 2em !important;">
+                        <div class="overview-content clearfix">
+                            <span class="overview-title">CQP Caricate</span>
+                            <span class="overview-badge">Perfezionate: #{dashboardStatisticView.numeroPratichePerfezionate(constantResolverView.cessionePensione)} / Anno</span>
+                            <span class="overview-detail">#{dashboardStatisticView.numeroPraticheCaricate(constantResolverView.cessionePensione)} / Mese</span>
+                        </div>
+                        <div class="overview-footer">
+                            <p:graphicImage name="images/dashboard/progress.svg" library="ultima-layout"
+                                            style="width: 100%"/>
+                        </div>
+                    </div>
+
+                    <div class="card overview" style="margin-bottom: 2em !important;">
+                        <div class="overview-content clearfix">
+                            <span class="overview-title">CQS Caricate</span>
+                            <span class="overview-badge">Perfezionate: #{dashboardStatisticView.numeroPratichePerfezionate(constantResolverView.cessioneStipendio)} / Anno</span>
+                            <span class="overview-detail">#{dashboardStatisticView.numeroPraticheCaricate(constantResolverView.cessioneStipendio)} / Mese</span>
+                        </div>
+                        <div class="overview-footer">
+                            <p:graphicImage name="images/dashboard/views.svg" library="ultima-layout"
+                                            style="width: 100%"/>
+                        </div>
+                    </div>
+
+                    <div class="card overview" style="margin-bottom: 2em !important;">
+                        <div class="overview-content clearfix">
+                            <span class="overview-title">DLG Caricate</span>
+                            <span class="overview-badge">Perfezionate: #{dashboardStatisticView.numeroPratichePerfezionate(constantResolverView.delega)} / Anno</span>
+                            <span class="overview-detail">#{dashboardStatisticView.numeroPraticheCaricate(constantResolverView.delega)} / Mese</span>
+                        </div>
+                        <div class="overview-footer">
+                            <p:graphicImage name="images/dashboard/sales.svg" library="ultima-layout"
+                                            style="width: 100%"/>
+                        </div>
+                    </div>
+
+                    <div class="card overview" style="margin-bottom: 2em !important;">
+                        <div class="overview-content clearfix">
+                            <span class="overview-title">PP Caricati</span>
+                            <span class="overview-badge">Perfezionate: #{dashboardStatisticView.numeroPratichePerfezionate(constantResolverView.prestito)} / Anno</span>
+                            <span class="overview-detail">#{dashboardStatisticView.numeroPraticheCaricate(constantResolverView.prestito)} / Mese</span>
+                        </div>
+                        <div class="overview-footer">
+                            <p:graphicImage name="images/dashboard/views.svg" library="ultima-layout"
+                                            style="width: 100%"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-12">
+                    <div class="card">
+                        <p:dataTable id="eventsDT" var="c"
+                                     value="#{datatableDashboardView.clientePraticaLazyDataModel}"
+                                     selectionMode="single" lazy="true"
+                                     selection="#{datatableDashboardView.selectedCliente}"
+                                     sortBy="#{c.praticaViewModel.dataCaricamento}" sortOrder="descending"
+                                     rowKey="#{c.praticaViewModel.codicePratica}"
+                                     rows="5" paginator="true"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15"
+                                     emptyMessage="In Base ai Criteri di Ricerca Scelti non Abbiamo Trovato Nessun Cliente"
+                                     reflow="true" tableStyle="text-align:center;">
+                            <f:facet name="header">ULTIME PRATICHE CARICATE</f:facet>
+
+                            <p:ajax event="rowSelect" listener="#{datatableDashboardView.onRowSelect}"/>
+                            <p:column headerText="Operatore" sortBy="#{c.praticaViewModel.operatore.username}"
+                                      rendered="#{utilResolverView.isRenderedColumn('CLIENTI')}">
+                                <h:outputText value="#{c.praticaViewModel.operatore.username}"/>
+                            </p:column>
+                            <p:column headerText="Cognome" sortBy="#{c.clienteViewModel.cognome}">
+                                <h:outputText value="#{c.clienteViewModel.cognome}"/>
+                            </p:column>
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{c.clienteViewModel.nome}"/>
+                            </p:column>
+                            <p:column headerText="DataNascita" sortBy="#{c.clienteViewModel.dataNascita}">
+                                <h:outputText value="#{c.clienteViewModel.dataNascita}">
+                                    <f:converter
+                                            converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Operazione" sortBy="#{c.praticaViewModel.tipoPratica}">
+                                <h:outputText value="#{c.praticaViewModel.tipoPratica}"/>
+                            </p:column>
+                            <p:column headerText="Rata" sortBy="#{c.praticaViewModel.rata}">
+                                <h:outputText value="#{c.praticaViewModel.rata}"/>
+                            </p:column>
+                            <p:column headerText="Durata" sortBy="#{c.praticaViewModel.durata}">
+                                <h:outputText value="#{c.praticaViewModel.durata}"/>
+                            </p:column>
+                            <p:column headerText="Erogato" sortBy="#{c.praticaViewModel.importoErogato}">
+                                <h:outputText value="#{c.praticaViewModel.importoErogato}"/>
+                            </p:column>
+                            <p:column headerText="Telefono">
+                                <h:outputText value="#{c.clienteViewModel.telefono}"/>
+                            </p:column>
+                            <p:column headerText="Caricamento"
+                                      sortBy="#{c.praticaViewModel.dataCaricamento}">
+                                <h:outputText value="#{c.praticaViewModel.dataCaricamento}">
+                                    <f:converter
+                                            converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                                </h:outputText>
+                            </p:column>
+
+                        </p:dataTable>
+                    </div>
+                </div>
+
+            </div>
+        </h:body>
+    </ui:define>
+
+</ui:composition>

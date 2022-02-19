@@ -1,0 +1,132 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:lacems="http://lacems.com/ui"
+                xmlns:composite-custom="http://java.sun.com/jsf/composite/composite-custom">
+
+    <ui:define name="head">
+        <script type="text/javascript">
+            function chartExtender() {
+                // this = chart widget instance
+                // this.cfg = options
+                this.cfg.seriesDefaults.rendererOptions.varyBarColor = true;
+            }
+        </script>
+
+    </ui:define>
+
+    <ui:define name="content">
+        <h:body>
+            <f:metadata>
+                <f:event type="preRenderView" listener="#{aziendaSelectionView.setCurrentMenuSection('NOMINATIVI')}"/>
+            </f:metadata>
+            <div class="ui-g dashboard ui-fluid">
+
+                <composite-custom:widget icon="&#xE7F0;" valueWidget1="Nominativi Da Lavorare"
+                                         valueWidget2="#{dashboardNotificationView.nominativiDaLavorareSize()}"
+                                         colorBox="2"
+                                         actionValue="#{dashboardNominativo.viewNominativiDaLavorare()}" widthTot="4"/>
+
+                <composite-custom:widget icon="&#xE7F4;" valueWidget1="Impegni Rinnovabili"
+                                         valueWidget2="#{dashboardNotificationView.impegniRinnovabiliSize()}"
+                                         colorBox="3"
+                                         actionValue="#{dashboardNominativo.viewRinnovoImpegni()}" widthTot="4"/>
+
+                <composite-custom:widget icon="&#xE620;" valueWidget1="Nominativi Omessi"
+                                         valueWidget2="#{dashboardNotificationView.nominativiOmessiSize()}"
+                                         colorBox="4"
+                                         actionValue="#{dashboardNominativo.viewNominativiOmessi()}" widthTot="4"/>
+
+                <div class="ui-g-12 ui-lg-12">
+                    <div class="card card-w-title">
+                        <h1>Nominativi da Richiamare
+                            <lacems:italianCalendar value="#{dashboardNominativo.dateRecall}" id="inline"
+                                                    label="Calendario" mask="true" styleClass="Fright"
+                                                    style="width: auto"
+                                                    showOn="button">
+                                <p:ajax event="dateSelect" listener="#{dashboardNominativo.onDateSelect}"
+                                        update="eventsDT"/>
+                                <p:ajax event="change" update="eventsDT"/>
+                            </lacems:italianCalendar>
+                        </h1>
+
+                        <p:dataTable id="eventsDT" var="c" value="#{dashboardNominativo.clienteViewModelLazyDataModel}"
+                                     selectionMode="single"
+                                     selection="#{dashboardNominativo.selectedNominativo}"
+                                     sortBy="#{c.dataRecallNominativo}" rowKey="#{c.id}"
+                                     rows="10" paginator="true"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15"
+                                     emptyMessage="In Base ai Criteri di Ricerca Scelti non Abbiamo Trovato Nessun Nominativo"
+                                     reflow="true" tableStyle="text-align:center;width:auto" widgetVar="recallTable"
+                                     lazy="true">
+                            <f:facet name="header">
+                                Seleziona un Giorno del Mese per Visualizzare i Nominativi da Richiamare
+                            </f:facet>
+
+                            <p:ajax event="rowSelect" listener="#{dashboardNominativo.onRowSelect}"/>
+                            <p:column filterBy="#{c.operatoreNominativo.username}" filterMatchMode="in"
+                                      rendered="#{utilResolverView.isRenderedColumn('NOMINATIVI')}">
+                                <f:facet name="filter">
+                                    <p:selectCheckboxMenu label="Operatore"
+                                                          onchange="PF('recallTable').filter()"
+                                                          showHeader="false">
+                                        <f:selectItems
+                                                value="#{utilResolverView.getOperatorsStringList('NOMINATIVI', 'READ')}"/>
+                                    </p:selectCheckboxMenu>
+                                </f:facet>
+                                <h:outputText value="#{c.operatoreNominativo.username}"/>
+                            </p:column>
+                            <p:column headerText="Agenzia" rendered="#{aziendaSelectionView.aziendaColumnShown}">
+                                <h:outputText value="#{c.operatoreNominativo.azienda.nomeAzienda}"/>
+                            </p:column>
+                            <p:column headerText="Cognome" sortBy="#{c.cognome}">
+                                <h:outputText value="#{c.cognome}"/>
+                            </p:column>
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{c.nome}"/>
+                            </p:column>
+                            <p:column headerText="Telefono">
+                                <h:outputText value="#{c.telefono}"/>
+                            </p:column>
+                            <p:column headerText="TelefonoFisso">
+                                <h:outputText value="#{c.telefonoFisso}"/>
+                            </p:column>
+                            <p:column headerText="Stato" sortBy="#{c.statoNominativo}">
+                                <h:outputText value="#{c.statoNominativo}"/>
+                            </p:column>
+                            <p:column headerText="Recall" sortBy="#{c.dataRecallNominativo}">
+                                <h:outputText value="#{c.dataRecallNominativo}">
+                                    <f:converter
+                                            converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDateTime"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column filterBy="#{c.provenienza}" filterMatchMode="exact">
+                                <f:facet name="filter">
+                                    <p:selectOneMenu onchange="PF('recallTable').filter()">
+                                        <f:selectItem itemLabel="Provenienza" itemValue="#{null}"
+                                                      noSelectionOption="true"/>
+                                        <f:selectItems value="#{constantResolverView.provenienza}" var="v"
+                                                       itemLabel="#{v.value}" itemValue="#{v.value}"/>
+                                    </p:selectOneMenu>
+                                </f:facet>
+                                <h:outputText value="#{c.provenienza}"/>
+                            </p:column>
+                            <p:column headerText="Descrizione Provenienza" sortBy="#{c.provenienzaDesc}">
+                                <h:outputText value="#{c.provenienzaDesc}"/>
+                            </p:column>
+                            <p:column headerText="Impiego" sortBy="#{c.impiego}">
+                                <h:outputText value="#{c.impiego}"/>
+                            </p:column>
+                        </p:dataTable>
+
+                    </div>
+                </div>
+            </div>
+        </h:body>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,140 @@
+@startuml
+
+title __STATOPRATICHE's Class Diagram__\n
+
+  namespace com.woonders.lacemsjsf.view.statopratiche {
+    class com.woonders.lacemsjsf.view.statopratiche.DatatableStatoConteggioEstinzioneView {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        - STATO_CONTEGGIO_ESTINZIONE_COLUMN_HEADER_TEXT : String
+        - estinzioneViewModelLazyDataModel : LazyDataModel<EstinzionePraticaCliente>
+        {static} - logger : Logger
+        - tipoEstinzione : String
+        + getAziendaSelectionView()
+        + getEstinzioneViewModelLazyDataModel()
+        + getHttpSessionUtil()
+        + getPassaggioParametriUtils()
+        + getPropertiesUtil()
+        + getSTATO_CONTEGGIO_ESTINZIONE_COLUMN_HEADER_TEXT()
+        + getSelectedEstinzione()
+        + getStatoConteggioEstinzione()
+        + getStatoPraticheService()
+        + getTipoEstinzione()
+        + init()
+        + isDataNotificaStatoConteggioRendered()
+        + isDataRinnovoColumnRendered()
+        + onCellEdit()
+        + onRowSelect()
+        + setAziendaSelectionView()
+        + setEstinzioneViewModelLazyDataModel()
+        + setHttpSessionUtil()
+        + setPassaggioParametriUtils()
+        + setPropertiesUtil()
+        + setSelectedEstinzione()
+        + setStatoConteggioEstinzione()
+        + setStatoPraticheService()
+        + setTipoEstinzione()
+        - retrieveClientePraticheListFromParameter()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.statopratiche {
+    class com.woonders.lacemsjsf.view.statopratiche.DatatableStatoPraticaView {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        - STATO_PRATICA_COLUMN_HEADER_TEXT : String
+        - clientePraticaLazyDataModel : LazyDataModel<ClientePratica>
+        {static} - logger : Logger
+        - statoPratica : String
+        - tipoPratica : String
+        + getAziendaSelectionView()
+        + getClientePraticaLazyDataModel()
+        + getHttpSessionUtil()
+        + getPassaggioParametriUtils()
+        + getPropertiesUtil()
+        + getSTATO_PRATICA_COLUMN_HEADER_TEXT()
+        + getSelectedClientePratica()
+        + getStatoPratica()
+        + getStatoPraticheService()
+        + getTipoPratica()
+        + init()
+        + isDataIstruitaColumnRendered()
+        + isPannelloStatoPraticaCellEditorRendered()
+        + onCellEdit()
+        + onRowSelect()
+        + setAziendaSelectionView()
+        + setClientePraticaLazyDataModel()
+        + setHttpSessionUtil()
+        + setPassaggioParametriUtils()
+        + setPropertiesUtil()
+        + setSelectedClientePratica()
+        + setStatoPratica()
+        + setStatoPraticheService()
+        + setTipoPratica()
+        - retrieveClientePraticheListFromParameter()
+        - updateListWithNewValue()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.statopratiche {
+    class com.woonders.lacemsjsf.view.statopratiche.StatoPraticheView {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        - CQS : String
+        - PP : String
+        - whiteColor : String
+        - yellowColor : String
+        + getAziendaSelectionView()
+        + getCQS()
+        + getColorIcon()
+        + getColorIconConteggioEstinzione()
+        + getHttpSessionUtil()
+        + getPP()
+        + getPassaggioParametriUtils()
+        + getStatoConteggioEstinzioneSize()
+        + getStatoPraticaSize()
+        + getStatoPraticheService()
+        + getWhiteColor()
+        + getYellowColor()
+        + putStatoConteggioEstinzioneParameter()
+        + putStatoPraticaParameter()
+        + setAziendaSelectionView()
+        + setHttpSessionUtil()
+        + setPassaggioParametriUtils()
+        + setStatoPraticheService()
+    }
+  }
+  
+
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoConteggioEstinzioneView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoConteggioEstinzioneView o-- com.woonders.lacemsjsf.view.aziendaselection.AziendaSelectionView : aziendaSelectionView
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoConteggioEstinzioneView o-- com.woonders.lacemsjsf.util.HttpSessionUtil : httpSessionUtil
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoConteggioEstinzioneView o-- com.woonders.lacemsjsf.util.PassaggioParametriUtils : passaggioParametriUtils
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoConteggioEstinzioneView o-- com.woonders.lacemsjsf.config.PropertiesUtil : propertiesUtil
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoConteggioEstinzioneView o-- com.woonders.lacemscommon.app.model.EstinzionePraticaCliente : selectedEstinzione
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoConteggioEstinzioneView o-- com.woonders.lacemscommon.db.entityenum.StatoConteggioEstinzione : statoConteggioEstinzione
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoConteggioEstinzioneView o-- com.woonders.lacemscommon.service.StatoPraticheService : statoPraticheService
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoPraticaView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoPraticaView o-- com.woonders.lacemsjsf.view.aziendaselection.AziendaSelectionView : aziendaSelectionView
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoPraticaView o-- com.woonders.lacemsjsf.util.HttpSessionUtil : httpSessionUtil
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoPraticaView o-- com.woonders.lacemsjsf.util.PassaggioParametriUtils : passaggioParametriUtils
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoPraticaView o-- com.woonders.lacemsjsf.config.PropertiesUtil : propertiesUtil
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoPraticaView o-- com.woonders.lacemscommon.app.model.ClientePratica : selectedClientePratica
+  com.woonders.lacemsjsf.view.statopratiche.DatatableStatoPraticaView o-- com.woonders.lacemscommon.service.StatoPraticheService : statoPraticheService
+  com.woonders.lacemsjsf.view.statopratiche.StatoPraticheView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.statopratiche.StatoPraticheView o-- com.woonders.lacemsjsf.view.aziendaselection.AziendaSelectionView : aziendaSelectionView
+  com.woonders.lacemsjsf.view.statopratiche.StatoPraticheView o-- com.woonders.lacemsjsf.util.HttpSessionUtil : httpSessionUtil
+  com.woonders.lacemsjsf.view.statopratiche.StatoPraticheView o-- com.woonders.lacemsjsf.util.PassaggioParametriUtils : passaggioParametriUtils
+  com.woonders.lacemsjsf.view.statopratiche.StatoPraticheView o-- com.woonders.lacemscommon.service.StatoPraticheService : statoPraticheService
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

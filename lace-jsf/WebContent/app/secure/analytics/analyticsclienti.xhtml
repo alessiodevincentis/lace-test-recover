@@ -1,0 +1,217 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:lacems="http://lacems.com/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:composite-custom="http://java.sun.com/jsf/composite/composite-custom">
+
+    <ui:define name="content">
+        <h:outputScript library="ultima-layout" name="js/skinPieChart.js"/>
+        <h:body>
+            <f:metadata>
+                <f:event type="preRenderView" listener="#{aziendaSelectionView.setCurrentMenuSection('CLIENTI')}"/>
+                <f:event type="preRenderView" listener="#{analyticsClientiView.setListProvvigioniOperator()}"/>
+            </f:metadata>
+            <div class="ui-g ui-fluid">
+                <composite-custom:analyticsfilter fromDateValue="#{analyticsClientiView.from}"
+                                                  toDateValue="#{analyticsClientiView.to}"
+                                                  operatoriSelezionatiValue="#{analyticsClientiView.operatoriSelezionati}"
+                                                  presetDateValue="#{analyticsClientiView.presetDate}"
+                                                  infoMessageValue="#{infoHelpView.keyInfoAnalyticsClienti}">
+
+                    <p:ajax event="changeEventFiltroOperatoriOrDate" update="form:grouptotal form:groupcaricate form:groupliquidate form:groupmontantecaricate
+                                                form:groupmontanteliquidate form:grouperogatocaricate form:grouperogatoliquidate form:dtprovvigione"
+                            listener="#{analyticsClientiView.setListProvvigioniOperator()}"/>
+
+                    <p:ajax event="changeEventPresetDate" update="form:grouptotal form:groupcaricate form:groupliquidate form:groupmontantecaricate
+                                                form:groupmontanteliquidate form:grouperogatocaricate form:grouperogatoliquidate"
+                            listener="#{analyticsClientiView.setDateFromPreset}"/>
+
+                    <p:ajax event="changeEventPresetDate" update="form:dtprovvigione"
+                            listener="#{analyticsClientiView.setListProvvigioniOperator()}"/>
+
+                    <p:ajax event="dateSelectFromOrTo" update="form:grouptotal form:groupcaricate form:groupliquidate form:groupmontantecaricate
+                                                form:groupmontanteliquidate form:grouperogatocaricate form:grouperogatoliquidate form:dtprovvigione"
+                            listener="#{analyticsClientiView.setListProvvigioniOperator()}"/>
+
+
+                </composite-custom:analyticsfilter>
+
+                <div class="ui-g-12 ui-lg-4">
+                    <div class="card">
+                        <h:panelGroup id="grouptotal">
+                            <h1 class="centerText">Pratiche Totali: #{analyticsClientiView.totalePratiche}</h1>
+                            <p:chart id="pieTotal" type="pie"
+                                     model="#{analyticsClientiView.getPieModelPraticheTotali()}"
+                                     responsive="true"/>
+                        </h:panelGroup>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-lg-4">
+                    <div class="card">
+                        <h:panelGroup id="groupcaricate">
+                            <h1 class="centerText">Pratiche Caricate: #{analyticsClientiView.totalePraticheCaricate}</h1>
+                            <p:chart id="pieCaricate" type="pie"
+                                     model="#{analyticsClientiView.getPieModelPraticheCaricate()}"
+                                     responsive="true"/>
+                        </h:panelGroup>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-lg-4">
+                    <div class="card">
+                        <h:panelGroup id="groupliquidate">
+                            <h1 class="centerText">Pratiche Liquidate: #{analyticsClientiView.totalePraticheLiquidate}</h1>
+                            <p:chart id="pieLiquidate" type="pie"
+                                     model="#{analyticsClientiView.getPieModelPraticheLiquidate()}"
+                                     responsive="true"/>
+                        </h:panelGroup>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g dashboard">
+                <div class="ui-g-12 ui-md-3">
+                    <h:panelGroup id="groupmontantecaricate">
+                        <div class="card overview">
+                            <div class="overview-content clearfix">
+                                <span class="overview-title">Cessioni/Deleghe Caricate</span>
+                                <span class="overview-badge"></span>
+                                <span class="overview-detail">
+                                <span class="overview-title"
+                                      style="font-size: small">Montante: </span>#{analyticsClientiView.sumMontanteCaricate}
+                            </span>
+                            </div>
+                            <div class="overview-footer">
+                                <p:graphicImage name="images/dashboard/progress.svg" library="ultima-layout"
+                                                style="width: 100%"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <h:panelGroup id="groupmontanteliquidate">
+                        <div class="card overview">
+                            <div class="overview-content clearfix">
+                                <span class="overview-title">Cessioni/Deleghe Liquidate</span>
+                                <span class="overview-badge"></span>
+                                <span class="overview-detail">
+                                <span class="overview-title"
+                                      style="font-size: small">Montante: </span>#{analyticsClientiView.sumMontanteLiquidate}
+                            </span>
+                            </div>
+                            <div class="overview-footer">
+                                <p:graphicImage name="images/dashboard/views.svg" library="ultima-layout"
+                                                style="width: 100%"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <h:panelGroup id="grouperogatocaricate">
+                        <div class="card overview">
+                            <div class="overview-content clearfix">
+                                <span class="overview-title">Prestiti Caricati</span>
+                                <span class="overview-badge"></span>
+                                <span class="overview-detail">
+                                <span class="overview-title"
+                                      style="font-size: small">Erogato: </span>#{analyticsClientiView.sumErogatoCaricate}
+                            </span>
+                            </div>
+                            <div class="overview-footer">
+                                <p:graphicImage name="images/dashboard/sales.svg" library="ultima-layout"
+                                                style="width: 100%"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <h:panelGroup id="grouperogatoliquidate">
+                        <div class="card overview">
+                            <div class="overview-content clearfix">
+                                <span class="overview-title">Prestiti Liquidati</span>
+                                <span class="overview-badge"></span>
+                                <span class="overview-detail">
+                                <span class="overview-title"
+                                      style="font-size: small">Erogato: </span>#{analyticsClientiView.sumErogatoLiquidate}
+                            </span>
+                            </div>
+                            <div class="overview-footer">
+                                <p:graphicImage name="images/dashboard/views.svg" library="ultima-layout"
+                                                style="width: 100%"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+                </div>
+                <div class="ui-g-12 ui-md-12">
+                    <p:dataTable id="dtprovvigione" var="opt" reflow="true" rows="10" paginator="true"
+                                 emptyMessage="Nessun operatore presente" sortOrder="descending"
+                                 value="#{analyticsClientiView.analyticsProvvigioneClienteList}"
+                                 tableStyle="text-align:center;" rowsPerPageTemplate="5,10,15"
+                                 sortBy="#{opt.provvigioneTot}" paginatorTemplate="{CurrentPageReport}
+                                     {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+                                     {LastPageLink} {RowsPerPageDropdown} {Exporters}">
+
+                        <f:facet name="{Exporters}">
+                            <h:commandLink rendered="#{utilResolverView.isRenderedColumn('CLIENTI')}">
+                                <p:graphicImage library="img" name="excel.png" width="24"/>
+                                <p:dataExporter type="xls" target="dtprovvigione" fileName="provvigioni_report"/>
+                            </h:commandLink>
+
+                            <h:commandLink rendered="#{utilResolverView.isRenderedColumn('CLIENTI')}">
+                                <p:graphicImage library="img" name="pdf.png" width="24"/>
+                                <p:dataExporter type="pdf" target="dtprovvigione" fileName="provvigioni_report"
+                                                preProcessor="#{analyticsClientiView.preProcessPDF}"/>
+                            </h:commandLink>
+                        </f:facet>
+
+                        <f:facet name="header">
+                            <h:outputText styleClass="FontBold"
+                                          rendered="#{utilResolverView.isRenderedColumn('CLIENTI')}"
+                                          value="Totale provvigione agenzia "/>
+                            <h:outputText styleClass="FontBold"
+                                          rendered="#{utilResolverView.isRenderedColumn('CLIENTI')}"
+                                          value="#{analyticsClientiView.getTotaleProvvigioniAgenzia()}">
+                                <lacems:ConvertNumberCurrencyEuro/>
+                            </h:outputText>
+                        </f:facet>
+
+                        <p:column sortBy="#{opt.username}" headerText="Nome utente">
+                            <h:outputText value="#{opt.username}"/>
+                        </p:column>
+
+                        <p:column sortBy="#{opt.provvigioneTot}" headerText="Provvigione Totale">
+                            <h:outputText value="#{opt.provvigioneTot}">
+                                <lacems:ConvertNumberCurrencyEuro/>
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column sortBy="#{opt.provvigioneCqs}" headerText="Provvigione CQS">
+                            <h:outputText value="#{opt.provvigioneCqs}">
+                                <lacems:ConvertNumberCurrencyEuro/>
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column sortBy="#{opt.provvigioneCqp}" headerText="Provvigione CQP">
+                            <h:outputText value="#{opt.provvigioneCqp}">
+                                <lacems:ConvertNumberCurrencyEuro/>
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column sortBy="#{opt.provvigioneDlg}" headerText="Provvigione DLG">
+                            <h:outputText value="#{opt.provvigioneDlg}">
+                                <lacems:ConvertNumberCurrencyEuro/>
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column sortBy="#{opt.provvigionePp}" headerText="Provvigione PP">
+                            <h:outputText value="#{opt.provvigionePp}">
+                                <lacems:ConvertNumberCurrencyEuro/>
+                            </h:outputText>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+        </h:body>
+    </ui:define>
+
+</ui:composition>

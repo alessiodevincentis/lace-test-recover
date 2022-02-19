@@ -1,0 +1,220 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+
+        <f:metadata>
+            <f:event type="preRenderView"
+                     listener="#{aziendaSelectionView.setCurrentMenuSection('FATTURAZIONE_AFTER_SEARCH')}"/>
+        </f:metadata>
+
+        <div class="card card-w-title">
+            <h1>Seleziona le Pratiche da Perfezionare</h1>
+
+            <p:dataTable var="c" value="#{datatablePraticheDaPerfezionareView.clientePraticaLazyDataModel}"
+                         selection="#{datatablePraticheDaPerfezionareView.selectedPratiche}"
+                         sortBy="#{c.clienteViewModel.cognome}" lazy="true"
+                         rowKey="#{c.praticaViewModel.codicePratica}" rows="10" paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15" widgetVar="praticheDaPerfezionareTable"
+                         emptyMessage="In Base ai Criteri di Ricerca Scelti non Abbiamo Trovato Nessun Cliente"
+                         reflow="true" tableStyle="width:auto;text-align:center;" id="praticheDaPerfezionareTable">
+
+                <p:column selectionMode="multiple"/>
+
+                <p:column headerText="Agenzia" rendered="#{aziendaSelectionView.aziendaColumnShown}">
+                    <h:outputText value="#{c.praticaViewModel.operatore.azienda.nomeAzienda}"/>
+                </p:column>
+                <p:column headerText="Operatore">
+                    <h:outputText value="#{c.praticaViewModel.operatore.username}"/>
+                </p:column>
+                <p:column headerText="Cognome" sortBy="#{c.clienteViewModel.cognome}">
+                    <h:outputText value="#{c.clienteViewModel.cognome}"/>
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{c.clienteViewModel.nome}"/>
+                </p:column>
+                <p:column headerText="Operazione" sortBy="#{c.praticaViewModel.tipoPratica}">
+                    <h:outputText value="#{c.praticaViewModel.tipoPratica}"/>
+                </p:column>
+                <p:column headerText="Rata" sortBy="#{c.praticaViewModel.rata}">
+                    <h:outputText value="#{c.praticaViewModel.rata}"/>
+                </p:column>
+                <p:column headerText="Durata" sortBy="#{c.praticaViewModel.durata}">
+                    <h:outputText value="#{c.praticaViewModel.durata}"/>
+                </p:column>
+                <p:column headerText="Montante">
+                    <h:outputText value="#{c.praticaViewModel.montante}"/>
+                    <f:facet name="footer">
+                        <h:outputText
+                                value="Tot: #{datatablePraticheDaPerfezionareView.totaleMontante}"/>
+                    </f:facet>
+                </p:column>
+                <p:column headerText="%">
+                    <h:outputText value="#{c.praticaViewModel.percProv}"/>
+                </p:column>
+                <p:column headerText="Caricamento" sortBy="#{c.praticaViewModel.dataCaricamento}">
+                    <h:outputText value="#{c.praticaViewModel.dataCaricamento}">
+                        <f:converter
+                                converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Prov.Tot.">
+                    <h:outputText value="#{c.praticaViewModel.provTotale}"/>
+                    <f:facet name="footer">
+                        <h:outputText
+                                value="Tot: #{datatablePraticheDaPerfezionareView.totaleProvvigione}"/>
+                    </f:facet>
+                </p:column>
+                <p:column headerText="Decorrenza" sortBy="#{c.praticaViewModel.decorrenza}">
+                    <h:outputText value="#{c.praticaViewModel.decorrenza}">
+                        <f:converter
+                                converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="StatoPratica" sortBy="#{c.praticaViewModel.statoPratica}">
+                    <h:outputText value="#{c.praticaViewModel.statoPratica}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Perfeziona le pratiche selezionate" update=":form:pratiche"
+                                     oncomplete="PF('praticheDaPerf').show()"
+                                     icon="fa fa-check Fs18 White" styleClass="green-btn"
+                                     disabled="#{!datatablePraticheDaPerfezionareView.perfezionaButtonEnabled}"/>
+                    <p:commandButton value="Perfeziona tutte le pratiche della tabella" update=":form:pratiche"
+                                     action="#{datatablePraticheDaPerfezionareView.perfezionaTutto}"
+                                     icon="fa fa-check Fs18 White" styleClass="green-btn"
+                                     disabled="#{!datatablePraticheDaPerfezionareView.perfezionaButtonEnabled}">
+                        <p:confirm header="Conferma"
+                                   message="Sei sicuro di voler perfezionare tutte le pratiche di questa tabella?"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" closable="true">
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                                         icon="ui-icon-close"/>
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"
+                                         icon="ui-icon-check"/>
+                    </p:confirmDialog>
+
+                    <p:commandButton id="decorrenzabutton" value="Inserisci le Decorrenze"
+                                     onclick="PF('datatabledecorrenzadlg').show();"
+                                     icon="fa fa-plus Fs18 White" styleClass="green-btn"
+                                     disabled="#{!datatablePraticheDaPerfezionareView.perfezionaButtonEnabled}"/>
+                </f:facet>
+
+            </p:dataTable>
+
+            <p:dialog widgetVar="datatabledecorrenzadlg" modal="true" height="600" width="1000"
+                      resizable="false" responsive="true" dynamic="true" id="datatabledecorrenzadlg">
+                <p:outputPanel id="changeDecorrenzaPanel">
+                    <div class="card card-w-title">
+                        <h1>Inserisci le Decorrenze di ogni Pratica</h1>
+                        <p:dataTable id="datatableedit" var="c" lazy="true"
+                                     value="#{datatablePraticheDaPerfezionareView.clientePraticaLazyDataModel}"
+                                     sortBy="#{c.clienteViewModel.cognome}"
+                                     rowKey="#{c.praticaViewModel.codicePratica}"
+                                     rows="10" paginator="true"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15"
+                                     emptyMessage="In Base ai Criteri di Ricerca Scelti non Abbiamo Trovato Nessun Cliente"
+                                     reflow="true" tableStyle="width:auto;text-align:center;"
+                                     editable="true" editMode="cell">
+
+                            <p:ajax event="cellEdit"
+                                    listener="#{datatablePraticheDaPerfezionareView.onEdit}"
+                                    update="form:datatabledecorrenzadlg form:praticheDaPerfezionareTable"
+                                    process="form:changeDecorrenzaPanel"/>
+                            <p:column headerText="Cognome" sortBy="#{c.clienteViewModel.cognome}">
+                                <h:outputText value="#{c.clienteViewModel.cognome}"/>
+                            </p:column>
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{c.clienteViewModel.nome}"/>
+                            </p:column>
+                            <p:column headerText="Operazione" sortBy="#{c.praticaViewModel.tipoPratica}">
+                                <h:outputText value="#{c.praticaViewModel.tipoPratica}"/>
+                            </p:column>
+                            <p:column headerText="Rata" sortBy="#{c.praticaViewModel.rata}">
+                                <h:outputText value="#{c.praticaViewModel.rata}"/>
+                            </p:column>
+                            <p:column headerText="Durata" sortBy="#{c.praticaViewModel.durata}">
+                                <h:outputText value="#{c.praticaViewModel.durata}"/>
+                            </p:column>
+                            <p:column headerText="Decorrenza" sortBy="#{c.praticaViewModel.decorrenza}">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <h:outputText value="#{c.praticaViewModel.decorrenza}">
+                                            <f:converter
+                                                    converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                                        </h:outputText>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:calendar id="decorrenza" value="#{c.praticaViewModel.decorrenza}"
+                                                    mask="true"
+                                                    pattern="dd/MM/yyyy"/>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Caricamento"
+                                      sortBy="#{c.praticaViewModel.dataCaricamento}">
+                                <h:outputText value="#{c.praticaViewModel.dataCaricamento}">
+                                    <f:converter
+                                            converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Operatore">
+                                <h:outputText value="#{c.praticaViewModel.operatore.username}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </p:outputPanel>
+            </p:dialog>
+
+            <p:dialog id="dlgPerfeziona" responsive="true"
+                      header="Pratiche da Perfezionare Selezionate"
+                      widgetVar="praticheDaPerf" modal="true" showEffect="fade" hideEffect="fade"
+                      resizable="false" width="400">
+                <p:outputPanel id="pratiche" style="text-align:center;">
+                    <h:outputText
+                            value="Tot. Perfezionate: #{datatablePraticheDaPerfezionareView.selectedPratiche.size()}"/>
+                    <ui:repeat value="#{datatablePraticheDaPerfezionareView.selectedPratiche}"
+                               var="c">
+                        <h:outputText
+                                value="#{c.praticaViewModel.tipoPratica} - #{c.clienteViewModel.cognome} - #{c.clienteViewModel.nome}"
+                                style="display:block"/>
+                    </ui:repeat>
+                </p:outputPanel>
+
+                <p:commandButton process="dlgPerfeziona"
+                                 action="#{datatablePraticheDaPerfezionareView.perfeziona}"
+                                 icon="fa fa-check Fs20 White" iconPos="right"
+                                 styleClass="GreenButton RaisedButton" oncomplete="dial.hide();"/>
+            </p:dialog>
+
+            <p:confirmDialog showEffect="fade" hideEffect="fade"
+                             widgetVar="dialogInviaMailFatturazioneWidget"
+                             header="Invio Email Fatturazione"
+                             message="Perfezionamento avvenuto con successo. Vuoi inviare la mail che informa i collaboratori l'avvenuta fatturazione?"
+                             closable="false">
+                <div align="center">
+                    <p:commandButton value="Si" ajax="false"
+                                     actionListener="#{datatablePraticheDaPerfezionareView.sendConfirm}"
+                                     action="#{datatablePraticheDaPerfezionareView.redirectFatturazionePage()}"
+                                     styleClass="ui-confirmdialog-yes"
+                                     icon="fa fa-check Fs16 White"/>
+                    <p:commandButton value="No" ajax="false"
+                                     action="#{datatablePraticheDaPerfezionareView.redirectFatturazionePage()}"
+                                     styleClass="ui-confirmdialog-no"
+                                     icon="fa fa-times Fs16 White"/>
+                </div>
+            </p:confirmDialog>
+
+        </div>
+
+    </ui:define>
+
+</ui:composition>

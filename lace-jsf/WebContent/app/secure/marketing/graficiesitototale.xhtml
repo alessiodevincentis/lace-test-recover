@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:p="http://primefaces.org/ui">
+<div class="card card-w-title">
+    <div class="ui-g-12 ui-lg-4">
+        <h1>Esito totale degli SMS</h1>
+        <p:chart id="pie1" type="pie" model="#{statisticheCampagneMarketingView.getPieModelEsitoTotale(0)}" responsive="true" />
+    </div>
+    <div class="ui-g-12 ui-lg-4">
+        <h1>SMS Ricevuti - Tipo Destinatario</h1>
+        <p:chart id="pie2" type="pie" model="#{statisticheCampagneMarketingView.getPieModelEsitoRicevutoAndTipo(0)}" responsive="true" />
+    </div>
+    <div class="ui-g-12 ui-lg-4">
+        <h1>SMS Non ricevuti - Tipo Destinatario</h1>
+        <p:chart id="pie3" type="pie" model="#{statisticheCampagneMarketingView.getPieModelEsitoNonRicevutoAndTipo(0)}" responsive="true" />
+    </div>
+    <p:spacer/>
+</div>
+</html>

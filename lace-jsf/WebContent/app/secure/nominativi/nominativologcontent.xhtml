@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<p:outputPanel>
+    <h1>Log operazioni</h1>
+    <p:accordionPanel dynamic="true" cache="true" activeIndex="null">
+        <p:tab title="Clicca per visualizzare">
+            <p:dataTable var="nominativoLog"
+                         value="#{logView.nominativoLogViewModelLazyDataModel}"
+                         lazy="true"
+                         sortBy="#{nominativoLog.executionDateTime}" sortOrder="descending"
+                         rows="10" paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         emptyMessage="Nessuna operazione presente"
+                         reflow="true" tableStyle="text-align:center;">
+
+                <p:column headerText="Data e ora" sortBy="#{nominativoLog.executionDateTime}">
+                    <h:outputText value="#{nominativoLog.executionDateTime}">
+                        <f:converter
+                                converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertLocalDateTime"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Operatore modificante">
+                    <h:outputText value="#{nominativoLog.operator.username}"/>
+                </p:column>
+                <p:column headerText="Operatore assegnato">
+                    <h:outputText value="#{nominativoLog.operatoreAssegnato.username}"/>
+                </p:column>
+                <p:column headerText="Data recall">
+                    <h:outputText value="#{nominativoLog.dataRecall}">
+                        <f:converter
+                                converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertLocalDateTime"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Stato">
+                    <h:outputText value="#{nominativoLog.stato}"/>
+                </p:column>
+                <p:column headerText="Commento">
+                    <h:outputText value="#{nominativoLog.shortCommento}"/>
+                    <p:commandLink value="altro" oncomplete="PF('commentDialog').show()" process="@this"
+                                     iconPos="right" styleClass="blue-btn" icon="fa fa-info Fs20 White"
+                                     action="#{logView.setCurrentCommentToShow(nominativoLog.commento)}"
+                                     update="form:commentDialog" 
+                                     rendered="#{logView.isRenderedCommandLinkAltro(nominativoLog.shortCommento)}"/>
+                </p:column>
+            </p:dataTable>
+        </p:tab>
+    </p:accordionPanel>
+
+    <p:dialog widgetVar="commentDialog" id="commentDialog" modal="true" closable="true" draggable="false" dynamic="true" width="500" height="300">
+        <h1>Testo completo del commento</h1>
+        <p:outputPanel><h:outputText value="#{logView.currentCommentToShow}" /></p:outputPanel>
+    </p:dialog>
+
+</p:outputPanel>
+</html>

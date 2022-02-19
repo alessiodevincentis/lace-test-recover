@@ -1,0 +1,104 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/template.xhtml"
+                xmlns:composite-custom="http://java.sun.com/jsf/composite/composite-custom">
+
+    <ui:define name="content">
+        <h:outputScript library="ultima-layout" name="js/skinPieChart.js"/>
+
+        <h:body>
+
+            <f:metadata>
+                <f:event type="preRenderView" listener="#{aziendaSelectionView.setCurrentMenuSection(null)}"/>
+            </f:metadata>
+
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-lg-12">
+                    <div class="card card-w-title">
+                        <h1>Esito della campagna selezionata -  #{dettaglioCampagneMarketingView.campagnaViewModel.name}
+
+                            <composite-custom:infobutton
+                                    infoMessageList="#{infoHelpView.infoEsitoCampagnaSelezionataList}"/>
+
+                        </h1>
+                        <p:dataTable reflow="true" id="dettagliocampagnadt"
+                                     paginator="true" var="dettaglioSms" rowKey="#{destinatario.id}"
+                                     tableStyle="text-align:center;" rows="10"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+                                     {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                                     rowsPerPageTemplate="5,10,15" lazy="true"
+                                     value="#{dettaglioCampagneMarketingView.campagnaSmsViewModelLazyDataModel}">
+
+                            <f:facet name="{Exporters}">
+                                <h:commandLink>
+                                    <p:graphicImage library="img" name="excel.png" width="24"/>
+                                    <p:dataExporter type="xls" target="dettagliocampagnadt" fileName="esito_campagna"/>
+                                </h:commandLink>
+                            </f:facet>
+
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{dettaglioSms.nomeDestinatario}"/>
+                            </p:column>
+                            <p:column headerText="Cognome">
+                                <h:outputText value="#{dettaglioSms.cognomeDestinatario}"/>
+                            </p:column>
+                            <p:column headerText="Telefono">
+                                <h:outputText value="#{dettaglioSms.numeroDestinatario}"/>
+                            </p:column>
+                            <p:column headerText="Esito">
+                                <h:outputText value="#{dettaglioSms.esito.value}"/>
+                            </p:column>
+                            <p:column headerText="Data Esito">
+                                <h:outputText value="#{dettaglioSms.dataEsito}">
+                                    <f:converter
+                                            converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertLocalDateTime"/>
+                                </h:outputText>
+                            </p:column>
+                            <f:facet name="footer">
+
+                                <p:commandButton id="importCommandButton"
+                                                 rendered="#{dettaglioCampagneMarketingView.campagnaViewModel.campagnaImport}"
+                                                 value="Importa i Contatti"
+                                                 action="#{dettaglioCampagneMarketingView.importaNominativiAction}"
+                                                 icon="fa fa-cloud-upload"
+                                                 disabled="#{!dettaglioCampagneMarketingView.canImportCampagna()}"
+                                                 style="width:auto;" styleClass="green-btn MarRight10">
+                                    <p:confirm header="Conferma importazione"
+                                               message="Vuoi importare su Lace come nominativi tutte le persone che hanno ricevuto correttamente l'SMS inviato?"
+                                               icon="ui-icon-alert"/>
+                                </p:commandButton>
+
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+                                                 closable="true">
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                                                     icon="ui-icon-close"/>
+                                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"
+                                                     icon="ui-icon-check"/>
+                                </p:confirmDialog>
+
+
+                                <p:commandButton id="sendSmsErrorBtn" value="Invia gli SMS non spediti"
+                                                 action="#{dettaglioCampagneMarketingView.invioSmsNonSpediti}"
+                                                 rendered="#{dettaglioCampagneMarketingView.isRenderedInviaSmsButton()}"
+                                                 disabled="#{dettaglioCampagneMarketingView.isDisabledInviaSmsButton()}"
+                                                 icon="fa fa-send" style="width:auto;" styleClass="green-btn MarTop5"/>
+
+                            </f:facet>
+
+                        </p:dataTable>
+                    </div>
+
+                    <div class="card card-w-title">
+                        <h1>Esito totale degli SMS per la campagna selezionata</h1>
+                        <p:chart id="pie1" type="pie" responsive="true"
+                                 model="#{statisticheCampagneMarketingView.getPieModelEsitoTotale(dettaglioCampagneMarketingView.campagnaViewModel.id)}"/>
+                    </div>
+
+                </div>
+            </div>
+        </h:body>
+    </ui:define>
+</ui:composition>

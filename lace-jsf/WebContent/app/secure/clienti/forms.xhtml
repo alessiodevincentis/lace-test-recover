@@ -1,0 +1,410 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template.xhtml"
+                xmlns:composite-custom="http://java.sun.com/jsf/composite/composite-custom">
+
+
+    <ui:define name="content">
+
+        <h:outputScript library="js" name="sms_counter.min.js"/>
+        <script>
+            function enableSmsCounter() {
+                $('#form\\:smsbody').countSms('#form\\:sms-counter');
+            }
+        </script>
+
+        <h:body>
+
+            <f:metadata>
+                <f:event type="preRenderView" listener="#{aziendaSelectionView.setCurrentMenuSection(null)}"/>
+            </f:metadata>
+
+            <script type="text/javascript"
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAykxEHCpnF1fOegpstZNoiRDnN2aeUIhk&amp;libraries=places"
+                    async="async" defer="defer"></script>
+            <h:outputScript library="js" name="googlePlacesUtil.js"/>
+            <h:outputScript library="js" name="restoreAutocompleteNuovaPratica.js"/>
+
+
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-lg-12">
+
+                    <p:outputPanel id="clientePanel">
+
+                        <div class="card card-w-title">
+                            <h1>Anagrafica</h1>
+                            <ui:include
+                                    src="/app/secure/clienti/formsClienteContent/formsClienteAnagraficaContent.xhtml"/>
+                        </div>
+
+                        <div class="card card-w-title">
+                            <h1>Documento Cliente</h1>
+                            <ui:include
+                                    src="/app/secure/clienti/formsClienteContent/formsClienteDocumentoContent.xhtml"/>
+                        </div>
+
+                        <div class="card card-w-title">
+                            <h1>Dati Bancari Cliente</h1>
+                            <ui:include
+                                    src="/app/secure/clienti/formsClienteContent/formsClienteDatiBancariContent.xhtml"/>
+                        </div>
+
+                        <div class="card card-w-title">
+                            <h1>Dati Occupazione Cliente</h1>
+                            <ui:include
+                                    src="/app/secure/clienti/formsClienteContent/formsClienteOccupazioneContent.xhtml"/>
+                        </div>
+
+                        <p:outputPanel id="occupazioneOutputPanel2">
+                            <p:outputPanel rendered="#{registerCliente.clienteViewModel.secondaOccupazioneRendered}">
+                                <div class="card card-w-title">
+                                    <h1>Dati Seconda Occupazione</h1>
+                                    <ui:include
+                                            src="/app/secure/clienti/formsClienteContent/formsClienteSecondaOccupazioneContent.xhtml"/>
+                                </div>
+                            </p:outputPanel>
+                        </p:outputPanel>
+
+                        <p:outputPanel id="amministrazioneOutputPanel">
+                            <div class="card card-w-title">
+                                <h1>Assegna Amministrazione (Ufficio di Servizio)</h1>
+                                <ui:include
+                                        src="/app/secure/clienti/formsClienteContent/formsClienteAssegnaAmministrazioneContent.xhtml"/>
+                            </div>
+                        </p:outputPanel>
+
+                        <div class="card card-w-title">
+                            <h1>Altre Informazioni</h1>
+                            <ui:include
+                                    src="/app/secure/clienti/formsClienteContent/formsClienteAltreInfoContent.xhtml"/>
+                        </div>
+
+                        <p:outputPanel id="coesistenzeOutputPanel">
+                            <div class="card card-w-title">
+                                <h1>Coesistenze
+                                    <composite-custom:infobutton infoMessageList="#{infoHelpView.infoCoesistenzeList}"/>
+                                </h1>
+                                <ui:include
+                                        src="/app/secure/clienti/formsClienteContent/formsClienteCoesistenzeContent.xhtml"/>
+                            </div>
+                        </p:outputPanel>
+
+                        <div class="card card-w-title">
+                            <h1>Pratiche in Corso</h1>
+                            <ui:include
+                                    src="/app/secure/clienti/formsClienteContent/formsClientePraticheInCorsoContent.xhtml"/>
+                        </div>
+
+                        <p:outputPanel id="estinzioniOutputPanel">
+                            <div class="card card-w-title">
+                                <h1>Estinzioni
+                                    <composite-custom:infobutton infoMessageList="#{infoHelpView.infoEstinzioniList}"/>
+                                </h1>
+                                <ui:include
+                                        src="/app/secure/clienti/formsClienteContent/formsClienteEstinzioneContent.xhtml"/>
+                            </div>
+                        </p:outputPanel>
+
+                        <p:outputPanel id="preventiviclientepanel">
+                            <div class="card card-w-title">
+                                <h1>Preventivi
+                                    <p:commandButton id="preventivisimulatorbutton" value="Simula Preventivo"
+                                                     icon="fa fa-calculator Fs20 White"
+                                                     iconPos="right" style="width: auto;" styleClass="Fright"
+                                                     onclick="PF('dlgsimulatorpreventivocliente').show();"
+                                                     process="@this"
+                                                     disabled="#{registerCliente.isDisabledAddPreventivoDaSimulatore()}"
+                                                     actionListener="#{runSimulatorView.setParameterSimulatorTableSelectionDisabledAndSource(false, 'PREVENTIVO_CLIENTE')}"/>
+                                </h1>
+                                <ui:include
+                                        src="/app/secure/clienti/formsClienteContent/formsClientePreventivoContent.xhtml"/>
+                            </div>
+                        </p:outputPanel>
+
+                        <p:outputPanel rendered="#{registerCliente.praticaRendered.isCoobbligatoPanel()}"
+                                       id="coobbligatoOutputPanel">
+                            <div class="card card-w-title">
+                                <h1>Coobbligato</h1>
+                                <ui:include
+                                        src="/app/secure/clienti/formsClienteContent/formsClienteCoobbligatoContent.xhtml"/>
+                            </div>
+                        </p:outputPanel>
+
+                        <div class="card card-w-title">
+                            <h1>Stato e Fasi della Pratica</h1>
+                            <ui:include
+                                    src="/app/secure/clienti/formsClienteContent/panelprecontrattualepratica.xhtml"/>
+                        </div>
+
+                        <div class="card card-w-title">
+                            <h1>Dati della Pratica #{registerCliente.praticaRinnovataOnBigTopic()}</h1>
+                            <ui:include
+                                    src="/app/secure/clienti/formsClienteContent/formsClientePraticaContent.xhtml"/>
+                        </div>
+
+                        <div class="card card-w-title">
+                            <h1>Aggiungi un Nuovo Commento*</h1>
+
+                            <p:inputTextarea id="commento" rows="2" cols="1" styleClass="MaxWidth40"
+                                             placeholder="Eventuale commento dell'operazione sulla pratica"
+                                             value="#{registerCliente.commentoLog}"
+                                             required="true"
+                                             maxlength="#{constantResolverView.maxLengthCommentoLog}" addLine="true"/>
+
+                        </div>
+
+                    </p:outputPanel>
+
+                    <p:outputPanel rendered="#{registerCliente.canWriteCliente()}">
+                        <div class="card">
+                            <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group">
+                                <p:commandButton value="Salva Cliente/Pratica"
+                                                 update="form:nuovoAppuntamento logPraticaPanel fileUploadPanel form:commento preventivoPanel"
+                                                 icon="fa fa-save Fs20 White"
+                                                 action="#{registerCliente.saveNewCliente}" iconPos="right"
+                                                 process="@this clientePanel"
+                                                 disabled="#{registerCliente.disabledRendered.disabledBtnSave}"
+                                                 oncomplete="restoreAutocompleteNuovaPratica();"/>
+
+                                <p:commandButton id="openmail" value="Invia e-mail" update="form:destinatario"
+                                                 process="@this clientePanel"
+                                                 oncomplete="PF('dlgmailcliente').show();"
+                                                 action="#{registerCliente.resetSendDialog()}"
+                                                 icon="fa fa-send Fs20 White" iconPos="right"
+                                                 rendered="#{registerCliente.canWriteCliente()}"
+                                                 disabled="#{registerCliente.disabledButtonMail}"/>
+
+                                <p:commandButton id="openSmsDialogButton" value="Invia SMS"
+                                                 oncomplete="PF('dialogSmsCliente').show();"
+                                                 update="form:cellulare"
+                                                 action="#{registerCliente.resetSendDialog()}"
+                                                 process="@this clientePanel"
+                                                 icon="fa fa-send Fs20 White" iconPos="right"
+                                                 rendered="#{registerCliente.canWriteCliente()}"
+                                                 disabled="#{registerCliente.disabledButtonSms}"/>
+                            </p:panelGrid>
+                        </div>
+                    </p:outputPanel>
+
+                    <div class="card">
+                        <p:panelGrid columns="4" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+                            <p:commandButton value="Privacy" id="privacy"
+                                             action="#{registerCliente.printPdf('PRIVACY')}"
+                                             process="@this clientePanel"
+                                             icon="fa fa-file-text Fs20 White" iconPos="right"
+                                             styleClass="orange-btn"
+                                             disabled="#{registerCliente.isDisabledButtonPdf()}"/>
+
+                            <p:commandButton value="Modulo Prefin" id="prefin"
+                                             action="#{registerCliente.printPdf('PRECONTRATTUALE')}"
+                                             process="@this clientePanel"
+                                             icon="fa fa-file-text Fs20 White" iconPos="right"
+                                             styleClass="orange-btn"
+                                             disabled="#{registerCliente.isDisabledButtonPdf()}"
+                                             rendered="#{registerCliente.praticaRendered.isModuliPanel()}"/>
+
+                            <p:commandButton value="Allegati Economici" id="allegati"
+                                             action="#{registerCliente.printPdf('ALLEGATI')}"
+                                             process="@this clientePanel"
+                                             icon="fa fa-file-text Fs20 White" iconPos="right"
+                                             styleClass="orange-btn"
+                                             disabled="#{registerCliente.isDisabledButtonPdf() or registerCliente.isDisabledButtonAllegati()}"
+                                             rendered="#{registerCliente.praticaRendered.isModuliPanel()}"/>
+
+                            <p:commandButton value="Modulo Agenzia" id="agenzia"
+                                             action="#{registerCliente.printPdf('ANAGRAFICA')}"
+                                             process="@this clientePanel"
+                                             icon="fa fa-file-text Fs20 White" iconPos="right"
+                                             styleClass="orange-btn"
+                                             disabled="#{registerCliente.isDisabledButtonPdf()}"/>
+                        </p:panelGrid>
+                    </div>
+
+                    <p:outputPanel id="logPraticaPanel">
+                        <p:outputPanel rendered="#{registerCliente.renderedLogPanel}">
+
+                            <div class="card card-w-title">
+                                <ui:include src="/app/secure/nominativi/nominativologcontent.xhtml"/>
+                            </div>
+
+                        </p:outputPanel>
+                    </p:outputPanel>
+
+                    <p:outputPanel id="fileUploadPanel">
+                        <p:outputPanel>
+                            <ui:include src="/app/secure/clienti/formsClienteContent/fileContent.xhtml"/>
+                        </p:outputPanel>
+                    </p:outputPanel>
+
+                    <!-- EMAIL DIALOG -->
+
+                    <p:dialog header="Invia e-mail al Cliente" widgetVar="dlgmailcliente" modal="true" height="550"
+                              width="1000" resizable="false" dynamic="true" responsive="true" id="dlgmailcliente">
+                        <div class="ui-g ui-fluid">
+                            <div class="ui-g-12">
+                                <div class="card card-w-title">
+                                    <h1>Messaggio</h1>
+
+                                    <p:panelGrid columns="1" id="emailcliente" layout="grid"
+                                                 styleClass="ui-panelgrid-blank form-group">
+
+                                        <p:outputLabel for="destinatario" value="Destinatario:">
+                                            <p:inputText id="destinatario"
+                                                         value="#{registerCliente.clienteViewModel.email}"
+                                                         label="Email destinatario" disabled="true"/>
+                                        </p:outputLabel>
+                                        <p:outputLabel for="oggetto" value="Oggetto:">
+                                            <p:inputText id="oggetto" value="#{registerCliente.mailClient.subject}"
+                                                         label="Oggetto"/>
+                                        </p:outputLabel>
+                                        <p:inputTextarea id="body" rows="10" cols="30"
+                                                         value="#{registerCliente.mailClient.body}"
+                                                         autoResize="false"/>
+                                    </p:panelGrid>
+                                </div>
+                                <p:commandButton id="addprev" value="Inserisci i preventivi nel testo"
+                                                 process="@this clientePanel"
+                                                 update="emailcliente" style="width:auto" styleClass="MarRight10"
+                                                 action="#{registerCliente.addPreventiviToBody}"
+                                                 icon="fa fa-plus-circle Fs20 White" iconPos="right"/>
+
+                                <p:commandButton id="addrichiestabusta"
+                                                 value="Inserisci la richiesta di bustapaga nel testo"
+                                                 update="emailcliente" process="@this clientePanel"
+                                                 actionListener="#{registerCliente.addRichiestaBustaToBody}"
+                                                 icon="fa fa-plus-circle Fs20 White" iconPos="right"
+                                                 style="width:auto" styleClass="MarRight10"/>
+                                                 
+                                <p:commandButton id="addPrivacy" 
+                                				 value="Inserisci Privacy"
+                                                 update="emailcliente" process="@this clientePanel"
+                                                 action="#{registerCliente.addPrivacyToBody()}" styleClass="MarRight10"
+                                                 style="width:auto"
+                                                 icon="fa fa-plus-circle Fs20 White" iconPos="right"/>
+
+                                <p:commandButton value="Reset" update="emailcliente"
+                                                 action="#{registerCliente.mailClient.reset()}"
+                                                 process="@this" style="width:auto"
+                                                 icon="fa fa-trash Fs20 White"/>
+
+                                <p:commandButton value="Invia Email" icon="fa fa-send Fs20 White" style="width:auto"
+                                                 process="@this emailcliente" update="logPraticaPanel"
+                                                 action="#{registerCliente.sendEmail()}" styleClass="Fright"/>
+                            </div>
+
+                        </div>
+                    </p:dialog>
+
+                    <!-- END EMAIL DIALOG -->
+
+                    <!-- SMS DIALOG -->
+
+                    <p:dialog header="Invia SMS al cliente" widgetVar="dialogSmsCliente" modal="true" height="550"
+                              width="1000"
+                              resizable="false" dynamic="true" responsive="true">
+                        <div class="ui-g ui-fluid">
+                            <div class="ui-g-12">
+
+                                <div class="card card-w-title">
+                                    <h1>Messaggio
+                                        <composite-custom:infobutton infoMessageList="#{infoHelpView.infoSmsLeadList}"/>
+                                    </h1>
+                                    <p:panelGrid id="smsClientePanel" columns="1" layout="grid"
+                                                 styleClass="ui-panelgrid-blank form-group">
+
+                                        <p:outputLabel id="cellulareLabel" for="cellulare" value="Cellulare:">
+                                            <p:inputText id="cellulare"
+                                                         value="#{registerCliente.clienteViewModel.telefono}"
+                                                         label="Cellulare" disabled="true"/>
+                                        </p:outputLabel>
+
+                                        <p:outputLabel for="smsbody" value="Testo:">
+                                            <p:inputTextarea id="smsbody" rows="7" cols="30"
+                                                             value="#{registerCliente.smsText}" autoResize="true"
+                                                             onfocus="enableSmsCounter();">
+                                                <f:validator
+                                                        validatorId="com.woonders.lacemsjsf.view.validator.SmsCharacterValidator"/>
+                                            </p:inputTextarea>
+                                        </p:outputLabel>
+
+                                        <p:panelGrid columns="2" layout="grid"
+                                                     styleClass="ui-panelgrid-blank form-group" id="sms-counter">
+                                            <p:outputLabel value="Numero di caratteri dell'SMS: " styleClass="Fs16">
+                                                <p:outputLabel styleClass="length Fs16 FontBold"/>
+                                            </p:outputLabel>
+                                            <p:outputLabel value="Numero di SMS da spedire: " styleClass="Fs16">
+                                                <p:outputLabel styleClass="messages Fs16 FontBold"/>
+                                            </p:outputLabel>
+                                        </p:panelGrid>
+
+                                    </p:panelGrid>
+
+                                </div>
+
+                                <p:commandButton id="addprevsms" value="Inserisci i preventivi nel testo"
+                                                 process="@this clientePanel"
+                                                 update="smsClientePanel" style="width:auto;" styleClass="MarRight10"
+                                                 action="#{registerCliente.addPreventiviToBodySMS}"
+                                                 oncomplete="enableSmsCounter();"
+                                                 icon="fa fa-plus-circle Fs20 White" iconPos="right"/>
+
+                                <p:commandButton id="addrichiestabustasms"
+                                                 value="Inserisci la richiesta di bustapaga nel testo"
+                                                 update="smsClientePanel" process="@this clientePanel"
+                                                 style="width:auto;"
+                                                 action="#{registerCliente.addRichiestaBustaToBodySMS}"
+                                                 oncomplete="enableSmsCounter();"
+                                                 icon="fa fa-plus-circle Fs20 White" iconPos="right"
+                                                 styleClass="MarRight10"/>
+
+                                <p:commandButton value="Reset" update="smsbody" style="width:auto;"
+                                                 action="#{registerCliente.resetSendDialog}" process="@this"
+                                                 oncomplete="enableSmsCounter();"
+                                                 icon="fa fa-trash Fs20 White"/>
+
+                                <p:commandButton value="Invia SMS" icon="fa fa-send Fs20 White" styleClass="Fright"
+                                                 process="@this smsClientePanel" update="logPraticaPanel"
+                                                 action="#{registerCliente.sendSms}" style="width:auto;">
+                                    <p:confirm header="Conferma invio" message="Confermi l'invio?"
+                                               icon="ui-icon-alert"/>
+                                </p:commandButton>
+
+                            </div>
+                        </div>
+
+                    </p:dialog>
+
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" closable="true">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"
+                                         icon="ui-icon-check"/>
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                                         icon="ui-icon-close"/>
+                    </p:confirmDialog>
+
+                    <!-- END SMS DIALOG -->
+
+                    <p:outputPanel id="panelCalendario">
+
+                        <ui:include
+                                src="/app/secure/calendario/calendarioAppuntamentiDialogNominativoClienteContent.xhtml"/>
+
+                    </p:outputPanel>
+
+                    <p:dialog header="Simula Preventivo" widgetVar="dlgsimulatorpreventivocliente" modal="true"
+                              resizable="false"
+                              dynamic="true" responsive="true" width="1200" height="600">
+                        <p:ajax event="close" oncomplete="#{runSimulatorView.resetResultTable()}"
+                                listener="#{registerCliente.addPreventivoFromSimulatorResultRowChoosen}"
+                                update="@this preventiviclientepanel" process="@this"/>
+                        <ui:include src="/app/secure/simulator/runsimulatorcontent.xhtml"/>
+                    </p:dialog>
+
+                </div>
+            </div>
+        </h:body>
+    </ui:define>
+
+</ui:composition>

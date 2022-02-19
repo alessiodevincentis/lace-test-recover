@@ -1,0 +1,141 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template.xhtml"
+                xmlns:composite-custom="http://java.sun.com/jsf/composite/composite-custom">
+
+    <ui:define name="content">
+
+        <f:metadata>
+            <f:event type="preRenderView"
+                     listener="#{aziendaSelectionView.setCurrentMenuSection('GESTIONE_PERMESSI')}"/>
+        </f:metadata>
+
+        <div class="card card-w-title">
+            <h1>Gestione Permessi
+                <composite-custom:infobutton infoMessageList="#{infoHelpView.infoGestionePermessiList}"/>
+            </h1>
+
+
+            <p:dataList id="permessiList" var="operator"
+                        value="#{gestionePermessiView.operatorViewModelLazyDataModelList}"
+                        lazy="true"
+                        rows="10" 
+                        paginator="true"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="5,10,15"
+                        emptyMessage="Nessun operatore"
+                        tableStyle="text-align:center;" 
+                        type="definition" 
+                        rowIndexVar="rowIndex">
+
+                <p:dataTable value="#{constantResolverView.menuSection}" var="menusection" reflow="true"
+                             tableStyle="text-align:center;" id="permessiTable">
+
+                    <f:facet name="header">
+                        <p:outputLabel styleClass="Fs18 MarRight20"
+                                       value="#{operator.username} - #{operator.firstName} #{operator.lastName}"/>
+                        <p:outputLabel styleClass="Fs16 MarRight20"
+                                       value="#{gestionePermessiView.getProfilePermissionFromOperator(operator)}"/>
+                        <p:commandButton value="Modifica" oncomplete="PF('modificaPermessiDialog').show();"
+                                         styleClass="green-btn"
+                                         action="#{gestionePermessiView.setOperatorToAssignProfileFromDatalist(operator)}"
+                                         process="@this" update="form:modificaPermessiDialog" icon="fa fa-edit"
+                                         rendered="#{gestionePermessiView.hasGestionePermessiRole()}"/>
+                    </f:facet>
+
+                    <p:column headerText="Sezione Menu">
+                        <h:outputText value="#{menusection.value}"/>
+                    </p:column>
+
+                    <p:columns var="permissionType" value="#{constantResolverView.permissionType}">
+                        <f:facet name="header">
+                            <h:outputText value="#{permissionType.value}"/>
+                        </f:facet>
+                        <h:outputText value="#{operator.sectionPermissionMap[menusection][permissionType].value}"
+                                      rendered="#{operator.sectionPermissionMap[menusection][permissionType].value != null}"/>
+                        <h:outputText value="#{gestionePermessiView.calcNotPermissionValue(menusection,permissionType)}"
+                                      rendered="#{operator.sectionPermissionMap[menusection][permissionType].value == null}"/>
+                    </p:columns>
+
+                </p:dataTable>
+
+            </p:dataList>
+
+
+            <p:dialog id="modificaPermessiDialog" widgetVar="modificaPermessiDialog" showEffect="clip" hideEffect="clip"
+                      modal="true" dynamic="true">
+
+                <h1>Gestione Permessi
+                    <composite-custom:infobutton infoMessageList="#{infoHelpView.infoGestionePermessiModificaList}"/>
+                </h1>
+
+                <p:scrollPanel mode="native" styleClass="scrollablePanelMaxDimension">
+
+                    <p:dataTable value="#{constantResolverView.menuSection}" var="menusection" editable="true"
+                                 editMode="row" reflow="true"
+                                 tableStyle="text-align:center;width:auto;" id="permessiTableDialog">
+
+                        <f:facet name="header">
+                            <p:outputLabel styleClass="Fs18 MarRight20"
+                                           value="#{gestionePermessiView.operatorToAssignProfile.firstName}
+                            #{gestionePermessiView.operatorToAssignProfile.lastName} - #{gestionePermessiView.operatorToAssignProfile.username}"/>
+
+                            <p:selectOneMenu value="#{gestionePermessiView.permissionProfile}"
+                                             converter="com.woonders.lacemsjsf.ui.converter.GenericEnumConverter">
+                                <f:selectItem itemLabel="Seleziona un profilo predefinito" itemDisabled="true"/>
+                                <f:selectItems value="#{constantResolverView.permissionProfile}" var="permissionProfile"
+                                               itemLabel="#{permissionProfile.value}" itemValue="#{permissionProfile}"/>
+                                <p:ajax event="change" update="form:permessiTableDialog" process="@this"
+                                        listener="#{gestionePermessiView.setProfilePermission()}"/>
+                            </p:selectOneMenu>
+                        </f:facet>
+
+                        <p:column headerText="Sezione Menu">
+                            <h:outputText value="#{menusection.value}"/>
+                        </p:column>
+
+                        <p:columns var="permissionType" value="#{constantResolverView.permissionType}">
+                            <f:facet name="header">
+                                <h:outputText value="#{permissionType.value}"/>
+                            </f:facet>
+
+                            <p:selectOneMenu
+                                    value="#{gestionePermessiView.operatorToAssignProfile.sectionPermissionMap[menusection][permissionType]}"
+                                    converter="com.woonders.lacemsjsf.ui.converter.GenericEnumConverter"
+                                    rendered="#{gestionePermessiView.getPermission(menusection, permissionType).size() != 0}">
+                                <p:ajax listener="#{gestionePermessiView.permissionChangedEvent}"
+                                        update="form:permessiTableDialog"/>
+                                <f:selectItems
+                                        value="#{gestionePermessiView.getPermission(menusection, permissionType)}"
+                                        var="permission"
+                                        itemLabel="#{permission.value}" itemValue="#{permission}"/>
+                            </p:selectOneMenu>
+
+                        </p:columns>
+
+                        <f:facet name="footer">
+                            <p:commandButton value="Salva" action="#{gestionePermessiView.saveOperatorPermission()}"
+                                             update="form:permessiList form:permessiGrowl" ignoreAutoUpdate="true"
+                                             icon="fa fa-save"
+                                             styleClass="green-btn"/>
+
+                        </f:facet>
+
+
+                    </p:dataTable>
+                    <p:growl id="permessiGrowl" life="12000"/>
+
+                </p:scrollPanel>
+
+            </p:dialog>
+
+
+        </div>
+
+
+    </ui:define>
+
+</ui:composition>

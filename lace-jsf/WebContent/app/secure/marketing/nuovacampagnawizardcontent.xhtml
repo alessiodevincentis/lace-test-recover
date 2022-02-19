@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<p:wizard id="wizardCampagne" showNavBar="false" widgetVar="wizardCampagne"
+          flowListener="#{nuovaCampagnaMarketingView.onNextFlow}">
+    <p:tab id="destinatariTab" title="Seleziona i destinatari">
+        <p:panel>
+            <p:dataTable id="resultFilterTable"
+                         value="#{nuovaCampagnaMarketingView.getDatatableValue(nuovaCampagnaMarketingView.datatableValueFrom)}"
+                         var="cliente" rowKey="#{cliente.id}" style="margin-bottom:0" reflow="true"
+                         tableStyle="text-align:center;"
+                         rows="10" paginator="true" lazy="#{nuovaCampagnaMarketingView.lazy}"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         emptyMessage="Nessun risultato con i filtri scelti"
+                         widgetVar="resultFilterTable">
+                <f:facet name="header">
+                    Anteprima destinatari della campagna
+                </f:facet>
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{cliente.tipo}"/>
+                </p:column>
+                <p:column headerText="Cognome">
+                    <h:outputText value="#{cliente.cognome}"/>
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{cliente.nome}"/>
+                </p:column>
+                <p:column headerText="Provincia Residenza">
+                    <h:outputText value="#{cliente.residenzaViewModel.provResidenza}"/>
+                </p:column>
+                <p:column headerText="DataNascita">
+                    <h:outputText value="#{cliente.dataNascita}"/>
+                </p:column>
+                <p:column headerText="Telefono">
+                    <h:outputText value="#{cliente.telefono}"/>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+        <div class="ui-g-12 ui-lg-3 Fright">
+            <p:commandButton id="firstAvantiButton" value="Avanti" icon="fa fa-arrow-right" styleClass="Fs16"
+                             update="filtriAccordion:filtraButton"
+                             action="#{nuovaCampagnaMarketingView.onFirstNextButtonClicked}"
+                             process="@this campagnePanel nomeCampagnaPanel"
+                             disabled="#{!nuovaCampagnaMarketingView.firstAvantiEnabled}"/>
+            <p:outputLabel
+                       value="Controlla di aver impostato un alias come mittente degli sms nella pagina delle preferenze e di aver specificato un numero di cellulare nei dati dell'azienda"
+                       rendered="#{nuovaCampagnaMarketingView.setTooltipStatus()}"/>
+        </div>
+    </p:tab>
+    <p:tab id="messaggioTab" title="Dettagli del messaggio">
+        <p:panel>
+            <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group">
+                <p:outputLabel
+                        value="Per la tutela del diritto alla privacy, è obbligatorio dare la possibilità al
+                        cliente/nominativo di poter interrompere sms di campagne marketing"/>
+
+                <p:outputLabel for="mittente" value="Mittente degli SMS:">
+                    <p:outputLabel id="mittente" value="#{nuovaCampagnaMarketingView.mittenteSms}"/>
+                </p:outputLabel>
+                <p:outputLabel
+                        value="Testo del Messaggio: (I caratteri speciali verranno sostituiti con caratteri simili per non incorrere in costi aggiuntivi. Es. Il simbolo € verrà sostituito con E)."
+                        indicateRequired="true">
+                    <div class="ui-g-12 ui-lg-5 Fleft">
+                        <p:inputTextarea id="message" autoResize="true" maxlength="612"
+                                         value="#{nuovaCampagnaMarketingView.messageText}" label="Testo del Messaggio"
+                                         rows="5"
+                                         placeholder="Inserisci il testo del messaggio" onfocus="enableSmsCounter();"
+                                         style="margin-top:1em;"/>
+                    </div>
+                </p:outputLabel>
+
+                <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank form-group" id="sms-counter">
+                    <p:outputLabel value="Numero di caratteri dell'SMS: " styleClass="Fs16">
+                        <p:outputLabel styleClass="length Fs16 FontBold"/>
+                    </p:outputLabel>
+                    <p:outputLabel value="Numero di SMS per ogni Cliente/Nominativo: " styleClass="Fs16">
+                        <p:outputLabel styleClass="messages Fs16 FontBold"/>
+                    </p:outputLabel>
+                </p:panelGrid>
+            </p:panelGrid>
+        </p:panel>
+        <div class="ui-g-12 ui-lg-3 Fleft">
+            <p:commandButton value="Indietro" icon="fa fa-arrow-left" styleClass="Fs16"
+                             iconPos="left" onclick="PF('wizardCampagne').back();"
+                             update="filtriAccordion:filtraButton fileAccordion:fileImport"/>
+        </div>
+        <div class="ui-g-12 ui-lg-3 Fright">
+            <p:commandButton id="secondAvantiButton" value="Avanti" icon="fa fa-arrow-right" styleClass="Fs16"
+                             action="#{nuovaCampagnaMarketingView.secondAvantiAction}"
+                             update="filtriAccordion:filtraButton fileAccordion:fileImport message"
+                             process="@this campagnePanel nomeCampagnaPanel"/>
+        </div>
+    </p:tab>
+    <p:tab id="riepilogoTab" title="Riepilogo campagna">
+        <p:panel>
+            <p:tab>
+                <p:dataTable id="riepilogoTable"
+                             value="#{nuovaCampagnaMarketingView.getDatatableValue(nuovaCampagnaMarketingView.datatableValueFrom)}"
+                             var="cliente" rowKey="#{cliente.id}" style="margin-bottom:0" reflow="true"
+                             tableStyle="text-align:center;"
+                             rows="10" paginator="true" lazy="#{nuovaCampagnaMarketingView.lazy}"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15"
+                             emptyMessage="Nessun destinatario selezionato!">
+                    <f:facet name="header">
+                        Riepilogo destinatari della campagna
+                    </f:facet>
+                    <p:column headerText="Tipo">
+                        <h:outputText value="#{cliente.tipo}"/>
+                    </p:column>
+                    <p:column headerText="Cognome">
+                        <h:outputText value="#{cliente.cognome}"/>
+                    </p:column>
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{cliente.nome}"/>
+                    </p:column>
+                    <p:column headerText="DataNascita">
+                        <h:outputText value="#{cliente.dataNascita}"/>
+                    </p:column>
+                    <p:column headerText="Telefono">
+                        <h:outputText value="#{cliente.telefono}"/>
+                    </p:column>
+                </p:dataTable>
+                <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group">
+                    <p:outputLabel for="mittenteRiepilogo" value="Mittente: ">
+                        <p:outputLabel id="mittenteRiepilogo" value="#{nuovaCampagnaMarketingView.mittenteSms}"/>
+                    </p:outputLabel>
+
+                    <p:outputLabel for="messaggioRiepilogoLabel" value="Messaggio:">
+                        <p:outputLabel id="messaggioRiepilogoLabel" value="#{nuovaCampagnaMarketingView.messageText}"/>
+                    </p:outputLabel>
+
+                    <p:outputLabel for="numeroDestinatariLabel" value="Numero destinatari:">
+                        <p:outputLabel id="numeroDestinatariLabel"
+                                       value="#{nuovaCampagnaMarketingView.calcSmsInfo.destinatariCount}"/>
+                    </p:outputLabel>
+
+                    <p:outputLabel for="numeroSmsDaSpedireLabel"
+                                   value="SMS da spedire (effettivi SMS scalati dal credito, esclude destinatari con numeri errati, include calcolo SMS composto da più parti):">
+                        <p:outputLabel id="numeroSmsDaSpedireLabel"
+                                       value="#{nuovaCampagnaMarketingView.calcSmsInfo.smsCount*nuovaCampagnaMarketingView.calcSmsInfo.destinatariCount}"/>
+                    </p:outputLabel>
+
+                </p:panelGrid>
+            </p:tab>
+        </p:panel>
+        <div class="ui-g-12 ui-lg-3 Fleft">
+            <p:commandButton value="Indietro" icon="fa fa-arrow-left" styleClass="Fs16"
+                             onclick="PF('wizardCampagne').back();"
+                             update="filtriAccordion:filtraButton fileAccordion:fileImport"/>
+        </div>
+        <div class="ui-g-12 ui-lg-3 Fright">
+            <p:commandButton icon="fa fa-send" styleClass="Fs16" value="Invia campagna"
+                             action="#{nuovaCampagnaMarketingView.inviaCampagnaAction}" update="@this"
+                             disabled="#{!nuovaCampagnaMarketingView.inviaCampagnaEnabled}"
+                             process="@this campagnePanel nomeCampagnaPanel"/>
+        </div>
+    </p:tab>
+</p:wizard>
+</html>

@@ -1,0 +1,216 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template.xhtml"
+                xmlns:composite-custom="http://java.sun.com/jsf/composite/composite-custom">
+                
+             
+
+    <ui:define name="content">
+        <p:importEnum type="com.woonders.lacemscommon.db.entityenum.StatoNominativo" var="JsfStatoNominativo"
+                      allSuffix="ALL_ENUM_VALUES"/>
+
+
+        <h:body>
+        	
+        
+            <f:metadata>
+                <f:event type="preRenderView" listener="#{aziendaSelectionView.setCurrentMenuSection('NOMINATIVI')}"/>
+            </f:metadata>
+            
+            <div class="ui-g dashboard ui-fluid">
+                <div class="card card-w-title Wid100">
+                	<h:outputLabel for="filtroperatore" value="Filtro Operatore:"/>
+            		<p:selectCheckboxMenu id="filtroperatore"
+		                                     label="Filtro Operatore:" value="#{statoNominativoView.operatoriSelezionati}"
+		                                     filter="true" filterMatchMode="contains" multiple="true"
+		                                     style="min-width: 15rem" panelStyle="width: 30rem">
+		                   
+	                   <f:selectItems var="opt"
+	                                  value="#{utilResolverView.getOperatorsStringList('CLIENTI', 'READ')}"
+	                                  itemLabel="#{opt}" itemValue="#{opt}"/>
+	                   
+	                   <p:ajax event="change"
+                           listener="#{statoNominativoView.onItemSelect()}"
+                           update="form:idDaLavorare:idDaLavorare form:idInLavorazione:idInLavorazione 
+                           			form:idNumeroInesistente:idNumeroInesistente
+                           			form:idDaRichiamare:idDaRichiamare form:idNonRisponde:idNonRisponde  
+                           			form:idAttesaDoc:idAttesaDoc form:idValutazioneAtc:idValutazioneAtc 
+                           			form:idAppuntamentoFissato:idAppuntamentoFissato form:idNonAssumibile:idNonAssumibile 
+                           			form:idAttesaPreventivo:idAttesaPreventivo form:idPreventivo:idPreventivo
+                           			form:idRinnovabile:idRinnovabile form:idTfrNo:idTfrNo form:idNonFattibile:idNonFattibile 
+                           			form:idNonInteressato:idNonInteressato form:idPrevAccettato:idPrevAccettato
+                           			form:idContestato:idContestato form:idContestazioneRifiutata:idContestazioneRifiutata 
+                           			form:idContestazioneAccettata:idContestazioneAccettata"/>
+	               	</p:selectCheckboxMenu>
+            	</div>
+            </div>
+
+            <div class="ui-g dashboard ui-fluid">
+                <div class="card card-w-title Wid100">
+                
+                    <composite-custom:widget icon="&#xE7F0;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.DA_LAVORARE.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.DA_LAVORARE.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idDaLavorare"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.DA_LAVORARE.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.DA_LAVORARE.value)}"/>
+
+                    <composite-custom:widget icon="person"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.IN_LAVORAZIONE.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.IN_LAVORAZIONE.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idInLavorazione"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.IN_LAVORAZIONE.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.IN_LAVORAZIONE.value)}"/>
+
+                    <composite-custom:widget icon="&#xE61E;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.NUMERO_INESISTENTE.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.NUMERO_INESISTENTE.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idNumeroInesistente"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.NUMERO_INESISTENTE.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.NUMERO_INESISTENTE.value)}"/>
+
+                    <composite-custom:widget icon="&#xE61C;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.DA_RICHIAMARE.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.DA_RICHIAMARE.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idDaRichiamare"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.DA_RICHIAMARE.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.DA_RICHIAMARE.value)}"/>
+
+                    <composite-custom:widget icon="&#xE61F;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.NON_RISPONDE.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.NON_RISPONDE.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idNonRisponde"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.NON_RISPONDE.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.NON_RISPONDE.value)}"/>
+
+                    <composite-custom:widget icon="&#xE627;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.ATTESA_DOC.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.ATTESA_DOC.value}" colorBox="2" 
+                                             widthTot="4"
+                                             id="idAttesaDoc"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.ATTESA_DOC.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.ATTESA_DOC.value)}"/>
+
+                    <composite-custom:widget icon="&#xE629;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.VALUTAZIONE_ATC.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.VALUTAZIONE_ATC.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idValutazioneAtc"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.VALUTAZIONE_ATC.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.VALUTAZIONE_ATC.value)}"/>
+
+                    <composite-custom:widget icon="&#xE614;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.APPUNTAMENTO_FISSATO.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.APPUNTAMENTO_FISSATO.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idAppuntamentoFissato"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.APPUNTAMENTO_FISSATO.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.APPUNTAMENTO_FISSATO.value)}"/>
+
+                    <composite-custom:widget icon="&#xE628;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.NON_ASSUMIBILE.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.NON_ASSUMIBILE.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idNonAssumibile"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.NON_ASSUMIBILE.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.NON_ASSUMIBILE.value)}"/>
+
+                    <composite-custom:widget icon="&#xE85F;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.ATTESA_PREVENTIVO.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.ATTESA_PREVENTIVO.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idAttesaPreventivo"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.ATTESA_PREVENTIVO.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.ATTESA_PREVENTIVO.value)}"/>
+
+                    <composite-custom:widget icon="&#xE163;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.PREVENTIVO.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.PREVENTIVO.value}" colorBox="2" 
+                                             widthTot="4"
+                                             id="idPreventivo"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.PREVENTIVO.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.PREVENTIVO.value)}"/>
+
+                    <composite-custom:widget icon="&#xE42E;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.RINNOVABILE.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.RINNOVABILE.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idRinnovabile"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.RINNOVABILE.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.RINNOVABILE.value)}"/>
+
+                    <composite-custom:widget icon="&#xE160;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.TFR_NO.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.TFR_NO.value}" colorBox="2" 
+                                             widthTot="4"
+                                             id="idTfrNo"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.TFR_NO.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.TFR_NO.value)}"/>
+
+                    <composite-custom:widget icon="&#xE5C9;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.NON_FATTIBILE.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.NON_FATTIBILE.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idNonFattibile"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.NON_FATTIBILE.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.NON_FATTIBILE.value)}"/>
+
+                    <composite-custom:widget icon="&#xE8DB;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.NON_INTERESSATO.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.NON_INTERESSATO.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idNonInteressato"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.NON_INTERESSATO.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.NON_INTERESSATO.value)}"/>
+
+                    <composite-custom:widget icon="&#xE8DC;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.PREV_ACCETTATO.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.PREV_ACCETTATO.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idPrevAccettato"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.PREV_ACCETTATO.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.PREV_ACCETTATO.value)}"/>
+
+                </div>
+            </div>
+
+
+            <div class="ui-g dashboard ui-fluid">
+                <div class="card card-w-title Wid100">
+                    <h1>Stato Nominativi Contestati</h1>
+                    <composite-custom:widget icon="&#xE163;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.CONTESTATO.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.CONTESTATO.value}" colorBox="3"
+                                             widthTot="4"
+                                             id="idContestato"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.CONTESTATO.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.CONTESTATO.value)}"/>
+
+                    <composite-custom:widget icon="&#xE5C9;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.CONTESTAZIONE_RIFIUTATA.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.CONTESTAZIONE_RIFIUTATA.value}" colorBox="3"
+                                             widthTot="4"
+                                             id="idContestazioneRifiutata"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.CONTESTAZIONE_RIFIUTATA.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.CONTESTAZIONE_RIFIUTATA.value)}"/>
+
+                    <composite-custom:widget icon="&#xE8DC;"
+                                             colorIcon="#{statoNominativoView.getColorIcon(JsfStatoNominativo.CONTESTAZIONE_ACCETTATA.value)}"
+                                             valueWidget1="#{JsfStatoNominativo.CONTESTAZIONE_ACCETTATA.value}" colorBox="3"
+                                             widthTot="4"
+                                             id="idContestazioneAccettata"
+                                             actionValue="#{statoNominativoView.putStatoNominativoParameter(JsfStatoNominativo.CONTESTAZIONE_ACCETTATA.value)}"
+                                             valueWidget2="#{statoNominativoView.getStatoNominativoSize(JsfStatoNominativo.CONTESTAZIONE_ACCETTATA.value)}"/>
+                </div>
+            </div>
+        </h:body>
+    </ui:define>
+
+</ui:composition>  

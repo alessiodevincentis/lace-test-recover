@@ -1,0 +1,103 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-lg-12">
+
+                <div class="card card-w-title">
+                    <h1>Impegni Rinnovabili dei Nominativi</h1>
+                    <p:dataTable id="basicDT" var="clienteTrattenuta"
+                                 value="#{datatableNominativoRinnoviView.clienteTrattenutaLazyDataModel}"
+                                 sortBy="#{clienteTrattenuta.clienteViewModel.nome}"
+                                 rowKey="#{clienteTrattenuta.trattenuteViewModel.codStip}"
+                                 rows="10" paginator="true" lazy="true"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15"
+                                 emptyMessage="In Base ai Criteri di Ricerca Scelti non Abbiamo Trovato Nessun Cliente"
+                                 reflow="true" tableStyle="width:auto;text-align:center;"
+                                 widgetVar="rinnoviTable">
+                        <f:facet name="header">
+                            Seleziona Impegno Rinnovabile
+                        </f:facet>
+
+                        <p:column style="width:48px;text-align: center" headerText="Visualizza">
+                            <p:commandButton update=":form"
+                                             action="#{datatableNominativoRinnoviView.onRowSelect}"
+                                             icon="fa fa-search Fs20 White"
+                                             styleClass="RaisedButton" title="Visualizza">
+                                <f:setPropertyActionListener value="#{clienteTrattenuta}"
+                                                             target="#{datatableNominativoRinnoviView.selectedClienteTrattenuta}"/>
+                            </p:commandButton>
+                        </p:column>
+                        <p:column style="width:48px;text-align: center" headerText="Rimuovi notifica">
+                            <p:commandButton update=":form"
+                                             action="#{datatableNominativoRinnoviView.setNotiCoes}"
+                                             icon="fa fa-remove Fs20 White"
+                                             styleClass="red-btn RaisedButton" title="Rimuovi Notifica">
+                                <f:setPropertyActionListener value="#{clienteTrattenuta}"
+                                                             target="#{datatableNominativoRinnoviView.selectedClienteTrattenuta}"/>
+                            </p:commandButton>
+                        </p:column>
+                        <p:column filterBy="#{clienteTrattenuta.clienteViewModel.operatoreNominativo.username}"
+                                  filterMatchMode="in"
+                                  rendered="#{utilResolverView.isRenderedColumn('NOMINATIVI')}">
+                            <f:facet name="filter">
+                                <p:selectCheckboxMenu label="Operatore"
+                                                      onchange="PF('rinnoviTable').filter()"
+                                                      showHeader="false">
+                                    <f:selectItems
+                                            value="#{utilResolverView.getOperatorsStringList('NOMINATIVI', 'READ')}"/>
+                                </p:selectCheckboxMenu>
+                            </f:facet>
+                            <h:outputText
+                                    value="#{clienteTrattenuta.clienteViewModel.operatoreNominativo.username}"/>
+                        </p:column>
+                        <p:column headerText="Cognome"
+                                  sortBy="#{clienteTrattenuta.clienteViewModel.cognome}">
+                            <h:outputText value="#{clienteTrattenuta.clienteViewModel.cognome}"/>
+                        </p:column>
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{clienteTrattenuta.clienteViewModel.nome}"/>
+                        </p:column>
+                        <p:column headerText="Operazione"
+                                  sortBy="#{clienteTrattenuta.trattenuteViewModel.tipoTrat}">
+                            <h:outputText value="#{clienteTrattenuta.trattenuteViewModel.tipoTrat}"/>
+                        </p:column>
+                        <p:column headerText="Rata"
+                                  sortBy="#{clienteTrattenuta.trattenuteViewModel.rataTrat}">
+                            <h:outputText value="#{clienteTrattenuta.trattenuteViewModel.rataTrat}"/>
+                        </p:column>
+                        <p:column headerText="Durata"
+                                  sortBy="#{clienteTrattenuta.trattenuteViewModel.durataTrat}">
+                            <h:outputText value="#{clienteTrattenuta.trattenuteViewModel.durataTrat}"/>
+                        </p:column>
+                        <p:column headerText="Scadenza"
+                                  sortBy="#{clienteTrattenuta.trattenuteViewModel.scadenzaTrat}">
+                            <h:outputText value="#{clienteTrattenuta.trattenuteViewModel.scadenzaTrat}">
+                                <f:converter
+                                        converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Rinnovo"
+                                  sortBy="#{clienteTrattenuta.trattenuteViewModel.dataRinnovoTrat}">
+                            <h:outputText value="#{clienteTrattenuta.trattenuteViewModel.dataRinnovoTrat}">
+                                <f:converter
+                                        converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="StatoNominativo"
+                                  sortBy="#{clienteTrattenuta.clienteViewModel.statoNominativo}">
+                            <h:outputText value="#{clienteTrattenuta.clienteViewModel.statoNominativo}"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

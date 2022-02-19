@@ -1,0 +1,165 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{aziendaSelectionView.setCurrentMenuSection('CLIENTI')}"/>
+        </f:metadata>
+
+        <body>
+        <div class="card card-w-title">
+            <h1>Pratiche nello Stato #{datatableStatoPraticaView.statoPratica}</h1>
+
+            <p:growl id="statoPraticheGrowl"/>
+
+            <p:remoteCommand name="afterCellEdit" update=":form:statoPraticaDT"/>
+
+            <p:dataTable id="statoPraticaDT" var="clientePratica"
+                         value="#{datatableStatoPraticaView.clientePraticaLazyDataModel}" lazy="true"
+                         rowStyleClass="#{(clientePratica.praticaViewModel.dataNotificaStatoPratica) lt utilResolverView.getNewDate() ? 'colored' : null}"
+                         sortBy="#{clientePratica.praticaViewModel.dataNotificaStatoPratica}"
+                         rowKey="#{clientePratica.praticaViewModel.codicePratica}"
+                         rows="10" paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         emptyMessage="In Base ai Criteri di Ricerca Scelti non Abbiamo Trovato Nessun Cliente"
+                         reflow="true" tableStyle="width:auto;text-align:center;" editable="true"
+                         editMode="cell" widgetVar="statoPraticaTable">
+                <f:facet name="header">
+                    Per modificare lo stato della pratica cliccare sulla casella
+                </f:facet>
+
+                <p:ajax event="cellEdit" listener="#{datatableStatoPraticaView.onCellEdit}" oncomplete="afterCellEdit()"
+                        update=":form:statoPraticheGrowl"/>
+
+                <p:column style="width:48px;text-align: center" headerText="Visualizza">
+                    <p:commandButton process="@this"
+                                     action="#{datatableStatoPraticaView.onRowSelect}"
+                                     icon="fa fa-search Fs20 White"
+                                     title="Visualizza">
+                        <f:setPropertyActionListener value="#{clientePratica}"
+                                                     target="#{datatableStatoPraticaView.selectedClientePratica}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column filterBy="#{clientePratica.praticaViewModel.operatore.username}" filterMatchMode="in"
+                          rendered="#{utilResolverView.isRenderedColumn('CLIENTI')}">
+                    <f:facet name="filter">
+                        <p:selectCheckboxMenu label="Operatore" onchange="PF('statoPraticaTable').filter()">
+                            <f:selectItems value="#{utilResolverView.getOperatorsStringList('CLIENTI', 'READ')}"/>
+                        </p:selectCheckboxMenu>
+                    </f:facet>
+                    <h:outputText value="#{clientePratica.praticaViewModel.operatore.username}"/>
+                </p:column>
+                <p:column headerText="Agenzia" rendered="#{aziendaSelectionView.aziendaColumnShown}">
+                    <h:outputText value="#{clientePratica.praticaViewModel.operatore.azienda.nomeAzienda}"/>
+                </p:column>
+                <p:column headerText="Cognome" sortBy="#{clientePratica.clienteViewModel.cognome}">
+                    <h:outputText value="#{clientePratica.clienteViewModel.cognome}"/>
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{clientePratica.clienteViewModel.nome}"/>
+                </p:column>
+                <p:column id="provincia" filterBy="#{clientePratica.clienteViewModel.residenzaViewModel.provResidenza}"
+                          headerText="Provincia" filterMatchMode="exact" onchange="PF('statoPraticaTable').filter()">
+                    <h:outputText value="#{clientePratica.clienteViewModel.residenzaViewModel.provResidenza}"/>
+                </p:column>
+                <p:column headerText="#{datatableStatoPraticaView.STATO_PRATICA_COLUMN_HEADER_TEXT}">
+
+                    <h:outputText value="#{clientePratica.praticaViewModel.statoPratica}"
+                                  rendered="#{!datatableStatoPraticaView.isPannelloStatoPraticaCellEditorRendered()}"/>
+
+                    <p:cellEditor rendered="#{datatableStatoPraticaView.isPannelloStatoPraticaCellEditorRendered()}">
+                        <f:facet name="output"><h:outputText
+                                value="#{clientePratica.praticaViewModel.statoPratica}"/></f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu
+                                    value="#{clientePratica.praticaViewModel.statoPratica}">
+                                <f:selectItems
+                                        value="#{constantResolverView.getStatoPraticaByTipo(clientePratica.praticaViewModel.tipoPratica)}"
+                                        var="v"
+                                        itemLabel="#{v.value}" itemValue="#{v.value}"/>
+                            </p:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="DataNotifica"
+                          sortBy="#{clientePratica.praticaViewModel.dataNotificaStatoPratica}">
+
+                    <h:outputText rendered="#{!datatableStatoPraticaView.isPannelloStatoPraticaCellEditorRendered()}"
+                                  value="#{clientePratica.praticaViewModel.dataNotificaStatoPratica}">
+                        <f:converter
+                                converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDateWithoutTimeZone"/>
+                    </h:outputText>
+
+                    <p:cellEditor rendered="#{datatableStatoPraticaView.isPannelloStatoPraticaCellEditorRendered()}">
+                        <f:facet name="output">
+                            <h:outputText
+                                    value="#{clientePratica.praticaViewModel.dataNotificaStatoPratica}">
+                                <f:converter
+                                        converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDateWithoutTimeZone"/>
+                            </h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:calendar
+                                    value="#{clientePratica.praticaViewModel.dataNotificaStatoPratica}"
+                                    pattern="dd/MM/yyyy" mask="true"/>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Operazione"
+                          sortBy="#{clientePratica.praticaViewModel.tipoPratica}">
+                    <h:outputText value="#{clientePratica.praticaViewModel.tipoPratica}"/>
+                </p:column>
+                <p:column headerText="Rata" sortBy="#{clientePratica.praticaViewModel.rata}">
+                    <h:outputText value="#{clientePratica.praticaViewModel.rata}"/>
+                </p:column>
+                <p:column headerText="Durata" sortBy="#{clientePratica.praticaViewModel.durata}">
+                    <h:outputText value="#{clientePratica.praticaViewModel.durata}"/>
+                </p:column>
+                <p:column headerText="Caricamento"
+                          sortBy="#{clientePratica.praticaViewModel.dataCaricamento}">
+                    <h:outputText value="#{clientePratica.praticaViewModel.dataCaricamento}">
+                        <f:converter
+                                converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="DataIstruttoria"
+                          sortBy="#{clientePratica.praticaViewModel.dataIstruttoria}">
+                    <h:outputText value="#{clientePratica.praticaViewModel.dataIstruttoria}">
+                        <f:converter
+                                converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="DataIstruita"
+                          rendered="#{datatableStatoPraticaView.isDataIstruitaColumnRendered()}"
+                          sortBy="#{clientePratica.praticaViewModel.dataIstruita}">
+                    <h:outputText value="#{clientePratica.praticaViewModel.dataIstruita}">
+                        <f:converter
+                                converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="DataDelibera"
+                          sortBy="#{clientePratica.praticaViewModel.dataDelibera}">
+                    <h:outputText value="#{clientePratica.praticaViewModel.dataDelibera}">
+                        <f:converter
+                                converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="DataFirmaContratti"
+                          sortBy="#{clientePratica.praticaViewModel.dataFirmaContratti}">
+                    <h:outputText value="#{clientePratica.praticaViewModel.dataFirmaContratti}">
+                        <f:converter
+                                converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+
+        </div>
+        </body>
+    </ui:define>
+
+</ui:composition>

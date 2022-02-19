@@ -1,0 +1,383 @@
+@startuml
+
+title __CONFIG's Class Diagram__\n
+
+  namespace com.woonders.lacemsjsf.config {
+    class com.woonders.lacemsjsf.config.AppSecurityConfig {
+        - passwordEncoder : PasswordEncoder
+        + authenticationProvider()
+        + configureGlobal()
+        # configure()
+        - isAJAXRequest()
+        - removeAllTheCookies()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.config {
+    class com.woonders.lacemsjsf.config.ApplicationConfig {
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.config {
+    class com.woonders.lacemsjsf.config.LaceServletContextListener {
+        {static} - log : Logger
+        + contextDestroyed()
+        + contextInitialized()
+        - cleanWorkingDir()
+        - setCookieHttps()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.config {
+    class com.woonders.lacemsjsf.config.PropertiesUtil {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        - COMPARATORE_LINK : String
+        - CONTROLLODOCUMENTO_LINK : String
+        - CONTROLLOIBAN_LINK : String
+        - COPIABUSTAPAGA_MSG_NAME : String
+        - COPIABUSTAPAGA_MSG_NAME_SMS : String
+        - DATICLIENTE_MSG_NAME : String
+        - DATIFORNITI_MSG_NAME : String
+        - INFOBENESTARE_MSG_NAME : String
+        - INFOBENESTARE_MSG_NAME_SMS : String
+        - INFODOC_MSG_NAME : String
+        - INFORMATIVAPREVENTIVO_MSG_NAME : String
+        - INFOULTERIORI1_MSG_NAME : String
+        - LINK_PROPERTIES : String
+        - MAX_LOGIN_ATTEMPTS : String
+        {static} - MESSAGES_MAIL_PROPERTIES : String
+        - MESSAGES_PROPERTIES : String
+        - MSG_ADD_APPUNTAMENTO_SUCCESS : String
+        {static} - MSG_ADVANCED_SEARCH_DATA_WRONG : String
+        {static} - MSG_ADVANCED_SEARCH_EMPTY_FILTER : String
+        - MSG_AGENZIA_NOTFOUND : String
+        - MSG_APPUNTAMENTO_DATIMANCANTI : String
+        - MSG_APPUNTAMENTO_DATIMANCANTI2 : String
+        - MSG_ATTENZIONE : String
+        - MSG_AT_LEAST_ONE_OPERATOR_RECEIVE_LEAD_SELECTED : String
+        - MSG_AZIENDA_ERROR : String
+        {static} - MSG_BACKUP_BODY : String
+        - MSG_BACKUP_DOWNLOAD_FAILED : String
+        - MSG_BACKUP_NOT_POSSIBLE : String
+        - MSG_BACKUP_PASSWORD_WRONG : String
+        {static} - MSG_BACKUP_REPLYTO : String
+        {static} - MSG_BACKUP_SUBJECT : String
+        - MSG_BACKUP_SUCCESS : String
+        - MSG_BLOCKED_IP : String
+        - MSG_BODY_PROFORMA : String
+        - MSG_CF_COMUNE_ERRATO : String
+        {static} - MSG_CF_ERROR_GIAUSATO : String
+        {static} - MSG_CONFIRM_UPLOAD_FILE : String
+        - MSG_CREAPRATICA_ERROR : String
+        - MSG_CREAPRATICA_LIMIT_ESTINZIONI : String
+        - MSG_CREAPRATICA_SUCCESS : String
+        - MSG_DAPERFEZIONARE_DATI_MANCANTI : String
+        - MSG_DATASOURCE_DELETED : String
+        - MSG_DATASOURCE_SAVED : String
+        - MSG_DELETE_APPUNTAMENTO_SUCCESS : String
+        - MSG_DELETE_CF_NOTFOUND : String
+        - MSG_DELETE_ERROR : String
+        {static} - MSG_DELETE_NOTICE_SUCCESS : String
+        - MSG_DELETE_PRATICA_SUCCESS : String
+        - MSG_DELETE_SUCCESS : String
+        - MSG_ENABLE_IL_COMPARATORE_LEAD_RECEPTION : String
+        - MSG_ERROR : String
+        - MSG_ERRORE_IMPREVISTO : String
+        - MSG_ERROR_CAMPI_REGISTRAZIONE_COMPARATORE_OBBLIGATORI : String
+        {static} - MSG_ERROR_COLUMN_TRUNCATED : String
+        - MSG_ERROR_DECIMAL_VALUE : String
+        - MSG_ERROR_EDIT_DECORRENZA : String
+        - MSG_ERROR_EDIT_STATO_PRATICA : String
+        - MSG_ERROR_ENABLE_IL_COMPARATORE_LEAD_RECEPTION : String
+        - MSG_ERROR_GENERIC : String
+        - MSG_ERROR_IMPORT_EXCEL : String
+        - MSG_ERROR_INVALID_FILE_SIZE : String
+        {static} - MSG_ERROR_MAIL_AGENCY_NAME_MISSING : String
+        {static} - MSG_ERROR_MAIL_BODY_MISSING : String
+        {static} - MSG_ERROR_MAIL_RECIPIENT_MISSING : String
+        {static} - MSG_ERROR_MAIL_REPLY_TO_MISSING : String
+        {static} - MSG_ERROR_MAIL_SUBJECT_MISSING : String
+        - MSG_ERROR_MAX_AMMINISTRAZIONI : String
+        - MSG_ERROR_PDF_NON_GENERATO : String
+        - MSG_ERROR_PERFEZIONATE : String
+        - MSG_ERROR_ROW_EXCEL : String
+        - MSG_ERROR_SEND_MAIL : String
+        {static} - MSG_ERROR_SEND_SMS_GENERIC : String
+        {static} - MSG_ERROR_SMS_MISSING_FIELDS : String
+        - MSG_ERROR_STATO_CONTEGGIO_ESTINZIONE : String
+        - MSG_ERROR_STESSA_AMMINISTRAZIONE : String
+        {static} - MSG_ERROR_TABLE_NAME_ALREADY_USED : String
+        - MSG_FILE_EXCEL_TO_IMPORT_INVALID : String
+        - MSG_FILE_UPLOAD_ANTIRICICLAGGIO_FILELIMIT : String
+        - MSG_FILE_UPLOAD_ERROR : String
+        - MSG_FILE_UPLOAD_FILETOOBIG : String
+        - MSG_FILE_UPLOAD_NOSPACE : String
+        - MSG_FILE_UPLOAD_OK : String
+        - MSG_FILE_VIEW_DELETED : String
+        - MSG_FILE_VIEW_DELETEERROR : String
+        - MSG_FILE_VIEW_NOFILEFOUND : String
+        - MSG_FUNCTIONALITY_NOT_ENABLED_MESSAGE : String
+        - MSG_FUNCTIONALITY_NOT_ENABLED_SUMMARY : String
+        {static} - MSG_IMPORTAZIONE_EXCEL_ROWS_EXCEEDED : String
+        {static} - MSG_IMPORTAZIONE_START : String
+        - MSG_INFO : String
+        {static} - MSG_INVALID_FILE_PDF : String
+        - MSG_INVALID_LOGIN : String
+        - MSG_INVALID_SIZE_FILE : String
+        {static} - MSG_INVITE_FRIENDS_BODY : String
+        {static} - MSG_INVITE_FRIENDS_SUBJECT : String
+        - MSG_LOGINOPERATOR_DELETED : String
+        - MSG_LOGINOPERATOR_SAVED : String
+        - MSG_NOMINATIVO_DELETED : String
+        - MSG_NOTIFICA_SMS_CLIENTE_NOMINATIVO_APPUNTAMENTO_ERROR : String
+        - MSG_NOTIFICA_SMS_CLIENTE_NOMINATIVO_APPUNTAMENTO_SEND_ERROR : String
+        - MSG_NOTIFICA_SMS_CLIENTE_NOMINATIVO_APPUNTAMENTO_SUCCESS : String
+        - MSG_NOTIFICA_SMS_OPERATORE_APPUNTAMENTO_ERROR : String
+        - MSG_NOTIFICA_SMS_OPERATORE_APPUNTAMENTO_SEND_ERROR : String
+        - MSG_NOTIFICA_SMS_OPERATORE_APPUNTAMENTO_SUCCESS : String
+        - MSG_NUMBER_ONLY : String
+        - MSG_PRATICA_CANNOT_DELETE : String
+        - MSG_PRATICHE_PERFEZIONATE : String
+        - MSG_READ_APPUNTAMENTO_UNAUTHORIZED : String
+        {static} - MSG_SCHEDULE_EVENTMOVED_SUCCESS : String
+        - MSG_SEND_CAMPAGNA_SMS_NON_SPEDITI_SUCCESS : String
+        - MSG_SEND_MAIL_OK : String
+        - MSG_SETTINGS_SAVE_SUCCESS : String
+        - MSG_SIMULATOR_ACTIVATED_SUCCESS : String
+        - MSG_SIMULATOR_CLONE_SUCCESS : String
+        - MSG_SIMULATOR_DELETE_SUCCESS : String
+        - MSG_SIMULATOR_DISABLED_SUCCESS : String
+        {static} - MSG_SIMULATOR_DISCLAIMER : String
+        {static} - MSG_SIMULATOR_ERROR_EMPTY_JOB_TYPE_LIST : String
+        {static} - MSG_SIMULATOR_ERROR_RUN_MISSINGFIELDS : String
+        {static} - MSG_SIMULATOR_ERROR_TABLE_IN_USE : String
+        {static} - MSG_SIMULATOR_ERROR_TAN : String
+        - MSG_SIMULATOR_MENSILITA_ZERO : String
+        - MSG_SIMULATOR_NEWROW_EXISTLENGHT : String
+        {static} - MSG_SIMULATOR_SAVED_TABLE : String
+        {static} - MSG_SIMULATOR_TABLE_SAVED_ONLY_OPERATORS : String
+        - MSG_SMS_DATI_AZIENDA_MANCANTI : String
+        {static} - MSG_SMS_ERROR_NOT_ENOUGH_BALANCE : String
+        {static} - MSG_SMS_ERROR_PRICE_CALCULATION : String
+        - MSG_SMS_FILLABLE_ERROR_SPECIAL_CHARACTER : String
+        {static} - MSG_SMS_INVIO_CAMPAGNA_SUCCESS : String
+        - MSG_SMS_MAX_LENGTH_ERROR : String
+        - MSG_SMS_MIN_LENGTH_ERROR : String
+        - MSG_SMS_SENDER_INVALID_CHARACTER : String
+        - MSG_SMS_SENDER_MAX_LENGTH_ERROR : String
+        {static} - MSG_SMS_SENT_SUCCESS : String
+        {static} - MSG_SMS_TEXT_REQUIRED : String
+        - MSG_SMS_TOPUP_INVALID_CHOICE : String
+        - MSG_SMS_TOPUP_PAYMENT_FAILED : String
+        - MSG_SMS_TOPUP_PAYMENT_SUCCESS : String
+        {static} - MSG_SMS_UPLOAD_FILELIMIT : String
+        - MSG_SMS_VALIDATION_ERROR : String
+        - MSG_SUBJECT_PROFORMA : String
+        - MSG_SUCCESS : String
+        - MSG_SUCCESS_EDIT_DATA_NOTIFICA : String
+        - MSG_SUCCESS_EDIT_DATA_NOTIFICA_CONTEGGIO_ESTINZIONE : String
+        - MSG_SUCCESS_EDIT_STATO_CONTEGGIO_ESTINZIONE : String
+        - MSG_SUCCESS_EDIT_STATO_PRATICA : String
+        {static} - MSG_UPLOAD_ONE_FILE_LIMIT : String
+        - MSG_VALIDATE_APPUNTAMENTO_ERROR : String
+        - MSG_WARNING_ACCESSO_NON_CONSENTITO : String
+        - MSG_WARNING_ACCESSO_NON_CONSENTITO_SIMULATOR : String
+        - MSG_WARNING_DATI_CALCOLO_CF_MANCANTI : String
+        - MSG_WARNING_DATI_NOMINATIVO_MANCANTI : String
+        - MSG_WARNING_INVALID_FILE : String
+        - OGGETTOBUSTAPAGA_MSG_NAME : String
+        - OGGETTOPREVENTIVO_MSG_NAME : String
+        - PASSWORD_MESSAGES_PROPERTIES : String
+        - PREVENTIVO_MSG_NAME : String
+        - PREVENTIVO_MSG_NAME_SMS : String
+        - SECURITY_PROPERTIES : String
+        {static} - STORAGE_SPACE_CHART_TITLE : String
+        {static} - STORAGE_SPACE_NEED_MORE_SPACE : String
+        - linkProperties : Properties
+        {static} - logger : Logger
+        - messagesMailProperties : Properties
+        - messagesProperties : Properties
+        + PropertiesUtil()
+        + getBustapagaMsgValue()
+        + getBustapagaSMSMsgValue()
+        + getDatiClienteMsgValue()
+        + getDatiFornitiMsgValue()
+        + getInfoBenestareMsgValue()
+        + getInfoBenestareSMSMsgValue()
+        + getInfoDocMsgValue()
+        + getInfoUlteriori1MsgValue()
+        + getInformativaPreventivoMsgValue()
+        + getLinkComparatoreValue()
+        + getLinkDocumentiValue()
+        + getLinkIbanValue()
+        + getMsgAccessoNonConsentito()
+        + getMsgAccessoNonConsentitoSimulator()
+        + getMsgAddAppuntamentoSuccess()
+        + getMsgAdvancedSearchDataWrong()
+        + getMsgAdvancedSearchEmptyFilter()
+        + getMsgAgenziaNotFound()
+        + getMsgAppuntamentoClienteNominativoNotificaSmsError()
+        + getMsgAppuntamentoClienteNominativoNotificaSmsSendError()
+        + getMsgAppuntamentoClienteNominativoNotificaSmsSuccess()
+        + getMsgAppuntamentoDatiMancanti()
+        + getMsgAppuntamentoDatiMancanti2()
+        + getMsgAppuntamentoOperatoreNotificaSmsError()
+        + getMsgAppuntamentoOperatoreNotificaSmsSendError()
+        + getMsgAppuntamentoOperatoreNotificaSmsSuccess()
+        + getMsgAppuntamentoValidateError()
+        + getMsgAtLeastOneOperatorReceiveLeadSelected()
+        + getMsgAttenzione()
+        + getMsgAziendaError()
+        + getMsgBackupBody()
+        + getMsgBackupDownloadFailed()
+        + getMsgBackupNotPossible()
+        + getMsgBackupPasswordWrong()
+        + getMsgBackupReplyto()
+        + getMsgBackupSubject()
+        + getMsgBackupSuccess()
+        + getMsgBlockedIp()
+        + getMsgBodyProforma()
+        + getMsgCfComuneErrato()
+        + getMsgCfErrorGiaUsato()
+        + getMsgConfirmUploadFile()
+        + getMsgCreaPraticaError()
+        + getMsgCreaPraticaLimitEstinzioni()
+        + getMsgCreaPraticaSuccess()
+        + getMsgDaPerfezionareDatiMancanti()
+        + getMsgDataSourceDeleted()
+        + getMsgDataSourceSaved()
+        + getMsgDatiAziendaMancanti()
+        + getMsgDatiCalcoloCfMancanti()
+        + getMsgDatiNominativoMancanti()
+        + getMsgDeleteAppuntamentoSuccess()
+        + getMsgDeleteCfNotFound()
+        + getMsgDeleteError()
+        + getMsgDeleteNoticeSuccess()
+        + getMsgDeletePraticaSuccess()
+        + getMsgDeleteSuccess()
+        + getMsgEnableIlComparatoreLeadReception()
+        + getMsgError()
+        + getMsgErrorCampiRegistrazioneComparatoreObbligatori()
+        + getMsgErrorColumnTruncated()
+        + getMsgErrorDecimalValue()
+        + getMsgErrorEditDecorrenza()
+        + getMsgErrorEditStatoConteggioEstinzione()
+        + getMsgErrorEditStatoPratica()
+        + getMsgErrorEnableIlComparatoreLeadReception()
+        + getMsgErrorGeneric()
+        + getMsgErrorImportExcel()
+        + getMsgErrorMailAgencyNameMissing()
+        + getMsgErrorMailBodyMissing()
+        + getMsgErrorMailRecipientMissing()
+        + getMsgErrorMailReplyToMissing()
+        + getMsgErrorMailSubjectMissing()
+        + getMsgErrorMaxAmministrazioni()
+        + getMsgErrorPdfNonGenerato()
+        + getMsgErrorPerfezionate()
+        + getMsgErrorRowExcel()
+        + getMsgErrorSendMail()
+        + getMsgErrorSendSmsGeneric()
+        + getMsgErrorSmsMissingFields()
+        + getMsgErrorStessaAmministrazione()
+        + getMsgErroreImprevisto()
+        + getMsgFileExcelToImportNotValid()
+        + getMsgFileUploadAntiriciclaggioFileLimit()
+        + getMsgFileUploadError()
+        + getMsgFileUploadNoSpace()
+        + getMsgFileUploadOk()
+        + getMsgFileUploadTooBig()
+        + getMsgFileViewDeleteError()
+        + getMsgFileViewDeleted()
+        + getMsgFileViewNoFileFound()
+        + getMsgFunctionalityNotEnabledFull()
+        + getMsgFunctionalityNotEnabledMessage()
+        + getMsgFunctionalityNotEnabledSummary()
+        + getMsgImportExcelRowsExceeded()
+        + getMsgImportazioneStart()
+        + getMsgInfo()
+        + getMsgInvalidFile()
+        + getMsgInvalidFilePdf()
+        + getMsgInvalidFileSize()
+        + getMsgInvalidFileSizeNoticeBoard()
+        + getMsgInvalidLogin()
+        + getMsgInvalidSizeFile()
+        + getMsgInviteFriendsBody()
+        + getMsgInviteFriendsSubject()
+        + getMsgLoginOperatorDeleted()
+        + getMsgLoginOperatorSaved()
+        + getMsgNominativoDeleted()
+        + getMsgNumberOnly()
+        + getMsgPraticaCannotDelete()
+        + getMsgPratichePerfezionate()
+        + getMsgReadAppuntamentoUnauthorized()
+        + getMsgScheduleEventMovedSuccess()
+        + getMsgSendCampagnaSmsNonSpediti()
+        + getMsgSendMailOk()
+        + getMsgSettingsSaveSuccess()
+        + getMsgSimulatorActivatedSuccess()
+        + getMsgSimulatorCloneSuccess()
+        + getMsgSimulatorDeleteSuccess()
+        + getMsgSimulatorDisabledSuccess()
+        + getMsgSimulatorDisclaimer()
+        + getMsgSimulatorErrorEmptyJobTypeList()
+        + getMsgSimulatorErrorRunMissingFields()
+        + getMsgSimulatorErrorTableInUse()
+        + getMsgSimulatorErrorTan()
+        + getMsgSimulatorMensilitaZero()
+        + getMsgSimulatorNewRowExistLenght()
+        + getMsgSimulatorSavedTable()
+        + getMsgSimulatorTableSavedOnlyOperators()
+        + getMsgSmsErrorNotEnoughBalance()
+        + getMsgSmsErrorPriceCalculation()
+        + getMsgSmsFillableErrorSpecialCharacter()
+        + getMsgSmsInvioCampagnaSuccess()
+        + getMsgSmsMaxLengthError()
+        + getMsgSmsMinLengthError()
+        + getMsgSmsSenderInvalidCharacter()
+        + getMsgSmsSenderMaxLengthError()
+        + getMsgSmsSentSuccess()
+        + getMsgSmsTextRequired()
+        + getMsgSmsTopupInvalidChoice()
+        + getMsgSmsTopupPaymentFailed()
+        + getMsgSmsTopupPaymentSuccess()
+        + getMsgSmsUploadFilelimit()
+        + getMsgSmsValidationError()
+        + getMsgSubjectProforma()
+        + getMsgSuccess()
+        + getMsgSuccessEditDataNotifica()
+        + getMsgSuccessEditDataNotificaConteggioEstinzione()
+        + getMsgSuccessEditStatoConteggioEstinzione()
+        + getMsgSuccessEditStatoPratica()
+        + getMsgTableNameAlreadyUsed()
+        + getMsgUploadOneFileLimit()
+        + getOggettoMailBustapagaValue()
+        + getOggettoMailPreventivoValue()
+        + getPasswordMessagesProperties()
+        + getPreventivoMsgSMSValue()
+        + getPreventivoMsgValue()
+        + getStorageSpaceChartTitle()
+        + getStorageSpaceNeedMoreSpace()
+        - loadProperties()
+    }
+  }
+  
+
+  com.woonders.lacemsjsf.config.AppSecurityConfig -up-|> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+  com.woonders.lacemsjsf.config.AppSecurityConfig o-- com.woonders.lacemsjsf.config.security.CustomAuthenticationFailureHandler : customAuthenticationFailureHandler
+  com.woonders.lacemsjsf.config.AppSecurityConfig o-- com.woonders.lacemsjsf.config.security.CustomAuthenticationSuccessHandler : customAuthenticationSuccessHandler
+  com.woonders.lacemsjsf.config.AppSecurityConfig o-- com.woonders.lacemscommon.service.OperatorService : operatorService
+  com.woonders.lacemsjsf.config.LaceServletContextListener .up.|> javax.servlet.ServletContextListener
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

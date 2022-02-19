@@ -1,0 +1,169 @@
+@startuml
+
+title __CONVERTER's Class Diagram__\n
+
+  namespace com.woonders.lacemsjsf.ui {
+    namespace converter {
+      class com.woonders.lacemsjsf.ui.converter.AziendaConverter {
+          {static} - log : Logger
+          + AziendaConverter()
+          + getAsObject()
+          + getAsString()
+      }
+    }
+  }
+
+
+  namespace com.woonders.lacemsjsf.ui {
+    namespace converter {
+      class com.woonders.lacemsjsf.ui.converter.FiltroRinnoviPraticaCoesistenzaConverter {
+          + getAsObject()
+          + getAsString()
+      }
+    }
+  }
+
+
+  namespace com.woonders.lacemsjsf.ui {
+    namespace converter {
+      class com.woonders.lacemsjsf.ui.converter.FinanziariaConverter {
+          + FinanziariaConverter()
+          + getAsObject()
+          + getAsString()
+      }
+    }
+  }
+
+
+  namespace com.woonders.lacemsjsf.ui {
+    namespace converter {
+      class com.woonders.lacemsjsf.ui.converter.GenericEnumConverter {
+          {static} - ATTRIBUTE_ENUM_TYPE : String
+          + getAsObject()
+          + getAsString()
+      }
+    }
+  }
+
+
+  namespace com.woonders.lacemsjsf.ui {
+    namespace converter {
+      class com.woonders.lacemsjsf.ui.converter.ItalianConvertDate {
+          + ItalianConvertDate()
+      }
+    }
+  }
+
+
+  namespace com.woonders.lacemsjsf.ui {
+    namespace converter {
+      class com.woonders.lacemsjsf.ui.converter.ItalianConvertDateTime {
+          + ItalianConvertDateTime()
+      }
+    }
+  }
+
+
+  namespace com.woonders.lacemsjsf.ui {
+    namespace converter {
+      class com.woonders.lacemsjsf.ui.converter.ItalianConvertDateWithoutTimeZone {
+          + ItalianConvertDateWithoutTimeZone()
+      }
+    }
+  }
+
+
+  namespace com.woonders.lacemsjsf.ui {
+    namespace converter {
+      class com.woonders.lacemsjsf.ui.converter.ItalianConvertLocalDateTime {
+          {static} - dateTimeFormatter : DateTimeFormatter
+          + getAsObject()
+          + getAsString()
+          - getFormatter()
+          - getLocale()
+          - getPattern()
+          - getZoneId()
+      }
+    }
+  }
+
+
+  namespace com.woonders.lacemsjsf.ui {
+    namespace converter {
+      class com.woonders.lacemsjsf.ui.converter.LocalDateConverter {
+          {static} - dateFormatter : DateTimeFormatter
+          + getAsObject()
+          + getAsString()
+      }
+    }
+  }
+
+
+  namespace com.woonders.lacemsjsf.ui {
+    namespace converter {
+      class com.woonders.lacemsjsf.ui.converter.LocalDateTimeConverter {
+          {static} - dateTimeFormatter : DateTimeFormatter
+          + getAsObject()
+          + getAsString()
+      }
+    }
+  }
+
+
+  namespace com.woonders.lacemsjsf.ui {
+    namespace converter {
+      class com.woonders.lacemsjsf.ui.converter.OperatorConverter {
+          + OperatorConverter()
+          + getAsObject()
+          + getAsString()
+      }
+    }
+  }
+
+
+  namespace com.woonders.lacemsjsf.ui {
+    namespace converter {
+      class com.woonders.lacemsjsf.ui.converter.SessoClienteNullableConverter {
+          + getAsObject()
+          + getAsString()
+      }
+    }
+  }
+
+
+  namespace com.woonders.lacemsjsf.ui {
+    namespace converter {
+      class com.woonders.lacemsjsf.ui.converter.TipoClienteNullableConverter {
+          + getAsObject()
+          + getAsString()
+      }
+    }
+  }
+
+
+  com.woonders.lacemsjsf.ui.converter.AziendaConverter -up-|> com.woonders.lacemsjsf.util.BaseConverter
+  com.woonders.lacemsjsf.ui.converter.AziendaConverter o-- com.woonders.lacemscommon.service.AziendaService : aziendaService
+  com.woonders.lacemsjsf.ui.converter.FiltroRinnoviPraticaCoesistenzaConverter -up-|> com.woonders.lacemsjsf.util.BaseConverter
+  com.woonders.lacemsjsf.ui.converter.FinanziariaConverter -up-|> com.woonders.lacemsjsf.util.BaseConverter
+  com.woonders.lacemsjsf.ui.converter.FinanziariaConverter o-- com.woonders.lacemscommon.service.FinanziariaService : finanziariaService
+  com.woonders.lacemsjsf.ui.converter.GenericEnumConverter .up.|> javax.faces.convert.Converter
+  com.woonders.lacemsjsf.ui.converter.ItalianConvertDate -up-|> javax.faces.convert.DateTimeConverter
+  com.woonders.lacemsjsf.ui.converter.ItalianConvertDateTime -up-|> javax.faces.convert.DateTimeConverter
+  com.woonders.lacemsjsf.ui.converter.ItalianConvertDateWithoutTimeZone -up-|> javax.faces.convert.DateTimeConverter
+  com.woonders.lacemsjsf.ui.converter.ItalianConvertLocalDateTime -up-|> com.woonders.lacemsjsf.util.BaseConverter
+  com.woonders.lacemsjsf.ui.converter.LocalDateConverter -up-|> com.woonders.lacemsjsf.util.BaseConverter
+  com.woonders.lacemsjsf.ui.converter.LocalDateTimeConverter -up-|> com.woonders.lacemsjsf.util.BaseConverter
+  com.woonders.lacemsjsf.ui.converter.OperatorConverter -up-|> com.woonders.lacemsjsf.util.BaseConverter
+  com.woonders.lacemsjsf.ui.converter.OperatorConverter o-- com.woonders.lacemscommon.service.OperatorService : operatorService
+  com.woonders.lacemsjsf.ui.converter.SessoClienteNullableConverter -up-|> com.woonders.lacemsjsf.util.BaseConverter
+  com.woonders.lacemsjsf.ui.converter.TipoClienteNullableConverter -up-|> com.woonders.lacemsjsf.util.BaseConverter
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

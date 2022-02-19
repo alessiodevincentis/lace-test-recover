@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<composite:interface>
+
+    <composite:attribute name="layoutToIncludeName"/>
+    <composite:attribute name="onCloseJs"/>
+
+</composite:interface>
+
+<composite:implementation>
+
+    <p:commandButton id="info" icon="ui-icon-help"
+                     style="margin-left:1em;" styleClass="Fright" process="@none" onclick="PF('infoDialogVar').show();"/>
+    <p:dialog id="infoDialog" widgetVar="infoDialogVar" resizable="false" draggable="false" responsive="true" showEffect="fade" hideEffect="fade" modal="true">
+        <ui:include src="/app/secure/infodialog/#{cc.attrs.layoutToIncludeName}"/>
+        <p:ajax event="close" oncomplete="#{cc.attrs.onCloseJs}" process="@none"/>
+    </p:dialog>
+</composite:implementation>
+</html>
