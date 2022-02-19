@@ -1,0 +1,140 @@
+@startuml
+
+title __FILE's Class Diagram__\n
+
+  namespace com.woonders.lacemsjsf.view.file {
+    class com.woonders.lacemsjsf.view.file.ArchiviazioneRendered {
+        - documentiClienteRendered : boolean
+        - documentiPraticaRendered : boolean
+        {static} + builder()
+        + equals()
+        + hashCode()
+        + isDocumentiClienteRendered()
+        + isDocumentiPraticaRendered()
+        + setDocumentiClienteRendered()
+        + setDocumentiPraticaRendered()
+        + toString()
+        # canEqual()
+        ~ ArchiviazioneRendered()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.file {
+    class com.woonders.lacemsjsf.view.file.ArchiviazioneRendered.ArchiviazioneRenderedBuilder {
+        - documentiClienteRendered : boolean
+        - documentiPraticaRendered : boolean
+        + build()
+        + documentiClienteRendered()
+        + documentiPraticaRendered()
+        + toString()
+        ~ ArchiviazioneRenderedBuilder()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.file {
+    class com.woonders.lacemsjsf.view.file.FileManagerView {
+        - categorizedRealUploadedFileMap : Map<FileCategory, List<RealUploadedFile>>
+        - fileViewModelList : List<FileViewModel>
+        {static} - logger : Logger
+        - processUploadedFileListCount : int
+        - uploadingFilesCount : int
+        + beginFileUpload()
+        + deleteFile()
+        + getCategorizedRealUploadedFileMap()
+        + getClienteManagerService()
+        + getFileService()
+        + getFileViewModelList()
+        + getHttpSessionUtil()
+        + getPassaggioParametriUtils()
+        + getProcessUploadedFileListCount()
+        + getPropertiesUtil()
+        + getRequestTenantIdentifierResolver()
+        + getUploadingFileCategory()
+        + getUploadingFilesCount()
+        + handleFileUploadAnagrafica()
+        + handleFileUploadAntiriciclaggio()
+        + handleFileUploadPratica()
+        + handleFileUploadReddito()
+        + init()
+        + isFileStorageDisabled()
+        + processUploadedFileList()
+        + setCategorizedRealUploadedFileMap()
+        + setClienteManagerService()
+        + setFileListToDisplay()
+        + setFileService()
+        + setFileViewModelList()
+        + setHttpSessionUtil()
+        + setPassaggioParametriUtils()
+        + setPdfToDisplayParameters()
+        + setProcessUploadedFileListCount()
+        + setPropertiesUtil()
+        + setRequestTenantIdentifierResolver()
+        + setUploadingFileCategory()
+        + setUploadingFilesCount()
+        - addUploadedFileToMap()
+        - checkFileStorageEnabled()
+        - checkSpaceStillAvailable()
+        - getClienteOrPraticaId()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.file {
+    class com.woonders.lacemsjsf.view.file.RealUploadedFile {
+        - content : byte[]
+        - contentType : String
+        - fileName : String
+        - size : long
+        {static} + builder()
+        + getContent()
+        + getContentType()
+        + getFileName()
+        + getSize()
+        + setContent()
+        + setContentType()
+        + setFileName()
+        + setSize()
+        ~ RealUploadedFile()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.file {
+    class com.woonders.lacemsjsf.view.file.RealUploadedFile.RealUploadedFileBuilder {
+        - content : byte[]
+        - contentType : String
+        - fileName : String
+        - size : long
+        + build()
+        + content()
+        + contentType()
+        + fileName()
+        + size()
+        + toString()
+        ~ RealUploadedFileBuilder()
+    }
+  }
+  
+
+  com.woonders.lacemsjsf.view.file.ArchiviazioneRendered +-down- com.woonders.lacemsjsf.view.file.ArchiviazioneRendered.ArchiviazioneRenderedBuilder
+  com.woonders.lacemsjsf.view.file.FileManagerView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.file.FileManagerView o-- com.woonders.lacemscommon.service.ClienteManagerService : clienteManagerService
+  com.woonders.lacemsjsf.view.file.FileManagerView o-- com.woonders.lacemscommon.service.FileService : fileService
+  com.woonders.lacemsjsf.view.file.FileManagerView o-- com.woonders.lacemsjsf.util.HttpSessionUtil : httpSessionUtil
+  com.woonders.lacemsjsf.view.file.FileManagerView o-- com.woonders.lacemsjsf.util.PassaggioParametriUtils : passaggioParametriUtils
+  com.woonders.lacemsjsf.view.file.FileManagerView o-- com.woonders.lacemsjsf.config.PropertiesUtil : propertiesUtil
+  com.woonders.lacemsjsf.view.file.FileManagerView o-- com.woonders.lacemsjsf.db.app.config.RequestTenantIdentifierResolver : requestTenantIdentifierResolver
+  com.woonders.lacemsjsf.view.file.FileManagerView o-- com.woonders.lacemscommon.service.FileService.FileCategory : uploadingFileCategory
+  com.woonders.lacemsjsf.view.file.RealUploadedFile +-down- com.woonders.lacemsjsf.view.file.RealUploadedFile.RealUploadedFileBuilder
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

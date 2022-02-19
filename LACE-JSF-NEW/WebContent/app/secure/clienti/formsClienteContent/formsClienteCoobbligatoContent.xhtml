@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:lacems="http://lacems.com/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:outputScript library="js" name="formsClienteCoobbligatoAutocomplete.js"/>
+
+<p:repeat var="coobbligato" value="#{registerCliente.coobbligatoViewModelList}" id="coobbligatoRepeat">
+    <p:panelGrid columns="4" id="coobbligato" layout="grid"
+                 styleClass="ui-panelgrid-blank form-group">
+
+        <p:outputLabel value="Codice Fiscale:">
+            <p:inputText value="#{coobbligato.codiceFiscale}"
+                         label="Codice Fiscale Coobbligato" maxlength="16"/>
+        </p:outputLabel>
+
+
+        <p:outputLabel value="Cognome:">
+            <p:inputText value="#{coobbligato.cognome}" label="Cognome Coobbligato"
+                         maxlength="40"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Nome:">
+            <p:inputText value="#{coobbligato.nome}" label="Nome" maxlength="40"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Seleziona il Sesso:">
+            <p:selectOneRadio value="#{coobbligato.sesso}">
+                <f:selectItem itemLabel="Maschio" itemValue="MASCHIO"/>
+                <f:selectItem itemLabel="Femmina" itemValue="FEMMINA"/>
+            </p:selectOneRadio>
+        </p:outputLabel>
+
+
+        <p:outputLabel value="Data di Nascita:">
+            <p:calendar value="#{coobbligato.dataNascita}" pattern="dd/MM/yyyy"
+                        mask="true" navigator="true" showOn="button"/>
+        </p:outputLabel>
+
+
+        <p:outputLabel value="Comune di Nascita:">
+            <p:inputText value="#{coobbligato.luogoNascita}" id="luogoNascitaCoobbligato"/>
+        </p:outputLabel>
+
+
+        <p:outputLabel value="Provincia di Nascita:">
+            <p:inputText value="#{coobbligato.provinciaNascita}" maxlength="2" id="provinciaNascitaCoobbligato"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Nazione di Nascita:">
+            <p:inputText value="#{coobbligato.nazioneNascita}" id="nazioneNascitaCoobbligato"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Cittadinanza:">
+            <p:inputText value="#{coobbligato.cittadinanza}" id="cittadinanzaCoobbligato"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Telefono:">
+            <p:inputText value="#{coobbligato.telefono}"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Indirizzo Email:">
+            <p:inputText value="#{coobbligato.email}"
+                         validatorMessage="Email Coobbligato non valida">
+                <f:validateRegex
+                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+            </p:inputText>
+        </p:outputLabel>
+
+        <p:outputLabel value="Indirizzo Abitazione:">
+            <p:inputText value="#{coobbligato.indirizzo}" id="indirizzoAbitazioneCoobbligato"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Civico Abitazione:">
+            <p:inputText value="#{coobbligato.civicoAbitazione}" id="civicoAbitazioneCoobbligato"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Comune Abitazione:">
+            <p:inputText value="#{coobbligato.luogo}" id="comuneAbitazioneCoobbligato"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Provincia Abitazione:">
+            <p:inputText value="#{coobbligato.provincia}" maxlength="2" id="provinciaAbitazioneCoobbligato"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="CAP Abitazione:">
+            <p:inputText value="#{coobbligato.cap}" id="capAbitazioneCoobbligato"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Nazione Abitazione:">
+            <p:inputText value="#{coobbligato.nazioneAbitazione}" id="nazioneAbitazioneCoobbligato"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Impiego:">
+            <p:selectOneMenu effect="fold" value="#{coobbligato.impiego}">
+                <f:selectItem itemLabel="Impiego" itemValue=""/>
+                <f:selectItems value="#{constantResolverView.impiego}" var="v"
+                               itemLabel="#{v.value}" itemValue="#{v.value}"/>
+                <p:ajax event="change" update="dataassunzionecoobbligato"/>
+                <p:ajax event="change" update="lavorocoobbligato"/>
+                <p:ajax event="change" update="tipocontrattocoobbligato"/>
+                <p:ajax event="change" update="entecoobbligato"/>
+                <p:ajax event="change" update="catcoobbligato"/>
+                <p:ajax event="change" update="telefonolavorocoobbligato"/>
+            </p:selectOneMenu>
+        </p:outputLabel>
+
+        <p:outputLabel value="Data Assunzione/Pensionamento:">
+            <p:calendar id="dataassunzionecoobbligato"
+                        value="#{coobbligato.dataAssunzione}" mask="true"
+                        pattern="dd/MM/yyyy" showOn="button" navigator="true"
+                        disabled="#{coobbligato.impiego == null || coobbligato.impiego== ''}"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Amministrazione:">
+            <p:inputText id="lavorocoobbligato" value="#{coobbligato.occupazione}"
+                         disabled="#{coobbligato.impiego == 'Pensionato' || coobbligato.impiego== null || coobbligato.impiego== ''}"
+                         maxlength="32"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Tipo Contratto:">
+            <p:selectOneMenu id="tipocontrattocoobbligato" effect="fold"
+                             value="#{coobbligato.tipoContrattoLavoro}"
+                             disabled="#{coobbligato.impiego == 'Pensionato' || coobbligato.impiego== null || coobbligato.impiego== ''}">
+                <f:selectItem itemLabel="Seleziona" itemValue=""/>
+                <f:selectItem itemLabel="Determinato" itemValue="Determinato"/>
+                <f:selectItem itemLabel="Indeterminato" itemValue="Indeterminato"/>
+            </p:selectOneMenu>
+        </p:outputLabel>
+
+
+        <p:outputLabel value="Telefono Lavoro:">
+            <p:inputText id="telefonolavorocoobbligato"
+                         value="#{coobbligato.telefonoLavoro}"
+                         disabled="#{coobbligato.impiego == 'Pensionato' || coobbligato.impiego== null || coobbligato.impiego== ''}"/>
+        </p:outputLabel>
+
+
+        <p:outputLabel value="Ente Pensionistico:">
+            <p:inputText id="entecoobbligato" value="#{coobbligato.ente}"
+                         disabled="#{coobbligato.impiego != 'Pensionato'}"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Cat. Pensione:">
+            <p:selectOneMenu id="catcoobbligato" effect="fold"
+                             value="#{coobbligato.cat}" editable="true"
+                             disabled="#{coobbligato.impiego != 'Pensionato'}"
+                             maxlength="#{constantResolverView.maxCatPensioneLength}">
+                <f:selectItem itemLabel="VO" itemValue="VO"/>
+                <f:selectItem itemLabel="VCOM" itemValue="VCOM"/>
+                <f:selectItem itemLabel="VL" itemValue="VL"/>
+                <f:selectItem itemLabel="VDAI" itemValue="VDAI"/>
+                <f:selectItem itemLabel="SOCPDEL" itemValue="SOCPDEL"/>
+                <f:selectItem itemLabel="ET" itemValue="ET"/>
+                <f:selectItem itemLabel="SO/VO" itemValue="SO/VO"/>
+                <f:validateLength maximum="#{constantResolverView.maxCatPensioneLength}"/>
+            </p:selectOneMenu>
+        </p:outputLabel>
+
+        <p:outputLabel value="Tipo documento:">
+            <p:selectOneMenu effect="fold" value="#{coobbligato.tipoDocumento}">
+                <f:selectItems value="#{constantResolverView.tipoDocumento}" var="v" itemLabel="#{v.value}"
+                               itemValue="#{v.value}"/>
+            </p:selectOneMenu>
+        </p:outputLabel>
+
+        <p:outputLabel value="Numero Documento:">
+            <p:inputText id="numerodoccoobbligato"
+                         value="#{coobbligato.numeroDocumento}"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Data di Rilascio:">
+            <p:calendar value="#{coobbligato.dataRilascioDocumento}"
+                        pattern="dd/MM/yyyy" mask="true" navigator="true"
+                        showOn="button"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Comune di Rilascio:">
+            <p:inputText value="#{coobbligato.luogoRilascioDocumento}" id="comuneRilascioCoobbligato"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Provincia di Rilascio:">
+            <p:inputText value="#{coobbligato.provinciaRilascioDocumento}" id="provinciaRilascioCoobbligato"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Nazione di Rilascio:">
+            <p:inputText value="#{coobbligato.nazioneRilascioDocumento}" id="nazioneRilascioCoobbligato"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Data di Scadenza:">
+            <p:calendar value="#{coobbligato.scadenzaDocumento}"
+                        pattern="dd/MM/yyyy" mask="true" navigator="true"
+                        showOn="button"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Nr.Componenti Familiari:">
+            <p:inputText value="#{coobbligato.nrComponentiFamiliari}"
+                         maxlength="2"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Netto Stipendio:">
+            <lacems:InputNumberEuro value="#{coobbligato.nettoStipendio}"/>
+        </p:outputLabel>
+
+        <p:commandButton update="form:coobbligatoOutputPanel" process="@this"
+                         actionListener="#{registerCliente.removeCoobbligato(coobbligato)}"
+                         icon="fa fa-remove Fs20 White" iconPos="right"
+                         styleClass="red-btn">
+            <p:confirm header="Confirmation"
+                       message="Eliminare Definitivamente il Coobbligato?"
+                       icon="ui-icon-alert"/>
+        </p:commandButton>
+
+
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+                         closable="true">
+            <p:commandButton value="Si" type="button"
+                             styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button"
+                             styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+        </p:confirmDialog>
+
+
+    </p:panelGrid>
+</p:repeat>
+<p:commandButton actionListener="#{registerCliente.addCoobbligato()}" update="form:coobbligatoOutputPanel"
+                 icon="fa fa-plus Fs20 White" iconPos="right"
+                 styleClass="green-btn" process="@this form:coobbligatoOutputPanel"
+                 disabled="#{registerCliente.isAddCoobbligatoDisabled()}"
+                 oncomplete="initializeFormsClienteCoobbligatoAutocomplete();"/>
+
+</html>                           

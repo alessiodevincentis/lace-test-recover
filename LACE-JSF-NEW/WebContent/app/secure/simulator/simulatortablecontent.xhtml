@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:lacems="http://lacems.com/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite-custom="http://java.sun.com/jsf/composite/composite-custom">
+
+<p:panelGrid id="buttonstablepanel" columns="6" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+    <p:commandButton value="Attiva" id="activate" styleClass="green-btn" icon="fa fa-play Fs20 White"
+                     iconPos="right" rendered="#{simulatorView.isRenderedIdZero()}"
+                     disabled="#{simulatorView.isDisabledButtonIfActive()}"
+                     update="form:activate form:disable form:statustext"
+                     action="#{simulatorView.activateDisableTable(true)}" process="@this"/>
+    <p:commandButton value="Disattiva" id="disable" styleClass="red-btn" icon="fa fa-stop Fs20 White"
+                     iconPos="right" rendered="#{simulatorView.isRenderedIdZero()}"
+                     disabled="#{!simulatorView.isDisabledButtonIfActive()}"
+                     update="form:activate form:disable form:statustext"
+                     action="#{simulatorView.activateDisableTable(false)}" process="@this"/>
+    <p:commandButton value="Duplica" icon="fa fa-clone Fs20 White" iconPos="right"
+                     rendered="#{simulatorView.isRenderedIdZero()}"
+                     action="#{simulatorView.cloneTable}"
+                     process="@this">
+        <p:confirm header="Conferma" message="Sei sicuro di voler duplicare la seguente tabella?"/>
+    </p:commandButton>
+    <p:commandButton value="Elimina" styleClass="red-btn" icon="fa fa-trash Fs20 White"
+                     iconPos="right"
+                     rendered="#{simulatorView.renderedButtonDeleteTable}"
+                     action="#{simulatorView.deleteTable}" process="@this">
+        <p:confirm header="Conferma" message="Eliminare Definitivamente la seguente tabella?"/>
+    </p:commandButton>
+
+</p:panelGrid>
+
+<p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+    <p:panelGrid id="infotablepanel" columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+        <p:outputLabel value="Nome tabella: *">
+            <p:inputText required="true" value="#{simulatorView.simulatorTableViewModel.name}" label="Nome Tabella"
+                         disabled="#{simulatorView.tableUsedSomewhere}"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Tipo tabella: *">
+            <p:selectOneMenu value="#{simulatorView.simulatorTableViewModel.simulatorTableType}" required="true"
+                             disabled="#{simulatorView.tableUsedSomewhere}">
+                <f:selectItems value="#{constantResolverView.tipoPratica}" var="tableType"
+                               itemLabel="#{tableType.value}" itemValue="#{tableType}"/>
+                <!--<p:ajax event="change" update="table newrowpanel dlg"/> non usato per ora, aggiunge colonna provvigioni nella tabella -->
+            </p:selectOneMenu>
+        </p:outputLabel>
+
+        <p:outputLabel value="Stato tabella:" rendered="#{simulatorView.renderedIdZero}">
+            <p:inputText id="statustext" value="#{simulatorView.statusTableText}" readonly="true"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Creata da:" rendered="#{simulatorView.renderedIdZero}">
+            <p:inputText value="#{simulatorView.infoCreatorTableText}" readonly="true"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Agenzia:" rendered="#{aziendaSelectionView.aziendaColumnShownInPage}">
+            <p:selectOneMenu value="#{simulatorView.simulatorTableViewModel.aziendaViewModel}"
+                             disabled="#{simulatorView.tableUsedSomewhere}">
+                <f:selectItem itemLabel="Qualsiasi" noSelectionOption="true"/>
+                <f:selectItems value="#{aziendaSelectionView.aziendaViewModelList}" var="azienda"
+                               itemLabel="#{azienda.nomeAzienda}" itemValue="#{azienda}"/>
+                <p:ajax event="change" update="operatortoassign" listener="#{simulatorView.loadOperatorsFromDb()}"/>
+                <f:converter converterId="aziendaConverter"/>
+            </p:selectOneMenu>
+        </p:outputLabel>
+
+    </p:panelGrid>
+
+    <p:panelGrid id="grantedOperatorPanel" columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+        <p:outputLabel value="Seleziona gli operatori da assegnare alla tabella">
+            <p:selectManyMenu var="operator" filter="true" filterMatchMode="contains"
+                              label="Operatori da assegnare" id="operatortoassign"
+                              showCheckbox="true" converter="operatorConverter"
+                              value="#{simulatorView.simulatorTableViewModel.grantedOperatorViewModelList}">
+                <f:selectItems value="#{simulatorView.allOperatorViewModelList}" var="operator"
+                               itemLabel="#{operator.username}"
+                               itemValue="#{operator}"/>
+                <p:column>
+                    <h:outputText value="#{operator.firstName} #{operator.lastName} - #{operator.username} "/>
+                </p:column>
+            </p:selectManyMenu>
+
+            <p:commandButton value="Seleziona tutti" icon="fa fa-users Fs20 White" iconPos="right"
+                             process="@this" update="operatortoassign" action="#{simulatorView.selectAllOperators}"/>
+
+        </p:outputLabel>
+
+    </p:panelGrid>
+
+    <p:panelGrid id="selectedJobTypePanel" columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+        <p:outputLabel value="Seleziona gli impieghi da assegnare alla tabella">
+            <p:selectManyMenu var="impiego" filter="true" filterMatchMode="contains"
+                              label="Impieghi da assegnare" id="jobTypeManyMenu"
+                              showCheckbox="true" converter="com.woonders.lacemsjsf.ui.converter.GenericEnumConverter"
+                              value="#{simulatorView.simulatorTableViewModel.jobTypeList}"
+                              disabled="#{simulatorView.tableUsedSomewhere}">
+                <f:selectItems value="#{constantResolverView.impiego}" var="impiego"
+                               itemLabel="#{impiego.value}"
+                               itemValue="#{impiego}"/>
+                <p:column>
+                    <h:outputText value="#{impiego.value} "/>
+                </p:column>
+            </p:selectManyMenu>
+
+            <p:commandButton value="Seleziona tutti" icon="fa fa-users Fs20 White" iconPos="right"
+                             process="@this" update="selectedJobTypePanel" action="#{simulatorView.selectAllJobType}"
+                             disabled="#{simulatorView.tableUsedSomewhere}"/>
+
+            <p:commandButton value="Deseleziona tutti" icon="fa fa-users Fs20 White" iconPos="right"
+                             process="@this" update="selectedJobTypePanel"
+                             action="#{simulatorView.deselectAllJobType}"
+                             disabled="#{simulatorView.tableUsedSomewhere}"/>
+
+        </p:outputLabel>
+
+    </p:panelGrid>
+
+</p:panelGrid>
+
+
+<p:panelGrid id="costtablepanel" columns="6" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+
+    <p:outputLabel value="Over:">
+        <lacems:InputNumberPercentage minValue="0.00" value="#{simulatorView.simulatorTableViewModel.over}"
+                                      disabled="#{simulatorView.tableUsedSomewhere}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Arrotondamento:">
+        <p:selectOneMenu value="#{simulatorView.simulatorTableViewModel.simulatorRoundingMode}"
+                         disabled="#{simulatorView.tableUsedSomewhere}">
+            <f:selectItems value="#{constantResolverView.simulatorRoundingMode}" var="v"
+                           itemLabel="#{v.value}" itemValue="#{v}"/>
+        </p:selectOneMenu>
+    </p:outputLabel>
+
+</p:panelGrid>
+
+<hr/>
+<h1>
+    Configura il formato dei valori della tabella
+    <composite-custom:infobutton infoMessageList="#{infoHelpView.infoConfigurationDataSimulatorTableList}"/>
+</h1>
+
+<p:panelGrid id="formattablepanel" columns="5" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+    <h:panelGrid cellpadding="1" cellspacing="1">
+        <p:outputLabel value="Formato Spese Istruttoria:"/>
+        <p:selectOneButton value="#{simulatorView.simulatorTableViewModel.inquiryCostFeeType}" style="width: auto"
+                           disabled="#{simulatorView.tableUsedSomewhere}">
+            <f:selectItems value="#{constantResolverView.feeType}" var="v"
+                           itemLabel="#{v.value}" itemValue="#{v}"/>
+            <p:ajax event="change"
+                    update="table onlytaegcostsnewrowpanel costsnewrowpanel maininfonewrowpanel maxcostsnewrowpanel
+                            onlytaegcostsdlgpanel costsdlgpanel maininfodlgpanel maxcostsdlgpanel"/>
+        </p:selectOneButton>
+    </h:panelGrid>
+
+    <h:panelGrid cellpadding="1" cellspacing="1">
+        <p:outputLabel value="Formato Commissione di Gestione:"/>
+        <p:selectOneButton value="#{simulatorView.simulatorTableViewModel.managementFeesFeeType}" style="width: auto"
+                           disabled="#{simulatorView.tableUsedSomewhere}">
+            <f:selectItems value="#{constantResolverView.feeType}" var="v"
+                           itemLabel="#{v.value}" itemValue="#{v}"/>
+            <p:ajax event="change"
+                    update="table onlytaegcostsnewrowpanel costsnewrowpanel maininfonewrowpanel maxcostsnewrowpanel
+                            onlytaegcostsdlgpanel costsdlgpanel maininfodlgpanel maxcostsdlgpanel"/>
+        </p:selectOneButton>
+    </h:panelGrid>
+
+    <h:panelGrid cellpadding="1" cellspacing="1">
+        <p:outputLabel value="Formato Imposta di Bollo:"/>
+        <p:selectOneButton value="#{simulatorView.simulatorTableViewModel.stampDutyFeeType}" style="width: auto"
+                           disabled="#{simulatorView.tableUsedSomewhere}">
+            <f:selectItems value="#{constantResolverView.feeType}" var="v"
+                           itemLabel="#{v.value}" itemValue="#{v}"/>
+            <p:ajax event="change"
+                    update="table onlytaegcostsnewrowpanel costsnewrowpanel maininfonewrowpanel maxcostsnewrowpanel
+                            onlytaegcostsdlgpanel costsdlgpanel maininfodlgpanel maxcostsdlgpanel"/>
+        </p:selectOneButton>
+    </h:panelGrid>
+
+    <h:panelGrid cellpadding="1" cellspacing="1">
+        <p:outputLabel value="Formato Costo Polizza:"/>
+        <p:selectOneButton value="#{simulatorView.simulatorTableViewModel.insuranceCostFeeType}" style="width: auto"
+                           disabled="#{simulatorView.tableUsedSomewhere}">
+            <f:selectItems value="#{constantResolverView.feeType}" var="v"
+                           itemLabel="#{v.value}" itemValue="#{v}"/>
+            <p:ajax event="change" update="table onlytaegcostsnewrowpanel costsnewrowpanel maininfonewrowpanel maxcostsnewrowpanel
+                            onlytaegcostsdlgpanel costsdlgpanel maininfodlgpanel maxcostsdlgpanel"/>
+        </p:selectOneButton>
+    </h:panelGrid>
+
+    <h:panelGrid cellpadding="1" cellspacing="1">
+        <p:outputLabel value="Formato Altri Costi:"/>
+        <p:selectOneButton value="#{simulatorView.simulatorTableViewModel.otherCostsFeeType}" style="width: auto"
+                           disabled="#{simulatorView.tableUsedSomewhere}">
+            <f:selectItems value="#{constantResolverView.feeType}" var="v"
+                           itemLabel="#{v.value}" itemValue="#{v}"/>
+            <p:ajax event="change"
+                    update="table onlytaegcostsnewrowpanel costsnewrowpanel maininfonewrowpanel maxcostsnewrowpanel
+                            onlytaegcostsdlgpanel costsdlgpanel maininfodlgpanel maxcostsdlgpanel"/>
+        </p:selectOneButton>
+    </h:panelGrid>
+
+</p:panelGrid>
+<hr/>
+
+<h1>Inserisci i dettagli della tabella
+    <composite-custom:infobutton infoMessageList="#{infoHelpView.infoDetailsSimulatorTableList}"/>
+</h1>
+
+<p:commandButton value="Inserisci i valori per tutte le durate" icon="fa fa-plus Fs20 White" iconPos="right"
+                 styleClass="green-btn MarBot10" style="width: auto;" onclick="PF('valueAllLenght').show();"
+                 process="@this" disabled="#{simulatorView.tableUsedSomewhere}"/>
+
+<p:dataTable id="table" var="rowtab" value="#{simulatorView.simulatorTableDetailsViewModelList}" editable="true"
+             editMode="cell" tableStyle="width:auto;text-align:center;" reflow="true">
+    <f:facet name="header">
+        Clicca sulla cella per modificare il valore
+    </f:facet>
+
+    <p:ajax event="cellEdit"/>
+
+    <p:columnGroup type="header">
+        <p:row>
+            <p:column colspan="1"/>
+            <p:column colspan="5" headerText="Dati Principali della tabella" styleClass="borderColumn"/>
+            <p:column colspan="5" headerText="Spese connesse al capitale e al Taeg" styleClass="borderColumn"/>
+            <p:column colspan="5" headerText="Spese connesse solamente al Taeg" styleClass="borderColumn"/>
+            <p:column colspan="5" headerText="Valore Massimo delle spese"/>
+        </p:row>
+        <p:row>
+            <p:column/>
+            <p:column headerText="Durata"/>
+            <p:column headerText="Mensilità*"/>
+            <p:column headerText="Tan%*"/>
+            <p:column headerText="Taeg% Max.:"/>
+            <p:column headerText="% Provvigioni Max.:" styleClass="borderColumn"/>
+            <p:column headerText="Spese Istruttoria:"/>
+            <p:column headerText="Commissione di Gestione:"/>
+            <p:column headerText="Imposta di Bollo:"/>
+            <p:column headerText="Costo Polizza:"/>
+            <p:column headerText="Altri Costi:" styleClass="borderColumn"/>
+            <p:column headerText="Spese Istruttoria:"/>
+            <p:column headerText="Commissione di Gestione:"/>
+            <p:column headerText="Imposta di Bollo:"/>
+            <p:column headerText="Costo Polizza:"/>
+            <p:column headerText="Altri Costi:" styleClass="borderColumn"/>
+            <p:column headerText="Spese Istruttoria Max.:"/>
+            <p:column headerText="Commissione di Gestione Max.:"/>
+            <p:column headerText="Imposta di Bollo Max.:"/>
+            <p:column headerText="Costo Polizza Max.:"/>
+            <p:column headerText="Altri Costi Max.:"/>
+        </p:row>
+    </p:columnGroup>
+
+    <p:column>
+        <p:commandButton styleClass="red-btn" icon="fa fa-remove Fs20 White" iconPos="right"
+                         disabled="#{simulatorView.isDisabledButtonDeleteRow()}"
+                         action="#{simulatorView.removeRowTableAction(rowtab)}" process="@this" update="form:table">
+            <p:confirm header="Conferma" message="Eliminare Definitivamente la riga con durata #{rowtab.length} mesi?"
+                       icon="ui-icon-alert"/>
+        </p:commandButton>
+    </p:column>
+
+    <p:column>
+        <h:outputText value="#{rowtab.length}"/>
+    </p:column>
+
+    <p:column>
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.mensilita}"/>
+            </f:facet>
+            <f:facet name="input">
+                <p:selectOneMenu editable="true" value="#{rowtab.mensilita}" required="true" label="Mensilità">
+                    <f:selectItems value="#{constantResolverView.mensilita}" var="v"
+                                   itemLabel="#{v.value}" itemValue="#{v.value}"/>
+                </p:selectOneMenu>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+
+    <p:column>
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.tan}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberPercentage required="true" value="#{rowtab.tan}" label="Tan"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+    <p:column>
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.maxTaeg}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberPercentage value="#{rowtab.maxTaeg}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+    <p:column styleClass="borderColumn">
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.maxAgentFees}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberPercentage value="#{rowtab.maxAgentFees}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+
+    <p:column id="inquirycosttable">
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.inquiryCost}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberDefault value="#{rowtab.inquiryCost}"
+                                           disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"
+                                           symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+
+    <p:column id="managementfeestable">
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.managementFees}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberDefault value="#{rowtab.managementFees}"
+                                           disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"
+                                           symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+
+    <p:column id="stampdutycosttable">
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.stampDutyCost}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberDefault value="#{rowtab.stampDutyCost}"
+                                           disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"
+                                           symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+    <p:column>
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.insuranceCost}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberDefault value="#{rowtab.insuranceCost}"
+                                           disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"
+                                           symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+
+    <p:column id="othercoststable" styleClass="borderColumn">
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.otherCosts}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberDefault value="#{rowtab.otherCosts}"
+                                           disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"
+                                           symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+    <p:column headerText="Spese Istruttoria:" id="inquirycosttabletaeg">
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.inquiryCostTaeg}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberDefault value="#{rowtab.inquiryCostTaeg}"
+                                           disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"
+                                           symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+    <p:column headerText="Commissione di Gestione:" id="managementfeestabletaeg">
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.managementFeesTaeg}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberDefault value="#{rowtab.managementFeesTaeg}"
+                                           disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"
+                                           symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+
+    <p:column headerText="Imposta di Bollo:" id="stampdutycosttabletaeg">
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.stampDutyCostTaeg}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberDefault value="#{rowtab.stampDutyCostTaeg}"
+                                           disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"
+                                           symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+    <p:column>
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.insuranceCostTaeg}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberDefault value="#{rowtab.insuranceCostTaeg}"
+                                           disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"
+                                           symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+
+    <p:column headerText="Altri Costi:" id="othercoststabletaeg" styleClass="borderColumn">
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.otherCostsTaeg}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberDefault value="#{rowtab.otherCostsTaeg}"
+                                           disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"
+                                           symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+    <p:column>
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.maxInquiryCost}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberEuro value="#{rowtab.maxInquiryCost}"
+                                        disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+
+    <p:column>
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.maxManagementFees}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberEuro value="#{rowtab.maxManagementFees}"
+                                        disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+
+    <p:column>
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.maxStampDutyCost}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberEuro value="#{rowtab.maxStampDutyCost}"
+                                        disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+    <p:column>
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.maxInsuranceCost}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberEuro value="#{rowtab.maxInsuranceCost}"
+                                        disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+    <p:column>
+        <p:cellEditor>
+            <f:facet name="output">
+                <h:outputText value="#{rowtab.maxOtherCosts}"/>
+            </f:facet>
+            <f:facet name="input">
+                <lacems:InputNumberEuro value="#{rowtab.maxOtherCosts}"
+                                        disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"/>
+            </f:facet>
+        </p:cellEditor>
+    </p:column>
+
+
+</p:dataTable>
+
+<h1>Aggiungi una nuova riga nella tabella</h1>
+
+<p:panelGrid id="maininfonewrowpanel" columns="5" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+    <p:outputLabel value="Durata: *">
+        <p:inputNumber required="true" decimalPlaces="0" label="Durata"
+                       value="#{simulatorView.simulatorTableDetailsViewModelNewRow.length}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Mensilità: *">
+        <p:inputNumber required="true" decimalPlaces="0" label="Mensilità"
+                       value="#{simulatorView.simulatorTableDetailsViewModelNewRow.mensilita}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Tan%: *">
+        <lacems:InputNumberPercentage required="true" label="Tan"
+                                      value="#{simulatorView.simulatorTableDetailsViewModelNewRow.tan}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Taeg% Max.:">
+        <lacems:InputNumberPercentage value="#{simulatorView.simulatorTableDetailsViewModelNewRow.maxTaeg}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Provvigioni Max.:">
+        <lacems:InputNumberPercentage value="#{simulatorView.simulatorTableDetailsViewModelNewRow.maxAgentFees}"/>
+    </p:outputLabel>
+
+</p:panelGrid>
+
+<hr/>
+<h1>Spese connesse al capitale e al Taeg</h1>
+<p:panelGrid columns="5" id="costsnewrowpanel" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+    <p:outputLabel value="Spese Istruttoria:">
+        <lacems:InputNumberDefault id="inquirycostnewrow"
+                                   value="#{simulatorView.simulatorTableDetailsViewModelNewRow.inquiryCost}"
+                                   symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"
+                                   disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Commisione di Gestione:">
+        <lacems:InputNumberDefault id="managementfeesnewrow"
+                                   value="#{simulatorView.simulatorTableDetailsViewModelNewRow.managementFees}"
+                                   symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"
+                                   disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Imposta di Bollo:">
+        <lacems:InputNumberDefault id="stampdutycostnewrow"
+                                   value="#{simulatorView.simulatorTableDetailsViewModelNewRow.stampDutyCost}"
+                                   symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"
+                                   disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Costo Polizza:">
+        <lacems:InputNumberDefault
+                value="#{simulatorView.simulatorTableDetailsViewModelNewRow.insuranceCost}"
+                symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"
+                disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Altri Costi:">
+        <lacems:InputNumberDefault id="othercostsnewrow"
+                                   value="#{simulatorView.simulatorTableDetailsViewModelNewRow.otherCosts}"
+                                   symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"
+                                   disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"/>
+    </p:outputLabel>
+
+</p:panelGrid>
+
+<hr/>
+<h1>Spese connesse solo al Taeg</h1>
+<p:panelGrid columns="5" id="onlytaegcostsnewrowpanel" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+    <p:outputLabel value="Spese Istruttoria:">
+        <lacems:InputNumberDefault id="inquirycostnewrowtaeg"
+                                   value="#{simulatorView.simulatorTableDetailsViewModelNewRow.inquiryCostTaeg}"
+                                   symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"
+                                   disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Commisione di Gestione:">
+        <lacems:InputNumberDefault id="managementfeesnewrowtaeg"
+                                   value="#{simulatorView.simulatorTableDetailsViewModelNewRow.managementFeesTaeg}"
+                                   symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"
+                                   disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Imposta di Bollo:">
+        <lacems:InputNumberDefault id="stampdutycostnewrowtaeg"
+                                   value="#{simulatorView.simulatorTableDetailsViewModelNewRow.stampDutyCostTaeg}"
+                                   symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"
+                                   disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Costo Polizza:">
+        <lacems:InputNumberDefault
+                value="#{simulatorView.simulatorTableDetailsViewModelNewRow.insuranceCostTaeg}"
+                symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"
+                disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Altri Costi:">
+        <lacems:InputNumberDefault id="othercostsnewrowtaeg"
+                                   value="#{simulatorView.simulatorTableDetailsViewModelNewRow.otherCostsTaeg}"
+                                   symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"
+                                   disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"/>
+    </p:outputLabel>
+</p:panelGrid>
+
+<hr/>
+<h1>Valore Massimo delle spese</h1>
+<p:panelGrid id="maxcostsnewrowpanel" columns="5" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+    <p:outputLabel value="Spese Istruttoria Max.:">
+        <lacems:InputNumberEuro value="#{simulatorView.simulatorTableDetailsViewModelNewRow.maxInquiryCost}"
+                                disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Commisione di Gestione Max.:">
+        <lacems:InputNumberEuro value="#{simulatorView.simulatorTableDetailsViewModelNewRow.maxManagementFees}"
+                                disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Imposta di Bollo Max.:">
+        <lacems:InputNumberEuro value="#{simulatorView.simulatorTableDetailsViewModelNewRow.maxStampDutyCost}"
+                                disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Costo Polizza Max.:">
+        <lacems:InputNumberEuro
+                value="#{simulatorView.simulatorTableDetailsViewModelNewRow.maxInsuranceCost}"
+                disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Altri Costi Max.:">
+        <lacems:InputNumberEuro value="#{simulatorView.simulatorTableDetailsViewModelNewRow.maxOtherCosts}"
+                                disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"/>
+    </p:outputLabel>
+
+    <p:commandButton value="Aggiungi Riga" styleClass="green-btn" icon="fa fa-plus Fs20 White"
+                     iconPos="right" action="#{simulatorView.addRowTableAction}"
+                     process="@this maininfonewrowpanel maxcostsnewrowpanel onlytaegcostsnewrowpanel costsnewrowpanel"
+                     update="table maininfonewrowpanel maxcostsnewrowpanel onlytaegcostsnewrowpanel costsnewrowpanel"
+                     disabled="#{simulatorView.tableUsedSomewhere}"/>
+
+</p:panelGrid>
+
+<p:panelGrid columns="4" layout="grid" styleClass="ui-panelgrid-blank form-group">
+    <p:outputLabel/><p:outputLabel/><p:outputLabel/>
+    <p:commandButton value="Salva Tabella" icon="fa fa-save Fs20 White" iconPos="right"
+                     action="#{simulatorView.saveTable}"
+                     update="grantedOperatorPanel infotablepanel costtablepanel formattablepanel table buttonstablepanel"
+                     process="@this grantedOperatorPanel infotablepanel costtablepanel formattablepanel table selectedJobTypePanel"/>
+</p:panelGrid>
+
+<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+</p:confirmDialog>
+
+<p:dialog id="dlg" widgetVar="valueAllLenght" header="Inserisci i valori per tutte le durate"
+          showEffect="clip" hideEffect="clip" modal="true" resizable="false">
+
+    <h1>Dati principali tabella</h1>
+
+    <p:panelGrid id="maininfodlgpanel" columns="4" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+        <p:outputLabel value="Mensilità:">
+            <p:selectOneMenu editable="true" value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.mensilita}">
+                <f:selectItems value="#{constantResolverView.mensilita}" var="v"
+                               itemLabel="#{v.value}" itemValue="#{v.value}"/>
+            </p:selectOneMenu>
+        </p:outputLabel>
+
+        <p:outputLabel value="Tan%">
+            <lacems:InputNumberPercentage value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.tan}"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Taeg% Max.:">
+            <lacems:InputNumberPercentage value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.maxTaeg}"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Provvigioni Max.:">
+            <lacems:InputNumberPercentage
+                    value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.maxAgentFees}"/>
+        </p:outputLabel>
+    </p:panelGrid>
+
+    <hr/>
+    <h1>Spese connesse al capitale e al Taeg</h1>
+    <p:panelGrid id="costsdlgpanel" columns="5" layout="grid" styleClass="ui-panelgrid-blank form-group">
+        <p:outputLabel value="Spese Istruttoria:">
+            <lacems:InputNumberDefault id="inquirycostdlg"
+                                       value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.inquiryCost}"
+                                       disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"
+                                       symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"/>
+        </p:outputLabel>
+
+
+        <p:outputLabel value="Commisione di Gestione:">
+            <lacems:InputNumberDefault id="managementfeesdlg"
+                                       value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.managementFees}"
+                                       disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"
+                                       symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"/>
+        </p:outputLabel>
+
+
+        <p:outputLabel value="Imposta di Bollo:">
+            <lacems:InputNumberDefault id="stampdutycostdlg"
+                                       value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.stampDutyCost}"
+                                       disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"
+                                       symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Costo Polizza:">
+            <lacems:InputNumberDefault
+                    value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.insuranceCost}"
+                    disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"
+                    symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"/>
+        </p:outputLabel>
+
+
+        <p:outputLabel value="Altri Costi:">
+            <lacems:InputNumberDefault id="othercostsdlg"
+                                       value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.otherCosts}"
+                                       disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"
+                                       symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"/>
+        </p:outputLabel>
+
+    </p:panelGrid>
+
+    <hr/>
+    <h1>Spese connesse solo al Taeg</h1>
+    <p:panelGrid id="onlytaegcostsdlgpanel" columns="5" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+        <p:outputLabel value="Spese Istruttoria:">
+            <lacems:InputNumberDefault id="inquirycostdlgtaeg"
+                                       value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.inquiryCostTaeg}"
+                                       disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"
+                                       symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Commisione di Gestione:">
+            <lacems:InputNumberDefault id="managementfeesdlgtaeg"
+                                       value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.managementFeesTaeg}"
+                                       disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"
+                                       symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Imposta di Bollo:">
+            <lacems:InputNumberDefault id="stampdutycostdlgtaeg"
+                                       value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.stampDutyCostTaeg}"
+                                       disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"
+                                       symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Costo Polizza:">
+            <lacems:InputNumberDefault
+                    value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.insuranceCostTaeg}"
+                    disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"
+                    symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Altri Costi:">
+            <lacems:InputNumberDefault id="othercostsdlgtaeg"
+                                       value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.otherCostsTaeg}"
+                                       disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"
+                                       symbol="#{simulatorView.setSymbolInputNumber(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"/>
+        </p:outputLabel>
+
+    </p:panelGrid>
+
+    <hr/>
+    <h1>Valore Massimo delle spese</h1>
+    <p:panelGrid id="maxcostsdlgpanel" columns="5" layout="grid" styleClass="ui-panelgrid-blank form-group">
+        <p:outputLabel id="maxinquirycostdlg" value="Spese Istruttoria Max.:">
+            <lacems:InputNumberEuro value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.maxInquiryCost}"
+                                    disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.inquiryCostFeeType)}"/>
+        </p:outputLabel>
+
+        <p:outputLabel id="maxmanagementfeesdlg" value="Commisione di Gestione Max.:">
+            <lacems:InputNumberEuro value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.maxManagementFees}"
+                                    disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.managementFeesFeeType)}"/>
+        </p:outputLabel>
+
+        <p:outputLabel id="maxstampdutycostdlgtaeg" value="Imposta di Bollo Max.:">
+            <lacems:InputNumberEuro value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.maxStampDutyCost}"
+                                    disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.stampDutyFeeType)}"/>
+        </p:outputLabel>
+
+        <p:outputLabel value="Costo Polizza Max.:">
+            <lacems:InputNumberEuro
+                    value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.maxInsuranceCost}"
+                    disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.insuranceCostFeeType)}"/>
+        </p:outputLabel>
+
+        <p:outputLabel id="maxothercostsdlgtaeg" value="Altri Costi Max.:">
+            <lacems:InputNumberEuro value="#{simulatorView.simulatorTableDetailsViewModelAllLenght.maxOtherCosts}"
+                                    disabled="#{simulatorView.isDisabledColumn(simulatorView.simulatorTableViewModel.otherCostsFeeType)}"/>
+        </p:outputLabel>
+
+    </p:panelGrid>
+
+    <p:panelGrid columns="4" layout="grid" styleClass="ui-panelgrid-blank form-group">
+        <p:outputLabel/><p:outputLabel/><p:outputLabel/>
+        <p:commandButton value="Inserisci" icon="fa fa-plus Fs20 White" iconPos="right"
+                         action="#{simulatorView.addValueOnAllLenghtOfTable}" process="@this dlg"
+                         update="dlg table"/>
+    </p:panelGrid>
+
+</p:dialog>
+
+</html>

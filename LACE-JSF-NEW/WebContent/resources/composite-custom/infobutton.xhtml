@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+
+    <composite:attribute name="infoMessageList" type="java.util.List"/>
+    <composite:attribute name="styleClass"/>
+
+</composite:interface>
+
+<composite:implementation>
+
+    <p:commandButton id="info" icon="ui-icon-help"
+                     style="margin-left:1em;" styleClass="Fright #{cc.attrs.styleClass}" process="@none"/>
+    <p:overlayPanel for="info" hideEffect="fade">
+        <ul>
+            <p:repeat value="#{cc.attrs.infoMessageList}" var="message">
+                <li><p:outputLabel value="#{message}" escape="false" style="font-weight: normal !important;"/></li>
+            </p:repeat>
+        </ul>
+    </p:overlayPanel>
+
+</composite:implementation>
+</html>

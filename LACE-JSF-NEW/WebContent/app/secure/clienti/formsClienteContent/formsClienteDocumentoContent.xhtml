@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+        <h:outputScript library="js" name="formsClienteDocumentoAutocomplete.js"/>
+      
+       <p:panelGrid columns="4" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+           <p:outputLabel for="documento" value="Tipo documento:">
+               <p:selectOneMenu effect="fold" id="documento"
+                                value="#{registerCliente.documentoViewModel.tipoDocumento}"
+                                editable="true">
+                   <f:selectItems value="#{constantResolverView.tipoDocumento}" var="v" itemLabel="#{v.value}"
+                                  itemValue="#{v.value}"/>
+                   <p:ajax event="change" update="numerodoc"/>
+               </p:selectOneMenu>
+           </p:outputLabel>
+
+           <p:outputLabel for="numerodoc" value="Numero Documento:">
+               <p:inputText id="numerodoc"
+                            value="#{registerCliente.documentoViewModel.numeroDoc}"
+                            disabled="#{registerCliente.documentoViewModel.tipoDocumento ==null}"/>
+           </p:outputLabel>
+
+           <p:outputLabel for="datedoc" value="Data di Rilascio:">
+               <p:calendar id="datedoc"
+                           value="#{registerCliente.documentoViewModel.rilascioDoc}"
+                           pattern="dd/MM/yyyy" mask="true" navigator="true" showOn="button"/>
+           </p:outputLabel>
+
+           <p:outputLabel for="luogorilascio" value="Comune di Rilascio:">
+               <p:inputText id="luogorilascio"
+                            value="#{registerCliente.documentoViewModel.luogoRilascioDoc}"/>
+           </p:outputLabel>
+
+           <p:outputLabel for="provinciarilascio" value="Provincia di Rilascio:">
+               <p:inputText id="provinciarilascio"
+                            value="#{registerCliente.documentoViewModel.provinciaRilascio}"/>
+           </p:outputLabel>
+
+           <p:outputLabel for="nazionerilascio" value="Nazione di Rilascio:">
+               <p:inputText id="nazionerilascio"
+                            value="#{registerCliente.documentoViewModel.nazioneRilascio}"/>
+           </p:outputLabel>
+
+           <p:outputLabel for="datescadDoc" value="Data di Scadenza:">
+               <p:calendar id="datescadDoc"
+                           value="#{registerCliente.documentoViewModel.scadenzaDoc}"
+                           pattern="dd/MM/yyyy" mask="true" navigator="true" showOn="button"/>
+           </p:outputLabel>
+
+           <p:outputLabel value="Validità Documento:">
+               <p:commandButton value="Clicca Qui" action="#{registerCliente.checkDoc}" process="@this"
+                                styleClass="green-btn"
+                                icon="fa fa-check Fs18 White"/>
+           </p:outputLabel>
+
+       </p:panelGrid>
+</html>       

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:lacems="http://lacems.com/ui"
+      xmlns:p="http://primefaces.org/ui">
+      
+          <p:repeat var="pratica" value="#{registerCliente.praticheInCorsoViewModelList}">
+				
+			<p:panelGrid columns="3" layout="grid" id="praticheincorso"
+			styleClass="ui-panelgrid-blank form-group">	
+				
+                  <p:outputLabel value="Tipologia:">
+                      <lacems:ReadOnlyInputText value="#{pratica.tipoPratica}"/>
+                  </p:outputLabel>
+
+                  <p:outputLabel value="Rata:">
+                      <lacems:ReadOnlyInputText value="#{pratica.rata}"/>
+                  </p:outputLabel>
+
+                  <p:outputLabel value="Durata:">
+                      <lacems:ReadOnlyInputText value="#{pratica.durata}"/>
+                  </p:outputLabel>
+                  
+              </p:panelGrid>
+              <hr/>
+          </p:repeat>
+</html>          

@@ -1,0 +1,195 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template.xhtml"
+                xmlns:composite-custom="http://java.sun.com/jsf/composite/composite-custom">
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{aziendaSelectionView.setCurrentMenuSection('STATO_PRATICA')}"/>
+        </f:metadata>
+        <p:importEnum type="com.woonders.lacemscommon.db.entityenum.StatoPratica" var="JsfStatoPratica"
+                      allSuffix="ALL_ENUM_VALUES"/>
+        <p:importEnum type="com.woonders.lacemscommon.db.entityenum.StatoConteggioEstinzione"
+                      var="JsfStatoConteggioEstinzione"
+                      allSuffix="ALL_ENUM_VALUES"/>
+
+        <h:body>
+        
+        	<div class="ui-g dashboard ui-fluid">
+                <div class="card card-w-title Wid100">
+                	<h:outputLabel for="filtroperatore" value="Filtro Operatore:"/>
+            		<p:selectCheckboxMenu id="filtroperatore"
+		                                     label="Filtro Operatore:" value="#{statoPraticheView.operatoriSelezionati}"
+		                                     filter="true" filterMatchMode="contains" multiple="true"
+		                                     style="min-width: 15rem" panelStyle="width: 30rem">
+		                   
+	                   <f:selectItems var="opt"
+	                                  value="#{utilResolverView.getOperatorsStringList('CLIENTI', 'READ')}"
+	                                  itemLabel="#{opt}" itemValue="#{opt}"/>
+	                   
+	                   <p:ajax event="change"
+                           listener="#{statoPraticheView.onItemSelect()}"
+                           update="form:idRichiestaConteggio:idRichiestaConteggio form:idAttesaConteggio:idAttesaConteggio 
+                           			form:idConteggioRicevuto:idConteggioRicevuto
+                           			form:idPreistruttoria:idPreistruttoria form:idIstruttoria:idIstruttoria  
+                           			form:idAttesaCertificaAllegati:idAttesaCertificaAllegati form:idIstruita:idIstruita 
+                           			form:idPreaccettazione:idPreaccettazione form:idDelibera:idDelibera 
+                           			form:idRichiestaPolizza:idRichiestaPolizza form:idDaNotificare:idDaNotificare
+                           			form:idAttesaAb:idAttesaAb form:idInLiquidazione:idInLiquidazione form:idLiquidata:idLiquidata 
+                           			form:idDecorrenza:idDecorrenza form:idPerfezionamento:idPerfezionamento"/>
+	               	</p:selectCheckboxMenu>
+            	</div>
+            </div>
+        
+        
+            <div class="ui-g dashboard ui-fluid">
+                <div class="card card-w-title Wid100">
+
+                    <h1>Gestione Conteggi di Estinzione per Cessioni e Deleghe
+                        <composite-custom:infobutton
+                                infoMessageList="#{infoHelpView.keyInfoGestioneConteggiEstinzione}"/>
+                    </h1>
+
+
+                    <composite-custom:widget icon="&#xE002;"
+                                             colorIcon="#{statoPraticheView.getColorIconConteggioEstinzione(JsfStatoConteggioEstinzione.RICHIESTA_CONTEGGIO, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoConteggioEstinzione.RICHIESTA_CONTEGGIO.value}"
+                                             colorBox="3"
+                                             widthTot="4"
+                                             id="idRichiestaConteggio"
+                                             actionValue="#{statoPraticheView.putStatoConteggioEstinzioneParameter(JsfStatoConteggioEstinzione.RICHIESTA_CONTEGGIO, statoPraticheView.CQS)}"
+                                             valueWidget2="#{statoPraticheView.getStatoConteggioEstinzioneSize(JsfStatoConteggioEstinzione.RICHIESTA_CONTEGGIO, statoPraticheView.CQS)}"/>
+
+
+                    <composite-custom:widget icon="&#xE028;"
+                                             colorIcon="#{statoPraticheView.getColorIconConteggioEstinzione(JsfStatoConteggioEstinzione.ATTESA_CONTEGGIO, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoConteggioEstinzione.ATTESA_CONTEGGIO.value}"
+                                             colorBox="3"
+                                             widthTot="4"
+                                             id="idAttesaConteggio"
+                                             actionValue="#{statoPraticheView.putStatoConteggioEstinzioneParameter(JsfStatoConteggioEstinzione.ATTESA_CONTEGGIO, statoPraticheView.CQS)}"
+                                             valueWidget2="#{statoPraticheView.getStatoConteggioEstinzioneSize(JsfStatoConteggioEstinzione.ATTESA_CONTEGGIO, statoPraticheView.CQS)}"/>
+
+
+                    <composite-custom:widget icon="&#xE86C;"
+                                             colorIcon="#{statoPraticheView.getColorIconConteggioEstinzione(JsfStatoConteggioEstinzione.CONTEGGIO_RICEVUTO, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoConteggioEstinzione.CONTEGGIO_RICEVUTO.value}"
+                                             colorBox="3"
+                                             widthTot="4"
+                                             id="idConteggioRicevuto"
+                                             actionValue="#{statoPraticheView.putStatoConteggioEstinzioneParameter(JsfStatoConteggioEstinzione.CONTEGGIO_RICEVUTO, statoPraticheView.CQS)}"
+                                             valueWidget2="#{statoPraticheView.getStatoConteggioEstinzioneSize(JsfStatoConteggioEstinzione.CONTEGGIO_RICEVUTO, statoPraticheView.CQS)}"/>
+
+
+                </div>
+
+                <div class="card card-w-title">
+                    <h1>Stati Pratica per Cessioni e Deleghe</h1>
+
+                    <composite-custom:widget icon="&#xE7FE;"
+                                             colorIcon="#{statoPraticheView.getColorIcon(JsfStatoPratica.PREISTRUTTORIA.value, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoPratica.PREISTRUTTORIA.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idPreistruttoria"
+                                             actionValue="#{statoPraticheView.putStatoPraticaParameter(JsfStatoPratica.PREISTRUTTORIA.value, constantResolverView.tipoPraticaCessioneValue)}"
+                                             valueWidget2="#{statoPraticheView.getStatoPraticaSize(JsfStatoPratica.PREISTRUTTORIA.value, constantResolverView.tipoPraticaCessioneValue)}"/>
+
+                    <composite-custom:widget icon="&#xE85E;"
+                                             colorIcon="#{statoPraticheView.getColorIcon(JsfStatoPratica.ISTRUTTORIA.value, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoPratica.ISTRUTTORIA.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idIstruttoria"
+                                             actionValue="#{statoPraticheView.putStatoPraticaParameter(JsfStatoPratica.ISTRUTTORIA.value, constantResolverView.tipoPraticaCessioneValue)}"
+                                             valueWidget2="#{statoPraticheView.getStatoPraticaSize(JsfStatoPratica.ISTRUTTORIA.value, constantResolverView.tipoPraticaCessioneValue)}"/>
+
+                    <composite-custom:widget icon="&#xE923;"
+                                             colorIcon="#{statoPraticheView.getColorIcon(JsfStatoPratica.ATTESA_CERTIFICATI_ALLEGATI.value, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoPratica.ATTESA_CERTIFICATI_ALLEGATI.value}"
+                                             colorBox="2" widthTot="4"
+                                             id="idAttesaCertificaAllegati"
+                                             actionValue="#{statoPraticheView.putStatoPraticaParameter(JsfStatoPratica.ATTESA_CERTIFICATI_ALLEGATI.value, constantResolverView.tipoPraticaCessioneValue)}"
+                                             valueWidget2="#{statoPraticheView.getStatoPraticaSize(JsfStatoPratica.ATTESA_CERTIFICATI_ALLEGATI.value, constantResolverView.tipoPraticaCessioneValue)}"/>
+
+                    <composite-custom:widget icon="&#xE862;"
+                                             colorIcon="#{statoPraticheView.getColorIcon(JsfStatoPratica.ISTRUITA.value, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoPratica.ISTRUITA.value}" colorBox="2" widthTot="4"
+                                             id="idIstruita"
+                                             actionValue="#{statoPraticheView.putStatoPraticaParameter(JsfStatoPratica.ISTRUITA.value, constantResolverView.tipoPraticaCessioneValue)}"
+                                             valueWidget2="#{statoPraticheView.getStatoPraticaSize(JsfStatoPratica.ISTRUITA.value, constantResolverView.tipoPraticaCessioneValue)}"/>
+
+                    <composite-custom:widget icon="&#xE863;"
+                                             colorIcon="#{statoPraticheView.getColorIcon(JsfStatoPratica.PREACCETTAZIONE.value, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoPratica.PREACCETTAZIONE.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idPreaccettazione"
+                                             actionValue="#{statoPraticheView.putStatoPraticaParameter(JsfStatoPratica.PREACCETTAZIONE.value, constantResolverView.tipoPraticaCessioneValue)}"
+                                             valueWidget2="#{statoPraticheView.getStatoPraticaSize(JsfStatoPratica.PREACCETTAZIONE.value, constantResolverView.tipoPraticaCessioneValue)}"/>
+
+                    <composite-custom:widget icon="&#xE86C;"
+                                             colorIcon="#{statoPraticheView.getColorIcon(JsfStatoPratica.DELIBERA.value, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoPratica.DELIBERA.value}" colorBox="2" widthTot="4"
+                                             id="idDelibera"
+                                             actionValue="#{statoPraticheView.putStatoPraticaParameter(JsfStatoPratica.DELIBERA.value, constantResolverView.tipoPraticaCessioneValue)}"
+                                             valueWidget2="#{statoPraticheView.getStatoPraticaSize(JsfStatoPratica.DELIBERA.value, constantResolverView.tipoPraticaCessioneValue)}"/>
+
+                    <composite-custom:widget icon="&#xE88F;"
+                                             colorIcon="#{statoPraticheView.getColorIcon(JsfStatoPratica.POLIZZA.value, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoPratica.POLIZZA.value}" colorBox="2" widthTot="4"
+                                             id="idRichiestaPolizza"
+                                             actionValue="#{statoPraticheView.putStatoPraticaParameter(JsfStatoPratica.POLIZZA.value, constantResolverView.tipoPraticaCessioneValue)}"
+                                             valueWidget2="#{statoPraticheView.getStatoPraticaSize(JsfStatoPratica.POLIZZA.value, constantResolverView.tipoPraticaCessioneValue)}"/>
+
+                    <composite-custom:widget icon="&#xE645;"
+                                             colorIcon="#{statoPraticheView.getColorIcon(JsfStatoPratica.DA_NOTIFICARE.value, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoPratica.DA_NOTIFICARE.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idDaNotificare"
+                                             actionValue="#{statoPraticheView.putStatoPraticaParameter(JsfStatoPratica.DA_NOTIFICARE.value, constantResolverView.tipoPraticaCessioneValue)}"
+                                             valueWidget2="#{statoPraticheView.getStatoPraticaSize(JsfStatoPratica.DA_NOTIFICARE.value, constantResolverView.tipoPraticaCessioneValue)}"/>
+
+                    <composite-custom:widget icon="&#xE629;"
+                                             colorIcon="#{statoPraticheView.getColorIcon(JsfStatoPratica.AB.value, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoPratica.AB.value}" colorBox="2" widthTot="4"
+                                             id="idAttesaAb"
+                                             actionValue="#{statoPraticheView.putStatoPraticaParameter(JsfStatoPratica.AB.value, constantResolverView.tipoPraticaCessioneValue)}"
+                                             valueWidget2="#{statoPraticheView.getStatoPraticaSize(JsfStatoPratica.AB.value, constantResolverView.tipoPraticaCessioneValue)}"/>
+
+                    <composite-custom:widget icon="&#xE855;"
+                                             colorIcon="#{statoPraticheView.getColorIcon(JsfStatoPratica.LIQUIDAZIONE.value, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoPratica.LIQUIDAZIONE.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idInLiquidazione"
+                                             actionValue="#{statoPraticheView.putStatoPraticaParameter(JsfStatoPratica.LIQUIDAZIONE.value, constantResolverView.tipoPraticaCessioneValue)}"
+                                             valueWidget2="#{statoPraticheView.getStatoPraticaSize(JsfStatoPratica.LIQUIDAZIONE.value, constantResolverView.tipoPraticaCessioneValue)}"/>
+
+                    <composite-custom:widget icon="&#xE876;"
+                                             colorIcon="#{statoPraticheView.getColorIcon(JsfStatoPratica.LIQUIDATA.value, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoPratica.LIQUIDATA.value}" colorBox="2" widthTot="4"
+                                             id="idLiquidata"
+                                             actionValue="#{statoPraticheView.putStatoPraticaParameter(JsfStatoPratica.LIQUIDATA.value, constantResolverView.tipoPraticaCessioneValue)}"
+                                             valueWidget2="#{statoPraticheView.getStatoPraticaSize(JsfStatoPratica.LIQUIDATA.value, constantResolverView.tipoPraticaCessioneValue)}"/>
+
+                    <composite-custom:widget icon="&#xE877;"
+                                             colorIcon="#{statoPraticheView.getColorIcon(JsfStatoPratica.DECORRENZA.value, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoPratica.DECORRENZA.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idDecorrenza"
+                                             actionValue="#{statoPraticheView.putStatoPraticaParameter(JsfStatoPratica.DECORRENZA.value, constantResolverView.tipoPraticaCessioneValue)}"
+                                             valueWidget2="#{statoPraticheView.getStatoPraticaSize(JsfStatoPratica.DECORRENZA.value, constantResolverView.tipoPraticaCessioneValue)}"/>
+
+                    <composite-custom:widget icon="&#xE8E8;"
+                                             colorIcon="#{statoPraticheView.getColorIcon(JsfStatoPratica.PERFEZIONAMENTO.value, statoPraticheView.CQS)}"
+                                             valueWidget1="#{JsfStatoPratica.PERFEZIONAMENTO.value}" colorBox="2"
+                                             widthTot="4"
+                                             id="idPerfezionamento"
+                                             actionValue="#{statoPraticheView.putStatoPraticaParameter(JsfStatoPratica.PERFEZIONAMENTO.value, constantResolverView.tipoPraticaCessioneValue)}"
+                                             valueWidget2="#{statoPraticheView.getStatoPraticaSize(JsfStatoPratica.PERFEZIONAMENTO.value, constantResolverView.tipoPraticaCessioneValue)}"/>
+
+                </div>
+            </div>
+        </h:body>
+    </ui:define>
+
+</ui:composition>

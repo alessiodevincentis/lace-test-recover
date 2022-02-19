@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://java.sun.com/jsf/composite" xmlns:p="http://primefaces.org/ui">
+
+<composite:interface>
+
+</composite:interface>
+
+<composite:implementation>
+
+        <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+                <p:chart type="metergauge" model="#{storageSpaceInfoView.storageSpaceMeterGaugeChartModel}" style="width:400px;height:250px" />
+
+                <p:commandButton style="margin-top: 7em" value="Hai bisogno di più spazio? Contattaci!" onclick="customerly('open');" process="@none" styleClass="GreenButton RaisedButton"/>
+
+        </p:panelGrid>
+
+</composite:implementation>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:lacems="http://lacems.com/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<p:panelGrid columns="6" layout="grid" id="pratica" styleClass="ui-panelgrid-blank form-group">
+
+    <p:outputLabel value="Notifica Stato Pratica:">
+        <p:calendar id="dataNotificaStatoPratica"
+                    value="#{registerCliente.praticaViewModel.dataNotificaStatoPratica}"
+                    mask="true"
+                    pattern="dd/MM/yyyy" label="Notifica Stato Pratica"/>
+    </p:outputLabel>
+
+
+    <p:outputLabel for="tipopratica" value="Tipo di Pratica:">
+        <p:selectOneMenu effect="fold" id="tipopratica"
+                         value="#{registerCliente.praticaViewModel.tipoPratica}"
+                         disabled="#{registerCliente.praticaRendered.isTipoPraticaDisabled()}">
+            <f:selectItem itemLabel="Tipologia" itemValue=""/>
+            <f:selectItems value="#{constantResolverView.tipoPratica}" var="v" itemLabel="#{v.value}"
+                           itemValue="#{v.value}"/>
+            <p:ajax event="change" update="rata"/>
+            <p:ajax event="change" update="importoerogato"/>
+            <p:ajax event="change" update="secci"/>
+            <p:ajax event="change" update="ctr"/>
+            <p:ajax event="change" update="spese"/>
+            <p:ajax event="change" update="quintomax"/>
+            <p:ajax event="change" update="garanzia"/>
+            <p:ajax event="change" update="provtot"
+                    listener="#{praticaView.calcProvTotale(registerCliente.praticaViewModel)}"/>
+        </p:selectOneMenu>
+    </p:outputLabel>
+
+
+    <p:outputLabel for="secci" value="Numero Secci:"
+                   rendered="#{registerCliente.praticaRendered.isSecci()}">
+        <p:inputText id="secci" value="#{registerCliente.praticaViewModel.nrsecci}"/>
+    </p:outputLabel>
+
+    <p:outputLabel for="ctr" value="Numero CTR:"
+                   rendered="#{registerCliente.praticaRendered.isCtr()}">
+        <p:inputText id="ctr" value="#{registerCliente.praticaViewModel.nrctr}"/>
+    </p:outputLabel>
+
+
+    <p:outputLabel value="Rata:">
+        <lacems:InputNumberEuro id="rata" value="#{registerCliente.praticaViewModel.rata}"
+                                label="Rata" minValue="0.00"
+                                disabled="#{praticaView.isTipoPraticaNotSelected(registerCliente.praticaViewModel)}">
+            <p:ajax event="change" update="montante"
+                    listener="#{praticaView.calcMontante(registerCliente.praticaViewModel)}"/>
+            <p:ajax event="change" update="provtot"
+                    listener="#{praticaView.calcProvTotale(registerCliente.praticaViewModel)}"/>
+            <p:ajax event="change" update="debitoresiduo"
+                    listener="#{praticaView.calcDebitoResiduo(registerCliente.praticaViewModel)}"/>
+            <p:ajax event="change" update="interessi"
+                    listener="#{praticaView.calcInteressi(registerCliente.praticaViewModel)}"/>
+        </lacems:InputNumberEuro>
+    </p:outputLabel>
+
+    <p:outputLabel for="durata" value="Durata Pratica:">
+        <p:inputText id="dur" value="#{registerCliente.praticaViewModel.durata}"
+                     style="display:none"/>
+        <p:selectOneMenu effect="fold" id="durata" editable="true"
+                         value="#{registerCliente.praticaViewModel.durata}">
+            <f:selectItems value="#{constantResolverView.durataPratica}" var="v" itemLabel="#{v.value}"
+                           itemValue="#{v.value}"/>
+            <p:ajax event="change" update="montante"
+                    listener="#{praticaView.calcMontante(registerCliente.praticaViewModel)}"/>
+            <p:ajax event="change" update="provtot"
+                    listener="#{praticaView.calcProvTotale(registerCliente.praticaViewModel)}"/>
+            <p:ajax event="change" update="datarinnovo"
+                    listener="#{praticaView.calcDataRinnovo(registerCliente.praticaViewModel)}"/>
+            <p:ajax event="change" update="scadenzapratica"
+                    listener="#{praticaView.calcScadenzaPratica(registerCliente.praticaViewModel)}"/>
+            <p:ajax event="change" update="ratescadenzapratica"
+                    listener="#{praticaView.calcRateScadenzaPratica(registerCliente.praticaViewModel)}"/>
+            <p:ajax event="change" update="debitoresiduo"
+                    listener="#{praticaView.calcDebitoResiduo(registerCliente.praticaViewModel)}"/>
+            <p:ajax execute="durata" render="dur"/>
+            <p:ajax event="change" update="interessi"
+                    listener="#{praticaView.calcInteressi(registerCliente.praticaViewModel)}"/>
+        </p:selectOneMenu>
+    </p:outputLabel>
+
+
+    <p:outputLabel for="importoerogato" value="Importo Erogato:">
+        <lacems:InputNumberEuro id="importoerogato"
+                                value="#{registerCliente.praticaViewModel.importoErogato}"
+                                label="Importo Erogato">
+            <p:ajax event="change" update="interessi"
+                    listener="#{praticaView.calcInteressi(registerCliente.praticaViewModel)}"/>
+            <p:ajax event="change" update="nettoricavo"
+                    listener="#{praticaView.calcNettoRicavo(registerCliente.praticaViewModel, registerCliente.estinzioneViewModelList)}"/>
+        </lacems:InputNumberEuro>
+    </p:outputLabel>
+
+    <p:outputLabel for="spese" value="Spese Pratica:"
+                   rendered="#{registerCliente.praticaRendered.isSpese()}">
+        <p:inputText id="spes" value="#{registerCliente.praticaViewModel.spese}"
+                     style="display:none"/>
+        <p:selectOneMenu effect="fold" id="spese" editable="true"
+                         value="#{registerCliente.praticaViewModel.spese}">
+            <f:selectItems value="#{constantResolverView.speseList}" var="spese"
+                           itemLabel="#{spese}" itemValue="#{spese}"/>
+            <p:ajax event="change" update="interessi"
+                    listener="#{praticaView.calcInteressi(registerCliente.praticaViewModel)}"/>
+            <p:ajax execute="spese" render="spes"/>
+        </p:selectOneMenu>
+    </p:outputLabel>
+
+
+    <p:outputLabel for="quintomax" value="QuintoMax:"
+                   rendered="#{registerCliente.praticaRendered.isQuinto()}">
+        <lacems:InputNumberEuro id="quintomax"
+                                value="#{registerCliente.praticaViewModel.quintoMax}"
+                                label="QuintoMax">
+            <p:ajax event="change" update="nettomensile"
+                    listener="#{praticaView.calcNettoMensile(registerCliente.praticaViewModel)}"/>
+        </lacems:InputNumberEuro>
+    </p:outputLabel>
+
+    <p:outputLabel for="tan" value="TAN:">
+        <lacems:InputNumberEuro id="tan" value="#{registerCliente.praticaViewModel.tan}"
+                                label="Tan" symbol="%" symbolPosition="d">
+        </lacems:InputNumberEuro>
+    </p:outputLabel>
+
+    <p:outputLabel for="taeg" value="TAEG:">
+        <lacems:InputNumberEuro id="taeg" value="#{registerCliente.praticaViewModel.taeg}"
+                                label="Taeg" symbol="%" symbolPosition="d">
+        </lacems:InputNumberEuro>
+    </p:outputLabel>
+
+
+    <p:outputLabel for="teg" value="TEG:">
+        <lacems:InputNumberEuro id="teg" value="#{registerCliente.praticaViewModel.teg}"
+                                label="Teg" symbol="%" symbolPosition="d">
+        </lacems:InputNumberEuro>
+    </p:outputLabel>
+
+    <p:outputLabel for="capitalefinanziato" value="Capitale Finanziato (VA):">
+        <lacems:InputNumberEuro id="capitalefinanziato"
+                                value="#{registerCliente.praticaViewModel.capitaleFinanziato}"
+                                validator="#{decimalValidator.validate}"
+                                label="Capitale Finanziato">
+            <p:ajax event="change" update="interessi"
+                    listener="#{praticaView.calcInteressi(registerCliente.praticaViewModel)}"/>
+        </lacems:InputNumberEuro>
+    </p:outputLabel>
+
+    <p:outputLabel for="garanzia" value="Garanzia:" rendered="#{registerCliente.praticaRendered.isGaranzia()}">
+        <p:selectOneMenu effect="fold" id="garanzia"
+                         value="#{registerCliente.praticaViewModel.garanzia}"
+                         editable="true"
+                         style="margin-top:-10px;margin-left:-10px;">
+            <f:selectItem itemLabel="NetInsurance" itemValue="NetInsurance"/>
+            <f:selectItem itemLabel="Vittoria" itemValue="Vittoria"/>
+            <f:selectItem itemLabel="HDI Assicurazione" itemValue="HDI Assicurazione"/>
+            <f:selectItem itemLabel="AXA" itemValue="AXA"/>
+            <f:selectItem itemLabel="Cattolica" itemValue="Cattolica"/>
+            <f:selectItem itemLabel="Ergo" itemValue="Ergo"/>
+            <f:selectItem itemLabel="MetLife" itemValue="MetLife"/>
+            <f:selectItem itemLabel="Gaiil-MetLife" itemValue="Gaiil-MetLife"/>
+            <f:selectItem itemLabel="Cardif" itemValue="Cardif"/>
+            <f:selectItem itemLabel="Creditlife" itemValue="Creditlife"/>
+            <f:selectItem itemLabel="Aviva" itemValue="Aviva"/>
+        </p:selectOneMenu>
+    </p:outputLabel>
+
+
+    <p:outputLabel for="dataliq" value="Liquidazione:">
+        <p:calendar id="dataliq"
+                    value="#{registerCliente.praticaViewModel.dataLiquidazione}"
+                    mask="true" pattern="dd/MM/yyyy"/>
+    </p:outputLabel>
+
+    <p:outputLabel for="decorrenza" value="Decorrenza:">
+        <p:calendar id="decorrenza"
+                    value="#{registerCliente.praticaViewModel.decorrenza}"
+                    mask="true" pattern="dd/MM/yyyy">
+            <p:ajax event="change"
+                    update="datarinnovo ratescadenzapratica debitoresiduo scadenzapratica"
+                    listener="#{praticaView.updateDatiPraticaFromDecorrenza(registerCliente.praticaViewModel)}"/>
+            <p:ajax event="dateSelect"
+                    update="datarinnovo ratescadenzapratica debitoresiduo scadenzapratica"
+                    listener="#{praticaView.updateDatiPraticaFromDecorrenza(registerCliente.praticaViewModel)}"/>
+        </p:calendar>
+    </p:outputLabel>
+
+    <p:outputLabel for="dataperfezionamento" value="Data Perfezionamento:"
+                   rendered="#{praticaView.dataPerfezionamentoRendered}">
+        <lacems:italianCalendar id="dataperfezionamento" disabled="#{registerCliente.isDataPerfezionamentoDisabled()}"
+                                value="#{registerCliente.praticaViewModel.dataPerf}"
+                                mask="true" label="Data Perfezionamento"/>
+    </p:outputLabel>
+
+    <h:panelGrid columns="3" styleClass="ui-panelgrid-blank Wid100">
+        <p:outputLabel value="DataRecall:">
+            <lacems:italianCalendarWithTime id="datarecall"
+                                            value="#{registerCliente.praticaViewModel.dataRecall}"
+                                            mask="true" label="Data Recall" timeInput="true"
+                                            minHour="#{constantResolverView.calendarMinHour}"/>
+        </p:outputLabel>
+
+        <p:commandButton icon="fa fa-remove Fs20 White" title="Rimuovi Data Recall" process="@this"
+                         styleClass="red-btn" action="#{registerCliente.resetDataRecall()}" update="datarecall"/>
+    </h:panelGrid>
+
+    <p:outputLabel for="tipoprov" value="Provvigione in:">
+        <p:selectOneButton id="tipoprov"
+                           value="#{registerCliente.praticaViewModel.tipoProvvigione}">
+            <f:selectItem itemLabel="Euro" itemValue="Euro"
+                          itemDescription="Seleziona Euro per inserire la Provvigione in Euro"/>
+            <f:selectItem itemLabel="%" itemValue="Perc"
+                          itemDescription="Seleziona % per inserire la Percentuale Provvigione"/>
+            <p:ajax event="change" update="percprov"
+                    listener="#{praticaView.calcPercProv(registerCliente.praticaViewModel)}"/>
+            <!-- serve per abilitare la casella provvigione, nessun calcolo da fare -->
+            <p:ajax event="change" update="provvigione"
+                    listener="#{praticaView.resetProvvigioneEuro(registerCliente.praticaViewModel)}"/>
+            <p:ajax event="change" update="provtot"
+                    listener="#{praticaView.calcProvTotale(registerCliente.praticaViewModel)}"/>
+        </p:selectOneButton>
+    </p:outputLabel>
+
+    <p:outputLabel for="provvigione" value="Provvigione Euro:">
+        <lacems:InputNumberEuro id="provvigione"
+                                value="#{registerCliente.praticaViewModel.provvigione}"
+                                label="Provvigione in €"
+                                disabled="#{registerCliente.isProvvigioneEuroDisabled()}">
+            <p:ajax event="change" update="provtot"
+                    listener="#{praticaView.calcProvTotale(registerCliente.praticaViewModel)}"/>
+            <p:ajax event="change" update="percprov"
+                    listener="#{praticaView.calcPercProv(registerCliente.praticaViewModel)}"/>
+        </lacems:InputNumberEuro>
+    </p:outputLabel>
+
+
+    <h:panelGrid columns="3" id="panelcheck">
+        <p:outputLabel for="percprov" value="%Provvigione:">
+            <lacems:InputNumberEuro id="percprov" decimalPlaces="6"
+                                    value="#{registerCliente.praticaViewModel.percProv}"
+                                    label="%Provvigione" symbol="%" symbolPosition="d"
+                                    disabled="#{registerCliente.isProvvigionePercentualeDisabled()}">
+                <p:ajax event="change" update="provtot"
+                        listener="#{praticaView.calcProvTotale(registerCliente.praticaViewModel)}"/>
+            </lacems:InputNumberEuro>
+        </p:outputLabel>
+
+        <p:selectBooleanCheckbox id="checkprov"
+                                 value="#{registerCliente.praticaViewModel.confermaProv}"
+                                 disabled="#{registerCliente.disabledRendered.disabledProv}">
+            <!-- serve per abilitare la casella provvigione, nessun calcolo da fare -->
+            <p:ajax event="change" update="provvigione"/>
+            <p:ajax event="change" update="percprov"/>
+        </p:selectBooleanCheckbox>
+        <p:commandButton icon="fa fa-send" title="Invia provvigione all'operatore della pratica"
+                         action="#{registerCliente.provConfirm}" rendered="#{registerCliente.canWriteCliente()}"
+                         disabled="#{registerCliente.disabledRendered.disabledProv}" process="@this"/>
+    </h:panelGrid>
+
+
+    <p:outputLabel value="Provvigione Tot.:">
+        <lacems:InputNumberEuro id="provtot" value="#{registerCliente.praticaViewModel.provTotale}"
+                                readonly="true"/>
+    </p:outputLabel>
+
+    <p:outputLabel value="Netto Mensile:"
+                   rendered="#{registerCliente.praticaRendered.isNetto()}">
+        <lacems:InputNumberEuro id="nettomensile"
+                                value="#{registerCliente.praticaViewModel.nettoMensile}"
+                                readonly="true"/>
+    </p:outputLabel>
+
+    <p:outputLabel for="montante" value="Montante:"
+                   rendered="#{registerCliente.praticaRendered.isMontante()}">
+        <lacems:InputNumberEuro id="montante" value="#{registerCliente.praticaViewModel.montante}"
+                                readonly="true"/>
+    </p:outputLabel>
+
+    <p:outputLabel for="interessi" value="Interessi:"
+                   rendered="#{registerCliente.praticaRendered.isInteressi()}">
+        <lacems:InputNumberEuro id="interessi"
+                                value="#{registerCliente.praticaViewModel.interessi}"
+                                readonly="true"/>
+    </p:outputLabel>
+
+    <p:outputLabel for="conteggiototale" value="Estinzione Tot.:">
+        <lacems:InputNumberEuro id="conteggiototale"
+                                value="#{registerCliente.praticaViewModel.conteggioEstinzioneTot}"
+                                readonly="true"/>
+    </p:outputLabel>
+
+
+    <p:outputLabel for="nettoricavo" value="Netto Ricavo:"
+                   rendered="#{registerCliente.praticaRendered.isNettoRicavo()}">
+        <lacems:InputNumberEuro id="nettoricavo"
+                                value="#{registerCliente.praticaViewModel.nettoRicavo}"
+                                readonly="true"/>
+    </p:outputLabel>
+
+    <p:outputLabel for="datarinnovo" value="Data Rinnovo:"
+                   rendered="#{registerCliente.praticaRendered.isDataRinnovo()}">
+        <p:inputText id="datarinnovo"
+                     value="#{registerCliente.praticaViewModel.dataRinnovo}"
+                     readonly="true">
+            <f:converter
+                    converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDateWithoutTimeZone"/>
+        </p:inputText>
+    </p:outputLabel>
+
+    <p:outputLabel for="scadenzapratica" value="Scadenza:">
+        <p:inputText id="scadenzapratica"
+                     value="#{registerCliente.praticaViewModel.scadenzaPratica}"
+                     readonly="true">
+            <f:converter
+                    converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDateWithoutTimeZone"/>
+        </p:inputText>
+    </p:outputLabel>
+
+    <p:outputLabel for="ratescadenzapratica" value="Rate alla Scadenza:">
+        <p:inputText id="ratescadenzapratica"
+                     value="#{registerCliente.praticaViewModel.rateScadenza}"
+                     readonly="true"/>
+    </p:outputLabel>
+
+    <p:outputLabel for="debitoresiduo" value="Debito Residuo:">
+        <lacems:InputNumberEuro id="debitoresiduo"
+                                value="#{registerCliente.praticaViewModel.debitoResiduo}"
+                                readonly="true"/>
+    </p:outputLabel>
+
+    <p:outputLabel for="notebuttonpratica" value="Note sulla Pratica">
+        <p:commandButton id="notebuttonpratica" value="Clicca Qui" type="button"
+                         icon="fa fa-plus Fs18 White"
+                         styleClass="green-btn"/>
+    </p:outputLabel>
+
+
+    <p:outputLabel for="operatore" value="Operatore:">
+        <p:selectOneMenu effect="fold" id="operatore"
+                         value="#{registerCliente.praticaViewModel.operatore}"
+                         style="text-transform: lowercase;">
+            <f:selectItems var="opt" value="#{utilResolverView.getOperatorsList('CLIENTI', 'WRITE')}"
+                           itemLabel="#{opt.username}"/>
+            <f:converter converterId="operatorConverter"/>
+            <p:ajax event="change" update="agenziaLabel" process="@this"/>
+        </p:selectOneMenu>
+    </p:outputLabel>
+
+    <p:outputLabel for="agenziaLabel" value="Agenzia:" rendered="#{aziendaSelectionView.aziendaColumnShownInPage}">
+        <p:inputText readonly="true" id="agenziaLabel"
+                     value="#{registerCliente.praticaViewModel.operatore.azienda.nomeAzienda}" label="Agenzia"/>
+    </p:outputLabel>
+
+    <p:outputLabel for="finanziaria" value="Finanziaria:">
+        <p:selectOneMenu effect="fold" id="finanziaria"
+                         value="#{registerCliente.praticaViewModel.finanziariaViewModel}"
+                         converter="finanziariaConverter">
+            <f:selectItems value="#{registerCliente.finanziariaViewModelList}"
+                           var="finanziaria"
+                           itemLabel="#{finanziaria.name}"
+                           itemValue="#{finanziaria}"/>
+            <p:ajax event="change" update="allegati"/>
+        </p:selectOneMenu>
+    </p:outputLabel>
+
+    <p:outputLabel value="ID Pratica:">
+        <p:inputText readonly="true"
+                     value="#{registerCliente.praticaViewModel.codicePratica}"/>
+    </p:outputLabel>
+
+    <p:selectBooleanCheckbox id="cinquanta" style="width:auto;"
+                             value="#{registerCliente.praticaViewModel.cinquanta}" itemLabel=" Pratica 50/50"
+                             disabled="#{registerCliente.disabledRendered.disabledCinquanta}"/>
+
+    <p:selectBooleanCheckbox id="perfezionata" style="width:auto;"
+                             value="#{registerCliente.praticaViewModel.perfezionata}"
+                             disabled="#{registerCliente.disabledRendered.disabledPerf}" itemLabel=" Perfezionata">
+        <p:ajax event="change" update="dataperfezionamento"/>
+    </p:selectBooleanCheckbox>
+
+    <p:outputLabel for="nametabusedpratica" value="Nome Tabella Utilizzata:"
+                   rendered="#{praticaView.isSimulatorTableUsed(registerCliente.praticaViewModel)}">
+        <p:inputText id="nametabusedpratica" value="#{registerCliente.praticaViewModel.simulatorTableViewModel.name}"
+                     readonly="true"/>
+    </p:outputLabel>
+
+    <p:outputLabel for="nuovoAppuntamento" value="Nuovo Appuntamento:"
+                   rendered="#{calendarioAppuntamentiView.canAddAppuntamentoFromClienteNominativo(registerCliente.praticaViewModel.operatore)}">
+        <p:commandButton id="nuovoAppuntamento" value="Clicca Qui" update="dettagliAppuntamento"
+                         icon="ui-icon-date-range" styleClass="green-btn"
+                         process="@this" action="#{registerCliente.setParameterAppuntamento}"
+                         disabled="#{registerCliente.isAppuntamentoDisabled()}"/>
+    </p:outputLabel>
+
+</p:panelGrid>
+
+<p:overlayPanel id="overnotepratica" for="notebuttonpratica" hideEffect="fade">
+    <p:panelGrid columns="1" id="panelnotepratica" layout="grid"
+                 style="border:0px !important; background:none;"
+                 styleClass="ui-panelgrid-blank">
+
+        <p:inputTextarea id="notepratica"
+                         placeholder="Eventuali Note Aggiuntive sulla Pratica" rows="5"
+                         cols="43"
+                         value="#{registerCliente.praticaViewModel.notePratica}"
+                         maxlength="160" counter="display"
+                         counterTemplate="{0} caratteri rimanenti" autoResize="false">
+            <p:outputLabel for="notepratica" id="displaypratica"/>
+        </p:inputTextarea>
+
+    </p:panelGrid>
+</p:overlayPanel>
+
+<ui:include src="/app/secure/calendario/confirmDialogAppuntamentiEsistenti.xhtml"/>
+</html>

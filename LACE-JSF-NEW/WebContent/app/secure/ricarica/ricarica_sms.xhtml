@@ -1,0 +1,206 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template.xhtml"
+                xmlns:composite-custom="http://java.sun.com/jsf/composite/composite-custom">
+
+    <ui:define name="content">
+
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{aziendaSelectionView.setCurrentMenuSection('RICARICA')}"/>
+        </f:metadata>
+
+        <h:body>
+        <div class="ui-g ui-fluid">
+            <script src="https://checkout.stripe.com/checkout.js"></script>
+
+                <p:remoteCommand action="#{ricaricaView.pay}" name="pay" update="ricaricaAccordion"
+                                 onstart="PF('transazioneInCorsoDialog').show()"
+                                 oncomplete="PF('transazioneInCorsoDialog').hide()"/>
+
+                <p:remoteCommand action="#{ricaricaView.setSelectedTipoArticolo}" name="setSelectedTipoArticolo"/>
+
+                <div class="ui-g-12 ui-md-12">
+                    <p:outputPanel>
+                        <div class="card card-w-title">
+                            <h1>Scegli la ricarica da effettuare
+                                <composite-custom:infobutton infoMessageList="#{infoHelpView.infoRicaricaSmsList}"/>
+                         </h1>
+                            <p:wizard showNavBar="false" widgetVar="wizardRicarica">
+                        <p:tab id="tiporicaricatab" title="Tipo Ricarica">
+                        <p:panel header="Seleziona il tipo di ricarica ed eventualmente l'operatore che la riceverà">
+
+                            <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group">
+                                <p:outputLabel value="Seleziona il tipo di ricarica: *" for="tipo" indicateRequired="false">
+                                    <p:selectOneButton id="tipo"
+                                                       value="#{ricaricaView.selectedRicaricaType}" required="true" label="Tipo ricarica">
+
+                                   <f:selectItems value="#{constantResolverView.ricaricaType}" var="v" itemValue="#{v}" itemLabel="#{v.value}"/>
+                                        <p:ajax event="change" update="operatoreDaRicaricareSelect"/>
+                                    </p:selectOneButton>
+                                </p:outputLabel>
+
+                                <p:outputLabel value="Seleziona l'operatore da ricaricare: *" indicateRequired="false">
+                                    <p:selectOneMenu id="operatoreDaRicaricareSelect" value="#{ricaricaView.selectedOperatorViewModel}"
+                                                     disabled="#{!ricaricaView.ricaricaOperatoreInProgress}" required="true" label="Operatore ricarica">
+                                        <f:selectItems value="#{ricaricaView.operatorList}" var="operator" itemLabel="#{operator.username}" itemValue="#{operator}"/>
+                                        <f:converter converterId="operatorConverter"/>
+                                    </p:selectOneMenu>
+                                </p:outputLabel>
+                            
+                            <p:outputLabel value="Clicca per proseguire">    
+	 							<p:commandButton value="Avanti" icon="fa fa-arrow-right" styleClass="Fs16" 
+								 type="button" onclick="PF('wizardRicarica').next();" />  
+							 </p:outputLabel>                              
+                            </p:panelGrid>
+                        </p:panel>
+                        </p:tab>
+
+                            <p:tab id="valorericaricatab" title="Valore Ricarica">
+                            <p:panel header="Scegli l'importo della ricarica ed effettua il pagamento">
+                                <composite-custom:smspackage id="SMS1V1" compositeId="SMS1V1"
+                                                             smsQuantity="#{constantResolverView.tipoArticoloFromString('SMS1V1').smsQuantity}"
+                                                             smsUnitCost="#{constantResolverView.tipoArticoloFromString('SMS1V1').smsUnitCost}"
+                                                             smsTotalCost="#{constantResolverView.tipoArticoloFromString('SMS1V1').amount}"
+                                                             smsTotalCostToShowInEur="#{constantResolverView.tipoArticoloFromString('SMS1V1').amountToShowInEur}"/>
+
+                                <composite-custom:smspackage id="SMS2V1" compositeId="SMS2V1"
+                                                             smsQuantity="#{constantResolverView.tipoArticoloFromString('SMS2V1').smsQuantity}"
+                                                             smsUnitCost="#{constantResolverView.tipoArticoloFromString('SMS2V1').smsUnitCost}"
+                                                             smsTotalCost="#{constantResolverView.tipoArticoloFromString('SMS2V1').amount}"
+                                                             smsTotalCostToShowInEur="#{constantResolverView.tipoArticoloFromString('SMS2V1').amountToShowInEur}"/>
+
+                                <composite-custom:smspackage id="SMS3V1" compositeId="SMS3V1"
+                                                             smsQuantity="#{constantResolverView.tipoArticoloFromString('SMS3V1').smsQuantity}"
+                                                             smsUnitCost="#{constantResolverView.tipoArticoloFromString('SMS3V1').smsUnitCost}"
+                                                             smsTotalCost="#{constantResolverView.tipoArticoloFromString('SMS3V1').amount}"
+                                                             smsTotalCostToShowInEur="#{constantResolverView.tipoArticoloFromString('SMS3V1').amountToShowInEur}"/>
+
+                                <composite-custom:smspackage id="SMS4V1" compositeId="SMS4V1"
+                                                             smsQuantity="#{constantResolverView.tipoArticoloFromString('SMS4V1').smsQuantity}"
+                                                             smsUnitCost="#{constantResolverView.tipoArticoloFromString('SMS4V1').smsUnitCost}"
+                                                             smsTotalCost="#{constantResolverView.tipoArticoloFromString('SMS4V1').amount}"
+                                                             smsTotalCostToShowInEur="#{constantResolverView.tipoArticoloFromString('SMS4V1').amountToShowInEur}"/>
+
+                                <composite-custom:smspackage id="SMS5V1" compositeId="SMS5V1"
+                                                             smsQuantity="#{constantResolverView.tipoArticoloFromString('SMS5V1').smsQuantity}"
+                                                             smsUnitCost="#{constantResolverView.tipoArticoloFromString('SMS5V1').smsUnitCost}"
+                                                             smsTotalCost="#{constantResolverView.tipoArticoloFromString('SMS5V1').amount}"
+                                                             smsTotalCostToShowInEur="#{constantResolverView.tipoArticoloFromString('SMS5V1').amountToShowInEur}"/>
+
+								<p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group">
+								   <p:commandButton value="Indietro" icon="fa fa-arrow-left" styleClass="Fs16"
+				    			     iconPos="left" type="button" onclick="PF('wizardRicarica').back();" />
+				    			    <p:spacer/>
+                                   <span class="Fs11 FontBold Fright">I prezzi esposti in questa pagina si intendono IVA inclusa</span>
+				    		   </p:panelGrid>
+				    		 </p:panel>
+                        <p:panelGrid columns="5" styleClass="ui-panelgrid-blank">
+                            <div class="fa-2x fa fa-cc-visa Fleft MarRight10"></div>
+                            <div class="fa-2x fa fa-cc-mastercard Fleft MarRight10"></div>
+                            <div class="fa-2x fa fa-cc-amex Fleft MarRight10"></div>
+                            <div class="fa-2x fa fa-cc-stripe Fleft MarRight10"></div>
+                        </p:panelGrid>
+                        <span class="Fs16 FontBold">Hai bisogno di un pacchetto con più SMS? Contattaci per ottenere un'offerta personalizzata
+                        <p:commandButton icon="fa fa-envelope White Fs18"
+                                     alt="Contattaci per ottenere un'offerta personalizzata"
+                                     onclick="customerly('open');"/></span>
+				    		 
+				    		 
+                            </p:tab>                         
+                            </p:wizard>
+                        </div>
+                    </p:outputPanel>
+                </div>
+
+                <div class="ui-g-12 ui-md-12">
+                    <p:outputPanel>
+                        <div class="card card-w-title">
+                            <h1>Ricariche effettuate</h1>
+                            <p:accordionPanel dynamic="true" cache="true" activeIndex="null"
+                                              id="ricaricaAccordion">
+                                <p:tab title="Clicca per visualizzare">
+                                    <p:dataTable var="ricarica"
+                                                 value="#{ricaricaView.ricaricaComunicazioneViewModelLazyDataModel}"
+                                                 lazy="true"
+                                                 sortBy="#{ricarica.dateTime}" sortOrder="descending"
+                                                 rows="10" paginator="true"
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                 rowsPerPageTemplate="5,10,15"
+                                                 emptyMessage="Nessuna ricarica effettuata"
+                                                 reflow="true" tableStyle="text-align:center;">
+
+                                        <p:column headerText="Data e ora" sortBy="#{ricarica.dateTime}">
+                                            <h:outputText value="#{ricarica.dateTime}">
+                                                <f:converter
+                                                        converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertLocalDateTime"/>
+                                            </h:outputText>
+                                        </p:column>
+                                        <p:column headerText="Effettuata da">
+                                            <h:outputText value="#{ricarica.payer.username}"/>
+                                        </p:column>
+                                        <p:column headerText="Agenzia" rendered="#{aziendaSelectionView.aziendaColumnShown}">
+                                            <h:outputText value="#{ricarica.payer.azienda.nomeAzienda}"/>
+                                        </p:column>
+                                        <p:column headerText="Importo">
+                                            <h:outputText value="#{ricarica.amount}"/>
+                                        </p:column>
+                                        <p:column headerText="Quantità">
+                                            <h:outputText value="#{ricarica.quantity}"/>
+                                        </p:column>
+                                        <p:column headerText="Tipo acquisto">
+                                            <h:outputText value="#{ricarica.ricaricaType.value}"/>
+                                        </p:column>
+                                        <p:column headerText="Operatore ricaricato">
+                                            <h:outputText value="#{ricarica.operatoreRicaricato.username}"/>
+                                        </p:column>
+                                        <p:column headerText="Metodo di pagamento">
+                                            <h:outputText value="#{ricarica.paymentMethod.value}"/>
+                                        </p:column>
+                                        <p:column headerText="Fattura">
+                                            <p:commandButton icon="fa fa-file"
+                                                             action="#{ricaricaView.showFattura(ricarica.id)}"
+                                                             process="@this"
+                                                             rendered="#{ricarica.paymentMethod.value ne 'Voucher'}"/>
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:tab>
+                            </p:accordionPanel>
+                        </div>
+                    </p:outputPanel>
+                </div>
+
+            <script type="application/javascript">
+                var handler = StripeCheckout.configure({
+                    key: '#{constantResolverView.stripePublishableKey}',
+                    image: '/resources/img/piccione_lace.jpg',
+                    locale: 'auto',
+                    token: function (token) {
+                        // You can access the token ID with `token.id`.
+                        // Get the token ID to your server-side code for use.
+                        pay([{name: 'tokenId', value: token.id}]);
+                    }
+                });
+
+                // Close Checkout on page navigation:
+                window.addEventListener('popstate', function () {
+                    handler.close();
+                });
+            </script>
+
+            <p:dialog widgetVar="transazioneInCorsoDialog" modal="true" draggable="false" closable="false"
+                      resizable="false"
+                      showHeader="false" id="transazioneInCorsoDialog">
+                <p:panelGrid columns="1" styleClass="ui-noborder"
+                             style="background: none; box-shadow: none; border: none;">
+                    <h:outputText value="Transazione in corso..."/>
+                    <p:graphicImage name="/img/loading-ring.gif"/>
+                </p:panelGrid>
+            </p:dialog>
+            </div>
+        </h:body>
+
+    </ui:define>
+
+</ui:composition>

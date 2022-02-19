@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+				template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+
+        <h:body>
+			<f:metadata>
+				<f:event type="preRenderView" listener="#{aziendaSelectionView.setCurrentMenuSection(null)}"/>
+			</f:metadata>
+		<div class="ui-g ui-fluid">
+           <div class="ui-g-12 ui-lg-12">
+				<div class="card card-w-title">
+	               <h1>Modifica la Password dell'Account:</h1>
+	               <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group">
+	
+	                   <p:password id="vecchiapw" placeholder="Password Attuale" value="#{psw.oldPassword}"
+	                               required="true" promptLabel="Inserisci la Password Attuale"
+	                               maxlength="35" label="Password Attuale" title="Password Attuale"/>
+	                   <p:password id="nuovapw" placeholder="Nuova Password" value="#{psw.newPassword}"
+	                               required="true" goodLabel="Buona" weakLabel="Debole"
+	                               strongLabel="Ottima" promptLabel="Inserisci la Nuova Password"
+	                               maxlength="35" label="Nuova Password"
+	                               title="Nuova Password" feedback="true"/>
+	                   <p:password id="confermapw" placeholder="Conferma Password"
+	                               value="#{psw.confirmNewPassword}" required="true" goodLabel="Buona"
+	                               weakLabel="Debole" strongLabel="Ottima"
+	                               promptLabel="Conferma la Nuova Password" maxlength="35"
+	                               label="Conferma Password" title="Conferma Password" feedback="true"/>
+	
+	                   <p:commandButton value="Cambia Password"
+	                                    action="#{psw.changePasswordAction}"
+	                                    icon="fa fa-save Fs20 White"
+	                                    iconPos="right" styleClass="red-btn"/>
+	
+	
+	               </p:panelGrid>
+	           </div>
+                <p:spacer/>
+		  </div>
+		 </div>
+        </h:body>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:lacems="http://lacems.com/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite-custom="http://java.sun.com/jsf/composite/composite-custom"
+>
+
+<composite:interface>
+    <composite:attribute name="operatoriSelezionatiValue"/>
+    <composite:attribute name="fromDateValue"/>
+    <composite:attribute name="toDateValue"/>
+    <composite:attribute name="presetDateValue"/>
+    <composite:attribute name="renderedInfoButton" default="true"/>
+    <composite:attribute name="infoMessageValue"/>
+
+    <composite:clientBehavior name="changeEventFiltroOperatoriOrDate" event="change"
+                              targets="filtroperatoreanalytics from to"/>
+    <composite:clientBehavior name="changeEventPresetDate" event="change" targets="presetDate"/>
+    <composite:clientBehavior name="dateSelectFromOrTo" event="dateSelect" targets="from to"/>
+</composite:interface>
+
+<composite:implementation>
+
+    <div class="ui-g-12 ui-lg-12">
+        <div class="card card-w-title" style="margin-bottom: 0; padding-bottom: 0">
+            <p:panelGrid columns="5" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+                <p:selectCheckboxMenu id="filtroperatoreanalytics"
+                                      label="Filtro Operatore:" value="#{cc.attrs.operatoriSelezionatiValue}"
+                                      filter="true" filterMatchMode="contains"
+                                      rendered="#{calendarioAppuntamentiView.isSelectCheckboxMenuRendered()}">
+                    <f:selectItems var="opt"
+                                   value="#{utilResolverView.getOperatorsStringList('CLIENTI', 'READ')}"
+                                   itemLabel="#{opt}" itemValue="#{opt}"/>
+                </p:selectCheckboxMenu>
+
+                <p:selectOneMenu id="presetDate" value="#{cc.attrs.presetDateValue}">
+                    <f:selectItems var="date"
+                                   value="#{constantResolverView.analyticsDates}"
+                                   itemLabel="#{date.value}" itemValue="#{date}">
+                    </f:selectItems>
+                    <p:ajax event="change" update="from to"/>
+                </p:selectOneMenu>
+
+                <lacems:italianCalendar id="from" mask="true" value="#{cc.attrs.fromDateValue}"
+                                        placeholder="Data inizio:">
+                    <f:converter converterId="com.woonders.lacemsjsf.ui.converter.LocalDateConverter"/>
+                </lacems:italianCalendar>
+
+                <lacems:italianCalendar id="to" mask="true" value="#{cc.attrs.toDateValue}"
+                                        placeholder="Data fine:">
+                    <f:converter converterId="com.woonders.lacemsjsf.ui.converter.LocalDateConverter"/>
+                </lacems:italianCalendar>
+
+                <composite-custom:infobutton rendered="#{cc.attrs.renderedInfoButton}"
+                                             infoMessageList="#{cc.attrs.infoMessageValue}"/>
+
+            </p:panelGrid>
+        </div>
+    </div>
+</composite:implementation>
+</html>

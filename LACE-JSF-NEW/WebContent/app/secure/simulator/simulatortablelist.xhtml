@@ -1,0 +1,110 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="content">
+        <h:body>
+
+            <f:metadata>
+                <f:event type="preRenderView"
+                         listener="#{aziendaSelectionView.setCurrentMenuSection('SIMULATORI_LIST')}"/>
+            </f:metadata>
+
+            <div class="ui-g ui-fluid">
+
+                <div class="ui-g-12 ui-lg-12">
+
+                    <div class="card card-w-title">
+
+                        <h1>Lista tabelle</h1>
+
+                        <p:dataTable widgetVar="simulatorTableTable" var="simulatorTable"
+                                     value="#{simulatorTableListView.simulatorTableViewModelLazyDataModel}" lazy="true"
+                                     sortBy="#{simulatorTable.id}"
+                                     rowKey="#{simulatorTable.id}"
+                                     selectionMode="single"
+                                     disabledSelection="#{simulatorTableListView.disabledSelection}"
+                                     selection="#{simulatorTableListView.selectedSimulatorTableViewModel}"
+                                     rows="10" paginator="true"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15"
+                                     emptyMessage="In base ai criteri di ricerca scelti non abbiamo trovato nessuna tabella"
+                                     reflow="true" tableStyle="text-align:center;">
+
+                            <f:facet name="header">
+                                Tabelle
+                            </f:facet>
+
+                            <p:ajax event="rowSelect" listener="#{simulatorTableListView.onRowSelect}"/>
+
+                            <p:column headerText="Stato Tabella" filterBy="#{simulatorTable.simulatorTableStatus}"
+                                      filterMatchMode="exact">
+                                <f:facet name="filter">
+                                    <p:selectOneMenu onchange="PF('simulatorTableTable').filter()">
+                                        <f:selectItem itemLabel="Qualsiasi" itemValue="#{null}"
+                                                      noSelectionOption="true"/>
+                                        <f:selectItems value="#{constantResolverView.simulatorTableStatus}" var="status"
+                                                       itemLabel="#{status.label}"/>
+                                    </p:selectOneMenu>
+                                </f:facet>
+                                <h:outputText value="#{simulatorTable.simulatorTableStatus.label}"/>
+                            </p:column>
+
+
+                            <p:column headerText="Agenzia" rendered="#{aziendaSelectionView.aziendaColumnShown}">
+                                <h:outputText value="#{simulatorTableListView.getAgenziaName(simulatorTable)}"/>
+                            </p:column>
+
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{simulatorTable.name}"/>
+                            </p:column>
+
+                            <p:column headerText="Creata da">
+                                <h:outputText value="#{simulatorTable.creatorOperatorViewModel.username}"/>
+                            </p:column>
+
+                            <p:column headerText="Tipo Assegnato" filterBy="#{simulatorTable.simulatorTableType}"
+                                      filterMatchMode="exact">
+
+                                <f:facet name="filter">
+                                    <p:selectOneMenu onchange="PF('simulatorTableTable').filter()">
+                                        <f:selectItem itemLabel="Qualsiasi" itemValue="#{null}"
+                                                      noSelectionOption="true"/>
+                                        <f:selectItems value="#{constantResolverView.tipoPratica}"
+                                                       var="simulatorTableType"
+                                                       itemLabel="#{simulatorTableType.value}"/>
+                                    </p:selectOneMenu>
+                                </f:facet>
+
+                                <h:outputText value="#{simulatorTable.simulatorTableType.value}"/>
+                            </p:column>
+
+                            <p:column headerText="Impieghi Assegnati" filterBy="#{simulatorTable.jobTypeList}"
+                                      filterMatchMode="in">
+
+                                <f:facet name="filter">
+                                    <p:selectCheckboxMenu label="Seleziona gli impieghi"
+                                                          onchange="PF('simulatorTableTable').filter()">
+                                        <f:selectItems value="#{constantResolverView.impiego}"
+                                                       var="impiego" itemLabel="#{impiego.value}"
+                                                       itemValue="#{impiego}"/>
+                                        <p:ajax event="toggleSelect" onstart="PF('simulatorTableTable').filter()"/>
+                                        <f:converter
+                                                converterId="com.woonders.lacemsjsf.ui.converter.GenericEnumConverter"/>
+                                    </p:selectCheckboxMenu>
+                                </f:facet>
+
+                                <h:outputText value="#{simulatorTableListView.getJobTypeListString(simulatorTable)}"/>
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </div>
+                </div>
+            </div>
+
+        </h:body>
+    </ui:define>
+
+</ui:composition>

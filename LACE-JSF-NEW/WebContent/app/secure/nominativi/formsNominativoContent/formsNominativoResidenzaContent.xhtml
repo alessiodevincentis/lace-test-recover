@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+            <h:outputScript library="js" name="formsNominativoResidenzaAutocomplete.js"/>
+      
+                    <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+                         <p:outputLabel for="indresidenza" value="Indirizzo di Residenza:">
+                             <p:inputText id="indresidenza"
+                                          value="#{register.residenzaViewModel.indirizzoResidenza}"
+                                          label="indirizzoResidenza"/>
+                         </p:outputLabel>
+
+                        <p:outputLabel for="civicoresidenza" value="Civico Residenza:">
+                            <p:inputText id="civicoresidenza"
+                                         value="#{register.residenzaViewModel.civicoResidenza}"/>
+                        </p:outputLabel>
+
+                         <p:outputLabel for="luogoresidenza" value="Comune di Residenza:">
+                             <p:inputText id="luogoresidenza"
+                                          value="#{register.residenzaViewModel.luogoResidenza}"
+                                          label="luogoResidenza"/>
+                         </p:outputLabel>
+
+                         <p:outputLabel for="provresidenza" value="Provincia di Residenza:">
+                             <p:inputText id="provresidenza"
+                                          value="#{register.residenzaViewModel.provResidenza}"
+                                          label="provinciaResidenza" maxlength="2"/>
+                         </p:outputLabel>
+
+                         <p:outputLabel for="capresidenza" value="CAP di Residenza:">
+                             <p:inputText id="capresidenza"
+                                          value="#{register.residenzaViewModel.capResidenza}"
+                                          label="capResidenza"/>
+                         </p:outputLabel>
+
+                        <p:outputLabel for="nazioneresidenza" value="Nazione di Residenza:">
+                            <p:inputText id="nazioneresidenza"
+                                         value="#{register.residenzaViewModel.nazioneResidenza}"/>
+                        </p:outputLabel>
+                     </p:panelGrid>
+
+</html>      

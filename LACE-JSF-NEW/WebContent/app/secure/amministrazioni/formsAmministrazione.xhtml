@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+    <body>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAykxEHCpnF1fOegpstZNoiRDnN2aeUIhk&amp;libraries=places" async="async" defer="defer"></script>
+        <h:outputScript library="js" name="googlePlacesUtil.js"/>    
+    
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-lg-12">
+    
+	<ui:include src="/app/secure/amministrazioni/formsAmministrazioneContent.xhtml" />
+
+	</div>
+	</div>
+	</body>
+     </ui:define>
+
+</ui:composition>        
+        

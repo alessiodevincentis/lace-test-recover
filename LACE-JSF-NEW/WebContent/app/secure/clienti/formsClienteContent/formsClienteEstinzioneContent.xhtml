@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:lacems="http://lacems.com/ui"
+      xmlns:p="http://primefaces.org/ui">
+
+<p:repeat var="est" value="#{registerCliente.estinzioneViewModelList}">
+    <p:panelGrid columns="6" layout="grid" id="estinzioni"
+                 styleClass="ui-panelgrid-blank form-group">
+
+        <p:outputLabel for="tipoestinzione" value="Tipo Estinzione:">
+            <p:selectOneMenu effect="fold" id="tipoestinzione"
+                             value="#{est.tipoEstinzione}">
+                <f:selectItem itemLabel="Tipologia" itemValue=""/>
+                <f:selectItems value="#{constantResolverView.tipoImpegno}" var="v" itemLabel="#{v.value}"
+                               itemValue="#{v.value}"/>
+                <p:ajax event="change"
+                        update="rataEstinzione montanteestinzione bustaest conteggioestinzione form:nettoricavo form:conteggiototale rinnoveestinzione dataNotificaConteggioEstinzione statoconteggio"
+                        listener="#{praticaView.resetEstinzione(est, registerCliente.praticaViewModel, registerCliente.estinzioneViewModelList)}"/>
+            </p:selectOneMenu>
+        </p:outputLabel>
+
+        <p:outputLabel for="calcolascadenza" value="Calcolo per:">
+            <p:selectOneButton id="calcolascadenza" value="#{est.calcolaScadenza}">
+                <f:selectItem itemLabel="Scadenza" itemValue="Scadenza"/>
+                <f:selectItem itemLabel="Montante" itemValue="Rate"/>
+                <p:ajax event="change" update="scadenza"
+                        listener="#{estinzioneView.updateScadenzaEstinzione(est)}"/>
+                <p:ajax event="change" update="mesiscadenza"
+                        listener="#{estinzioneView.updateMesiScadenza(est)}"/>
+                <p:ajax event="change" update="rinnoveestinzione"
+                        listener="#{estinzioneView.updateRinnovoEstinzione(est)}"/>
+                <p:ajax event="change"
+                        update="rataEstinzione montanteestinzione bustaest conteggioestinzione form:nettoricavo form:conteggiototale rinnoveestinzione dataNotificaConteggioEstinzione statoconteggio"
+                        listener="#{praticaView.resetEstinzione(est, registerCliente.praticaViewModel, registerCliente.estinzioneViewModelList)}"/>
+            </p:selectOneButton>
+        </p:outputLabel>
+
+        <p:outputLabel for="rataEstinzione" value="Rata Estinzione">
+            <lacems:InputNumberEuro id="rataEstinzione" value="#{est.rataEstinzione}"
+                                    label="Rata Estinzione"
+                                    disabled="#{est.tipoEstinzione == null or est.tipoEstinzione == '' or est.calcolaScadenza == null}">
+                <p:ajax event="change" update="conteggioestinzione"
+                        listener="#{estinzioneView.updateConteggioEstinzione(est)}"/>
+                <p:ajax event="change" update="mesiscadenza"
+                        listener="#{estinzioneView.updateMesiScadenza(est)}"/>
+                <p:ajax event="change" update="scadenza"
+                        listener="#{estinzioneView.updateScadenzaEstinzione(est)}"/>
+                <p:ajax event="change" update="form:conteggiototale"
+                        listener="#{praticaView.calcConteggioEstinzioneTotale(registerCliente.praticaViewModel, registerCliente.estinzioneViewModelList)}"/>
+                <p:ajax event="change" update="form:nettoricavo"
+                        listener="#{praticaView.calcNettoRicavo(registerCliente.praticaViewModel, registerCliente.estinzioneViewModelList)}"/>
+                <p:ajax event="change" update="rinnoveestinzione dataNotificaConteggioEstinzione statoconteggio"
+                        listener="#{estinzioneView.updateRinnovoEstinzione(est)}"/>
+            </lacems:InputNumberEuro>
+        </p:outputLabel>
+
+
+        <p:outputLabel for="durataest" value="Durata Estinzione:">
+            <p:inputText id="durest" value="#{est.durataEstinzione}"
+                         style="display:none"/>
+            <p:selectOneMenu effect="fold" id="durataest" editable="true"
+                             value="#{est.durataEstinzione}">
+                <f:selectItems value="#{constantResolverView.durataPratica}" var="v" itemLabel="#{v.value}"
+                               itemValue="#{v.value}"/>
+                <p:ajax event="change" update="rinnoveestinzione dataNotificaConteggioEstinzione statoconteggio"
+                        listener="#{estinzioneView.updateRinnovoEstinzione(est)}"/>
+                <p:ajax execute="durataest" render="durest"/>
+            </p:selectOneMenu>
+        </p:outputLabel>
+
+        <p:outputLabel for="montanteestinzione" value="Montante:">
+            <lacems:InputNumberEuro id="montanteestinzione" value="#{est.montanteEstinzione}"
+                                    label="Montante Estinzione"
+                                    disabled="#{est.calcolaScadenza != 'Rate'}">
+                <p:ajax event="change" update="scadenza mesiscadenza"
+                        listener="#{estinzioneView.updateScadenzaAndMesiEstinzioneFromMontante(est)}"/>
+                <p:ajax event="change" update="conteggioestinzione"
+                        listener="#{estinzioneView.updateConteggioEstinzione(est)}"/>
+                <p:ajax event="change" update="form:conteggiototale"
+                        listener="#{praticaView.calcConteggioEstinzioneTotale(registerCliente.praticaViewModel, registerCliente.estinzioneViewModelList)}"/>
+                <p:ajax event="change" update="form:nettoricavo"
+                        listener="#{praticaView.calcNettoRicavo(registerCliente.praticaViewModel, registerCliente.estinzioneViewModelList)}"/>
+                <p:ajax event="change" update="rinnoveestinzione dataNotificaConteggioEstinzione statoconteggio"
+                        listener="#{estinzioneView.updateRinnovoEstinzione(est)}"/>
+            </lacems:InputNumberEuro>
+        </p:outputLabel>
+
+        <p:outputLabel for="bustaest" value="Data Bustapaga:">
+            <p:calendar id="bustaest" value="#{est.dataBustapaga}" mask="true"
+                        pattern="dd/MM/yyyy" navigator="true" showOn="button"
+                        disabled="#{est.calcolaScadenza != 'Rate'}">
+                <p:ajax event="change"
+                        update="scadenza conteggioestinzione mesiscadenza form:conteggiototale form:nettoricavo"
+                        listener="#{praticaView.updateDatiEstinzioneFromDataBustaPaga(est, registerCliente.praticaViewModel, registerCliente.estinzioneViewModelList)}"/>
+                <p:ajax event="dateSelect"
+                        update="scadenza conteggioestinzione mesiscadenza form:conteggiototale form:nettoricavo"
+                        listener="#{praticaView.updateDatiEstinzioneFromDataBustaPaga(est, registerCliente.praticaViewModel, registerCliente.estinzioneViewModelList)}"/>
+                <p:ajax event="change" update="rinnoveestinzione dataNotificaConteggioEstinzione statoconteggio"
+                        listener="#{estinzioneView.updateRinnovoEstinzione(est)}"/>
+                <p:ajax event="dateSelect" update="rinnoveestinzione dataNotificaConteggioEstinzione statoconteggio"
+                        listener="#{estinzioneView.updateRinnovoEstinzione(est)}"/>
+            </p:calendar>
+        </p:outputLabel>
+
+        <p:outputLabel for="scadenza" value="Scadenza">
+            <p:calendar id="scadenza" value="#{est.scadenzaEstinzione}" mask="true"
+                        pattern="dd/MM/yyyy" showOn="button" navigator="true"
+                        disabled="#{est.calcolaScadenza != 'Scadenza'}">
+                <p:ajax event="change"
+                        update="mesiscadenza conteggioestinzione form:conteggiototale form:nettoricavo"
+                        listener="#{praticaView.updateDatiEstinzioneAndPraticaFromScadenza(est, registerCliente.praticaViewModel, registerCliente.estinzioneViewModelList)}"/>
+                <p:ajax event="dateSelect"
+                        update="mesiscadenza conteggioestinzione form:conteggiototale form:nettoricavo"
+                        listener="#{praticaView.updateDatiEstinzioneAndPraticaFromScadenza(est, registerCliente.praticaViewModel, registerCliente.estinzioneViewModelList)}"/>
+                <p:ajax event="change" update="rinnoveestinzione dataNotificaConteggioEstinzione statoconteggio"
+                        listener="#{estinzioneView.updateRinnovoEstinzione(est)}"/>
+                <p:ajax event="dateSelect" update="rinnoveestinzione dataNotificaConteggioEstinzione statoconteggio"
+                        listener="#{estinzioneView.updateRinnovoEstinzione(est)}"/>
+            </p:calendar>
+        </p:outputLabel>
+
+        <p:outputLabel for="istituto" value="Istituto">
+            <p:selectOneMenu effect="fold" id="istituto" value="#{est.istitutoEst}"
+                             editable="true">
+                <f:selectItems value="#{constantResolverView.istitutoList}" var="istituto"
+                               itemLabel="#{istituto}" itemValue="#{istituto}"/>
+                <p:ajax event="change" update="form:nettoricavo"/>
+            </p:selectOneMenu>
+        </p:outputLabel>
+
+        <p:outputLabel for="mesiscadenza" value="Mesi Scadenza:">
+            <p:inputText id="mesiscadenza" value="#{est.mesiScadenza}" readonly="true"/>
+        </p:outputLabel>
+
+        <p:outputLabel for="conteggioestinzione" value="Conteggio Estinzione:">
+            <lacems:InputNumberEuro id="conteggioestinzione" value="#{est.conteggioEstinzione}"
+                                    readonly="true"/>
+        </p:outputLabel>
+
+        <p:outputLabel for="rinnoveestinzione" value="Rinnovo Estinzione:">
+            <p:inputText id="rinnoveestinzione" value="#{est.dataRinnovoEstinzione}" readonly="true">
+                <f:converter converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDateWithoutTimeZone"/>
+            </p:inputText>
+        </p:outputLabel>
+
+        <p:outputLabel for="statoconteggio" value="Stato Conteggio Estinzione:">
+            <p:selectOneMenu effect="fold" id="statoconteggio"
+                             disabled="#{estinzioneView.isStatoConteggioDisabled(est.dataRinnovoEstinzione, est.tipoEstinzione)}"
+                             value="#{est.statoConteggioEstinzione}">
+                <f:selectItems value="#{constantResolverView.statoConteggioEstinzione}" var="v" itemLabel="#{v.value}"
+                               itemValue="#{v}"/>
+                <p:ajax event="change" update="dataNotificaConteggioEstinzione"
+                        listener="#{estinzioneView.setDataNotificaConteggioEstinzione(est)}"/>
+            </p:selectOneMenu>
+        </p:outputLabel>
+
+        <p:outputLabel for="dataNotificaConteggioEstinzione" value="Data Notifica Conteggio:">
+            <lacems:italianCalendar id="dataNotificaConteggioEstinzione"
+                                    value="#{est.dataNotificaConteggioEstinzione}"
+                                    mask="true"
+                                    disabled="#{estinzioneView.isDataNotificaConteggioDisabled(est.dataRinnovoEstinzione,
+                                    est.statoConteggioEstinzione, est.tipoEstinzione)}"/>
+        </p:outputLabel>
+
+
+        <p:commandButton update="form:estinzioniOutputPanel" process="@this"
+                         action="#{praticaView.removeEstinzione(est, registerCliente.praticaViewModel, registerCliente.estinzioneViewModelList)}"
+                         icon="fa fa-remove Fs20 White" iconPos="right"
+                         styleClass="red-btn">
+            <p:confirm header="Confirmation"
+                       message="Eliminare Definitivamente l'Estinzione?"
+                       icon="ui-icon-alert"/>
+        </p:commandButton>
+
+
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+                         closable="true">
+            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+
+
+    </p:panelGrid>
+    <hr/>
+</p:repeat>
+<p:commandButton action="#{registerCliente.addEstinzione}" update="form:estinzioniOutputPanel"
+                 icon="fa fa-plus Fs20 White" iconPos="right"
+                 styleClass="green-btn" process="@this"
+                 disabled="#{registerCliente.estinzioneViewModelList.size()==2}"/>
+</html>

@@ -1,0 +1,205 @@
+@startuml
+
+title __CAMPAGNEMARKETING's Class Diagram__\n
+
+  namespace com.woonders.lacemsjsf.view.campagnemarketing {
+    class com.woonders.lacemsjsf.view.campagnemarketing.DettaglioCampagneMarketingView {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        - campagnaSmsViewModelLazyDataModel : LazyDataModel<CampagnaSmsViewModel>
+        + canImportCampagna()
+        + getAziendaSelectionView()
+        + getCampagnaMarketingFacade()
+        + getCampagnaMarketingService()
+        + getCampagnaSmsViewModelLazyDataModel()
+        + getCampagnaViewModel()
+        + getHttpSessionUtil()
+        + getPassaggioParametriUtils()
+        + getPropertiesUtil()
+        + importaNominativiAction()
+        + init()
+        + invioSmsNonSpediti()
+        + isDisabledInviaSmsButton()
+        + isRenderedInviaSmsButton()
+        + setAziendaSelectionView()
+        + setCampagnaMarketingFacade()
+        + setCampagnaMarketingService()
+        + setCampagnaSmsViewModelLazyDataModel()
+        + setCampagnaViewModel()
+        + setHttpSessionUtil()
+        + setPassaggioParametriUtils()
+        + setPropertiesUtil()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.campagnemarketing {
+    class com.woonders.lacemsjsf.view.campagnemarketing.ListaCampagneMarketingView {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        - campagnaViewModelLazyDataModel : LazyDataModel<CampagnaViewModel>
+        {static} - log : Logger
+        + getAziendaSelectionView()
+        + getCampagnaMarketingService()
+        + getCampagnaViewModelLazyDataModel()
+        + getCampagnaViewModelSelected()
+        + getPassaggioParametriUtils()
+        + init()
+        + onRowSelect()
+        + setAziendaSelectionView()
+        + setCampagnaMarketingService()
+        + setCampagnaViewModelLazyDataModel()
+        + setCampagnaViewModelSelected()
+        + setPassaggioParametriUtils()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.campagnemarketing {
+    class com.woonders.lacemsjsf.view.campagnemarketing.NuovaCampagnaMarketingView {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        {static} - DATATABLE_VALUE_FROM_FILE : String
+        {static} - DATATABLE_VALUE_FROM_FILTERS : String
+        {static} - STOP_MESSAGE : String
+        - clienteLazyDataModel : LazyDataModel<ClienteViewModel>
+        - clienteViewModelList : List<ClienteViewModel>
+        - currentOperatorAziendaId : long
+        - currentOperatorId : long
+        - datatableValueFrom : String
+        - descrizioneCampagna : String
+        - filtraImportButtonEnabled : boolean
+        - firstAvantiEnabled : boolean
+        - inviaCampagnaEnabled : boolean
+        - isClientiReadAll : boolean
+        - isClientiReadOwn : boolean
+        - isClientiReadSuper : boolean
+        - isNominativiReadAll : boolean
+        - isNominativiReadOwn : boolean
+        - isNominativiReadSuper : boolean
+        - lazy : boolean
+        {static} - log : Logger
+        - messageText : String
+        - nomeCampagna : String
+        - tooltipAliasDisabled : boolean
+        + completeAmministrazione()
+        + filtraAction()
+        + getAmministrazioneService()
+        + getApachePOIExcelRead()
+        + getAziendaSelectionView()
+        + getAziendaService()
+        + getCalcSmsInfo()
+        + getCampagnaMarketingFacade()
+        + getCampagnaMarketingService()
+        + getClienteLazyDataModel()
+        + getClienteViewModelList()
+        + getCurrentOperatorAziendaId()
+        + getCurrentOperatorId()
+        + getDatatableValue()
+        + getDatatableValueFrom()
+        + getDescrizioneCampagna()
+        + getFiltroCampagnaMarketingViewModel()
+        + getHttpSessionUtil()
+        + getMessageText()
+        + getMittenteSms()
+        + getNomeCampagna()
+        + getPropertiesUtil()
+        + getRequestUtil()
+        + getSampleFile()
+        + getSettingService()
+        + getSmsService()
+        + getTenantManager()
+        + handleFileUpload()
+        + init()
+        + inviaCampagnaAction()
+        + isClientiReadAll()
+        + isClientiReadOwn()
+        + isClientiReadSuper()
+        + isDatiClienteRendered()
+        + isDatiNominativoRendered()
+        + isDisabledAnniAssunzionePensionamento()
+        + isFiltraImportButtonEnabled()
+        + isFirstAvantiEnabled()
+        + isInviaCampagnaEnabled()
+        + isLazy()
+        + isNominativiReadAll()
+        + isNominativiReadOwn()
+        + isNominativiReadSuper()
+        + isTooltipAliasDisabled()
+        + onFirstNextButtonClicked()
+        + onNextFlow()
+        + secondAvantiAction()
+        + setAmministrazioneService()
+        + setApachePOIExcelRead()
+        + setAziendaSelectionView()
+        + setAziendaService()
+        + setCalcSmsInfo()
+        + setCampagnaMarketingFacade()
+        + setCampagnaMarketingService()
+        + setClienteLazyDataModel()
+        + setClienteViewModelList()
+        + setClientiReadAll()
+        + setClientiReadOwn()
+        + setClientiReadSuper()
+        + setCurrentOperatorAziendaId()
+        + setCurrentOperatorId()
+        + setDatatableValueFrom()
+        + setDescrizioneCampagna()
+        + setFiltraImportButtonEnabled()
+        + setFiltroCampagnaMarketingViewModel()
+        + setFirstAvantiEnabled()
+        + setHttpSessionUtil()
+        + setInviaCampagnaEnabled()
+        + setLazy()
+        + setMessageText()
+        + setNomeCampagna()
+        + setNominativiReadAll()
+        + setNominativiReadOwn()
+        + setNominativiReadSuper()
+        + setPropertiesUtil()
+        + setRequestUtil()
+        + setSettingService()
+        + setSmsService()
+        + setTenantManager()
+        + setTooltipAliasDisabled()
+        + setTooltipStatus()
+        - calcSmsDaSpedireCount()
+        - setFirstButtonWizard()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.campagnemarketing {
+    class com.woonders.lacemsjsf.view.campagnemarketing.StatisticheCampagneMarketingView {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        - NOMINATIVO_DA_FILE : String
+        - pieModelEsitoNonRicevutoAndTipo : PieChartModel
+        - pieModelEsitoRicevutoAndTipo : PieChartModel
+        - pieModelEsitoTotale : PieChartModel
+        + getCampagnaMarketingService()
+        + getNOMINATIVO_DA_FILE()
+        + getPieModelEsitoNonRicevutoAndTipo()
+        + getPieModelEsitoNonRicevutoAndTipo()
+        + getPieModelEsitoRicevutoAndTipo()
+        + getPieModelEsitoRicevutoAndTipo()
+        + getPieModelEsitoTotale()
+        + getPieModelEsitoTotale()
+        + setCampagnaMarketingService()
+        + setPieModelEsitoNonRicevutoAndTipo()
+        + setPieModelEsitoRicevutoAndTipo()
+        + setPieModelEsitoTotale()
+    }
+  }
+  
+
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

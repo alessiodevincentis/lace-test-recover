@@ -1,0 +1,116 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <h:body>
+
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-lg-12">
+
+                    <div class="card card-w-title">
+                        <h1>Backup manuale</h1>
+                        <p:outputPanel styleClass="Fs16 TexAlLeft">
+                            <p style="text-align: justify">In questa sezione è possibile effettuare un backup manuale di tutti i dati dell'agenzia.
+                                Vi ricordiamo comunque, che il sistema è già dotato di backup automatici che vengono effettuati giornalmente
+                                su server remoti in totale sicurezza.
+                                Qualora vogliate salvare i vostri dati manualmente, vi basterà cliccare sul tasto in basso "Avvia backup della tua agenzia"
+                                che darà inizio alla procedura di creazione di un file Excel con i dati della vostra agenzia.<br/>
+                                <strong>Alla fine dell'operazione riceverete una mail che vi avvertirà che l'operazione di backup è stata completata.
+                                    Per effettuare il backup compilare la sezione "Dati personali" e soprattutto inserire una mail valida perché per
+                                    scaricare il file, avrete bisogno di una password che vi sarà inviata all'indirizzo che avete specificato.
+                                    Quando riceverete la mail avrete tre giorni di tempo per scaricare il file del vostro backup, allo scadere dei tre giorni
+                                    il file verrà eliminato definitivamente dai nostri server. Queste operazioni sono state pensate esclusivamente
+                                    per proteggere i vostri dati e soprattutto la privacy dei vostri clienti.</strong>
+                                Il Backup manuale è disponibile solo per il titolare dell'agenzia,
+                                <strong>ed è possibile effettuarlo una volta ogni 30 giorni.</strong>
+                                Vi ricordiamo sempre di tenere con cura i dati di accesso e di cambiare frequentemente la password.
+                            </p>
+                        </p:outputPanel>
+
+                    </div>
+
+                    <div class="card card-w-title">
+                        <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank form-group">
+                            <p:commandButton value="Avvia backup della tua agenzia"
+                                             action="#{backupView.actionBackup()}"
+                                             icon="fa fa-play Fs20 White" iconPos="right"
+                                             styleClass="Fs16" process="@this"
+                                             disabled="#{backupView.isDisabledActionBackupButton()}"/>
+
+                            <p:commandButton value="Scarica Backup"
+                                             oncomplete="PF('dlgpasswordbackup').show();"
+                                             icon="fa fa-download Fs20 White" iconPos="right"
+                                             styleClass="green-btn Fs16" process="@this"
+                            disabled="#{backupView.downloadBackupButtonDisabled}"/>
+
+                            <p:outputLabel value="Data ultimo backup: ">
+                                <h:outputText value="#{backupView.dateLastBackup}">
+                                    <f:converter
+                                            converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertLocalDateTime"/>
+                                </h:outputText>
+                            </p:outputLabel>
+                        </p:panelGrid>
+                    </div>
+
+                    <p:dialog style="background: transparent !important;border: 0 !important;box-shadow:none"
+                              widgetVar="statusDialog" modal="true"
+                              draggable="false" closable="false" resizable="false" showHeader="false">
+                        <p:graphicImage library="ultima-layout" name="images/loading.gif" width="128"/>
+                    </p:dialog>
+
+                </div>
+            </div>
+
+            <p:dialog header="Inserisci la password ricevuta via mail" widgetVar="dlgpasswordbackup" modal="true"
+                      resizable="false" dynamic="true" responsive="true" id="dlgbackup">
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12">
+                        <div class="card card-w-title">
+                            <h1>Password Backup</h1>
+
+                            <p:panelGrid columns="1" layout="grid" styleClass="ui-panelgrid-blank form-group">
+
+                                <p:outputLabel value="Inserisci la Password:">
+                                    <p:password id="pwbackup" value="#{backupView.password}" required="true"
+                                                 label="Password Backup"/>
+                                </p:outputLabel>
+
+                                <p:commandButton value="Invia" process="@this pwbackup" ajax="false"
+                                                 icon="fa fa-download Fs20 White" styleClass="green-btn Fs16"
+                                                 iconPos="right"
+                                                 onclick="PrimeFaces.monitorDownload(start, stop);">
+                                    <p:fileDownload value="#{backupView.downloadBackupFile()}"/>
+                                </p:commandButton>
+                            </p:panelGrid>
+                        </div>
+                    </div>
+
+                </div>
+            </p:dialog>
+
+            <p:dialog style="background: transparent !important;border: 0 !important;box-shadow:none"
+                      widgetVar="statusDialog" modal="true"
+                      draggable="false" closable="false" resizable="false" showHeader="false">
+                <p:graphicImage library="ultima-layout" name="images/loading.gif" width="128"/>
+            </p:dialog>
+
+
+            <script type="text/javascript">
+                function start() {
+                    PF('dlgpasswordbackup').hide();
+                    PF('statusDialog').show();
+                }
+
+                function stop() {
+                    PF('statusDialog').hide();
+                }
+            </script>
+
+        </h:body>
+    </ui:define>
+
+</ui:composition>
+        

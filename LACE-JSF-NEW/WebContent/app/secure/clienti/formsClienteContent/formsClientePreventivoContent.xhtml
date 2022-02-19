@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:lacems="http://lacems.com/ui"
+      xmlns:p="http://primefaces.org/ui">
+
+<p:outputPanel id="preventivoPanel">
+    <p:repeat var="preventivo" value="#{registerCliente.preventivoViewModelList}">
+
+        <p:panelGrid columns="6" layout="grid" id="altreinfo"
+                     styleClass="ui-panelgrid-blank form-group">
+
+            <p:outputLabel for="tipologiaPreventivo" value="Tipo Preventivo:">
+                <p:selectOneMenu effect="fold" id="tipologiaPreventivo"
+                                 value="#{preventivo.tipologiaPreventivo}">
+                    <f:selectItems value="#{constantResolverView.tipologiaPreventivo}"
+                                   var="v" itemLabel="#{v.value}" itemValue="#{v}"/>
+                    <p:ajax event="change" update="provtot"
+                            listener="#{preventivoView.updatePreventivoProvvigioneTotale(preventivo)}"/>
+                </p:selectOneMenu>
+            </p:outputLabel>
+
+
+            <p:outputLabel for="tipoprev" value="Tipologia:">
+                <p:selectOneMenu effect="fold" id="tipoprev"
+                                 value="#{preventivo.tipoPratica}">
+                    <f:selectItem itemLabel="Tipo" itemValue=""/>
+                    <f:selectItems value="#{constantResolverView.tipoPratica}" var="v" itemLabel="#{v.value}"
+                                   itemValue="#{v.value}"/>
+                </p:selectOneMenu>
+            </p:outputLabel>
+
+            <p:outputLabel value="Rata:">
+                <lacems:InputNumberEuro id="rataprev" value="#{preventivo.rata}" label="Rata">
+                    <p:ajax event="change" update="interessi"
+                            listener="#{preventivoView.updatePreventivoInteressi(preventivo)}"/>
+                    <p:ajax event="change" update="provtot"
+                            listener="#{preventivoView.updatePreventivoProvvigioneTotale(preventivo)}"/>
+                </lacems:InputNumberEuro>
+            </p:outputLabel>
+
+            <p:outputLabel for="durataPrev" value="Durata:">
+                <p:inputText id="dur" value="#{preventivo.durata}" style="display:none"/>
+                <p:selectOneMenu effect="fold" id="durataPrev" value="#{preventivo.durata}" editable="true">
+                    <f:selectItems value="#{constantResolverView.durataPratica}" var="v" itemLabel="#{v.value}"
+                                   itemValue="#{v.value}"/>
+                    <p:ajax event="change" update="interessi"
+                            listener="#{preventivoView.updatePreventivoInteressi(preventivo)}"/>
+                    <p:ajax event="change" update="provtot"
+                            listener="#{preventivoView.updatePreventivoProvvigioneTotale(preventivo)}"/>
+                    <p:ajax execute="durataPrev" render="dur"/>
+                </p:selectOneMenu>
+            </p:outputLabel>
+
+            <p:outputLabel for="importoprev" value="Importo:">
+                <lacems:InputNumberEuro id="importoprev" value="#{preventivo.importo}"
+                                        label="Importo Erogato">
+                    <p:ajax event="change" update="interessi"
+                            listener="#{preventivoView.updatePreventivoInteressi(preventivo)}"/>
+                    <p:ajax event="change" update="provtot"
+                            listener="#{preventivoView.updatePreventivoProvvigioneTotale(preventivo)}"/>
+                </lacems:InputNumberEuro>
+            </p:outputLabel>
+
+            <p:outputLabel for="tan" value="TAN:">
+                <lacems:InputNumberEuro id="tan" value="#{preventivo.tan}" label="Tan" symbol="%" symbolPosition="d"/>
+            </p:outputLabel>
+
+            <p:outputLabel for="taeg" value="TAEG:">
+                <lacems:InputNumberEuro id="taeg" value="#{preventivo.taeg}" label="Taeg" symbol="%"
+                                        symbolPosition="d"/>
+            </p:outputLabel>
+
+
+            <p:outputLabel for="teg" value="TEG:">
+                <lacems:InputNumberEuro id="teg" value="#{preventivo.teg}" label="Teg" symbol="%" symbolPosition="d"/>
+            </p:outputLabel>
+
+            <p:outputLabel for="spese" value="Spese:">
+                <lacems:InputNumberEuro id="spese" value="#{preventivo.spese}">
+                    <p:ajax event="change" update="interessi"
+                            listener="#{preventivoView.updatePreventivoInteressi(preventivo)}"/>
+                    <p:ajax event="change" update="provtot"
+                            listener="#{preventivoView.updatePreventivoProvvigioneTotale(preventivo)}"/>
+                </lacems:InputNumberEuro>
+            </p:outputLabel>
+
+            <p:outputLabel for="interessi" value="Interessi:">
+                <lacems:InputNumberEuro id="interessi" value="#{preventivo.interessi}" readonly="true"/>
+            </p:outputLabel>
+
+            <p:outputLabel for="tipoprov" value="Provvigione in:">
+                <p:selectOneButton id="tipoprov" value="#{preventivo.tipoProvvigione}">
+                    <f:selectItem itemLabel="Euro" itemValue="Euro"
+                                  itemDescription="Seleziona Euro per inserire la Provvigione in Euro"/>
+                    <f:selectItem itemLabel="%" itemValue="Perc"
+                                  itemDescription="Seleziona % per inserire la %Provvigione"/>
+                    <p:ajax event="change" update="prov" listener="#{preventivoView.resetProvvigioneEuro(preventivo)}"/>
+                    <p:ajax event="change" update="percprov"
+                            listener="#{preventivoView.updatePreventivoProvvigione(preventivo)}"/>
+                    <p:ajax event="change" update="provtot"
+                            listener="#{preventivoView.updatePreventivoProvvigioneTotale(preventivo)}"/>
+                </p:selectOneButton>
+            </p:outputLabel>
+
+            <p:outputLabel for="prov" value="Provvigione in €:">
+                <lacems:InputNumberEuro id="prov" value="#{preventivo.provvigione}"
+                                        label="Provvigione in €"
+                                        disabled="#{preventivo.tipoProvvigione != 'Euro'}">
+                    <p:ajax event="change" update="provtot"
+                            listener="#{preventivoView.updatePreventivoProvvigioneTotale(preventivo)}"/>
+                    <p:ajax event="change" update="percprov"
+                            listener="#{preventivoView.updatePreventivoProvvigione(preventivo)}"/>
+                </lacems:InputNumberEuro>
+            </p:outputLabel>
+
+            <p:outputLabel for="percprov" value="%Provvigione:">
+                <lacems:InputNumberEuro id="percprov" decimalPlaces="6" value="#{preventivo.percProvvigione}"
+                                        label="%Provvigione" symbol="%" symbolPosition="d"
+                                        disabled="#{preventivo.tipoProvvigione != 'Perc'}">
+                    <p:ajax event="keyup" update="provtot"
+                            listener="#{preventivoView.updatePreventivoProvvigioneTotale(preventivo)}"/>
+                </lacems:InputNumberEuro>
+            </p:outputLabel>
+
+            <p:outputLabel for="provtot" value="Provvigione Tot.:">
+                <lacems:InputNumberEuro id="provtot" value="#{preventivo.provTotale}" readonly="true"/>
+            </p:outputLabel>
+
+            <p:outputLabel value="Data Creazione:">
+                <p:inputText id="creazione" value="#{preventivo.dataCreazione}" readonly="true">
+                    <f:converter converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                </p:inputText>
+            </p:outputLabel>
+
+            <p:outputLabel for="nametabusedclientepreventivo" value="Nome Tabella Utilizzata:"
+                           rendered="#{preventivoView.isSimulatorTableUsed(preventivo)}">
+                <p:inputText id="nametabusedclientepreventivo" value="#{preventivo.simulatorTableViewModel.name}"
+                             readonly="true"/>
+            </p:outputLabel>
+
+            <p:commandButton value="Crea Pratica" process="@this"
+                             action="#{registerCliente.setPreventivoDaCreare(preventivo)}"
+                             icon="fa fa-save Fs20 White"
+                             iconPos="right"
+                             disabled="#{preventivoView.isDisabledCreaPratica(preventivo.idPreventivo)}">
+                <p:confirm header="Conferma"
+                           message="Creare la Pratica: #{preventivo.tipoPratica} Rata: #{preventivo.rata} Durata: #{preventivo.durata}?"
+                           icon="ui-icon-alert"/>
+            </p:commandButton>
+
+            <p:commandButton
+                    action="#{registerCliente.removePreventivo(preventivo)}"
+                    update="form:preventivoPanel form:preventiviclientepanel" process="@this"
+                    icon="fa fa-remove Fs20 White" iconPos="right"
+                    styleClass="red-btn">
+                <p:confirm header="Conferma"
+                           message="Eliminare Definitivamente il Preventivo?"
+                           icon="ui-icon-alert"/>
+            </p:commandButton>
+
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+                             closable="true">
+                <p:commandButton value="Si" type="button"
+                                 styleClass="ui-confirmdialog-yes"
+                                 icon="ui-icon-check"/>
+                <p:commandButton value="No" type="button"
+                                 styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+            </p:confirmDialog>
+
+        </p:panelGrid>
+        <hr/>
+    </p:repeat>
+
+
+    <p:commandButton action="#{registerCliente.addPreventivo}" update="form:preventivoPanel form:preventiviclientepanel"
+                     icon="fa fa-plus Fs20 White" iconPos="right" styleClass="green-btn"
+                     disabled="#{registerCliente.isDisabledAddPreventivo()}" process="preventivoPanel"/>
+
+</p:outputPanel>
+
+<p:dialog widgetVar="dlgcreapratica" modal="true" height="550" width="800"
+          resizable="false" dynamic="true" responsive="true">
+    <div class="card card-w-title">
+        <h1>Crea Pratica</h1>
+        <p:outputPanel id="datatables">
+            <p:dataTable id="coesistenzeTable" var="coesistenza"
+                         value="#{registerCliente.retrieveAllCoesistenzeCliente()}"
+                         selection="#{registerCliente.coesistenzeSelezionateDaEstinguereViewModelList}"
+                         rowKey="#{coesistenza.codStip}"
+                         style="margin-bottom:0" reflow="true" tableStyle="text-align:center;"
+                         emptyMessage="Nessuna Coesistenza da Estinguere">
+                <f:facet name="header">
+                    Seleziona le Coesistenze da Estinguere
+                </f:facet>
+                <p:ajax event="rowSelect"/>
+                <p:ajax event="rowUnselect"/>
+                <p:ajax event="rowSelectCheckbox"/>
+                <p:ajax event="rowUnselectCheckbox"/>
+
+                <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{coesistenza.tipoTrat}"/>
+                </p:column>
+                <p:column headerText="Rata">
+                    <h:outputText value="#{coesistenza.rataTrat}"/>
+                </p:column>
+                <p:column headerText="Durata">
+                    <h:outputText value="#{coesistenza.durataTrat}"/>
+                </p:column>
+                <p:column headerText="Scadenza">
+                    <h:outputText value="#{coesistenza.scadenzaTrat}">
+                        <f:converter converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Rinnovo">
+                    <h:outputText value="#{coesistenza.dataRinnovoTrat}">
+                        <f:converter converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+
+            <p:dataTable id="praticheTable" var="pratica" value="#{registerCliente.retrieveAllPraticheCliente()}"
+                         selection="#{registerCliente.praticheSelezionateDaEstinguereViewModelList}"
+                         rowKey="#{pratica.codicePratica}"
+                         style="margin-bottom:0" reflow="true" tableStyle="text-align:center;"
+                         emptyMessage="Nessuna Pratica da Estinguere">
+                <f:facet name="header">
+                    Seleziona le Pratiche da Estinguere
+                </f:facet>
+                <p:ajax event="rowSelect"/>
+                <p:ajax event="rowUnselect"/>
+                <p:ajax event="rowSelectCheckbox"/>
+                <p:ajax event="rowUnselectCheckbox"/>
+
+                <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                <p:column headerText="Operatore">
+                    <h:outputText value="#{pratica.operatore.username}"/>
+                </p:column>
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{pratica.tipoPratica}"/>
+                </p:column>
+                <p:column headerText="Rata">
+                    <h:outputText value="#{pratica.rata}"/>
+                </p:column>
+                <p:column headerText="Durata">
+                    <h:outputText value="#{pratica.durata}"/>
+                </p:column>
+                <p:column headerText="Scadenza">
+                    <h:outputText value="#{pratica.scadenzaPratica}">
+                        <f:converter converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Rinnovo">
+                    <h:outputText value="#{pratica.dataRinnovo}">
+                        <f:converter converterId="com.woonders.lacemsjsf.ui.converter.ItalianConvertDate"/>
+                    </h:outputText>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton value="Crea Pratica" update="form:datatables form:preventivoPanel" process="@this"
+                                     icon="fa fa-check Fs18 White" styleClass="green-btn" style="width:auto"
+                                     action="#{registerCliente.creaPraticaDaPreventivo}">
+                        <p:confirm header="Conferma" message="Sicuro di voler creare la pratica?"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                </f:facet>
+
+            </p:dataTable>
+        </p:outputPanel>
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" closable="true">
+            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"
+                             icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                             icon="ui-icon-close"/>
+        </p:confirmDialog>
+    </div>
+</p:dialog>
+
+
+</html>               

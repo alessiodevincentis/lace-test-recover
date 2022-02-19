@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<p:panelGrid columns="4" layout="grid" id="occupazionPanel2"
+styleClass="ui-panelgrid-blank form-group">
+
+                 <p:outputLabel for="impiego2" value="Impiego del Cliente:">
+                     <p:selectOneMenu effect="fold" id="impiego2"
+                                      value="#{registerCliente.clienteViewModel.impiego2}">
+                         <f:selectItem itemLabel="Impiego" itemValue=""/>
+                     <f:selectItems value="#{constantResolverView.impiego}" var="v"
+                                    itemLabel="#{v.value}" itemValue="#{v.value}"/>
+                         <p:ajax event="change" update="datedaloccupazione2"/>
+                         <p:ajax event="change" update="amministrazionecliente2"/>
+                         <p:ajax event="change" update="tipocontratto2"/>
+                         <p:ajax event="change" update="ente2"/>
+                         <p:ajax event="change" update="cat2"/>
+                         <p:ajax event="change" update="allegati"/>
+                         <p:ajax event="change" update="tellavoro2"/>
+                         <p:ajax event="change" update="qualifica2"/>
+                     </p:selectOneMenu>
+                 </p:outputLabel>
+
+                 <p:outputLabel for="qualifica2" value="Qualifica: (Es: Impiegato)">
+                     <p:inputText id="qualifica2"
+                                  value="#{registerCliente.clienteViewModel.qualifica2}"
+                                  disabled="#{registerCliente.clienteViewModel.impiego2== null || registerCliente.clienteViewModel.impiego2== ''}"/>
+                 </p:outputLabel>
+
+                 <p:outputLabel for="datedaloccupazione2" value="Data Inizio:">
+                     <p:calendar id="datedaloccupazione2"
+                                 value="#{registerCliente.clienteViewModel.dataInizio2}"
+                                 mask="true"
+                                 pattern="dd/MM/yyyy" showOn="button" navigator="true"
+                                 disabled="#{registerCliente.clienteViewModel.impiego2 == null || registerCliente.clienteViewModel.impiego2== ''}">
+                         <p:ajax event="change" update="anniassunzione2"
+                                 listener="#{anagraficaView.calcAnniAssunzione2(registerCliente.clienteViewModel)}"/>
+                         <p:ajax event="dateSelect" update="anniassunzione2"
+                                 listener="#{anagraficaView.calcAnniAssunzione2(registerCliente.clienteViewModel)}"/>
+                     </p:calendar>
+                 </p:outputLabel>
+
+                 <p:outputLabel for="amministrazionecliente2" value="Ente di Appartenenza:">
+                     <p:inputText id="amministrazionecliente2"
+                                  value="#{registerCliente.clienteViewModel.occupazione2}"
+                                  disabled="#{registerCliente.clienteViewModel.impiego2 == 'Pensionato' || registerCliente.clienteViewModel.impiego2== null || registerCliente.clienteViewModel.impiego2== ''}"/>
+                 </p:outputLabel>
+
+
+                 <p:outputLabel for="tipocontratto2" value="Tipo Contratto:"
+                                rendered="#{registerCliente.praticaRendered.isTipoContratto()}">
+                     <p:selectOneMenu effect="fold" id="tipocontratto2"
+                                      value="#{registerCliente.clienteViewModel.tipoContrattoLavoro2}"
+                                      disabled="#{registerCliente.clienteViewModel.impiego2 == 'Pensionato' || registerCliente.clienteViewModel.impiego2== null || registerCliente.clienteViewModel.impiego2== ''}">
+                         <f:selectItem itemLabel="Determinato" itemValue="Determinato"/>
+                         <f:selectItem itemLabel="Indeterminato" itemValue="Indeterminato"/>
+                     </p:selectOneMenu>
+                 </p:outputLabel>
+
+
+                 <p:outputLabel for="tellavoro2" value="Telefono Lavoro:"
+                                rendered="#{registerCliente.praticaRendered.isTelLavoro()}">
+                     <p:inputText id="tellavoro2"
+                                  value="#{registerCliente.clienteViewModel.telefonoLavoro2}"
+                                  disabled="#{registerCliente.clienteViewModel.impiego2 == 'Pensionato' || registerCliente.clienteViewModel.impiego2== null || registerCliente.clienteViewModel.impiego2== ''}"/>
+                 </p:outputLabel>
+
+                 <p:outputLabel for="anniassunzione2" value="Anni Assunzione:">
+                     <p:inputText id="anniassunzione2"
+                                  value="#{registerCliente.clienteViewModel.anniAssunzione2}"
+                                  readonly="true"/>
+                 </p:outputLabel>
+
+                 <p:outputLabel for="ente2" value="Ente Pensionistico:">
+                     <p:inputText id="ente2" value="#{registerCliente.clienteViewModel.ente2}"
+                                  disabled="#{registerCliente.clienteViewModel.impiego2 != 'Pensionato'}"/>
+                 </p:outputLabel>
+
+                   <p:outputLabel for="cat2" value="Cat. Pensione:">
+                     <p:selectOneMenu effect="fold" id="cat2"
+                                      value="#{registerCliente.clienteViewModel.cat2}"
+                                      editable="true"
+                                      disabled="#{registerCliente.clienteViewModel.impiego2 != 'Pensionato'}"
+                                      maxlength="#{constantResolverView.maxCatPensioneLength}">
+                         <f:selectItem itemLabel="VO" itemValue="VO"/>
+                         <f:selectItem itemLabel="VCOM" itemValue="VCOM"/>
+                         <f:selectItem itemLabel="VL" itemValue="VL"/>
+                         <f:selectItem itemLabel="VDAI" itemValue="VDAI"/>
+                         <f:selectItem itemLabel="SOCPDEL" itemValue="SOCPDEL"/>
+                         <f:selectItem itemLabel="ET" itemValue="ET"/>
+                         <f:selectItem itemLabel="SO/VO" itemValue="SO/VO"/>
+                         <f:validateLength maximum="#{constantResolverView.maxCatPensioneLength}"/>
+                     </p:selectOneMenu>
+				</p:outputLabel>
+				
+				<p:panelGrid columns="3" layout="grid">
+				<p:outputLabel value="Predefinita:"/>
+                 <p:selectBooleanCheckbox id="occupazionePredefinita"
+                         value="#{registerCliente.clienteViewModel.secondaOccupazionePredefinita}">
+                     <p:ajax event="change" update="allegati"/>
+                 </p:selectBooleanCheckbox>
+                 </p:panelGrid>
+
+                 <p:commandButton update="occupazioneOutputPanel2" process="@this"
+                                  action="#{registerCliente.removeSecondaOccupazione()}"
+                                  icon="fa fa-remove Fs20 White" iconPos="right"
+                                  styleClass="red-btn">
+                     <p:confirm header="Conferma"
+                                message="Eliminare Definitivamente i Dati della Seconda Occupazione?"
+                                icon="ui-icon-alert"/>
+                 </p:commandButton>
+
+
+                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+                                  closable="true">
+                     <p:commandButton value="Si" type="button"
+                                      styleClass="ui-confirmdialog-yes"
+                                      icon="ui-icon-check"/>
+                     <p:commandButton value="No" type="button"
+                                      styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                      </p:confirmDialog>
+
+
+                  </p:panelGrid>
+</html>                  

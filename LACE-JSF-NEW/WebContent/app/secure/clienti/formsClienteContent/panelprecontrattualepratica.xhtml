@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">              
+
+                 <p:panelGrid columns="3" layout="grid"
+        		 styleClass="ui-panelgrid-blank form-group"
+        		 id="precontrattualPratica">            
+
+                    <p:outputLabel for="statopratica" value="Stato Pratica:">
+                        <p:selectOneMenu effect="fold" id="statopratica"
+                                         value="#{registerCliente.praticaViewModel.statoPratica}">
+                            <f:selectItems value="#{constantResolverView.getStatoPraticaByTipo(registerCliente.praticaViewModel.tipoPratica)}" var="v"
+                                           itemLabel="#{v.value}" itemValue="#{v.value}"/>
+                            <p:ajax event="change" update="dataNotificaStatoPratica"
+                                    listener="#{registerCliente.setDataNotificaStatoPratica()}"/>
+                            <p:ajax event="change" update="form:precontrattualPratica"
+                                    listener="#{registerCliente.setNewDateByStatoPratica()}"/>
+                        </p:selectOneMenu>
+                    </p:outputLabel>
+
+                    <p:outputLabel value="Data Caricamento:*">
+                        <p:calendar value="#{registerCliente.praticaViewModel.dataCaricamento}"
+                                    mask="true"
+                                    pattern="dd/MM/yyyy" required="true" label="Data Caricamento"/>
+                    </p:outputLabel>
+
+                    <p:outputLabel value="Data Istruttoria:">
+                        <p:calendar value="#{registerCliente.praticaViewModel.dataIstruttoria}"
+                                    mask="true" id="dataIstruttoria"
+                                    pattern="dd/MM/yyyy"/>
+                    </p:outputLabel>
+
+                    <p:outputLabel value="Data Istruita:" rendered="#{registerCliente.praticaRendered.isDataIstruita()}">
+                        <p:calendar value="#{registerCliente.praticaViewModel.dataIstruita}"
+                                    mask="true" id="dataIstruita"
+                                    pattern="dd/MM/yyyy"/>
+                    </p:outputLabel>
+
+                    <p:outputLabel value="Data Delibera:">
+                        <p:calendar value="#{registerCliente.praticaViewModel.dataDelibera}"
+                                    mask="true" id="dataDelibera"
+                                    pattern="dd/MM/yyyy"/>
+                    </p:outputLabel>
+
+                    <p:outputLabel value="Data Firma Contratti:">
+                        <p:calendar value="#{registerCliente.praticaViewModel.dataFirmaContratti}"
+                                    mask="true" id="dataFirmaContratti"
+                                    pattern="dd/MM/yyyy"/>
+                    </p:outputLabel>
+
+                </p:panelGrid>
+
+</html>

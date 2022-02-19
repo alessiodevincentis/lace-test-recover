@@ -1,0 +1,184 @@
+@startuml
+
+title __AMMINISTRAZIONE's Class Diagram__\n
+
+  namespace com.woonders.lacemsjsf.view.amministrazione {
+    class com.woonders.lacemsjsf.view.amministrazione.AmministrazioneConverter {
+        + AmministrazioneConverter()
+        + getAsObject()
+        + getAsString()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.amministrazione {
+    class com.woonders.lacemsjsf.view.amministrazione.AmministrazionePdfView {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        - file : ByteArrayOutputStream
+        + AmministrazionePdfView()
+        + getAmministrazionePdf()
+        + getAziendaService()
+        + getFile()
+        + getHttpSessionUtil()
+        + getIdFile()
+        + getPassaggioParametriUtils()
+        + getStream()
+        + setAmministrazionePdf()
+        + setAziendaService()
+        + setFile()
+        + setHttpSessionUtil()
+        + setPassaggioParametriUtils()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.amministrazione {
+    class com.woonders.lacemsjsf.view.amministrazione.AmministrazioneValidator {
+        + setConstantResolverView()
+        + setPropertiesUtil()
+        + validate()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.amministrazione {
+    class com.woonders.lacemsjsf.view.amministrazione.AmministrazioneView {
+        + addValutazioneAction()
+        + getAmministrazioneService()
+        + getAmministrazioneViewModel()
+        + getConstantResolverView()
+        + getFinanziariaList()
+        + getFinanziariaService()
+        + getHttpSessionUtil()
+        + getPassaggioParametriUtils()
+        + getPropertiesUtil()
+        + getSelectedFinanziariaViewModel()
+        + getValutazioneAmministrazioneService()
+        + init()
+        + isAmministrazioneButtonRendered()
+        + isDisabledButtonPdf()
+        + isMaxLimitValutazioni()
+        + isPrintPdfDisabled()
+        + populateAmministration()
+        + printPdfAmministration()
+        + removeValutazioneAction()
+        + saveNewAmministrazione()
+        + setAmministrazioneService()
+        + setAmministrazioneViewModel()
+        + setConstantResolverView()
+        + setFinanziariaService()
+        + setHttpSessionUtil()
+        + setPassaggioParametriUtils()
+        + setPropertiesUtil()
+        + setSelectedFinanziariaViewModel()
+        + setValutazioneAmministrazioneService()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.amministrazione {
+    class com.woonders.lacemsjsf.view.amministrazione.CheckRagSociale {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        - ragioneSociale : String
+        + getAmministrazioneService()
+        + getPassaggioParametriUtils()
+        + getRagioneSociale()
+        + newAmministration()
+        + setAmministrazioneService()
+        + setPassaggioParametriUtils()
+        + setRagioneSociale()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.amministrazione {
+    class com.woonders.lacemsjsf.view.amministrazione.DatatableAmministrazioneView {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        - amministrazioneViewModelList : List<AmministrazioneViewModel>
+        + getAmministrazioneViewModelList()
+        + getPassaggioParametriUtils()
+        + getSelectedAmministrazione()
+        + init()
+        + onRowSelect()
+        + setAmministrazioneViewModelList()
+        + setPassaggioParametriUtils()
+        + setSelectedAmministrazione()
+        - SetterListAmministrazione()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.amministrazione {
+    class com.woonders.lacemsjsf.view.amministrazione.SearchAmministrazioneView {
+        {static} + JSF_NAME : String
+        {static} + NAME : String
+        - amministrazioneViewModelList : List<AmministrazioneViewModel>
+        - cf : String
+        - piva : String
+        - ragioneSociale : String
+        + getAmministrazioneService()
+        + getAmministrazioneViewModelList()
+        + getCf()
+        + getPassaggioParametriUtils()
+        + getPiva()
+        + getRagioneSociale()
+        + getSelectedAmministrazione()
+        + searchCf()
+        + searchPiva()
+        + searchRagSociale()
+        + setAmministrazioneService()
+        + setAmministrazioneViewModelList()
+        + setCf()
+        + setPassaggioParametriUtils()
+        + setPiva()
+        + setRagioneSociale()
+        + setSelectedAmministrazione()
+    }
+  }
+  
+
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneConverter -up-|> com.woonders.lacemsjsf.util.BaseConverter
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneConverter o-- com.woonders.lacemscommon.service.AmministrazioneService : amministrazioneService
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazionePdfView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazionePdfView o-- com.woonders.lacemsjsf.view.pdf.AmministrazionePdf : amministrazionePdf
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazionePdfView o-- com.woonders.lacemscommon.service.AziendaService : aziendaService
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazionePdfView o-- com.woonders.lacemsjsf.util.HttpSessionUtil : httpSessionUtil
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazionePdfView o-- com.woonders.lacemsjsf.util.PassaggioParametriUtils : passaggioParametriUtils
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazionePdfView o-- com.woonders.lacemsjsf.view.pdf.StreamPdf : stream
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneValidator .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneValidator .up.|> javax.faces.validator.Validator
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneValidator o-- com.woonders.lacemsjsf.view.util.ConstantResolverView : constantResolverView
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneValidator o-- com.woonders.lacemsjsf.config.PropertiesUtil : propertiesUtil
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneView o-- com.woonders.lacemscommon.service.AmministrazioneService : amministrazioneService
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneView o-- com.woonders.lacemscommon.app.viewmodel.AmministrazioneViewModel : amministrazioneViewModel
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneView o-- com.woonders.lacemsjsf.view.util.ConstantResolverView : constantResolverView
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneView o-- com.woonders.lacemscommon.service.FinanziariaService : finanziariaService
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneView o-- com.woonders.lacemsjsf.util.HttpSessionUtil : httpSessionUtil
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneView o-- com.woonders.lacemsjsf.util.PassaggioParametriUtils : passaggioParametriUtils
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneView o-- com.woonders.lacemsjsf.config.PropertiesUtil : propertiesUtil
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneView o-- com.woonders.lacemscommon.app.viewmodel.FinanziariaViewModel : selectedFinanziariaViewModel
+  com.woonders.lacemsjsf.view.amministrazione.AmministrazioneView o-- com.woonders.lacemscommon.service.ValutazioneAmministrazioneService : valutazioneAmministrazioneService
+  com.woonders.lacemsjsf.view.amministrazione.CheckRagSociale .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.amministrazione.CheckRagSociale o-- com.woonders.lacemscommon.service.AmministrazioneService : amministrazioneService
+  com.woonders.lacemsjsf.view.amministrazione.CheckRagSociale o-- com.woonders.lacemsjsf.util.PassaggioParametriUtils : passaggioParametriUtils
+  com.woonders.lacemsjsf.view.amministrazione.DatatableAmministrazioneView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.amministrazione.DatatableAmministrazioneView o-- com.woonders.lacemsjsf.util.PassaggioParametriUtils : passaggioParametriUtils
+  com.woonders.lacemsjsf.view.amministrazione.DatatableAmministrazioneView o-- com.woonders.lacemscommon.app.viewmodel.AmministrazioneViewModel : selectedAmministrazione
+  com.woonders.lacemsjsf.view.amministrazione.SearchAmministrazioneView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.amministrazione.SearchAmministrazioneView o-- com.woonders.lacemscommon.service.AmministrazioneService : amministrazioneService
+  com.woonders.lacemsjsf.view.amministrazione.SearchAmministrazioneView o-- com.woonders.lacemsjsf.util.PassaggioParametriUtils : passaggioParametriUtils
+  com.woonders.lacemsjsf.view.amministrazione.SearchAmministrazioneView o-- com.woonders.lacemscommon.app.viewmodel.AmministrazioneViewModel : selectedAmministrazione
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

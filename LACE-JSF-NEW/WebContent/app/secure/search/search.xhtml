@@ -1,0 +1,240 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:composite-custom="http://java.sun.com/jsf/composite/composite-custom">
+
+    <ui:define name="content">
+
+        <h:body>
+            <f:metadata>
+                <f:event type="preRenderView" listener="#{aziendaSelectionView.setCurrentMenuSection('CERCA')}"/>
+            </f:metadata>
+
+            <script type="text/javascript"
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAykxEHCpnF1fOegpstZNoiRDnN2aeUIhk&amp;libraries=places"
+                    async="async" defer="defer"></script>
+            <h:outputScript library="js" name="googlePlacesUtil.js"/>
+            <h:outputScript library="js" name="advancedSearchClientiProvinciaAutocomplete.js"/>
+            <h:outputScript library="js" name="advancedSearchNominativiProvinciaAutocomplete.js"/>
+
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-lg-6">
+
+                    <div class="card card-w-title">
+                        <h1>Ricerca per Codice Fiscale:</h1>
+
+                        <p:panelGrid id="panelRicercaCf" columns="2" layout="grid"
+                                     styleClass="ui-panelgrid-blank form-group">
+
+                            <p:inputText id="cfsearch" placeholder="Codice Fiscale" value="#{search.cfSearch}"
+                                         required="true" label="Codice Fiscale" maxlength="16"/>
+                            <p:commandButton value="Cerca" action="#{search.searchCF}" validateClient="true"
+                                             icon="fa fa-search Fs18 White"
+                                             styleClass="green-btn" process="panelRicercaCf"/>
+
+                        </p:panelGrid>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-lg-6">
+                    <div class="card card-w-title">
+                        <h1>Ricerca per Cognome:</h1>
+
+                        <p:panelGrid id="panelRicercaCognome" columns="2" layout="grid"
+                                     styleClass="ui-panelgrid-blank form-group">
+
+                            <p:inputText id="cognomesearch" placeholder="Cognome"
+                                         value="#{search.cognomeSearch}" required="true" label="Cognome">
+                                <f:validateLength minimum="#{constantResolverView.minLengthLastname}"/>
+                            </p:inputText>
+                            <p:commandButton value="Cerca" action="#{search.searchCognome}" validateClient="true"
+                                             icon="fa fa-search Fs18 White"
+                                             styleClass="green-btn" process="panelRicercaCognome"/>
+
+                        </p:panelGrid>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-lg-6">
+                    <div class="card card-w-title">
+                        <h1>Ricerca per Telefono Fisso/Cellulare:</h1>
+
+                        <p:panelGrid id="panelRicercaTelefono" columns="2" layout="grid"
+                                     styleClass="ui-panelgrid-blank form-group">
+
+                            <p:inputText id="telefonoSearch" placeholder="Telefono Fisso/Cellulare"
+                                         value="#{search.telefono}"
+                                         required="true" label="Telefono">
+                                <f:validateLength minimum="#{constantResolverView.minLengthTelephone}"
+                                                  maximum="#{constantResolverView.maxLengthTelephone}"/>
+                            </p:inputText>
+                            <p:commandButton value="Cerca" action="#{search.searchTelefono}" validateClient="true"
+                                             icon="fa fa-search Fs18 White"
+                                             styleClass="green-btn" process="panelRicercaTelefono"/>
+
+                        </p:panelGrid>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-lg-6">
+                    <div class="card card-w-title">
+                        <h1>Ricerca per numero di contratto:</h1>
+
+                        <p:panelGrid id="panelRicercaContratto" columns="2" layout="grid"
+                                     styleClass="ui-panelgrid-blank form-group">
+
+                            <p:inputText placeholder="Numero di contratto"
+                                         value="#{search.nrContratto}"
+                                         required="true" label="Numero Contratto"/>
+                            <p:commandButton value="Cerca" action="#{search.searchByNrContratto}"
+                                             icon="fa fa-search Fs18 White"
+                                             styleClass="green-btn" process="@this panelRicercaContratto"/>
+                        </p:panelGrid>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-lg-12">
+                    <p:outputPanel rendered="#{search.ricercaAvanzataClienteRendered}">
+                        <div class="card card-w-title">
+                            <h1>Ricerca Avanzata Clienti:</h1>
+
+                            <composite-custom:advancedSearch
+                                    id="advancedsearchcliente"
+                                    aziendaValue="#{search.advancedSearchClienti.aziendaId}"
+                                    aziendaRendered="#{search.isAziendaRenderedCliente()}"
+                                    renderedOperatori="#{search.renderedSelectItemsOperatorsCliente}"
+                                    valueOperatoriSelectCheckboxMenu="#{search.advancedSearchClienti.operatorList}"
+                                    valueOperatoriSelectItems="#{search.getOperatorListClienti()}"
+                                    valueSessoSelectOneMenu="#{search.advancedSearchClienti.sesso}"
+                                    idDisplayEta="displayRangeEtaCliente"
+                                    idEtaFrom="etaFromCliente"
+                                    idEtaTo="etaToCliente"
+                                    valueProvenienza="#{search.advancedSearchClienti.provenienzaList}"
+                                    valueProvenienzaDescSelectCheckboxMenu="#{search.advancedSearchClienti.provenienzaDescList}"
+                                    valueProvenienzaDescSelectItems="#{search.getProvenienzaDescListClienti()}"
+                                    valueEtaFrom="#{search.advancedSearchClienti.etaFrom}"
+                                    valueEtaTo="#{search.advancedSearchClienti.etaTo}"
+                                    idProvincia="provinciaCliente"
+                                    valueProvincia="#{search.advancedSearchClienti.provinciaResidenza}"
+                                    renderedStatoPratica="true"
+                                    valueStatoPratica="#{search.advancedSearchClienti.statoPraticaList}"
+                                    renderedStatoNominativo="false"
+                                    valueImpiego="#{search.advancedSearchClienti.impieghiList}"
+                                    valueAnniAssunzione="#{search.advancedSearchClienti.anniAssunzione}"
+                                    valueAnniAssunzioneDisabled="#{search.isDisabledAnniAssunzionePensionamento(search.advancedSearchClienti)}"
+                                    valueAmministrazione="#{search.advancedSearchClienti.amministrazioneViewModel}"
+                                    valueDataInserimentoInizio="#{search.advancedSearchClienti.dataInizioInserimento}"
+                                    valueDataInserimentoFine="#{search.advancedSearchClienti.dataFineInserimento}"
+                                    valueDataCaricamentoInizio="#{search.advancedSearchClienti.dataInizioCaricamento}"
+                                    valueDataCaricamentoFine="#{search.advancedSearchClienti.dataFineCaricamento}"
+                                    dataCaricamentoRendered="true" tipoRinnovoRendered="true"
+                                    tipoRinnovoValue="#{search.advancedSearchClienti.tipoRinnovo}"
+                                    idDataRinnovoInizio="datarinnovoinizioCliente"
+                                    idDataRinnovoFine="datarinnovofineCliente"
+                                    valueDataRinnovoInizio="#{search.advancedSearchClienti.dataRinnovoInizio}"
+                                    valueDataRinnovoFine="#{search.advancedSearchClienti.dataRinnovoFine}"
+                                    dataRinnovoDisabled="#{search.isDisabledDateRinnovi(search.advancedSearchClienti)}"
+                                    dataDecorrenzaRendered="true" dataDeliberaRendered="true"
+                                    dataFirmaContrattiRendered="true" dataIstruitaRendered="true"
+                                    dataIstruttoriaRendered="true" dataLiquidazioneRendered="true"
+                                    dataPerfezionamentoRendered="true"
+                                    valueDataRecallInizio="#{search.advancedSearchClienti.dataRecallInizio}"
+                                    valueDataRecallFine="#{search.advancedSearchClienti.dataRecallFine}"
+                                    valueDataIstruttoriaInizio="#{search.advancedSearchClienti.dataIstruitaInizio}"
+                                    valueDataIstruttoriaFine="#{search.advancedSearchClienti.dataIstruttoriaFine}"
+                                    valueDataIstruitaInizio="#{search.advancedSearchClienti.dataIstruitaInizio}"
+                                    valueDataIstruitaFine="#{search.advancedSearchClienti.dataIstruitaFine}"
+                                    valueDataDeliberaInizio="#{search.advancedSearchClienti.dataDeliberaInizio}"
+                                    valueDataDeliberaFine="#{search.advancedSearchClienti.dataDeliberaFine}"
+                                    valueDataFirmaContrattiInizio="#{search.advancedSearchClienti.dataFirmaContrattiInizio}"
+                                    valueDataFirmaContrattiFine="#{search.advancedSearchClienti.dataFirmaContrattiFine}"
+                                    valueDataDecorrenzaInizio="#{search.advancedSearchClienti.dataDecorrenzaInizio}"
+                                    valueDataDecorrenzaFine="#{search.advancedSearchClienti.dataDecorrenzaFine}"
+                                    valueDataLiquidazioneInizio="#{search.advancedSearchClienti.dataLiquidazioneInizio}"
+                                    valueDataLiquidazioneFine="#{search.advancedSearchClienti.dataLiquidazioneFine}"
+                                    valueDataPerfezionamentoInizio="#{search.advancedSearchClienti.dataPerfezionamentoInizio}"
+                                    valueDataPerfezionamentoFine="#{search.advancedSearchClienti.dataPerfezionamentoFine}"/>
+
+
+                            <p:panelGrid columns="4" layout="grid"
+                                         styleClass="ui-panelgrid-blank form-group">
+                                <p:commandButton value="Cerca"
+                                                 action="#{search.advancedSearchCliente}"
+                                                 icon="fa fa-search Fs18 White"
+                                                 styleClass="green-btn"
+                                                 process="@this advancedsearchcliente"/>
+
+                            </p:panelGrid>
+
+                        </div>
+                    </p:outputPanel>
+
+
+                    <p:outputPanel rendered="#{search.ricercaAvanzataNominativoRendered}">
+                        <div class="card card-w-title">
+                            <h1>Ricerca Avanzata Nominativi:</h1>
+
+                            <composite-custom:advancedSearch
+                                    id="advancedsearchnominativo"
+                                    aziendaValue="#{search.advancedSearchNominativi.aziendaId}"
+                                    aziendaRendered="#{search.isAziendaRenderedNominativo()}"
+                                    renderedOperatori="#{search.renderedSelectItemsOperatorsNominativo}"
+                                    valueOperatoriSelectCheckboxMenu="#{search.advancedSearchNominativi.operatorList}"
+                                    valueOperatoriSelectItems="#{search.getOperatorListNominativi()}"
+                                    valueSessoSelectOneMenu="#{search.advancedSearchNominativi.sesso}"
+                                    idDisplayEta="displayRangeEtaNominativo"
+                                    idEtaFrom="etaFromNominativo"
+                                    idEtaTo="etaToNominativo"
+                                    valueEtaFrom="#{search.advancedSearchNominativi.etaFrom}"
+                                    valueEtaTo="#{search.advancedSearchNominativi.etaTo}"
+                                    idProvincia="provinciaNominativo"
+                                    valueProvincia="#{search.advancedSearchNominativi.provinciaResidenza}"
+                                    valueProvenienza="#{search.advancedSearchNominativi.provenienzaList}"
+                                    valueProvenienzaDescSelectCheckboxMenu="#{search.advancedSearchNominativi.provenienzaDescList}"
+                                    valueProvenienzaDescSelectItems="#{search.getProvenienzaDescListClienti()}"
+                                    renderedStatoPratica="false"
+                                    valueStatoNominativo="#{search.advancedSearchNominativi.statoNominativoList}"
+                                    renderedStatoNominativo="true"
+                                    valueImpiego="#{search.advancedSearchNominativi.impieghiList}"
+                                    valueAnniAssunzione="#{search.advancedSearchNominativi.anniAssunzione}"
+                                    valueAnniAssunzioneDisabled="#{search.isDisabledAnniAssunzionePensionamento(search.advancedSearchNominativi)}"
+                                    valueAmministrazione="#{search.advancedSearchNominativi.amministrazioneViewModel}"
+                                    valueDataInserimentoInizio="#{search.advancedSearchNominativi.dataInizioInserimento}"
+                                    valueDataInserimentoFine="#{search.advancedSearchNominativi.dataFineInserimento}"
+                                    dataCaricamentoRendered="false" tipoRinnovoRendered="false"
+                                    idDataRinnovoInizio="datarinnovoinizioNominativo"
+                                    idDataRinnovoFine="datarinnovofineNominativo"
+                                    valueDataRinnovoInizio="#{search.advancedSearchNominativi.dataRinnovoInizio}"
+                                    valueDataRinnovoFine="#{search.advancedSearchNominativi.dataRinnovoFine}"
+                                    dataRinnovoDisabled="#{search.isDisabledDateRinnovi(search.advancedSearchNominativi)}"
+                                    dataDecorrenzaRendered="false" dataDeliberaRendered="false"
+                                    dataFirmaContrattiRendered="false" dataIstruitaRendered="false"
+                                    dataIstruttoriaRendered="false" dataLiquidazioneRendered="false"
+                                    dataPerfezionamentoRendered="false"
+                                    valueDataRecallInizio="#{search.advancedSearchNominativi.dataRecallInizio}"
+                                    valueDataRecallFine="#{search.advancedSearchNominativi.dataRecallFine}"/>
+
+
+                            <p:panelGrid columns="4" layout="grid"
+                                         styleClass="ui-panelgrid-blank form-group">
+                                <p:commandButton value="Cerca"
+                                                 action="#{search.advancedSearchNominativo}"
+                                                 icon="fa fa-search Fs18 White"
+                                                 styleClass="green-btn"
+                                                 process="@this advancedsearchnominativo"/>
+
+                            </p:panelGrid>
+
+                        </div>
+                    </p:outputPanel>
+
+                </div>
+            </div>
+
+        </h:body>
+
+    </ui:define>
+
+</ui:composition>

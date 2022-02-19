@@ -1,0 +1,143 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+    <p:importEnum type="com.woonders.lacemscommon.db.entityenum.StatoPratica" var="JsfStatoPratica"
+                      allSuffix="ALL_ENUM_VALUES"/>
+
+        <h:body>
+
+            <f:metadata>
+                <f:event type="preRenderView" listener="#{aziendaSelectionView.setCurrentMenuSection('FATTURAZIONE')}"/>
+            </f:metadata>
+
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-lg-12">
+
+<p:outputPanel rendered="#{searchFatturazioneView.daPerfezionareRendered}">
+	
+	<div class="card card-w-title">
+         <h1>Ricerca Pratiche da Perfezionare:</h1>
+         <p:panelGrid columns="4" id="daPerfezionarePanel" layout="grid" styleClass="ui-panelgrid-blank form-group">
+			
+ 			<p:outputLabel value="Provenienza:">
+                 <p:selectOneMenu effect="fold" id="provenienza" label="Provenienza"
+		                         value="#{searchFatturazioneView.provenienza}">
+		            <f:selectItem itemLabel="" itemValue=""/>
+		            <f:selectItems value="#{constantResolverView.provenienza}" var="v"
+		                           itemLabel="#{v.value}" itemValue="#{v.value}"/>
+		        </p:selectOneMenu>
+             </p:outputLabel>
+             
+             <p:outputLabel value="Provenienza Desc:">
+                 <p:selectOneMenu effect="fold" id="provenienzaDesc" label="Provenienza Desc"
+		                         value="#{searchFatturazioneView.provenienzaDesc}">
+		            <f:selectItem itemLabel="" itemValue=""/>
+		            <f:selectItems value="#{searchFatturazioneView.getProvenienzaDescListClienti()}"/>
+		        </p:selectOneMenu>
+             </p:outputLabel>
+	
+             <p:outputLabel value="Data Inizio Caricamento:">
+                 <p:calendar id="datainizio" placeholder="Da:" value="#{searchFatturazioneView.dataInizio}"
+                             pattern="dd/MM/yyyy" mask="true" label="Data Inizio"/>
+             </p:outputLabel>
+	
+             <p:outputLabel value="Data Fine Caricamento:">
+                 <p:calendar id="datafine" placeholder="A:" value="#{searchFatturazioneView.dataFine}"
+                             pattern="dd/MM/yyyy" mask="true" label="Data Fine"/>
+             </p:outputLabel>
+             
+             
+             
+
+             <p:panelGrid columns="2" styleClass="ui-panelgrid-blank form-group">
+             	<p:outputLabel value="#{JsfStatoPratica.LIQUIDAZIONE.value}:"/>
+             	<p:selectBooleanCheckbox value="#{searchFatturazioneView.liquidazione}"/>
+             </p:panelGrid>
+		             
+             <p:panelGrid columns="2" styleClass="ui-panelgrid-blank form-group">
+             	<p:outputLabel value="#{JsfStatoPratica.LIQUIDATA.value}:"/>
+             	<p:selectBooleanCheckbox value="#{searchFatturazioneView.liquidata}"/>
+             </p:panelGrid>
+             	 
+             <p:panelGrid columns="2" styleClass="ui-panelgrid-blank form-group">
+             	<p:outputLabel value="#{JsfStatoPratica.DECORRENZA.value}:"/>
+             	<p:selectBooleanCheckbox value="#{searchFatturazioneView.quietanzata}"/>
+             </p:panelGrid>
+				
+             <p:panelGrid columns="2" styleClass="ui-panelgrid-blank form-group">
+                 <p:outputLabel value="#{JsfStatoPratica.PERFEZIONAMENTO.value}:"/>
+                 <p:selectBooleanCheckbox value="#{searchFatturazioneView.perfezionamentoSelected}"/>
+             </p:panelGrid>
+             
+             
+             <p:commandButton value="Cerca Pratiche da Perfezionare" process="daPerfezionarePanel"
+                              validateClient="true" action="#{searchFatturazioneView.searchPerfeziona}"
+                              icon="fa fa-search Fs18 White"
+                              styleClass="green-btn"/>
+         </p:panelGrid>
+     </div>
+<p:spacer/>
+</p:outputPanel>
+
+		 <div class="card card-w-title">
+            <h1>Ricerca le Pratiche già Perfezionate</h1>
+                         
+             <p:panelGrid columns="3" id="perfezionatePanel" layout="grid" styleClass="ui-panelgrid-blank form-group">            
+                       
+               	<p:outputLabel value="Provenienza:">
+                 	<p:selectOneMenu effect="fold" id="provenienza2" label="Provenienza"
+		                         value="#{searchFatturazioneView.provenienza2}">
+		            	<f:selectItem itemLabel="" itemValue=""/>
+		            	<f:selectItems value="#{constantResolverView.provenienza}" var="v"
+		                           itemLabel="#{v.value}" itemValue="#{v.value}"/>
+		        	</p:selectOneMenu>
+             	</p:outputLabel>  
+             	
+             	<p:outputLabel value="Provenienza Desc:">
+	                 <p:selectOneMenu effect="fold" id="provenienzaDesc2" label="Provenienza Desc"
+			                         value="#{searchFatturazioneView.provenienzaDesc2}">
+			            <f:selectItem itemLabel="" itemValue=""/>
+			            <f:selectItems value="#{searchFatturazioneView.getProvenienzaDescListClienti()}"/>
+			        </p:selectOneMenu>
+                </p:outputLabel>     
+                         
+                <p:outputLabel for="operatore" value="Operatore:" 
+                rendered="#{searchFatturazioneView.selectOneMenuOperatoriRendered}">
+                    <p:selectOneMenu effect="fold" id="operatore" value="#{searchFatturazioneView.operatore}" 
+                    rendered="#{searchFatturazioneView.selectOneMenuOperatoriRendered}">
+                    	<f:selectItem itemLabel="Qualsiasi" itemValue=""/>
+                        <f:selectItems var="opt" value="#{utilResolverView.getOperatorsStringList('FATTURAZIONE', 'READ')}"/>
+                    </p:selectOneMenu>
+                </p:outputLabel>
+
+                <p:outputLabel value="Data Inizio Perfezionamento:">
+                    <p:calendar id="datainizio2" placeholder="Da:"
+                                value="#{searchFatturazioneView.dataInizio2}" pattern="dd/MM/yyyy" mask="true"
+                                label="Data Inizio" required="true"/>
+               </p:outputLabel>
+
+                <p:outputLabel value="Data Fine Perfezionamento:">
+                    <p:calendar id="datafine2" placeholder="A:" value="#{searchFatturazioneView.dataFine2}"
+                                pattern="dd/MM/yyyy" mask="true" label="Data Fine" required="true"/>
+                </p:outputLabel>
+                <p:commandButton value="Cerca Pratiche Perfezionate" process="perfezionatePanel"
+                                 validateClient="true" action="#{searchFatturazioneView.searchPerfezionate}"
+                                 icon="fa fa-search Fs18 White"
+                                 styleClass="green-btn"/>
+
+            </p:panelGrid>
+        </div>
+                <p:spacer/>
+
+		 </div>
+		</div>
+      </h:body>
+
+    </ui:define>
+
+</ui:composition>

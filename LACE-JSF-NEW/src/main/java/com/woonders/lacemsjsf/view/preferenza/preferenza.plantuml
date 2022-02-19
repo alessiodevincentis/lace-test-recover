@@ -1,0 +1,134 @@
+@startuml
+
+title __PREFERENZA's Class Diagram__\n
+
+  namespace com.woonders.lacemsjsf.view.preferenza {
+    class com.woonders.lacemsjsf.view.preferenza.FillableSmsTextValidator {
+        {static} - DATA_LENGTH : int
+        {static} - ORA_LENGTH : int
+        {static} - log : Logger
+        + calcSmsLength()
+        + validateSms()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.preferenza {
+    class com.woonders.lacemsjsf.view.preferenza.SettingView {
+        - allOperatorViewModel : List<OperatorViewModel>
+        {static} - log : Logger
+        - preferenzaStatoPraticaViewModelList : List<PreferenzaStatoPraticaViewModel>
+        - selectedReceiveLeadOperatorViewModelList : List<OperatorViewModel>
+        + enableIlComparatoreLeadReception()
+        + getAllOperatorViewModel()
+        + getAziendaSelectionView()
+        + getAziendaService()
+        + getAziendaUtil()
+        + getAziendaViewModel()
+        + getErrorConverter()
+        + getHttpSessionUtil()
+        + getIlComparatorePanelColumnCount()
+        + getLaceMailSender()
+        + getOperatorService()
+        + getPreferenzaStatoPraticaService()
+        + getPreferenzaStatoPraticaViewModelList()
+        + getPropertiesUtil()
+        + getSelectedReceiveLeadOperatorViewModelList()
+        + getSettingService()
+        + getSettingUtil()
+        + getSettingViewModel()
+        + hasAuthorityToEditPreferences()
+        + init()
+        + isAliasFieldDisabled()
+        + isDatiFatturazioneToBeCompleted()
+        + isDisabledToSendSms()
+        + isIlComparatoreLeadReceptionEnabled()
+        + isSmsFieldDisabled()
+        + isSmsFieldLeadDisabled()
+        + redirectILComparatore()
+        + refreshAllSettingsFromDb()
+        + save()
+        + setAllOperatorViewModel()
+        + setAziendaSelectionView()
+        + setAziendaService()
+        + setAziendaUtil()
+        + setAziendaViewModel()
+        + setErrorConverter()
+        + setHttpSessionUtil()
+        + setLaceMailSender()
+        + setOperatorService()
+        + setPreferenzaStatoPraticaService()
+        + setPreferenzaStatoPraticaViewModelList()
+        + setPropertiesUtil()
+        + setSelectedReceiveLeadOperatorViewModelList()
+        + setSettingService()
+        + setSettingUtil()
+        + setSettingViewModel()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.preferenza {
+    class com.woonders.lacemsjsf.view.preferenza.SmsSenderValidator {
+        {static} - GSM_BASIC_CHARACTERS_REGEX_WITHOUT_SPACE : String
+        {static} - MAX_SMS_SENDER_LENGTH : int
+        {static} - log : Logger
+        + SmsSenderValidator()
+        + validate()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.preferenza {
+    abstract class com.woonders.lacemsjsf.view.preferenza.SmsTextValidator {
+        {static} # GSM_BASIC_CHARACTERS_REGEX : String
+        # smsString : String
+        {static} - MAX_SMS_LENGTH : int
+        {static} - MIN_SMS_LENGTH : int
+        {static} - log : Logger
+        {abstract} + calcSmsLength()
+        + init()
+        + validate()
+        + validateSms()
+    }
+  }
+  
+
+  namespace com.woonders.lacemsjsf.view.preferenza {
+    class com.woonders.lacemsjsf.view.preferenza.StandardSmsTextValidator {
+        {static} - log : Logger
+        + calcSmsLength()
+    }
+  }
+  
+
+  com.woonders.lacemsjsf.view.preferenza.FillableSmsTextValidator -up-|> com.woonders.lacemsjsf.view.preferenza.SmsTextValidator
+  com.woonders.lacemsjsf.view.preferenza.SettingView .up.|> java.io.Serializable
+  com.woonders.lacemsjsf.view.preferenza.SettingView o-- com.woonders.lacemsjsf.view.aziendaselection.AziendaSelectionView : aziendaSelectionView
+  com.woonders.lacemsjsf.view.preferenza.SettingView o-- com.woonders.lacemscommon.service.AziendaService : aziendaService
+  com.woonders.lacemsjsf.view.preferenza.SettingView o-- com.woonders.lacemscommon.db.entityutil.AziendaUtil : aziendaUtil
+  com.woonders.lacemsjsf.view.preferenza.SettingView o-- com.woonders.lacemscommon.app.viewmodel.AziendaViewModel : aziendaViewModel
+  com.woonders.lacemsjsf.view.preferenza.SettingView o-- com.woonders.lacemsjsf.util.ErrorConverter : errorConverter
+  com.woonders.lacemsjsf.view.preferenza.SettingView o-- com.woonders.lacemsjsf.util.HttpSessionUtil : httpSessionUtil
+  com.woonders.lacemsjsf.view.preferenza.SettingView o-- com.woonders.lacemscommon.util.LaceMailSender : laceMailSender
+  com.woonders.lacemsjsf.view.preferenza.SettingView o-- com.woonders.lacemscommon.service.OperatorService : operatorService
+  com.woonders.lacemsjsf.view.preferenza.SettingView o-- com.woonders.lacemscommon.service.PreferenzaStatoPraticaService : preferenzaStatoPraticaService
+  com.woonders.lacemsjsf.view.preferenza.SettingView o-- com.woonders.lacemsjsf.config.PropertiesUtil : propertiesUtil
+  com.woonders.lacemsjsf.view.preferenza.SettingView o-- com.woonders.lacemscommon.service.SettingService : settingService
+  com.woonders.lacemsjsf.view.preferenza.SettingView o-- com.woonders.lacemscommon.db.entityutil.SettingUtil : settingUtil
+  com.woonders.lacemsjsf.view.preferenza.SettingView o-- com.woonders.lacemscommon.app.viewmodel.SettingViewModel : settingViewModel
+  com.woonders.lacemsjsf.view.preferenza.SmsSenderValidator -up-|> com.woonders.lacemsjsf.util.BaseValidator
+  com.woonders.lacemsjsf.view.preferenza.SmsSenderValidator o-- com.woonders.lacemsjsf.config.PropertiesUtil : propertiesUtil
+  com.woonders.lacemsjsf.view.preferenza.SmsTextValidator -up-|> com.woonders.lacemsjsf.util.BaseValidator
+  com.woonders.lacemsjsf.view.preferenza.SmsTextValidator o-- com.woonders.lacemsjsf.config.PropertiesUtil : propertiesUtil
+  com.woonders.lacemsjsf.view.preferenza.StandardSmsTextValidator -up-|> com.woonders.lacemsjsf.view.preferenza.SmsTextValidator
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
