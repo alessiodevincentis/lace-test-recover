@@ -40,6 +40,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
+        // test commit
         return super.authenticationManagerBean();
     }
 
